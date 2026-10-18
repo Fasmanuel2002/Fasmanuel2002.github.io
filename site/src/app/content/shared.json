@@ -1,0 +1,83 @@
+{
+  "generatedFrom": "data/data.json",
+  "site": {
+    "url": "https://manuelfas.vercel.app",
+    "urlIsPlaceholder": true,
+    "language": "en"
+  },
+  "pages": {
+    "home": {
+      "path": "/",
+      "title": "Manuel Fas — Machine learning researcher and engineer",
+      "description": "Manuel Fas, machine learning researcher and engineer in Salamanca, Spain, specialising in Transformer architectures, NLP and large language models."
+    },
+    "experience": {
+      "path": "/experience",
+      "title": "Experience — Manuel Fas",
+      "description": "Machine learning roles: BISITE Research Group (University of Salamanca); AIR Institute; Applied Artificial Intelligence (AAI) Lab, HSLU; Wembley Studios."
+    },
+    "projects": {
+      "path": "/projects",
+      "title": "Projects — Manuel Fas",
+      "description": "PyTorch reimplementation of the TRACE clickstream Transformer, a cancer survival-analysis thesis on TCGA RNA-seq data, and PyTorch paper reimplementations."
+    },
+    "certifications": {
+      "path": "/certifications",
+      "title": "Certifications — Manuel Fas",
+      "description": "Generative AI with Large Language Models, Deep Learning Specialization, Mathematics for Machine Learning and Data Science, and two CS50 courses."
+    },
+    "education": {
+      "path": "/education",
+      "title": "Education — Manuel Fas",
+      "description": "Dual B.S., Business Administration for Tech Companies and Computer Science, Pontifical University of Salamanca (UPSA); exchange at HSLU, Lucerne."
+    },
+    "contact": {
+      "path": "/contact",
+      "title": "Contact — Manuel Fas",
+      "description": "Contact Manuel Fas, machine learning researcher and engineer in Salamanca, Spain, by email (manuelfasruiz@gmail.com), GitHub or LinkedIn."
+    }
+  },
+  "person": {
+    "name": "Manuel Fas",
+    "alternateName": "Manuel Fas Ruiz",
+    "headline": "Machine learning researcher and engineer",
+    "location": "Salamanca, Spain",
+    "summary": "Machine learning researcher and engineer with experience across three research labs in Spain and Switzerland, specialising in Transformer architectures, NLP and large language models, and deep learning for sequential, tabular and biomedical data. Reimplements state-of-the-art papers into reproducible PyTorch codebases.",
+    "spokenLanguages": [
+      {
+        "language": "Spanish",
+        "level": "native"
+      },
+      {
+        "language": "English",
+        "level": "professional working proficiency"
+      }
+    ],
+    "photo": {
+      "src": "/images/profile.jpg",
+      "webp": "/images/profile.webp",
+      "width": 400,
+      "height": 400,
+      "alt": "Portrait of Manuel Fas"
+    }
+  },
+  "links": {
+    "email": {
+      "label": "Email",
+      "url": "mailto:manuelfasruiz@gmail.com",
+      "display": "manuelfasruiz@gmail.com"
+    },
+    "social": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/Fasmanuel2002",
+        "display": "github.com/Fasmanuel2002"
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://linkedin.com/in/manuel-fas-48b2b9257",
+        "display": "linkedin.com/in/manuel-fas-48b2b9257"
+      }
+    ]
+  }
+}

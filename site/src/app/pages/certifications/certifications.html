@@ -1,0 +1,77 @@
+<header class="page-head">
+  <div class="wrap page-head__grid">
+    <div class="page-head__text">
+      <h1 class="page-title reveal" style="--i: 0">Certifications</h1>
+      <p class="lede lede--head reveal" style="--i: 1">{{ page.lede }}</p>
+    </div>
+    <app-attention-mask class="page-mask" [size]="7" />
+  </div>
+</header>
+
+<div class="wrap entries">
+  @for (entry of page.entries; track entry.id) {
+    <article class="entry" [id]="entry.id" [attr.aria-labelledby]="entry.id + '-title'">
+      <p class="entry__when">
+        <time [attr.datetime]="entry.date">{{ entry.dateDisplay }}</time>
+      </p>
+      <div class="entry__body">
+        <p class="entry__kind">
+          @if (entry.kind === 'specialization') {
+            Specialization · {{ entry.courseCount }} courses
+          } @else {
+            Certificate
+          }
+        </p>
+        <h2 class="entry__title" [id]="entry.id + '-title'">{{ entry.title }}</h2>
+        <p class="entry__org">
+          {{ entry.issuer }}
+          @if (entry.platform) {
+            <span class="entry__place">{{ entry.platform }}</span>
+          }
+        </p>
+        @if (entry.topics) {
+          <p class="entry__topics"><span class="label">Topics</span> {{ entry.topics }}</p>
+        }
+        <p class="verify">
+          <a [href]="entry.url"
+            >Verify {{ entry.kind }}<span class="visually-hidden">: {{ entry.title }}</span></a
+          >
+        </p>
+        @if (entry.notes) {
+          <details class="disclosure">
+            <summary>Course notes<span class="visually-hidden">: {{ entry.title }}</span></summary>
+            <p>{{ entry.notes }}</p>
+          </details>
+        }
+
+        @if (entry.courses.length) {
+          <ol class="courses">
+            @for (course of entry.courses; track course.id) {
+              <li class="course" [id]="course.id">
+                <h3 class="course__title">{{ course.title }}</h3>
+                <p class="course__meta">
+                  <time [attr.datetime]="course.date">{{ course.dateDisplay }}</time>
+                  · {{ course.issuer }}
+                  @if (course.platform) {
+                    · {{ course.platform }}
+                  }
+                </p>
+                <p class="verify">
+                  <a [href]="course.url"
+                    >Verify certificate<span class="visually-hidden">: {{ course.title }}</span></a
+                  >
+                </p>
+                @if (course.notes) {
+                  <details class="disclosure">
+                    <summary>Course notes<span class="visually-hidden">: {{ course.title }}</span></summary>
+                    <p>{{ course.notes }}</p>
+                  </details>
+                }
+              </li>
+            }
+          </ol>
+        }
+      </div>
+    </article>
+  }
+</div>

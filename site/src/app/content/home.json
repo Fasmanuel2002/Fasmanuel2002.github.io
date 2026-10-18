@@ -1,0 +1,250 @@
+{
+  "ledes": {
+    "featured": "Three projects with public code: a PyTorch reimplementation of the TRACE clickstream model, a bachelor's thesis on survival modelling with TCGA breast cancer RNA-seq data, and a repository of PyTorch paper reimplementations.",
+    "activity": "Three roles, two research documents, one completed degree and two certifications between Oct 2025 and Sep 2026, newest first.",
+    "about": "Manuel Fas's background, education, current work and interests, in his own words."
+  },
+  "currentRole": {
+    "id": "exp-bisite",
+    "title": "Junior Machine Learning Researcher",
+    "organization": "BISITE Research Group (University of Salamanca)",
+    "datesDisplay": "Sep 2026 – Present"
+  },
+  "education": {
+    "id": "edu-upsa",
+    "degreeType": "Dual B.S.",
+    "program": "Business Administration for Tech Companies and Computer Science",
+    "institution": "Pontifical University of Salamanca (UPSA)",
+    "datesDisplay": "Sep 2022 – May 2027 (expected)"
+  },
+  "interests": [
+    "Deep learning",
+    "Computer vision",
+    "Natural-language processing",
+    "Large language models (LLMs)"
+  ],
+  "about": [
+    {
+      "heading": "Who I am",
+      "text": "I’m Manuel Fas Ruiz, a machine learning engineer and researcher based in Salamanca, Spain. Originally from Guatemala, I moved to Spain to continue my studies and build my career in technology. I’m curious by nature and enjoy exploring how things work, especially when mathematics, research, and software engineering come together to solve real problems."
+    },
+    {
+      "heading": "Education and international experience",
+      "text": "My academic background combines Business Administration for Tech Companies and Computer Science. I completed my business degree in 2026 and expect to finish my Computer Science degree in 2027. Studying both fields has helped me think about technology from different perspectives: how to build a solution, why it matters, and how it can be useful in practice. I also completed an international exchange at Lucerne University of Applied Sciences and Arts (HSLU) in Switzerland, which broadened my academic experience and strengthened my interest in working in international environments."
+    },
+    {
+      "heading": "What I do",
+      "text": "I currently work with the BISITE Research Group at the University of Salamanca, contributing to machine-learning and AI research activities."
+    },
+    {
+      "heading": "My interests",
+      "text": "My main interests are deep learning, computer vision, natural-language processing, large language models (LLMs). I enjoy both experimenting with models and understanding the engineering behind a complete system—from data preparation and evaluation to performance and deployment. I continue to learn through research papers, courses, and hands-on projects. My goal is to keep growing as an engineer and researcher, contribute to meaningful AI projects, and bridge the gap between research ideas and practical applications."
+    }
+  ],
+  "projectCards": [
+    {
+      "id": "trace-reimplementation",
+      "rank": 1,
+      "title": "Reimplementation of clickstream event sequence analysis model TRACE",
+      "summary": "Transformer-based user representation learned from attributed clickstream event sequences.",
+      "dateDisplay": "January 2026",
+      "date": "2026-01",
+      "highlight": {
+        "value": "AUROC 0.787 · AUPRC 0.696",
+        "note": "TRACE (multi-task), average over the ATC, SAT and MAP tasks on the OTTO dataset"
+      },
+      "technologies": [
+        "Python",
+        "PyTorch",
+        "NumPy",
+        "pandas",
+        "scikit-learn"
+      ],
+      "repository": {
+        "url": "https://github.com/Fasmanuel2002/AAI_HSLU_TRACE",
+        "name": "AAI_HSLU_TRACE"
+      },
+      "pdf": {
+        "href": "/papers/TRACEPAPER_Report.pdf",
+        "pages": 36,
+        "documentType": "Research project report"
+      }
+    },
+    {
+      "id": "upsa-thesis-cancer-survival",
+      "rank": 2,
+      "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
+      "summary": "Application of AI and deep learning methods to genomic and transcriptomic data analysis in cancer.",
+      "dateDisplay": "July 2026",
+      "date": "2026-07",
+      "highlight": {
+        "value": "Best model: DeepSurv, C-index approximately 0.82",
+        "note": "819 patients raw, 519 after preprocessing"
+      },
+      "technologies": [
+        "Python",
+        "pandas",
+        "NumPy",
+        "InMoose (limma)",
+        "scikit-learn"
+      ],
+      "repository": {
+        "url": "https://github.com/Fasmanuel2002/UPSA_Thesis_Research",
+        "name": "UPSA_Thesis_Research"
+      },
+      "pdf": {
+        "href": "/papers/TFG_ManuelFasRuiz.pdf",
+        "pages": 39,
+        "documentType": "Bachelor's Thesis"
+      }
+    },
+    {
+      "id": "paper-reimplementations",
+      "rank": 3,
+      "title": "Paper-Reimplementations",
+      "summary": "PyTorch reimplementations of baseline and state-of-the-art machine learning and AI models.",
+      "dateDisplay": null,
+      "date": null,
+      "highlight": {
+        "value": "6 papers listed",
+        "note": "3 completed, 1 in progress, 2 planned/in progress"
+      },
+      "technologies": [
+        "Python",
+        "PyTorch",
+        "Jupyter"
+      ],
+      "repository": {
+        "url": "https://github.com/Fasmanuel2002/Paper-Reimplementations",
+        "name": "Paper-Reimplementations"
+      },
+      "pdf": null
+    }
+  ],
+  "timeline": [
+    {
+      "date": "2026-09",
+      "display": "Sep 2026",
+      "kind": "Role",
+      "title": "Junior Machine Learning Researcher",
+      "detail": "BISITE Research Group (University of Salamanca)",
+      "route": "/experience",
+      "fragment": "exp-bisite"
+    },
+    {
+      "date": "2026-08",
+      "display": "Aug 2026",
+      "kind": "Certificate",
+      "title": "Generative AI with Large Language Models",
+      "detail": "DeepLearning.AI and Amazon Web Services",
+      "route": "/certifications",
+      "fragment": "cert-genai-llm"
+    },
+    {
+      "date": "2026-07",
+      "display": "July 2026",
+      "kind": "Bachelor's Thesis",
+      "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
+      "detail": "Pontifical University of Salamanca (UPSA)",
+      "route": "/projects",
+      "fragment": "upsa-thesis-cancer-survival"
+    },
+    {
+      "date": "2026-05",
+      "display": "May 2026",
+      "kind": "Degree completed",
+      "title": "B.S. Business Administration for Tech Companies",
+      "detail": "Pontifical University of Salamanca (UPSA)",
+      "route": "/education",
+      "fragment": "edu-upsa"
+    },
+    {
+      "date": "2026-04",
+      "display": "Apr 2026",
+      "kind": "Role",
+      "title": "Machine Learning Research Intern",
+      "detail": "AIR Institute",
+      "route": "/experience",
+      "fragment": "exp-air-institute"
+    },
+    {
+      "date": "2026-02",
+      "display": "Feb 2026",
+      "kind": "Specialization",
+      "title": "Deep Learning Specialization",
+      "detail": "DeepLearning.AI",
+      "route": "/certifications",
+      "fragment": "spec-deep-learning"
+    },
+    {
+      "date": "2026-01",
+      "display": "January 2026",
+      "kind": "Research project report",
+      "title": "Reimplementation of clickstream event sequence analysis model TRACE",
+      "detail": "HSLU",
+      "route": "/projects",
+      "fragment": "trace-reimplementation"
+    },
+    {
+      "date": "2025-10",
+      "display": "Oct 2025",
+      "kind": "Role",
+      "title": "Machine Learning Research Assistant",
+      "detail": "Applied Artificial Intelligence (AAI) Lab, HSLU",
+      "route": "/experience",
+      "fragment": "exp-hslu-aai-lab"
+    }
+  ],
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": "https://manuelfas.vercel.app/#person",
+    "name": "Manuel Fas",
+    "alternateName": "Manuel Fas Ruiz",
+    "url": "https://manuelfas.vercel.app/",
+    "image": "https://manuelfas.vercel.app/images/profile.jpg",
+    "jobTitle": "Junior Machine Learning Researcher",
+    "description": "Machine learning researcher and engineer with experience across three research labs in Spain and Switzerland, specialising in Transformer architectures, NLP and large language models, and deep learning for sequential, tabular and biomedical data. Reimplements state-of-the-art papers into reproducible PyTorch codebases.",
+    "email": "mailto:manuelfasruiz@gmail.com",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Salamanca",
+      "addressCountry": "Spain"
+    },
+    "worksFor": {
+      "@type": "Organization",
+      "name": "BISITE Research Group (University of Salamanca)",
+      "url": "https://bisite.usal.es"
+    },
+    "alumniOf": [
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Pontifical University of Salamanca (UPSA)"
+      },
+      {
+        "@type": "CollegeOrUniversity",
+        "name": "Lucerne University of Applied Sciences and Arts (HSLU)"
+      }
+    ],
+    "knowsAbout": [
+      "Deep learning",
+      "Computer vision",
+      "Natural-language processing",
+      "Large language models (LLMs)",
+      "Transformer architectures",
+      "NLP & LLMs",
+      "retrieval-augmented generation (RAG)",
+      "survival analysis",
+      "paper reimplementation",
+      "experiment design and ablation studies"
+    ],
+    "knowsLanguage": [
+      "Spanish",
+      "English"
+    ],
+    "sameAs": [
+      "https://github.com/Fasmanuel2002",
+      "https://linkedin.com/in/manuel-fas-48b2b9257"
+    ]
+  }
+}

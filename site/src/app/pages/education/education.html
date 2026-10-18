@@ -1,0 +1,92 @@
+<header class="page-head">
+  <div class="wrap page-head__grid">
+    <div class="page-head__text">
+      <h1 class="page-title reveal" style="--i: 0">Education</h1>
+      <p class="lede lede--head reveal" style="--i: 1">{{ page.lede }}</p>
+    </div>
+    <app-attention-mask class="page-mask" [size]="7" />
+  </div>
+</header>
+
+<div class="wrap entries">
+  @for (entry of page.entries; track entry.id) {
+    <article class="entry" [id]="entry.id" [attr.aria-labelledby]="entry.id + '-title'">
+      <p class="entry__when">
+        <time [attr.datetime]="entry.start">{{ entry.startDisplay }}</time> –
+        <time [attr.datetime]="entry.end">{{ entry.endDisplay }}</time>
+      </p>
+      <div class="entry__body">
+        <h2 class="entry__title" [id]="entry.id + '-title'">{{ entry.institution }}</h2>
+        <p class="entry__org">
+          @if (entry.degreeType) {
+            {{ entry.degreeType }},
+          }
+          {{ entry.program }}
+          <span class="entry__place">{{ entry.location }}</span>
+        </p>
+        @if (entry.status) {
+          <p>{{ entry.status }}</p>
+        }
+
+        @if (entry.degrees.length) {
+          <h3 class="block__title">Degrees</h3>
+          <ul class="degrees">
+            @for (degree of entry.degrees; track degree.name) {
+              <li class="degree">
+                <span class="degree__name">{{ degree.name }}</span>
+                <span class="status" [attr.data-status]="degree.status === 'completed' ? 'done' : 'active'"
+                  >{{ degree.status }}@if (degree.completedDisplay) {, {{ degree.completedDisplay }}}</span
+                >
+              </li>
+            }
+          </ul>
+        }
+
+        @if (entry.thesis; as thesis) {
+          <h3 class="block__title">{{ thesis.documentType }}</h3>
+          <p class="thesis__title">{{ thesis.title }}</p>
+          <p>{{ thesis.description }}</p>
+          <dl class="kv kv--compact">
+            <div>
+              <dt>Degree</dt>
+              <dd>{{ thesis.degree }}</dd>
+            </div>
+            <div>
+              <dt>Director</dt>
+              <dd>{{ thesis.director }}</dd>
+            </div>
+            <div>
+              <dt>Co-director</dt>
+              <dd>{{ thesis.coDirector }}</dd>
+            </div>
+            <div>
+              <dt>Date</dt>
+              <dd><time [attr.datetime]="thesis.date">{{ thesis.dateDisplay }}</time></dd>
+            </div>
+            <div>
+              <dt>Keywords</dt>
+              <dd>{{ thesis.keywords.join(', ') }}</dd>
+            </div>
+          </dl>
+          <ul class="link-list">
+            <li>
+              <a [href]="thesis.pdf" type="application/pdf"
+                >Read the thesis (PDF, {{ thesis.pages }} pages)</a
+              >
+            </li>
+            <li><a [href]="thesis.repository">Code on GitHub</a></li>
+            <li><a routerLink="/projects" [fragment]="thesis.projectId">Project details</a></li>
+          </ul>
+        }
+
+        @if (entry.relatedRole; as role) {
+          <p class="entry__note">
+            Related role:
+            <a routerLink="/experience" [fragment]="role.id">{{ role.title }}, {{ role.organization }}</a>
+            ({{ role.datesDisplay }})
+          </p>
+        }
+      </div>
+    </article>
+  }
+</div>

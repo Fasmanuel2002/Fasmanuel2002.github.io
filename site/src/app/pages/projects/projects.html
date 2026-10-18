@@ -1,0 +1,467 @@
+<header class="page-head">
+  <div class="wrap page-head__grid">
+    <div class="page-head__text">
+      <h1 class="page-title reveal" style="--i: 0">Projects</h1>
+      <p class="lede lede--head reveal" style="--i: 1">{{ page.lede }}</p>
+      <nav class="toc reveal" style="--i: 2" aria-label="Projects on this page">
+        <ol class="toc__list">
+          @for (project of [trace, thesis, reimpl]; track project.id) {
+            <li>
+              <a routerLink="/projects" [fragment]="project.id">{{ project.title }}</a>
+            </li>
+          }
+        </ol>
+      </nav>
+    </div>
+    <app-attention-mask class="page-mask" [size]="7" />
+  </div>
+</header>
+
+<!-- 01 · TRACE reimplementation -->
+<article class="project wrap" [id]="trace.id" aria-labelledby="trace-title">
+  <header class="project__head">
+    <p class="project__meta">
+      <span class="project__idx">0{{ trace.rank }}</span>
+      <time [attr.datetime]="trace.date">{{ trace.dateDisplay }}</time>
+      <span>Role: {{ trace.role }}</span>
+    </p>
+    <h2 id="trace-title" class="project__title">{{ trace.title }}</h2>
+    <p class="project__summary">{{ trace.summary }}</p>
+    <p class="result">
+      <strong>{{ trace.highlight.value }}</strong>
+      <span>{{ trace.highlight.note }}</span>
+    </p>
+    <ul class="actions">
+      <li>
+        <a class="button" [href]="trace.pdf.href" type="application/pdf"
+          >Read the report (PDF, {{ trace.pdf.pages }} pages)</a
+        >
+      </li>
+      <li>
+        <a class="button button--quiet" [href]="trace.repository.url">Code on GitHub</a>
+      </li>
+      <li>
+        <a class="button button--quiet" [href]="trace.originalPaper.url"
+          >Original paper (arXiv:{{ trace.originalPaper.arxivId }})</a
+        >
+      </li>
+    </ul>
+  </header>
+
+  <div class="project__body">
+    <dl class="kv">
+      <div>
+        <dt>Context</dt>
+        <dd>
+          <a routerLink="/experience" [fragment]="trace.context.experienceId">{{ trace.context.position }}</a>,
+          {{ trace.context.organization }}, {{ trace.context.location }}
+        </dd>
+      </div>
+      <div>
+        <dt>Dates</dt>
+        <dd>{{ trace.context.datesDisplay }}</dd>
+      </div>
+      <div>
+        <dt>Supervisor</dt>
+        <dd>{{ trace.context.supervisor }}</dd>
+      </div>
+      <div>
+        <dt>Repository</dt>
+        <dd>
+          <a [href]="trace.repository.url">{{ trace.repository.name }}</a>
+          · {{ trace.repository.license }} license · {{ trace.repository.languages.join(', ') }}
+        </dd>
+      </div>
+    </dl>
+
+    <section class="block">
+      <h3 class="block__title">Overview</h3>
+      <ul class="points">
+        @for (point of trace.points; track $index) {
+          <li>{{ point }}</li>
+        }
+      </ul>
+    </section>
+
+    <section class="block">
+      <h3 class="block__title">Original paper</h3>
+      <p class="citation">
+        <a [href]="trace.originalPaper.url">{{ trace.originalPaper.title }}</a>.
+        {{ trace.originalPaper.authors.join(', ') }}, {{ trace.originalPaper.year }}.
+        arXiv:{{ trace.originalPaper.arxivId }}.
+      </p>
+    </section>
+
+    <section class="block">
+      <h3 class="block__title">Datasets</h3>
+      <dl class="kv kv--compact">
+        @for (dataset of trace.datasets; track dataset.name) {
+          <div>
+            <dt>
+              @if (dataset.url) {
+                <a [href]="dataset.url">{{ dataset.name }}</a>
+              } @else {
+                {{ dataset.name }}
+              }
+            </dt>
+            <dd>{{ dataset.role }}</dd>
+          </div>
+        }
+      </dl>
+    </section>
+
+    <section class="block">
+      <h3 class="block__title">Method</h3>
+      <dl class="kv">
+        <div>
+          <dt>Architecture</dt>
+          <dd>{{ trace.method.architecture }}</dd>
+        </div>
+        <div>
+          <dt>Prediction tasks</dt>
+          <dd>
+            <dl class="tasks">
+              @for (task of trace.method.tasks; track task.code) {
+                <div>
+                  <dt>{{ task.code }}</dt>
+                  <dd>{{ task.definition }}</dd>
+                </div>
+              }
+            </dl>
+          </dd>
+        </div>
+        <div>
+          <dt>Loss</dt>
+          <dd>{{ trace.method.loss }}</dd>
+        </div>
+        <div>
+          <dt>Data preparation</dt>
+          <dd>{{ trace.method.dataPreparation }}</dd>
+        </div>
+        <div>
+          <dt>Training modes</dt>
+          <dd>{{ trace.method.trainingModes.join('; ') }}</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="block">
+      <h3 class="block__title">Results</h3>
+      <figure class="table-figure">
+        <figcaption id="trace-results-caption">{{ trace.results.caption }}</figcaption>
+        <div class="table-wrap" role="region" aria-labelledby="trace-results-caption" tabindex="0">
+          <table class="data-table" aria-labelledby="trace-results-caption">
+            <thead>
+              <tr>
+                <th scope="col">Model</th>
+                @for (column of trace.results.columns; track column) {
+                  <th scope="col">{{ column }}</th>
+                }
+              </tr>
+            </thead>
+            <tbody>
+              @for (row of trace.results.rows; track row.model; let first = $first) {
+                <tr [class.is-highlight]="first">
+                  <th scope="row">{{ row.model }}</th>
+                  @for (value of row.values; track $index) {
+                    <td>{{ value }}</td>
+                  }
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </figure>
+      <ul class="points">
+        @for (finding of trace.results.findings; track $index) {
+          <li>{{ finding }}</li>
+        }
+      </ul>
+    </section>
+
+    <section class="block">
+      <h3 class="block__title">Limitations</h3>
+      <ul class="points">
+        @for (limitation of trace.results.limitations; track $index) {
+          <li>{{ limitation }}</li>
+        }
+      </ul>
+    </section>
+
+    <section class="block">
+      <h3 class="block__title">Technologies</h3>
+      <ul class="tags">
+        @for (tech of trace.technologies; track tech) {
+          <li>{{ tech }}</li>
+        }
+      </ul>
+    </section>
+
+    <details class="disclosure">
+      <summary>Report abstract</summary>
+      <p>{{ trace.abstract }}</p>
+    </details>
+  </div>
+</article>
+
+<!-- 02 · Bachelor's thesis -->
+<article class="project wrap" [id]="thesis.id" aria-labelledby="thesis-title">
+  <header class="project__head">
+    <p class="project__meta">
+      <span class="project__idx">0{{ thesis.rank }}</span>
+      <time [attr.datetime]="thesis.date">{{ thesis.dateDisplay }}</time>
+      <span>Role: {{ thesis.role }}</span>
+    </p>
+    <h2 id="thesis-title" class="project__title">{{ thesis.title }}</h2>
+    <p class="project__summary">{{ thesis.summary }}</p>
+    <p class="result">
+      <strong>{{ thesis.highlight.value }}</strong>
+      <span>{{ thesis.highlight.note }}</span>
+    </p>
+    <ul class="actions">
+      <li>
+        <a class="button" [href]="thesis.pdf.href" type="application/pdf"
+          >Read the thesis (PDF, {{ thesis.pdf.pages }} pages)</a
+        >
+      </li>
+      <li>
+        <a class="button button--quiet" [href]="thesis.repository.url">Code on GitHub</a>
+      </li>
+      <li>
+        <a class="button button--quiet" [href]="thesis.data.datasetUrl">Dataset on cBioPortal</a>
+      </li>
+    </ul>
+  </header>
+
+  <div class="project__body">
+    <dl class="kv">
+      <div>
+        <dt>Context</dt>
+        <dd>
+          {{ thesis.context.documentType }},
+          <a routerLink="/education" [fragment]="thesis.context.educationId">{{ thesis.context.degree }}</a>,
+          {{ thesis.context.organization }}
+        </dd>
+      </div>
+      <div>
+        <dt>Director</dt>
+        <dd>{{ thesis.context.director }}</dd>
+      </div>
+      <div>
+        <dt>Co-director</dt>
+        <dd>{{ thesis.context.coDirector }}</dd>
+      </div>
+      <div>
+        <dt>Repository</dt>
+        <dd>
+          <a [href]="thesis.repository.url">{{ thesis.repository.name }}</a>
+          · {{ thesis.repository.languages.join(', ') }}
+        </dd>
+      </div>
+    </dl>
+
+    <section class="block">
+      <h3 class="block__title">Research question</h3>
+      <blockquote class="question">
+        <p>{{ thesis.researchQuestion }}</p>
+      </blockquote>
+    </section>
+
+    <section class="block">
+      <h3 class="block__title">Data</h3>
+      <dl class="kv">
+        <div>
+          <dt>Dataset</dt>
+          <dd>{{ thesis.data.dataset }}</dd>
+        </div>
+        <div>
+          <dt>Patients</dt>
+          <dd>{{ thesis.data.patients }}</dd>
+        </div>
+        <div>
+          <dt>Genes</dt>
+          <dd>{{ thesis.data.genes }}</dd>
+        </div>
+        <div>
+          <dt>Molecular subtypes</dt>
+          <dd>{{ thesis.data.subtypes.join(', ') }}</dd>
+        </div>
+        <div>
+          <dt>Survival endpoint</dt>
+          <dd>{{ thesis.data.endpoint }}</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="block">
+      <h3 class="block__title">Method</h3>
+      <dl class="kv">
+        <div>
+          <dt>Feature selection</dt>
+          <dd>{{ thesis.method.featureSelection }}</dd>
+        </div>
+        <div>
+          <dt>Models</dt>
+          <dd>{{ thesis.method.models.join(', ') }}</dd>
+        </div>
+        <div>
+          <dt>Validation</dt>
+          <dd>{{ thesis.method.validation }}</dd>
+        </div>
+        <div>
+          <dt>Evaluation</dt>
+          <dd>{{ thesis.method.evaluation }}</dd>
+        </div>
+        <div>
+          <dt>Interpretability</dt>
+          <dd>{{ thesis.method.interpretability }}</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="block">
+      <h3 class="block__title">Results</h3>
+      <ul class="points">
+        @for (finding of thesis.results.findings; track $index) {
+          <li>{{ finding }}</li>
+        }
+      </ul>
+    </section>
+
+    <section class="block">
+      <h3 class="block__title">Limitations</h3>
+      <ul class="points">
+        @for (limitation of thesis.results.limitations; track $index) {
+          <li>{{ limitation }}</li>
+        }
+      </ul>
+    </section>
+
+    <section class="block">
+      <h3 class="block__title">Keywords and technologies</h3>
+      <ul class="tags tags--keywords" aria-label="Keywords">
+        @for (keyword of thesis.keywords; track keyword) {
+          <li>{{ keyword }}</li>
+        }
+      </ul>
+      <ul class="tags" aria-label="Technologies">
+        @for (tech of thesis.technologies; track tech) {
+          <li>{{ tech }}</li>
+        }
+      </ul>
+    </section>
+  </div>
+</article>
+
+<!-- 03 · Paper-Reimplementations -->
+<article class="project wrap" [id]="reimpl.id" aria-labelledby="reimpl-title">
+  <header class="project__head">
+    <p class="project__meta">
+      <span class="project__idx">0{{ reimpl.rank }}</span>
+      <span>Role: {{ reimpl.role }}</span>
+    </p>
+    <h2 id="reimpl-title" class="project__title">{{ reimpl.title }}</h2>
+    <p class="project__summary">{{ reimpl.summary }}</p>
+    <p class="result">
+      <strong>{{ reimpl.highlight.value }}</strong>
+      <span>{{ reimpl.highlight.note }}</span>
+    </p>
+    <ul class="actions">
+      <li>
+        <a class="button" [href]="reimpl.repository.url">Code on GitHub</a>
+      </li>
+    </ul>
+  </header>
+
+  <div class="project__body">
+    <section class="block block--wide">
+      <h3 class="block__title">Implementations</h3>
+      <div class="impls">
+        @for (item of reimpl.implementations; track item.number) {
+          <article class="impl" [attr.aria-labelledby]="'impl-' + item.number">
+            <p class="impl__head">
+              <span class="impl__num">{{ item.number }}</span>
+              <span class="status" [attr.data-status]="item.statusKey">{{ item.status }}</span>
+            </p>
+            <h4 class="impl__title" [id]="'impl-' + item.number">{{ item.name }}</h4>
+            <p class="impl__area">{{ item.area }}</p>
+            <ul class="impl__papers">
+              @for (paper of item.papers; track paper.arxivId) {
+                <li>
+                  <a [href]="paper.url">{{ paper.title }}</a>
+                  <span class="impl__cite">{{ cite(paper.authors) }}, {{ paper.year }} · arXiv:{{ paper.arxivId }}</span>
+                </li>
+              }
+            </ul>
+            @if (item.implementation) {
+              <p>{{ item.implementation }}</p>
+            } @else {
+              <p class="impl__note">{{ item.note }}</p>
+            }
+            @if (item.dataset) {
+              <p><span class="label">Dataset</span> {{ item.dataset }}</p>
+            }
+            @if (item.results.length) {
+              <div
+                class="table-wrap"
+                role="region"
+                [attr.aria-label]="'Reported results: ' + item.name"
+                tabindex="0"
+              >
+                <table class="data-table data-table--compact">
+                  <thead>
+                    <tr>
+                      <th scope="col">Metric</th>
+                      @for (column of item.resultColumns; track column) {
+                        <th scope="col">{{ column }}</th>
+                      }
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (result of item.results; track result.metric) {
+                      <tr>
+                        <th scope="row">{{ result.metric }}</th>
+                        @for (value of result.values; track $index) {
+                          <td>{{ value }}</td>
+                        }
+                      </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+            }
+            @if (item.caveat) {
+              <p class="impl__caveat">{{ item.caveat }}</p>
+            }
+            @if (item.folderUrl) {
+              <p class="impl__link">
+                <a [href]="item.folderUrl"
+                  >Folder on GitHub<span class="visually-hidden">: {{ item.name }}</span></a
+                >
+              </p>
+            }
+          </article>
+        }
+      </div>
+    </section>
+
+    <section class="block">
+      <h3 class="block__title">Technologies</h3>
+      <ul class="tags">
+        @for (tech of reimpl.technologies; track tech) {
+          <li>{{ tech }}</li>
+        }
+      </ul>
+    </section>
+  </div>
+</article>
+
+<section class="section wrap" aria-labelledby="more-title">
+  <div class="section-head">
+    <h2 id="more-title" class="section-head__title">More on GitHub</h2>
+  </div>
+  <p class="lede">{{ page.moreLede }}</p>
+  <p>
+    <a class="button button--quiet" [href]="page.githubProfile.url">{{ page.githubProfile.label }}</a>
+  </p>
+</section>

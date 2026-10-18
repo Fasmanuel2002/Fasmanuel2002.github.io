@@ -1,0 +1,162 @@
+{
+  "lede": "Four positions since Jul 2025: three machine learning research roles in Spain and Switzerland, and one machine learning and backend engineering role at Wembley Studios.",
+  "skillsLede": "Programming languages, machine learning libraries, engineering tools and methods, plus spoken languages.",
+  "roles": [
+    {
+      "id": "exp-bisite",
+      "title": "Junior Machine Learning Researcher",
+      "organization": "BISITE Research Group (University of Salamanca)",
+      "organizationUrl": "https://bisite.usal.es",
+      "location": "Salamanca, Spain",
+      "start": "2026-09",
+      "end": null,
+      "current": true,
+      "datesDisplay": "Sep 2026 – Present",
+      "startDisplay": "Sep 2026",
+      "endDisplay": "Present",
+      "supervisor": null,
+      "highlights": [
+        "Research and benchmark Transformer-based architectures for financial and tabular data.",
+        "Build reproducible PyTorch training and evaluation pipelines with leakage-safe splits, ablation studies and documented results, supporting the group’s research and technology-transfer projects.",
+        "Run local large language model inference with Ollama, profiling memory and compute bottlenecks to size hardware for research workloads."
+      ],
+      "technologies": [
+        "PyTorch",
+        "Ollama"
+      ],
+      "links": [],
+      "relatedProjectId": null
+    },
+    {
+      "id": "exp-air-institute",
+      "title": "Machine Learning Research Intern",
+      "organization": "AIR Institute",
+      "organizationUrl": null,
+      "location": "Salamanca, Spain",
+      "start": "2026-04",
+      "end": "2026-06",
+      "current": false,
+      "datesDisplay": "Apr 2026 – Jun 2026",
+      "startDisplay": "Apr 2026",
+      "endDisplay": "Jun 2026",
+      "supervisor": null,
+      "highlights": [
+        "Investigated NLP methodologies and Transformer-based large language models to advance the SOFIA scientific initiative, surveying the literature and prototyping the most promising approaches.",
+        "Reconstructed state-of-the-art deep learning architectures from academic papers into functional, documented PyTorch codebases, validating each reproduction against reported results."
+      ],
+      "technologies": [
+        "PyTorch"
+      ],
+      "links": [],
+      "relatedProjectId": null
+    },
+    {
+      "id": "exp-hslu-aai-lab",
+      "title": "Machine Learning Research Assistant",
+      "organization": "Applied Artificial Intelligence (AAI) Lab, HSLU",
+      "organizationUrl": null,
+      "location": "Lucerne, Switzerland",
+      "start": "2025-10",
+      "end": "2026-01",
+      "current": false,
+      "datesDisplay": "Oct 2025 – Jan 2026",
+      "startDisplay": "Oct 2025",
+      "endDisplay": "Jan 2026",
+      "supervisor": "Jan Svoboda",
+      "highlights": [
+        "Reimplemented the TRACE paper (arXiv:2409.12972) in PyTorch, engineering Transformer encoder models over clickstream event sequences for user recommendation — github.com/Fasmanuel2002/AAI_HSLU_TRACE.",
+        "Built Big Data preprocessing pipelines converting raw clickstream event logs into model-ready training sequences.",
+        "Benchmarked the reproduction against published baselines and documented architecture ablations for the lab."
+      ],
+      "technologies": [
+        "PyTorch"
+      ],
+      "links": [
+        {
+          "label": "TRACE paper (arXiv:2409.12972)",
+          "url": "https://arxiv.org/abs/2409.12972"
+        },
+        {
+          "label": "AAI_HSLU_TRACE repository",
+          "url": "https://github.com/Fasmanuel2002/AAI_HSLU_TRACE"
+        }
+      ],
+      "relatedProjectId": "trace-reimplementation"
+    },
+    {
+      "id": "exp-wembley-studios",
+      "title": "Machine Learning & Backend Engineer",
+      "organization": "Wembley Studios",
+      "organizationUrl": null,
+      "location": "Salamanca, Spain",
+      "start": "2025-07",
+      "end": "2025-09",
+      "current": false,
+      "datesDisplay": "Jul 2025 – Sep 2025",
+      "startDisplay": "Jul 2025",
+      "endDisplay": "Sep 2025",
+      "supervisor": null,
+      "highlights": [
+        "Deployed machine learning models into production on Microsoft Azure, exposing them as serving endpoints for application consumption.",
+        "Engineered high-throughput backend microservices in C# (.NET Core) integrating those ML endpoints into existing application workflows."
+      ],
+      "technologies": [
+        "Microsoft Azure",
+        "C#",
+        ".NET Core"
+      ],
+      "links": [],
+      "relatedProjectId": null
+    }
+  ],
+  "skills": [
+    {
+      "label": "Programming languages",
+      "items": [
+        "Python",
+        "C#",
+        "Java",
+        "SQL"
+      ]
+    },
+    {
+      "label": "Machine learning",
+      "items": [
+        "PyTorch",
+        "TensorFlow",
+        "Keras",
+        "Hugging Face Transformers",
+        "scikit-learn",
+        "NumPy",
+        "pandas"
+      ]
+    },
+    {
+      "label": "Engineering and infrastructure",
+      "items": [
+        "FastAPI",
+        "Docker",
+        "Microsoft Azure",
+        "Linux/WSL",
+        "CUDA",
+        "Ollama",
+        "Qdrant",
+        "Git",
+        "Jupyter",
+        "LaTeX"
+      ]
+    },
+    {
+      "label": "Methods",
+      "items": [
+        "Transformer architectures",
+        "NLP & LLMs",
+        "retrieval-augmented generation (RAG)",
+        "computer vision",
+        "survival analysis",
+        "paper reimplementation",
+        "experiment design and ablation studies"
+      ]
+    }
+  ]
+}

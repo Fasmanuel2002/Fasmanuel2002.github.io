@@ -166,8 +166,6 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
-# mkdocs/Zensical documentation
-/site
 
 # mypy
 .mypy_cache/
@@ -218,3 +216,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Private source material (CV with phone number, certificate scans): kept local only
+/source/

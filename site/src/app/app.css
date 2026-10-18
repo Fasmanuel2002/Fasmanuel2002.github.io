@@ -1,0 +1,146 @@
+/* App shell: skip link, site header with primary navigation, footer. */
+
+.skip-link {
+  position: absolute;
+  top: 0.75rem;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.6rem 0.9rem;
+  background: var(--amber);
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+  transform: translateY(-250%);
+}
+
+.skip-link:focus {
+  transform: none;
+  outline-color: var(--ink);
+}
+
+main:focus {
+  outline: none;
+}
+
+.site-header {
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.site-header__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem 2rem;
+  padding-block: 0.8rem;
+}
+
+.wordmark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding-block: 0.25rem;
+  color: var(--on-ink);
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+}
+
+.wordmark:hover {
+  color: #ffffff;
+}
+
+.wordmark__glyph {
+  width: 1.35rem;
+  height: 1.35rem;
+  fill: currentColor;
+}
+
+.wordmark__accent {
+  fill: var(--amber);
+}
+
+.site-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.15rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-nav__link {
+  display: inline-block;
+  padding-block: 0.45rem 0.3rem;
+  border-bottom: 2px solid transparent;
+  color: var(--on-ink-muted);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.site-nav__link:hover {
+  color: var(--on-ink);
+  border-bottom-color: var(--on-ink-muted);
+}
+
+.site-nav__link.is-active {
+  color: var(--on-ink);
+  border-bottom-color: var(--amber);
+}
+
+.site-header :focus-visible,
+.site-footer :focus-visible {
+  outline-color: var(--amber);
+}
+
+.site-footer {
+  margin-top: clamp(3rem, 8vw, 6rem);
+  padding-block: 2.5rem;
+  background: var(--ink);
+  color: var(--on-ink);
+}
+
+.site-footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.25rem 2rem;
+}
+
+.site-footer p {
+  margin: 0;
+}
+
+.site-footer__name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.site-footer__meta {
+  color: var(--on-ink-muted);
+}
+
+.site-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer a {
+  color: var(--on-ink);
+  text-decoration-color: rgb(245 242 234 / 0.45);
+}
+
+.site-footer a:hover {
+  color: var(--amber);
+  text-decoration-color: currentColor;
+}

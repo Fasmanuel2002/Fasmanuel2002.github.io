@@ -1,0 +1,59 @@
+<a class="skip-link" [href]="skipHref()">Skip to main content</a>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="wordmark" routerLink="/">
+      <svg class="wordmark__glyph" viewBox="0 0 22 22" aria-hidden="true" focusable="false">
+        <rect x="0" y="0" width="4" height="4" rx="0.8" />
+        <rect x="0" y="6" width="4" height="4" rx="0.8" opacity="0.55" />
+        <rect x="6" y="6" width="4" height="4" rx="0.8" />
+        <rect x="0" y="12" width="4" height="4" rx="0.8" opacity="0.55" />
+        <rect x="6" y="12" width="4" height="4" rx="0.8" opacity="0.35" />
+        <rect x="12" y="12" width="4" height="4" rx="0.8" />
+        <rect x="0" y="18" width="4" height="4" rx="0.8" opacity="0.55" />
+        <rect x="6" y="18" width="4" height="4" rx="0.8" opacity="0.35" />
+        <rect x="12" y="18" width="4" height="4" rx="0.8" opacity="0.7" />
+        <rect class="wordmark__accent" x="18" y="18" width="4" height="4" rx="0.8" />
+      </svg>
+      <span>{{ site.person.name }}</span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul class="site-nav__list">
+        @for (item of nav; track item.path) {
+          <li>
+            <a
+              class="site-nav__link"
+              [routerLink]="item.path"
+              routerLinkActive="is-active"
+              ariaCurrentWhenActive="page"
+              >{{ item.label }}</a
+            >
+          </li>
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main" tabindex="-1">
+  <router-outlet />
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div>
+      <p class="site-footer__name">{{ site.person.name }}</p>
+      <p class="site-footer__meta">{{ site.person.headline }} · {{ site.person.location }}</p>
+    </div>
+    <ul class="site-footer__links">
+      <li>
+        <a [href]="site.links.email.url">{{ site.links.email.display }}</a>
+      </li>
+      @for (link of site.links.social; track link.url) {
+        <li>
+          <a [href]="link.url">{{ link.label }}</a>
+        </li>
+      }
+    </ul>
+  </div>
+</footer>

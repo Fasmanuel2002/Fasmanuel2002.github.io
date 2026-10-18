@@ -1,0 +1,848 @@
+{
+  "lede": "Three featured projects, each with a public GitHub repository: a PyTorch reimplementation of the TRACE clickstream model (HSLU), a bachelor's thesis on cancer survival analysis (UPSA), and PyTorch reimplementations of machine learning papers.",
+  "moreLede": "Other public repositories are on Manuel Fas's GitHub profile.",
+  "githubProfile": {
+    "label": "More projects on GitHub",
+    "url": "https://github.com/Fasmanuel2002"
+  },
+  "trace": {
+    "id": "trace-reimplementation",
+    "rank": 1,
+    "kind": "trace",
+    "title": "Reimplementation of clickstream event sequence analysis model TRACE",
+    "summary": "Transformer-based user representation learned from attributed clickstream event sequences.",
+    "role": "Author",
+    "date": "2026-01",
+    "dateDisplay": "January 2026",
+    "context": {
+      "organization": "Applied Artificial Intelligence (AAI) Lab, HSLU",
+      "location": "Lucerne, Switzerland",
+      "position": "Machine Learning Research Assistant",
+      "datesDisplay": "Oct 2025 – Jan 2026",
+      "supervisor": "Jan Svoboda",
+      "experienceId": "exp-hslu-aai-lab"
+    },
+    "pdf": {
+      "href": "/papers/TRACEPAPER_Report.pdf",
+      "pages": 36,
+      "documentType": "Research project report"
+    },
+    "repository": {
+      "url": "https://github.com/Fasmanuel2002/AAI_HSLU_TRACE",
+      "name": "AAI_HSLU_TRACE",
+      "license": "MIT",
+      "languages": [
+        "Jupyter Notebook",
+        "Python"
+      ],
+      "created": "2025-11-05"
+    },
+    "originalPaper": {
+      "title": "TRACE: Transformer-based user Representations from Attributed Clickstream Event sequences",
+      "authors": [
+        "William Black",
+        "Alexander Manlove",
+        "Jack Pennington",
+        "Andrea Marchini",
+        "Ercument Ilhan",
+        "Vilda Markeviciute"
+      ],
+      "year": 2024,
+      "arxivId": "2409.12972",
+      "url": "https://arxiv.org/abs/2409.12972"
+    },
+    "points": [
+      "Re-implements the TRACE architecture in PyTorch and evaluates it on alternative public e-commerce datasets, because the dataset used in the original TRACE paper is not publicly available.",
+      "TRACE uses a multi-task learning framework in which a shared Transformer encoder learns user representations by predicting several future engagement signals from clickstream event sequences.",
+      "Three public datasets were assessed (OTTO, Synerise RecSys Challenge 2025, RetailRocket); OTTO was used as the primary dataset for training and evaluation.",
+      "The model is compared against a single-task cohort (one TRACE model per task) and a multi-task Bi-LSTM baseline."
+    ],
+    "datasets": [
+      {
+        "name": "OTTO RecSys dataset",
+        "role": "Primary dataset for training and evaluation",
+        "url": "https://github.com/otto-de/recsys-dataset"
+      },
+      {
+        "name": "Synerise RecSys Challenge 2025 dataset",
+        "role": "Assessed during dataset selection; viable but with fewer sessions than OTTO",
+        "url": null
+      },
+      {
+        "name": "RetailRocket recommender system dataset",
+        "role": "Assessed and rejected: a 15-event minimum per session removed about 99.59% of sessions",
+        "url": null
+      }
+    ],
+    "method": {
+      "architecture": "Transformer encoder with multi-task output heads producing a shared user representation",
+      "tasks": [
+        {
+          "code": "ATC",
+          "definition": "The user adds products to the cart at least two times during a session"
+        },
+        {
+          "code": "SAT",
+          "definition": "The user views the same article (AID) at least four times within a session"
+        },
+        {
+          "code": "MAP",
+          "definition": "The user purchases a product during the session"
+        }
+      ],
+      "loss": "Class-weighted binary cross-entropy (PyTorch BCEWithLogitsLoss with per-task positive-class weights)",
+      "dataPreparation": "Sessions with fewer than 32 events removed (1,621,909 of 3,164,777 sessions retained); each session split into input and target at a random point between 70% and 80% of its length",
+      "trainingModes": [
+        "Single-task learning (STL)",
+        "Multi-task learning (MTL)"
+      ]
+    },
+    "results": {
+      "caption": "Average over the ATC, SAT and MAP tasks on the OTTO dataset (report Table 2)",
+      "rows": [
+        {
+          "model": "TRACE (multi-task)",
+          "values": [
+            "0.787",
+            "0.696",
+            "0.662",
+            "0.679",
+            "0.689"
+          ]
+        },
+        {
+          "model": "Single-task cohort",
+          "values": [
+            "0.787",
+            "0.694",
+            "0.664",
+            "0.68",
+            "0.694"
+          ]
+        },
+        {
+          "model": "Multi-task Bi-LSTM",
+          "values": [
+            "0.738",
+            "0.664",
+            "0.62",
+            "0.661",
+            "0.679"
+          ]
+        }
+      ],
+      "columns": [
+        "AUROC",
+        "AUPRC",
+        "Binary F1",
+        "Macro F1",
+        "Accuracy"
+      ],
+      "findings": [
+        "TRACE outperforms the multi-task Bi-LSTM baseline on all five metrics.",
+        "TRACE and the single-task cohort tie on AUROC (0.787); TRACE is slightly higher on AUPRC (0.696 vs 0.694), while the single-task cohort is slightly higher on binary F1, macro F1 and accuracy."
+      ],
+      "limitations": [
+        "Evaluated on OTTO because the original TRACE dataset is not publicly available, so the numbers are not directly comparable with the original paper.",
+        "TRACE shows lower negative-class performance (higher false-positive rates) than both baselines; the report attributes this to the 70-80% input/target split and the class-weighting strategy."
+      ]
+    },
+    "abstract": "On e-commerce websites, users often follow complex navigation paths while searching for products and ultimately completing a purchase. These navigation patterns generate clickstream data that captures detailed information about user interactions over time and across sessions. Such data can be leveraged to enhance personalization and improve recommendation systems by more effectively modeling user behavior and intent. This research presents a re-implementation and investigation of the TRACE architecture, a novel transformer-based approach designed to generate rich user embeddings from multi-session clickstream data for real-world recommendation applications. The study evaluates the effectiveness of TRACE in modeling complex user navigation patterns using alternative large-scale e-commerce datasets, due to the unavailability of the original dataset used in the TRACE paper.",
+    "technologies": [
+      "Python",
+      "PyTorch",
+      "NumPy",
+      "pandas",
+      "scikit-learn",
+      "matplotlib",
+      "seaborn",
+      "TensorBoard",
+      "Docker"
+    ],
+    "highlight": {
+      "value": "AUROC 0.787 · AUPRC 0.696",
+      "note": "TRACE (multi-task), average over the ATC, SAT and MAP tasks on the OTTO dataset"
+    }
+  },
+  "thesis": {
+    "id": "upsa-thesis-cancer-survival",
+    "rank": 2,
+    "kind": "thesis",
+    "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
+    "summary": "Application of AI and deep learning methods to genomic and transcriptomic data analysis in cancer.",
+    "role": "Author",
+    "date": "2026-07",
+    "dateDisplay": "July 2026",
+    "context": {
+      "organization": "Pontifical University of Salamanca (UPSA)",
+      "documentType": "Bachelor's Thesis",
+      "degree": "B.S. Business Administration for Tech Companies",
+      "director": "Dr. Manuel Merino",
+      "coDirector": "Dr. Santiago Bueno",
+      "educationId": "edu-upsa"
+    },
+    "pdf": {
+      "href": "/papers/TFG_ManuelFasRuiz.pdf",
+      "pages": 39,
+      "documentType": "Bachelor's Thesis"
+    },
+    "repository": {
+      "url": "https://github.com/Fasmanuel2002/UPSA_Thesis_Research",
+      "name": "UPSA_Thesis_Research",
+      "license": null,
+      "languages": [
+        "Python",
+        "Jupyter Notebook",
+        "Dockerfile"
+      ],
+      "created": "2026-02-04"
+    },
+    "researchQuestion": "When we try to predict how long a breast-cancer patient will survive from their tumour's gene expression, do modern deep survival networks actually beat a well-regularised classical Cox model — or do they just look more impressive?",
+    "data": {
+      "dataset": "TCGA breast cancer RNA-seq (RSEM) expression and clinical data from cBioPortal, study brca_tcga_pub2015 (Breast Invasive Carcinoma, TCGA, Cell 2015)",
+      "datasetUrl": "https://www.cbioportal.org/study/summary?id=brca_tcga_pub2015",
+      "patients": "819 patients raw, 519 after preprocessing",
+      "genes": "20,440 raw; 18,492 after the low-expression filter; 1,000 selected",
+      "subtypes": [
+        "Luminal A",
+        "Luminal B",
+        "HER2-enriched",
+        "TNBC"
+      ],
+      "endpoint": "Overall survival, administratively censored at 60 months"
+    },
+    "method": {
+      "featureSelection": "Low-expression filter (genes with more than 80% zero values removed), then limma differential expression and univariate Cox screening, fitted on the training split only",
+      "models": [
+        "Cox Lasso",
+        "Cox Elastic Net",
+        "Random Survival Forest",
+        "DeepSurv",
+        "Cox-nnet"
+      ],
+      "validation": "Fixed patient split shared by all models (splits.json); hyperparameters chosen without the test set (k-fold cross-validation for Cox and Random Survival Forest models, validation set and grid search for DeepSurv and Cox-nnet); fixed random seed 42",
+      "evaluation": "Harrell's concordance index (C-index) on held-out test patients; Kaplan–Meier curves and log-rank test on median-split high- and low-risk groups",
+      "interpretability": "SHAP attributions with 50 bootstrap resamples for DeepSurv and Cox-nnet; gene-set enrichment against GO, KEGG and Reactome with GSEApy; STRING protein-protein interaction cross-check; Random Survival Forest minimal-depth interaction analysis"
+    },
+    "results": {
+      "findings": [
+        "DeepSurv achieved the best discriminative performance (C-index of approximately 0.82).",
+        "DeepSurv was the only model to produce a statistically significant risk stratification, outperforming both the linear Cox models and the Random Survival Forest.",
+        "DeepSurv and Cox-nnet shared 257 prognostic genes in the bootstrap SHAP consensus."
+      ],
+      "limitations": [
+        "The test set has about one hundred patients and no confidence interval is reported.",
+        "The neural networks' loss curves show overfitting.",
+        "There is no external validation cohort."
+      ]
+    },
+    "keywords": [
+      "Survival analysis",
+      "Deep learning",
+      "RNA-seq transcriptomics",
+      "Breast cancer prognosis",
+      "Explainable AI (SHAP)"
+    ],
+    "technologies": [
+      "Python",
+      "pandas",
+      "NumPy",
+      "InMoose (limma)",
+      "scikit-learn",
+      "scikit-survival",
+      "PyTorch",
+      "PyCox",
+      "SHAP",
+      "GSEApy",
+      "matplotlib",
+      "Jupyter",
+      "Docker",
+      "uv"
+    ],
+    "highlight": {
+      "value": "Best model: DeepSurv, C-index approximately 0.82",
+      "note": "819 patients raw, 519 after preprocessing"
+    }
+  },
+  "reimplementations": {
+    "id": "paper-reimplementations",
+    "rank": 3,
+    "kind": "reimplementations",
+    "title": "Paper-Reimplementations",
+    "summary": "PyTorch reimplementations of baseline and state-of-the-art machine learning and AI models.",
+    "role": "Author",
+    "repository": {
+      "url": "https://github.com/Fasmanuel2002/Paper-Reimplementations",
+      "name": "Paper-Reimplementations",
+      "license": null,
+      "languages": [
+        "Jupyter Notebook",
+        "Python"
+      ],
+      "created": "2026-09-06"
+    },
+    "implementations": [
+      {
+        "number": "01",
+        "name": "Sequence to Sequence Learning",
+        "area": "NLP",
+        "status": "Completed",
+        "statusKey": "done",
+        "folderUrl": "https://github.com/Fasmanuel2002/Paper-Reimplementations/tree/main/01_Sequence_to_Sequence_Learning",
+        "papers": [
+          {
+            "title": "Sequence to Sequence Learning with Neural Networks",
+            "authors": [
+              "Ilya Sutskever",
+              "Oriol Vinyals",
+              "Quoc V. Le"
+            ],
+            "year": 2014,
+            "arxivId": "1409.3215",
+            "url": "https://arxiv.org/abs/1409.3215"
+          },
+          {
+            "title": "Neural Machine Translation by Jointly Learning to Align and Translate",
+            "authors": [
+              "Dzmitry Bahdanau",
+              "Kyunghyun Cho",
+              "Yoshua Bengio"
+            ],
+            "year": 2014,
+            "arxivId": "1409.0473",
+            "url": "https://arxiv.org/abs/1409.0473"
+          }
+        ],
+        "implementation": "PyTorch LSTM encoder-decoder baseline (weights initialized uniformly between -0.08 and 0.08, following the Seq2Seq paper) and a bidirectional-GRU encoder with additive (Bahdanau) attention, compared with BLEU and ROUGE.",
+        "note": null,
+        "dataset": "Synthetic dataset of 10,000 generated examples (create_dataset.py) that map natural-language reminders to structured task lists; the folder README says a synthetic dataset was used because no GPU was available.",
+        "results": [
+          {
+            "metric": "BLEU",
+            "values": [
+              "~0.84",
+              "~0.91"
+            ]
+          },
+          {
+            "metric": "ROUGE-1",
+            "values": [
+              "~0.876",
+              "~0.944"
+            ]
+          },
+          {
+            "metric": "ROUGE-2",
+            "values": [
+              "~0.845",
+              "~0.937"
+            ]
+          },
+          {
+            "metric": "ROUGE-L",
+            "values": [
+              "~0.876",
+              "~0.943"
+            ]
+          }
+        ],
+        "resultColumns": [
+          "Baseline Seq2Seq",
+          "Seq2Seq with attention"
+        ],
+        "caveat": "The code (models/seq2seq_baseline.py, models/seq2seq_attention.py) implements the core model of each paper. Results come from a synthetic dataset rather than the papers' machine-translation benchmarks, so they are not comparable with published numbers."
+      },
+      {
+        "number": "02",
+        "name": "Attention Is All You Need",
+        "area": "Transformers / NLP",
+        "status": "Completed",
+        "statusKey": "done",
+        "folderUrl": "https://github.com/Fasmanuel2002/Paper-Reimplementations/tree/main/02_Attention_Is_All_You_Need",
+        "papers": [
+          {
+            "title": "Attention Is All You Need",
+            "authors": [
+              "Ashish Vaswani",
+              "Noam Shazeer",
+              "Niki Parmar",
+              "Jakob Uszkoreit",
+              "Llion Jones",
+              "Aidan N. Gomez",
+              "Lukasz Kaiser",
+              "Illia Polosukhin"
+            ],
+            "year": 2017,
+            "arxivId": "1706.03762",
+            "url": "https://arxiv.org/abs/1706.03762"
+          }
+        ],
+        "implementation": "Decoder-only, GPT-style Transformer language model (about 11 million parameters) with token and positional embeddings, causal masked multi-head self-attention, feed-forward layers, layer normalization and residual connections, trained for next-token prediction on a dataset of William Shakespeare's works on an NVIDIA L4 GPU, following Andrej Karpathy's 'Let's build GPT: from scratch' tutorial.",
+        "note": null,
+        "dataset": null,
+        "results": [],
+        "resultColumns": [
+          "Value"
+        ],
+        "caveat": null
+      },
+      {
+        "number": "03",
+        "name": "Predicting Issue Types with seBERT",
+        "area": "NLP",
+        "status": "Completed",
+        "statusKey": "done",
+        "folderUrl": "https://github.com/Fasmanuel2002/Paper-Reimplementations/tree/main/03_Predicting_Issue_Types_with_seBERT",
+        "papers": [
+          {
+            "title": "Predicting Issue Types with seBERT",
+            "authors": [
+              "Alexander Trautsch",
+              "Steffen Herbold"
+            ],
+            "year": 2022,
+            "arxivId": "2205.01335",
+            "url": "https://arxiv.org/abs/2205.01335"
+          }
+        ],
+        "implementation": "Fine-tunes a locally stored seBERT checkpoint (24-layer BERT encoder, hidden size 1024) with two binary heads, worth_automating and enough_information, on github-labels-annotated.csv using the Hugging Face Trainer.",
+        "note": null,
+        "dataset": null,
+        "results": [],
+        "resultColumns": [
+          "Value"
+        ],
+        "caveat": null
+      },
+      {
+        "number": "04",
+        "name": "An Image Is Worth 16×16 Words",
+        "area": "Computer Vision / Transformers",
+        "status": "In progress",
+        "statusKey": "active",
+        "folderUrl": "https://github.com/Fasmanuel2002/Paper-Reimplementations/tree/main/04_An_Image_Is_Worth_16x16_Words",
+        "papers": [
+          {
+            "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+            "authors": [
+              "Alexey Dosovitskiy",
+              "Lucas Beyer",
+              "Alexander Kolesnikov",
+              "Dirk Weissenborn",
+              "Xiaohua Zhai",
+              "Thomas Unterthiner",
+              "Mostafa Dehghani",
+              "Matthias Minderer",
+              "Georg Heigold",
+              "Sylvain Gelly",
+              "Jakob Uszkoreit",
+              "Neil Houlsby"
+            ],
+            "year": 2020,
+            "arxivId": "2010.11929",
+            "url": "https://arxiv.org/abs/2010.11929"
+          }
+        ],
+        "implementation": "Encoder-only Vision Transformer in PyTorch: 16x16 patch embedding (224x224 images into 196 patches), learnable [CLS] token and position embeddings, pre-norm encoder blocks with multi-head self-attention and a GELU MLP; 12 layers, hidden size 384, MLP size 1536, 6 attention heads, about 21.5 million parameters; trained on an NVIDIA L4 GPU.",
+        "note": null,
+        "dataset": "Trained from scratch on Imagenette2 (10 classes), then partially fine-tuned (last two Transformer blocks, final layer normalization and a new head; 3.75M of 21.5M parameters trainable) on a 525-class bird species dataset.",
+        "results": [
+          {
+            "metric": "Test accuracy on Imagenette2 (100 test images)",
+            "values": [
+              "66.00%"
+            ]
+          },
+          {
+            "metric": "Validation accuracy after partial fine-tuning on 525 bird species",
+            "values": [
+              "39.07%"
+            ]
+          }
+        ],
+        "resultColumns": [
+          "Value"
+        ],
+        "caveat": "The code (model/ViT.py) implements the ViT method: patch embedding, [CLS] token, position embeddings and a Transformer encoder. The model is trained at small scale from scratch, so accuracy is not comparable with the paper's results."
+      },
+      {
+        "number": "05",
+        "name": "Revisiting Deep Learning Models for Tabular Data",
+        "area": "Deep Learning / Tabular Data",
+        "status": "Planned/in progress",
+        "statusKey": "planned",
+        "folderUrl": "https://github.com/Fasmanuel2002/Paper-Reimplementations/tree/main/05_Feature_Tokenizer_Transformer",
+        "papers": [
+          {
+            "title": "Revisiting Deep Learning Models for Tabular Data",
+            "authors": [
+              "Yury Gorishniy",
+              "Ivan Rubachev",
+              "Valentin Khrulkov",
+              "Artem Babenko"
+            ],
+            "year": 2021,
+            "arxivId": "2106.11959",
+            "url": "https://arxiv.org/abs/2106.11959"
+          }
+        ],
+        "implementation": null,
+        "note": "Data preprocessing has started; there is no model yet.",
+        "dataset": null,
+        "results": [],
+        "resultColumns": [
+          "Value"
+        ],
+        "caveat": null
+      },
+      {
+        "number": "06",
+        "name": "Switch Transformers (MoE)",
+        "area": "Sparse Transformers / Scaling",
+        "status": "Planned/in progress",
+        "statusKey": "planned",
+        "folderUrl": null,
+        "papers": [
+          {
+            "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity",
+            "authors": [
+              "William Fedus",
+              "Barret Zoph",
+              "Noam Shazeer"
+            ],
+            "year": 2021,
+            "arxivId": "2101.03961",
+            "url": "https://arxiv.org/abs/2101.03961"
+          }
+        ],
+        "implementation": null,
+        "note": "The repository has no folder for this paper yet.",
+        "dataset": null,
+        "results": [],
+        "resultColumns": [
+          "Value"
+        ],
+        "caveat": null
+      }
+    ],
+    "technologies": [
+      "Python",
+      "PyTorch",
+      "Jupyter"
+    ],
+    "highlight": {
+      "value": "6 papers listed",
+      "note": "3 completed, 1 in progress, 2 planned/in progress"
+    }
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://manuelfas.vercel.app/projects#trace-reimplementation",
+        "name": "Reimplementation of clickstream event sequence analysis model TRACE",
+        "description": "Transformer-based user representation learned from attributed clickstream event sequences.",
+        "url": "https://manuelfas.vercel.app/projects#trace-reimplementation",
+        "codeRepository": "https://github.com/Fasmanuel2002/AAI_HSLU_TRACE",
+        "programmingLanguage": "Python",
+        "dateCreated": "2025-11-05",
+        "keywords": "Python, PyTorch, NumPy, pandas, scikit-learn, matplotlib, seaborn, TensorBoard, Docker",
+        "author": {
+          "@type": "Person",
+          "@id": "https://manuelfas.vercel.app/#person",
+          "name": "Manuel Fas"
+        },
+        "isBasedOn": {
+          "@type": "ScholarlyArticle",
+          "name": "TRACE: Transformer-based user Representations from Attributed Clickstream Event sequences",
+          "url": "https://arxiv.org/abs/2409.12972",
+          "datePublished": "2024",
+          "author": [
+            {
+              "@type": "Person",
+              "name": "William Black"
+            },
+            {
+              "@type": "Person",
+              "name": "Alexander Manlove"
+            },
+            {
+              "@type": "Person",
+              "name": "Jack Pennington"
+            },
+            {
+              "@type": "Person",
+              "name": "Andrea Marchini"
+            },
+            {
+              "@type": "Person",
+              "name": "Ercument Ilhan"
+            },
+            {
+              "@type": "Person",
+              "name": "Vilda Markeviciute"
+            }
+          ]
+        },
+        "subjectOf": {
+          "@type": "Report",
+          "name": "Reimplementation of clickstream event sequence analysis model TRACE",
+          "url": "https://manuelfas.vercel.app/papers/TRACEPAPER_Report.pdf",
+          "datePublished": "2026-01",
+          "author": {
+            "@type": "Person",
+            "@id": "https://manuelfas.vercel.app/#person",
+            "name": "Manuel Fas"
+          }
+        }
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://manuelfas.vercel.app/projects#upsa-thesis-cancer-survival",
+        "name": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
+        "description": "Application of AI and deep learning methods to genomic and transcriptomic data analysis in cancer.",
+        "url": "https://manuelfas.vercel.app/projects#upsa-thesis-cancer-survival",
+        "codeRepository": "https://github.com/Fasmanuel2002/UPSA_Thesis_Research",
+        "programmingLanguage": "Python",
+        "dateCreated": "2026-02-04",
+        "keywords": "Python, pandas, NumPy, InMoose (limma), scikit-learn, scikit-survival, PyTorch, PyCox, SHAP, GSEApy, matplotlib, Jupyter, Docker, uv",
+        "author": {
+          "@type": "Person",
+          "@id": "https://manuelfas.vercel.app/#person",
+          "name": "Manuel Fas"
+        },
+        "subjectOf": {
+          "@type": "Thesis",
+          "name": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
+          "url": "https://manuelfas.vercel.app/papers/TFG_ManuelFasRuiz.pdf",
+          "datePublished": "2026-07",
+          "inSupportOf": "B.S. Business Administration for Tech Companies",
+          "sourceOrganization": {
+            "@type": "CollegeOrUniversity",
+            "name": "Pontifical University of Salamanca (UPSA)"
+          },
+          "author": {
+            "@type": "Person",
+            "@id": "https://manuelfas.vercel.app/#person",
+            "name": "Manuel Fas"
+          }
+        }
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://manuelfas.vercel.app/projects#paper-reimplementations",
+        "name": "Paper-Reimplementations",
+        "description": "PyTorch reimplementations of baseline and state-of-the-art machine learning and AI models.",
+        "url": "https://manuelfas.vercel.app/projects#paper-reimplementations",
+        "codeRepository": "https://github.com/Fasmanuel2002/Paper-Reimplementations",
+        "programmingLanguage": "Python",
+        "dateCreated": "2026-09-06",
+        "keywords": "Python, PyTorch, Jupyter",
+        "author": {
+          "@type": "Person",
+          "@id": "https://manuelfas.vercel.app/#person",
+          "name": "Manuel Fas"
+        },
+        "isBasedOn": [
+          {
+            "@type": "ScholarlyArticle",
+            "name": "Sequence to Sequence Learning with Neural Networks",
+            "url": "https://arxiv.org/abs/1409.3215",
+            "datePublished": "2014",
+            "author": [
+              {
+                "@type": "Person",
+                "name": "Ilya Sutskever"
+              },
+              {
+                "@type": "Person",
+                "name": "Oriol Vinyals"
+              },
+              {
+                "@type": "Person",
+                "name": "Quoc V. Le"
+              }
+            ]
+          },
+          {
+            "@type": "ScholarlyArticle",
+            "name": "Neural Machine Translation by Jointly Learning to Align and Translate",
+            "url": "https://arxiv.org/abs/1409.0473",
+            "datePublished": "2014",
+            "author": [
+              {
+                "@type": "Person",
+                "name": "Dzmitry Bahdanau"
+              },
+              {
+                "@type": "Person",
+                "name": "Kyunghyun Cho"
+              },
+              {
+                "@type": "Person",
+                "name": "Yoshua Bengio"
+              }
+            ]
+          },
+          {
+            "@type": "ScholarlyArticle",
+            "name": "Attention Is All You Need",
+            "url": "https://arxiv.org/abs/1706.03762",
+            "datePublished": "2017",
+            "author": [
+              {
+                "@type": "Person",
+                "name": "Ashish Vaswani"
+              },
+              {
+                "@type": "Person",
+                "name": "Noam Shazeer"
+              },
+              {
+                "@type": "Person",
+                "name": "Niki Parmar"
+              },
+              {
+                "@type": "Person",
+                "name": "Jakob Uszkoreit"
+              },
+              {
+                "@type": "Person",
+                "name": "Llion Jones"
+              },
+              {
+                "@type": "Person",
+                "name": "Aidan N. Gomez"
+              },
+              {
+                "@type": "Person",
+                "name": "Lukasz Kaiser"
+              },
+              {
+                "@type": "Person",
+                "name": "Illia Polosukhin"
+              }
+            ]
+          },
+          {
+            "@type": "ScholarlyArticle",
+            "name": "Predicting Issue Types with seBERT",
+            "url": "https://arxiv.org/abs/2205.01335",
+            "datePublished": "2022",
+            "author": [
+              {
+                "@type": "Person",
+                "name": "Alexander Trautsch"
+              },
+              {
+                "@type": "Person",
+                "name": "Steffen Herbold"
+              }
+            ]
+          },
+          {
+            "@type": "ScholarlyArticle",
+            "name": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+            "url": "https://arxiv.org/abs/2010.11929",
+            "datePublished": "2020",
+            "author": [
+              {
+                "@type": "Person",
+                "name": "Alexey Dosovitskiy"
+              },
+              {
+                "@type": "Person",
+                "name": "Lucas Beyer"
+              },
+              {
+                "@type": "Person",
+                "name": "Alexander Kolesnikov"
+              },
+              {
+                "@type": "Person",
+                "name": "Dirk Weissenborn"
+              },
+              {
+                "@type": "Person",
+                "name": "Xiaohua Zhai"
+              },
+              {
+                "@type": "Person",
+                "name": "Thomas Unterthiner"
+              },
+              {
+                "@type": "Person",
+                "name": "Mostafa Dehghani"
+              },
+              {
+                "@type": "Person",
+                "name": "Matthias Minderer"
+              },
+              {
+                "@type": "Person",
+                "name": "Georg Heigold"
+              },
+              {
+                "@type": "Person",
+                "name": "Sylvain Gelly"
+              },
+              {
+                "@type": "Person",
+                "name": "Jakob Uszkoreit"
+              },
+              {
+                "@type": "Person",
+                "name": "Neil Houlsby"
+              }
+            ]
+          },
+          {
+            "@type": "ScholarlyArticle",
+            "name": "Revisiting Deep Learning Models for Tabular Data",
+            "url": "https://arxiv.org/abs/2106.11959",
+            "datePublished": "2021",
+            "author": [
+              {
+                "@type": "Person",
+                "name": "Yury Gorishniy"
+              },
+              {
+                "@type": "Person",
+                "name": "Ivan Rubachev"
+              },
+              {
+                "@type": "Person",
+                "name": "Valentin Khrulkov"
+              },
+              {
+                "@type": "Person",
+                "name": "Artem Babenko"
+              }
+            ]
+          },
+          {
+            "@type": "ScholarlyArticle",
+            "name": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity",
+            "url": "https://arxiv.org/abs/2101.03961",
+            "datePublished": "2021",
+            "author": [
+              {
+                "@type": "Person",
+                "name": "William Fedus"
+              },
+              {
+                "@type": "Person",
+                "name": "Barret Zoph"
+              },
+              {
+                "@type": "Person",
+                "name": "Noam Shazeer"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

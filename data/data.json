@@ -1,0 +1,2389 @@
+{
+  "meta": {
+    "schema_version": "1.0",
+    "generated_on": "2026-10-18",
+    "generated_by": "data-collector agent",
+    "approval_status": "approved",
+    "language": "en",
+    "conventions": [
+      "Every item carries a `source` field naming the input file (with page or section) or the URL it came from.",
+      "`*_display` strings are copied exactly from the cited source; ISO `YYYY-MM` fields are provided for sorting only.",
+      "Text fields marked `verbatim` are copied from the source without rewording.",
+      "Anything missing, unclear, or conflicting is listed in `needs_review`; fields affected by an open item reference it by id (for example `review: \"NR-02\"`).",
+      "GitHub metadata (stars, push dates) was retrieved with the gh CLI on 2026-10-18 and will drift over time.",
+      "Each needs_review entry carries status (resolved, resolved (default), or open), decision, decision_source and blocking."
+    ],
+    "inputs_read": [
+      {
+        "path": "CLAUDE.md",
+        "status": "read",
+        "note": "Re-read on 2026-10-18 after it changed: the deploy target is Vercel, served from the root with base href '/'."
+      },
+      {
+        "path": "source/cv_Manuel_final.pdf",
+        "status": "read",
+        "note": "1 page; text and hyperlink annotations extracted; PDF metadata title 'Manuel Fas - Resume', created 2026-10-15"
+      },
+      {
+        "path": "source/certifications.md",
+        "status": "read"
+      },
+      {
+        "path": "source/projects.md",
+        "status": "read"
+      },
+      {
+        "path": "source/Background.md",
+        "status": "read",
+        "note": "The task listed source/background.md (lowercase); the file on disk is source/Background.md"
+      },
+      {
+        "path": "source/papers/TRACEPAPER_Report.pdf",
+        "status": "read",
+        "note": "36 pages; full text extracted; cover page and Table 2 (page 28) checked visually"
+      },
+      {
+        "path": "source/papers/TFG_ManuelFasRuiz.pdf",
+        "status": "read",
+        "note": "39 pages; full text extracted; cover page and pages 20-27 checked visually"
+      },
+      {
+        "path": "source/profile_picture/profile.jpeg",
+        "status": "read",
+        "note": "The task listed source/papers/profile_picture/profile.jpe; the file on disk is source/profile_picture/profile.jpeg"
+      },
+      {
+        "path": "source/GENAI.pdf, source/SQ.jpeg, source/CNN.jpeg, source/SMLP.jpeg, source/IDNN.jpeg, source/NNDL.jpeg, source/PS.jpeg, source/CMD.jpeg, source/LAML.jpeg, source/CSAI.jpeg, source/AIFE.jpeg, source/PY.jpeg",
+        "status": "read",
+        "note": "Certificate files referenced by certifications.md; used to cross-check titles, dates and verification codes",
+        "review": "NR-22"
+      },
+      {
+        "path": "https://github.com/Fasmanuel2002 (gh CLI, authenticated as Fasmanuel2002)",
+        "status": "read",
+        "note": "23 public repositories listed; READMEs, file trees and key source files of the three featured repositories inspected; profile README read"
+      },
+      {
+        "path": "https://export.arxiv.org/api/query",
+        "status": "read",
+        "note": "Metadata of every cited arXiv paper verified on 2026-10-18"
+      },
+      {
+        "path": "https://www.coursera.org and https://certificates.cs50.io",
+        "status": "read",
+        "note": "Certificate verification links checked on 2026-10-18"
+      }
+    ],
+    "revision": 2,
+    "revised_on": "2026-10-18",
+    "revision_note": "Applied the author's needs_review decisions as relayed by the coordinator. Re-read CLAUDE.md: the deploy target is now Vercel.",
+    "approval": {
+      "approved_by": "author",
+      "approved_on": "2026-10-18",
+      "note": "Author gave needs_review decisions and said 'continue please' directly in the main session; the coordinator recorded the approval."
+    }
+  },
+  "site": {
+    "language": "en",
+    "deploy_target": "Vercel",
+    "deploy_target_source": "CLAUDE.md (Purpose, Deployment)",
+    "base_href": "/",
+    "base_href_source": "CLAUDE.md (Deployment)",
+    "base_url": "https://manuelfas.vercel.app",
+    "base_url_is_placeholder": true,
+    "base_url_note": "PLACEHOLDER. There is no domain yet. Replace with the real URL before deploy; canonical URLs, sitemap.xml, robots.txt, Open Graph tags and JSON-LD depend on it.",
+    "base_url_source": "author decision 2026-10-18 (relayed by coordinator) (NR-01)",
+    "base_url_review": "NR-01",
+    "repository": "https://github.com/Fasmanuel2002/ManuelFas_website",
+    "repository_source": "git remote origin of the working directory",
+    "source": [
+      "CLAUDE.md (Deployment)",
+      "author decision 2026-10-18 (relayed by coordinator) (NR-01)"
+    ]
+  },
+  "person": {
+    "name": "Manuel Fas",
+    "name_source": [
+      "source/cv_Manuel_final.pdf (header)",
+      "source/papers/TRACEPAPER_Report.pdf (cover)",
+      "GitHub profile name (gh api user)",
+      "author decision 2026-10-18 (relayed by coordinator) (NR-17)"
+    ],
+    "alternate_name": "Manuel Fas Ruiz",
+    "alternate_name_source": [
+      "CLAUDE.md (Purpose)",
+      "source/Background.md (Who I am)",
+      "source/papers/TFG_ManuelFasRuiz.pdf (cover)",
+      "author decision 2026-10-18 (relayed by coordinator) (NR-17)"
+    ],
+    "name_review": "NR-17",
+    "headline": "Machine learning researcher and engineer",
+    "headline_source": "source/cv_Manuel_final.pdf, page 1, Summary (opening phrase, verbatim)",
+    "location": "Salamanca, Spain",
+    "location_source": [
+      "source/cv_Manuel_final.pdf (header)",
+      "source/Background.md (Who I am)"
+    ],
+    "origin": "Guatemala",
+    "origin_source": "source/Background.md (Who I am): 'Originally from Guatemala, I moved to Spain to continue my studies and build my career in technology.'",
+    "summary": {
+      "text": "Machine learning researcher and engineer with experience across three research labs in Spain and Switzerland, specialising in Transformer architectures, NLP and large language models, and deep learning for sequential, tabular and biomedical data. Reimplements state-of-the-art papers into reproducible PyTorch codebases.",
+      "verbatim": true,
+      "source": "source/cv_Manuel_final.pdf, page 1, Summary"
+    },
+    "about": [
+      {
+        "heading": "Who I am",
+        "text": "I’m Manuel Fas Ruiz, a machine learning engineer and researcher based in Salamanca, Spain. Originally from Guatemala, I moved to Spain to continue my studies and build my career in technology. I’m curious by nature and enjoy exploring how things work, especially when mathematics, research, and software engineering come together to solve real problems.",
+        "verbatim": true,
+        "source": "source/Background.md (Who I am)"
+      },
+      {
+        "heading": "Education and international experience",
+        "text": "My academic background combines Business Administration for Tech Companies and Computer Science. I completed my business degree in 2026 and expect to finish my Computer Science degree in 2027. Studying both fields has helped me think about technology from different perspectives: how to build a solution, why it matters, and how it can be useful in practice. I also completed an international exchange at Lucerne University of Applied Sciences and Arts (HSLU) in Switzerland, which broadened my academic experience and strengthened my interest in working in international environments.",
+        "verbatim": false,
+        "review": "NR-12",
+        "source": [
+          "source/Background.md (Education and international experience)",
+          "author decision 2026-10-18 (relayed by coordinator) (NR-12)"
+        ],
+        "edit_note": "Degree wording replaced per NR-12; the rest is verbatim from Background.md."
+      },
+      {
+        "heading": "What I do",
+        "text": "I currently work with the BISITE Research Group at the University of Salamanca, contributing to machine-learning and AI research activities.",
+        "verbatim": true,
+        "source": "source/Background.md (What I do)"
+      },
+      {
+        "heading": "My interests",
+        "text": "My main interests are deep learning, computer vision, natural-language processing, large language models (LLMs). I enjoy both experimenting with models and understanding the engineering behind a complete system—from data preparation and evaluation to performance and deployment. I continue to learn through research papers, courses, and hands-on projects. My goal is to keep growing as an engineer and researcher, contribute to meaningful AI projects, and bridge the gap between research ideas and practical applications.",
+        "verbatim": true,
+        "source": "source/Background.md (My interests)"
+      }
+    ],
+    "interests": {
+      "items": [
+        "Deep learning",
+        "Computer vision",
+        "Natural-language processing",
+        "Large language models (LLMs)"
+      ],
+      "source": "source/Background.md (My interests)"
+    },
+    "spoken_languages": {
+      "items": [
+        {
+          "language": "Spanish",
+          "level": "native"
+        },
+        {
+          "language": "English",
+          "level": "professional working proficiency"
+        }
+      ],
+      "source": "source/cv_Manuel_final.pdf, page 1, Technical Skills (Spoken languages)"
+    },
+    "photo": {
+      "path": "source/profile_picture/profile.jpeg",
+      "format": "JPEG (progressive)",
+      "width_px": 400,
+      "height_px": 400,
+      "file_size_bytes": 15455,
+      "alt": "Portrait of Manuel Fas",
+      "metadata_check": "No EXIF block and no GPS data found",
+      "source": "source/profile_picture/profile.jpeg (inspected with file, sips and mdls)"
+    },
+    "alternate_name_use": "Legal name; use as JSON-LD alternateName"
+  },
+  "contact": {
+    "email": {
+      "value": "manuelfasruiz@gmail.com",
+      "url": "mailto:manuelfasruiz@gmail.com",
+      "source": "source/cv_Manuel_final.pdf, page 1, header (mailto hyperlink)"
+    },
+    "links": [
+      {
+        "label": "GitHub",
+        "url": "https://github.com/Fasmanuel2002",
+        "username": "Fasmanuel2002",
+        "source": [
+          "source/cv_Manuel_final.pdf, page 1, header (hyperlink)",
+          "gh api user (html_url)"
+        ]
+      },
+      {
+        "label": "LinkedIn",
+        "url": "https://linkedin.com/in/manuel-fas-48b2b9257",
+        "alternate_url": "https://www.linkedin.com/in/manuel-fas-48b2b9257/",
+        "alternate_url_source": "GitHub profile README (Fasmanuel2002/Fasmanuel2002)",
+        "source": "source/cv_Manuel_final.pdf, page 1, header (hyperlink)"
+      }
+    ],
+    "phone": null,
+    "phone_review": "NR-16",
+    "source": "source/cv_Manuel_final.pdf, page 1, header"
+  },
+  "experience": [
+    {
+      "id": "exp-bisite",
+      "organization": "BISITE Research Group (University of Salamanca)",
+      "organization_url": "https://bisite.usal.es",
+      "organization_url_source": "GitHub profile README (Fasmanuel2002/Fasmanuel2002)",
+      "location": "Salamanca, Spain",
+      "title": "Junior Machine Learning Researcher",
+      "title_review": "NR-18",
+      "start": "2026-09",
+      "end": null,
+      "current": true,
+      "dates_display": "Sep 2026 – Present",
+      "highlights": [
+        "Research and benchmark Transformer-based architectures for financial and tabular data.",
+        "Build reproducible PyTorch training and evaluation pipelines with leakage-safe splits, ablation studies and documented results, supporting the group’s research and technology-transfer projects.",
+        "Run local large language model inference with Ollama, profiling memory and compute bottlenecks to size hardware for research workloads."
+      ],
+      "highlights_verbatim": true,
+      "technologies_mentioned": [
+        "PyTorch",
+        "Ollama"
+      ],
+      "source": [
+        "source/cv_Manuel_final.pdf, page 1, Experience",
+        "source/Background.md (What I do) confirms current role"
+      ]
+    },
+    {
+      "id": "exp-air-institute",
+      "organization": "AIR Institute",
+      "location": "Salamanca, Spain",
+      "title": "Machine Learning Research Intern",
+      "start": "2026-04",
+      "end": "2026-06",
+      "current": false,
+      "dates_display": "Apr 2026 – Jun 2026",
+      "highlights": [
+        "Investigated NLP methodologies and Transformer-based large language models to advance the SOFIA scientific initiative, surveying the literature and prototyping the most promising approaches.",
+        "Reconstructed state-of-the-art deep learning architectures from academic papers into functional, documented PyTorch codebases, validating each reproduction against reported results."
+      ],
+      "highlights_verbatim": true,
+      "technologies_mentioned": [
+        "PyTorch"
+      ],
+      "source": "source/cv_Manuel_final.pdf, page 1, Experience"
+    },
+    {
+      "id": "exp-hslu-aai-lab",
+      "organization": "Applied Artificial Intelligence (AAI) Lab, HSLU",
+      "parent_institution": "Lucerne University of Applied Sciences and Arts (HSLU)",
+      "location": "Lucerne, Switzerland",
+      "title": "Machine Learning Research Assistant",
+      "start": "2025-10",
+      "end": "2026-01",
+      "current": false,
+      "dates_display": "Oct 2025 – Jan 2026",
+      "supervisor": "Jan Svoboda",
+      "supervisor_source": "source/papers/TRACEPAPER_Report.pdf (cover)",
+      "highlights": [
+        "Reimplemented the TRACE paper (arXiv:2409.12972) in PyTorch, engineering Transformer encoder models over clickstream event sequences for user recommendation — github.com/Fasmanuel2002/AAI_HSLU_TRACE.",
+        "Built Big Data preprocessing pipelines converting raw clickstream event logs into model-ready training sequences.",
+        "Benchmarked the reproduction against published baselines and documented architecture ablations for the lab."
+      ],
+      "highlights_verbatim": true,
+      "links": [
+        {
+          "label": "TRACE paper (arXiv:2409.12972)",
+          "url": "https://arxiv.org/abs/2409.12972",
+          "source": "source/cv_Manuel_final.pdf (hyperlink)"
+        },
+        {
+          "label": "AAI_HSLU_TRACE repository",
+          "url": "https://github.com/Fasmanuel2002/AAI_HSLU_TRACE",
+          "source": "source/cv_Manuel_final.pdf (hyperlink)"
+        }
+      ],
+      "related_project_id": "trace-reimplementation",
+      "technologies_mentioned": [
+        "PyTorch"
+      ],
+      "source": "source/cv_Manuel_final.pdf, page 1, Experience"
+    },
+    {
+      "id": "exp-wembley-studios",
+      "organization": "Wembley Studios",
+      "location": "Salamanca, Spain",
+      "title": "Machine Learning & Backend Engineer",
+      "start": "2025-07",
+      "end": "2025-09",
+      "current": false,
+      "dates_display": "Jul 2025 – Sep 2025",
+      "highlights": [
+        "Deployed machine learning models into production on Microsoft Azure, exposing them as serving endpoints for application consumption.",
+        "Engineered high-throughput backend microservices in C# (.NET Core) integrating those ML endpoints into existing application workflows."
+      ],
+      "highlights_verbatim": true,
+      "technologies_mentioned": [
+        "Microsoft Azure",
+        "C#",
+        ".NET Core"
+      ],
+      "source": "source/cv_Manuel_final.pdf, page 1, Experience"
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-upsa",
+      "institution": "Pontifical University of Salamanca (UPSA)",
+      "institution_official_name": "Universidad Pontificia de Salamanca",
+      "institution_official_name_source": "source/papers/TFG_ManuelFasRuiz.pdf (cover)",
+      "faculty_official_name": "Facultad de Informática",
+      "faculty_source": "source/papers/TFG_ManuelFasRuiz.pdf (cover)",
+      "location": "Salamanca, Spain",
+      "degree_type": "Dual B.S.",
+      "degree_type_source": "source/cv_Manuel_final.pdf, page 1, Education",
+      "program": "Business Administration for Tech Companies and Computer Science",
+      "program_source": "author decision 2026-10-18 (relayed by coordinator) (NR-12)",
+      "program_review": "NR-12",
+      "start": "2022-09",
+      "end_expected": "2027-05",
+      "dates_display": "Sep 2022 – May 2027 (expected)",
+      "degrees": [
+        {
+          "name": "B.S. Business Administration for Tech Companies",
+          "official_name_es": "Grado en Administración y Dirección de Empresas Tecnológicas",
+          "official_name_source": "source/papers/TFG_ManuelFasRuiz.pdf (cover)",
+          "status": "completed",
+          "completed": "2026-05",
+          "completed_display": "May 2026",
+          "completed_review": "NR-11",
+          "thesis_paper_id": "paper-tfg-thesis",
+          "source": "source/cv_Manuel_final.pdf, page 1, Education",
+          "name_source": "author decision 2026-10-18 (relayed by coordinator) (NR-12)",
+          "completed_source": [
+            "source/cv_Manuel_final.pdf, page 1, Education",
+            "author decision 2026-10-18 (relayed by coordinator) (NR-11)"
+          ]
+        },
+        {
+          "name": "B.S. Computer Science",
+          "status": "in progress",
+          "expected": "2027-05",
+          "source": [
+            "source/cv_Manuel_final.pdf, page 1, Education",
+            "source/Background.md ('expect to finish my Computer Science degree in 2027')"
+          ]
+        }
+      ],
+      "details": [
+        "B.S. Business Administration for Tech Companies completed May 2026; B.S. Computer Science in progress.",
+        "Thesis: Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer — survival modelling on TCGA RNA-seq data (819 patients and 20,440 genes raw; 519 patients after preprocessing); benchmarked regularised Cox models, Random Survival Forest, DeepSurv and Cox-nnet, evaluated by concordance index and Kaplan–Meier analysis."
+      ],
+      "details_note": "Based on the CV Education bullets, edited per NR-03 (cohort wording), NR-04 (removed the PCA preprocessing claim) and NR-12 (degree name).",
+      "details_source": [
+        "source/cv_Manuel_final.pdf, page 1, Education",
+        "author decision 2026-10-18 (relayed by coordinator) (NR-03, NR-04, NR-12)"
+      ],
+      "details_review": [
+        "NR-03",
+        "NR-04",
+        "NR-12"
+      ],
+      "thesis_link": {
+        "url": "https://github.com/Fasmanuel2002/UPSA_Thesis_Research",
+        "source": "source/cv_Manuel_final.pdf (hyperlink on thesis title)"
+      },
+      "source": "source/cv_Manuel_final.pdf, page 1, Education"
+    },
+    {
+      "id": "edu-hslu",
+      "institution": "Lucerne University of Applied Sciences and Arts (HSLU)",
+      "location": "Lucerne, Switzerland",
+      "program": "Visiting Exchange Student, Computer Science",
+      "start": "2025-09",
+      "end": "2026-01",
+      "dates_display": "Sep 2025 – Jan 2026",
+      "source": [
+        "source/cv_Manuel_final.pdf, page 1, Education",
+        "source/Background.md (Education and international experience)"
+      ]
+    }
+  ],
+  "papers": [
+    {
+      "id": "paper-trace-report",
+      "title": "Reimplementation of clickstream event sequence analysis model TRACE",
+      "title_source": "source/papers/TRACEPAPER_Report.pdf, cover page (exact)",
+      "document_type": "Research project report",
+      "document_type_source": "source/papers/TRACEPAPER_Report.pdf, page 4 ('This research project re-implements ...')",
+      "authors": [
+        "Manuel Fas"
+      ],
+      "supervisor": "Jan Svoboda",
+      "institution": "HSLU",
+      "institution_note": "HSLU logo on the cover; the CV places this work at the Applied Artificial Intelligence (AAI) Lab, HSLU",
+      "date": "2026-01",
+      "date_display": "January 2026",
+      "language": "en",
+      "pages": 36,
+      "repository": "https://github.com/Fasmanuel2002/AAI_HSLU_TRACE",
+      "abstract": "On e-commerce websites, users often follow complex navigation paths while searching for products and ultimately completing a purchase. These navigation patterns generate clickstream data that captures detailed information about user interactions over time and across sessions. Such data can be leveraged to enhance personalization and improve recommendation systems by more effectively modeling user behavior and intent. This research presents a re-implementation and investigation of the TRACE architecture, a novel transformer-based approach designed to generate rich user embeddings from multi-session clickstream data for real-world recommendation applications. The study evaluates the effectiveness of TRACE in modeling complex user navigation patterns using alternative large-scale e-commerce datasets, due to the unavailability of the original dataset used in the TRACE paper.",
+      "abstract_verbatim": true,
+      "abstract_source": "source/papers/TRACEPAPER_Report.pdf, page 3",
+      "source": "source/papers/TRACEPAPER_Report.pdf (cover page, pages 3-4)",
+      "site_path": "/papers/TRACEPAPER_Report.pdf",
+      "source_file": "source/papers/TRACEPAPER_Report.pdf",
+      "site_path_source": "author decision 2026-10-18 (relayed by coordinator) (NR-15)",
+      "hosting_note": "The developer copies source_file into the site's public assets so it is served at site_path."
+    },
+    {
+      "id": "paper-tfg-thesis",
+      "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
+      "title_language": "en",
+      "title_source": [
+        "source/cv_Manuel_final.pdf, page 1, Education (thesis line)",
+        "source/projects.md (project 2 heading)",
+        "author decision 2026-10-18 (relayed by coordinator) (NR-05)"
+      ],
+      "title_review": "NR-05",
+      "title_original": "Aplicación de métodos de Inteligencia Artificial y Aprendizaje Profundo (Deep Learning) al análisis de datos genómicos y transcriptómicos en cáncer",
+      "title_original_language": "es",
+      "title_original_source": "source/papers/TFG_ManuelFasRuiz.pdf, cover page (exact)",
+      "document_type": "Bachelor's Thesis",
+      "document_type_original": "Trabajo Fin de Grado",
+      "document_type_source": "source/papers/TFG_ManuelFasRuiz.pdf (cover: 'Trabajo Fin de Grado'; English abstract: 'this Bachelor's Thesis')",
+      "authors": [
+        "Manuel Fas Ruiz"
+      ],
+      "director": "Dr. Manuel Merino",
+      "co_director": "Dr. Santiago Bueno",
+      "supervisors_source": "source/papers/TFG_ManuelFasRuiz.pdf (cover: 'Director: Dr.Manuel Merino', 'Co-Director: Dr. Santiago Bueno')",
+      "institution": "Pontifical University of Salamanca (UPSA)",
+      "institution_source": "source/cv_Manuel_final.pdf, page 1, Education (English name used across the site)",
+      "institution_official_es": "Universidad Pontificia de Salamanca",
+      "faculty_official_es": "Facultad de Informática",
+      "degree": "B.S. Business Administration for Tech Companies",
+      "degree_source": "author decision 2026-10-18 (relayed by coordinator) (NR-12)",
+      "degree_official_es": "Grado en Administración y Dirección de Empresas Tecnológicas",
+      "degree_official_es_source": "source/papers/TFG_ManuelFasRuiz.pdf (cover)",
+      "place": "Salamanca",
+      "date": "2026-07",
+      "date_display": "July 2026",
+      "date_display_original": "Julio de 2026",
+      "language": "Spanish cover, title and resumen; abstract in Spanish and English; chapters 1-7 in English",
+      "pages": 39,
+      "repository": "https://github.com/Fasmanuel2002/UPSA_Thesis_Research",
+      "repository_source": "source/papers/TFG_ManuelFasRuiz.pdf (cover link .../UPSA_Thesis_Research/tree/master)",
+      "site_path": "/papers/TFG_ManuelFasRuiz.pdf",
+      "source_file": "source/papers/TFG_ManuelFasRuiz.pdf",
+      "site_path_source": "author decision 2026-10-18 (relayed by coordinator) (NR-15)",
+      "hosting_note": "The developer copies source_file into the site's public assets so it is served at site_path. Hosted as-is per the author's decision: the cover keeps the supervisors' electronic-signature stamps (with partial ID numbers) and the file keeps template placeholder text.",
+      "keywords": [
+        "Survival analysis",
+        "Deep learning",
+        "RNA-seq transcriptomics",
+        "Breast cancer prognosis",
+        "Explainable AI (SHAP)"
+      ],
+      "keywords_source": "source/papers/TFG_ManuelFasRuiz.pdf, page iv (Keywords)",
+      "abstract": null,
+      "abstract_note": "The thesis abstract's results are used in the project results (NR-02). The full abstract text is not included because it describes six models while the project lists five (NR-10, open).",
+      "source": "source/papers/TFG_ManuelFasRuiz.pdf (cover page, pages iii-iv)"
+    }
+  ],
+  "projects": {
+    "selection_source": "source/projects.md (# Featured projects, in the order listed)",
+    "featured": [
+      {
+        "id": "trace-reimplementation",
+        "featured_rank": 1,
+        "title": "Reimplementation of clickstream event sequence analysis model TRACE",
+        "title_source": "source/papers/TRACEPAPER_Report.pdf, cover page (identical to source/projects.md, project 1 heading)",
+        "summary": "Transformer-based user representation learned from attributed clickstream event sequences.",
+        "summary_source": "source/projects.md (project 1, one-line summary)",
+        "role": "Author",
+        "role_source": "source/projects.md (project 1)",
+        "date": "2026-01",
+        "date_display": "January 2026",
+        "date_source": "source/papers/TRACEPAPER_Report.pdf (cover)",
+        "context": {
+          "organization": "Applied Artificial Intelligence (AAI) Lab, HSLU",
+          "location": "Lucerne, Switzerland",
+          "position": "Machine Learning Research Assistant",
+          "dates_display": "Oct 2025 – Jan 2026",
+          "supervisor": "Jan Svoboda",
+          "experience_id": "exp-hslu-aai-lab",
+          "source": [
+            "source/cv_Manuel_final.pdf, page 1, Experience",
+            "source/papers/TRACEPAPER_Report.pdf (cover)"
+          ]
+        },
+        "paper_id": "paper-trace-report",
+        "public_link": "/papers/TRACEPAPER_Report.pdf",
+        "public_link_review": "NR-15",
+        "repository": {
+          "url": "https://github.com/Fasmanuel2002/AAI_HSLU_TRACE",
+          "description": "Research on Transformer-based User Representation from Attributed Clickstream Event Sequence",
+          "primary_language": "Jupyter Notebook",
+          "languages": [
+            "Jupyter Notebook",
+            "Python"
+          ],
+          "license": "MIT",
+          "license_source": "LICENSE file in the repository ('Copyright (c) 2026 Manuel Fas Ruiz'); GitHub's license detection returns none",
+          "created": "2025-11-05",
+          "last_pushed": "2026-09-06",
+          "stars": 3,
+          "default_branch": "main",
+          "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+        },
+        "original_paper": {
+          "title": "TRACE: Transformer-based user Representations from Attributed Clickstream Event sequences",
+          "authors": [
+            "William Black",
+            "Alexander Manlove",
+            "Jack Pennington",
+            "Andrea Marchini",
+            "Ercument Ilhan",
+            "Vilda Markeviciute"
+          ],
+          "year": 2024,
+          "arxiv_id": "2409.12972",
+          "url": "https://arxiv.org/abs/2409.12972",
+          "verified": true,
+          "source": [
+            "arXiv API (export.arxiv.org), queried 2026-10-18",
+            "source/cv_Manuel_final.pdf (hyperlink)",
+            "source/papers/TRACEPAPER_Report.pdf, reference [1]"
+          ]
+        },
+        "description_points": [
+          {
+            "text": "Re-implements the TRACE architecture in PyTorch and evaluates it on alternative public e-commerce datasets, because the dataset used in the original TRACE paper is not publicly available.",
+            "source": "source/papers/TRACEPAPER_Report.pdf, pages 3-4"
+          },
+          {
+            "text": "TRACE uses a multi-task learning framework in which a shared Transformer encoder learns user representations by predicting several future engagement signals from clickstream event sequences.",
+            "source": [
+              "source/papers/TRACEPAPER_Report.pdf, page 5",
+              "AAI_HSLU_TRACE README"
+            ]
+          },
+          {
+            "text": "Three public datasets were assessed (OTTO, Synerise RecSys Challenge 2025, RetailRocket); OTTO was used as the primary dataset for training and evaluation.",
+            "source": "source/papers/TRACEPAPER_Report.pdf, pages 11-21"
+          },
+          {
+            "text": "The model is compared against a single-task cohort (one TRACE model per task) and a multi-task Bi-LSTM baseline.",
+            "source": "source/papers/TRACEPAPER_Report.pdf, pages 27-28"
+          }
+        ],
+        "datasets": [
+          {
+            "name": "OTTO RecSys dataset",
+            "role": "Primary dataset for training and evaluation",
+            "url": "https://github.com/otto-de/recsys-dataset",
+            "url_source": "AAI_HSLU_TRACE README (Installation Dataset)",
+            "source": [
+              "source/papers/TRACEPAPER_Report.pdf, pages 11-13 and 21",
+              "AAI_HSLU_TRACE README"
+            ]
+          },
+          {
+            "name": "Synerise RecSys Challenge 2025 dataset",
+            "role": "Assessed during dataset selection; viable but with fewer sessions than OTTO",
+            "source": "source/papers/TRACEPAPER_Report.pdf, pages 14-16 and 21"
+          },
+          {
+            "name": "RetailRocket recommender system dataset",
+            "role": "Assessed and rejected: a 15-event minimum per session removed about 99.59% of sessions",
+            "source": "source/papers/TRACEPAPER_Report.pdf, pages 16-21"
+          }
+        ],
+        "method": {
+          "architecture": "Transformer encoder with multi-task output heads producing a shared user representation",
+          "tasks": [
+            {
+              "code": "ATC",
+              "definition": "The user adds products to the cart at least two times during a session"
+            },
+            {
+              "code": "SAT",
+              "definition": "The user views the same article (AID) at least four times within a session"
+            },
+            {
+              "code": "MAP",
+              "definition": "The user purchases a product during the session"
+            }
+          ],
+          "loss": "Class-weighted binary cross-entropy (PyTorch BCEWithLogitsLoss with per-task positive-class weights)",
+          "data_preparation": "Sessions with fewer than 32 events removed (1,621,909 of 3,164,777 sessions retained); each session split into input and target at a random point between 70% and 80% of its length",
+          "training_modes": [
+            "Single-task learning (STL)",
+            "Multi-task learning (MTL)"
+          ],
+          "source": [
+            "source/papers/TRACEPAPER_Report.pdf, pages 21-26",
+            "AAI_HSLU_TRACE README (Running the Project)"
+          ]
+        },
+        "results": {
+          "description": "Average over the ATC, SAT and MAP tasks on the OTTO dataset (report Table 2)",
+          "metrics_table": [
+            {
+              "model": "TRACE (multi-task)",
+              "auroc": 0.787,
+              "auprc": 0.696,
+              "binary_f1": 0.662,
+              "macro_f1": 0.679,
+              "accuracy": 0.689
+            },
+            {
+              "model": "Single-task cohort",
+              "auroc": 0.787,
+              "auprc": 0.694,
+              "binary_f1": 0.664,
+              "macro_f1": 0.68,
+              "accuracy": 0.694
+            },
+            {
+              "model": "Multi-task Bi-LSTM",
+              "auroc": 0.738,
+              "auprc": 0.664,
+              "binary_f1": 0.62,
+              "macro_f1": 0.661,
+              "accuracy": 0.679
+            }
+          ],
+          "findings": [
+            "TRACE outperforms the multi-task Bi-LSTM baseline on all five metrics.",
+            "TRACE and the single-task cohort tie on AUROC (0.787); TRACE is slightly higher on AUPRC (0.696 vs 0.694), while the single-task cohort is slightly higher on binary F1, macro F1 and accuracy."
+          ],
+          "limitations": [
+            "Evaluated on OTTO because the original TRACE dataset is not publicly available, so the numbers are not directly comparable with the original paper.",
+            "TRACE shows lower negative-class performance (higher false-positive rates) than both baselines; the report attributes this to the 70-80% input/target split and the class-weighting strategy."
+          ],
+          "source": "source/papers/TRACEPAPER_Report.pdf, page 28 (Table 2) and pages 29-34",
+          "review": "NR-21"
+        },
+        "technologies": {
+          "items": [
+            "Python",
+            "PyTorch",
+            "NumPy",
+            "pandas",
+            "scikit-learn",
+            "matplotlib",
+            "seaborn",
+            "TensorBoard",
+            "Docker"
+          ],
+          "source": [
+            "AAI_HSLU_TRACE requirements.txt",
+            "AAI_HSLU_TRACE README (Installation Dependencies)",
+            "AAI_HSLU_TRACE file tree (Dockerfile.local)"
+          ]
+        },
+        "source": [
+          "source/projects.md (project 1)",
+          "source/papers/TRACEPAPER_Report.pdf",
+          "https://github.com/Fasmanuel2002/AAI_HSLU_TRACE"
+        ],
+        "public_link_type": "Site path of the hosted PDF report",
+        "public_link_source": "author decision 2026-10-18 (relayed by coordinator) (NR-15)"
+      },
+      {
+        "id": "upsa-thesis-cancer-survival",
+        "featured_rank": 2,
+        "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
+        "title_language": "en",
+        "title_source": [
+          "source/cv_Manuel_final.pdf, page 1, Education (thesis line)",
+          "source/projects.md (project 2 heading)",
+          "author decision 2026-10-18 (relayed by coordinator) (NR-05)"
+        ],
+        "title_review": "NR-05",
+        "title_original": "Aplicación de métodos de Inteligencia Artificial y Aprendizaje Profundo (Deep Learning) al análisis de datos genómicos y transcriptómicos en cáncer",
+        "title_original_language": "es",
+        "title_original_source": "source/papers/TFG_ManuelFasRuiz.pdf, cover page (exact)",
+        "summary": "Application of AI and deep learning methods to genomic and transcriptomic data analysis in cancer.",
+        "summary_source": "source/projects.md (project 2, one-line summary)",
+        "role": "Author",
+        "role_source": "source/projects.md (project 2)",
+        "date": "2026-07",
+        "date_display": "July 2026",
+        "date_source": "source/papers/TFG_ManuelFasRuiz.pdf (cover: 'Salamanca, Julio de 2026')",
+        "context": {
+          "organization": "Pontifical University of Salamanca (UPSA)",
+          "document_type": "Bachelor's Thesis",
+          "degree": "B.S. Business Administration for Tech Companies",
+          "director": "Dr. Manuel Merino",
+          "co_director": "Dr. Santiago Bueno",
+          "education_id": "edu-upsa",
+          "source": [
+            "source/papers/TFG_ManuelFasRuiz.pdf (cover)",
+            "source/cv_Manuel_final.pdf, page 1, Education",
+            "author decision 2026-10-18 (relayed by coordinator) (NR-12)"
+          ],
+          "degree_official_es": "Grado en Administración y Dirección de Empresas Tecnológicas"
+        },
+        "paper_id": "paper-tfg-thesis",
+        "public_link": "/papers/TFG_ManuelFasRuiz.pdf",
+        "public_link_type": "Site path of the hosted thesis PDF",
+        "public_link_source": "author decision 2026-10-18 (relayed by coordinator) (NR-15)",
+        "public_link_review": "NR-15",
+        "repository": {
+          "url": "https://github.com/Fasmanuel2002/UPSA_Thesis_Research",
+          "readme_title": "Breast Cancer Survival Analysis — Classical vs. Deep Survival Models",
+          "description": "Application of Artificial Intelligence and Deep Learning methods to the analysis of genomic and transcriptomic data in cancer",
+          "primary_language": "Jupyter Notebook",
+          "languages": [
+            "Python",
+            "Jupyter Notebook",
+            "Dockerfile"
+          ],
+          "license": null,
+          "created": "2026-02-04",
+          "last_pushed": "2026-10-17",
+          "stars": 1,
+          "default_branch": "master",
+          "source": [
+            "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)",
+            "UPSA_Thesis_Research README"
+          ]
+        },
+        "research_question": {
+          "text": "When we try to predict how long a breast-cancer patient will survive from their tumour's gene expression, do modern deep survival networks actually beat a well-regularised classical Cox model — or do they just look more impressive?",
+          "source": "UPSA_Thesis_Research README (introduction)"
+        },
+        "data": {
+          "dataset": "TCGA breast cancer RNA-seq (RSEM) expression and clinical data from cBioPortal, study brca_tcga_pub2015 (Breast Invasive Carcinoma, TCGA, Cell 2015)",
+          "dataset_url": "https://www.cbioportal.org/study/summary?id=brca_tcga_pub2015",
+          "dataset_url_source": "UPSA_Thesis_Research README (Installation — Dataset)",
+          "raw_patients": 819,
+          "raw_genes": 20440,
+          "analyzed_patients": 519,
+          "analyzed_patients_review": "NR-03",
+          "genes_after_low_expression_filter": 18492,
+          "selected_genes": 1000,
+          "molecular_subtypes": [
+            "Luminal A",
+            "Luminal B",
+            "HER2-enriched",
+            "TNBC"
+          ],
+          "survival_endpoint": "Overall survival, administratively censored at 60 months",
+          "source": [
+            "source/papers/TFG_ManuelFasRuiz.pdf, pages 20-25 (sections 5.1-5.3)",
+            "UPSA_Thesis_Research README",
+            "author decision 2026-10-18 (relayed by coordinator) (NR-03)"
+          ],
+          "analyzed_patients_label": "after preprocessing",
+          "patients_display": "819 patients raw, 519 after preprocessing",
+          "patients_display_single": "519 patients"
+        },
+        "method": {
+          "feature_selection": "Low-expression filter (genes with more than 80% zero values removed), then limma differential expression and univariate Cox screening, fitted on the training split only",
+          "models": [
+            "Cox Lasso",
+            "Cox Elastic Net",
+            "Random Survival Forest",
+            "DeepSurv",
+            "Cox-nnet"
+          ],
+          "models_review": "NR-10",
+          "validation": "Fixed patient split shared by all models (splits.json); hyperparameters chosen without the test set (k-fold cross-validation for Cox and Random Survival Forest models, validation set and grid search for DeepSurv and Cox-nnet); fixed random seed 42",
+          "evaluation": "Harrell's concordance index (C-index) on held-out test patients; Kaplan–Meier curves and log-rank test on median-split high- and low-risk groups",
+          "interpretability": "SHAP attributions with 50 bootstrap resamples for DeepSurv and Cox-nnet; gene-set enrichment against GO, KEGG and Reactome with GSEApy; STRING protein-protein interaction cross-check; Random Survival Forest minimal-depth interaction analysis",
+          "source": [
+            "source/papers/TFG_ManuelFasRuiz.pdf, sections 3.2-3.3, 4.4-4.5, 5.3-5.4, 6.2-6.4",
+            "UPSA_Thesis_Research README (Methodology & reproducibility)"
+          ]
+        },
+        "results": {
+          "description": "Results as reported in the thesis abstract (author decision NR-02)",
+          "best_model": "DeepSurv",
+          "best_model_c_index_display": "approximately 0.82",
+          "findings": [
+            "DeepSurv achieved the best discriminative performance (C-index of approximately 0.82).",
+            "DeepSurv was the only model to produce a statistically significant risk stratification, outperforming both the linear Cox models and the Random Survival Forest.",
+            "DeepSurv and Cox-nnet shared 257 prognostic genes in the bootstrap SHAP consensus."
+          ],
+          "findings_sources": [
+            "Findings 1-2: source/papers/TFG_ManuelFasRuiz.pdf, page iii (English abstract)",
+            "Finding 3: source/papers/TFG_ManuelFasRuiz.pdf, page 31"
+          ],
+          "limitations": [
+            "The test set has about one hundred patients and no confidence interval is reported.",
+            "The neural networks' loss curves show overfitting.",
+            "There is no external validation cohort."
+          ],
+          "limitations_source": "UPSA_Thesis_Research README (Limitations)",
+          "superseded_note": "Per the author's decision, the per-model table from thesis Table 2 (page 27) and the repository README was removed. Those two sources still report different values (Cox-nnet highest with C-index 0.8750; DeepSurv 0.8032), so the hosted thesis PDF and the public README do not match the figures above.",
+          "review": "NR-02",
+          "source": [
+            "source/papers/TFG_ManuelFasRuiz.pdf, page iii (Abstract) and page 31",
+            "UPSA_Thesis_Research README (Limitations)",
+            "author decision 2026-10-18 (relayed by coordinator) (NR-02)"
+          ]
+        },
+        "technologies": {
+          "items": [
+            "Python",
+            "pandas",
+            "NumPy",
+            "InMoose (limma)",
+            "scikit-learn",
+            "scikit-survival",
+            "PyTorch",
+            "PyCox",
+            "SHAP",
+            "GSEApy",
+            "matplotlib",
+            "Jupyter",
+            "Docker",
+            "uv"
+          ],
+          "source": [
+            "UPSA_Thesis_Research README (Installation — Dependencies)",
+            "UPSA_Thesis_Research pyproject.toml",
+            "source/papers/TFG_ManuelFasRuiz.pdf, section 4.2"
+          ]
+        },
+        "source": [
+          "source/projects.md (project 2)",
+          "source/papers/TFG_ManuelFasRuiz.pdf",
+          "https://github.com/Fasmanuel2002/UPSA_Thesis_Research"
+        ]
+      },
+      {
+        "id": "paper-reimplementations",
+        "featured_rank": 3,
+        "title": "Paper-Reimplementations",
+        "title_source": "source/projects.md (project 3 heading); GitHub repository name",
+        "summary": "PyTorch reimplementations of baseline and state-of-the-art machine learning and AI models.",
+        "summary_source": "source/projects.md (project 3, one-line summary)",
+        "role": "Author",
+        "role_source": "source/projects.md (project 3)",
+        "public_link": "https://github.com/Fasmanuel2002/Paper-Reimplementations",
+        "public_link_source": "source/projects.md (project 3, 'Public link to share')",
+        "repository": {
+          "url": "https://github.com/Fasmanuel2002/Paper-Reimplementations",
+          "description": "PyTorch reimplementations of baseline and state-of-the-art models in Machine Learning and AI",
+          "primary_language": "Jupyter Notebook",
+          "languages": [
+            "Jupyter Notebook",
+            "Python"
+          ],
+          "license": null,
+          "created": "2026-09-06",
+          "last_pushed": "2026-10-17",
+          "stars": 0,
+          "default_branch": "main",
+          "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+        },
+        "verification_note": "All six papers in the repository README are listed per the author's decision (NR-06, NR-08, NR-09). Paper metadata was checked against the arXiv API and every arXiv link returned HTTP 200 on 2026-10-18. Each description is based on the repository code and READMEs.",
+        "implementations": [
+          {
+            "number": "01",
+            "name": "Sequence to Sequence Learning",
+            "folder_url": "https://github.com/Fasmanuel2002/Paper-Reimplementations/tree/main/01_Sequence_to_Sequence_Learning",
+            "readme_status": "Completed",
+            "area": "NLP",
+            "original_papers": [
+              {
+                "title": "Sequence to Sequence Learning with Neural Networks",
+                "authors": [
+                  "Ilya Sutskever",
+                  "Oriol Vinyals",
+                  "Quoc V. Le"
+                ],
+                "year": 2014,
+                "arxiv_id": "1409.3215",
+                "url": "https://arxiv.org/abs/1409.3215",
+                "verified": true,
+                "source": "arXiv API, queried 2026-10-18; Paper-Reimplementations README"
+              },
+              {
+                "title": "Neural Machine Translation by Jointly Learning to Align and Translate",
+                "authors": [
+                  "Dzmitry Bahdanau",
+                  "Kyunghyun Cho",
+                  "Yoshua Bengio"
+                ],
+                "year": 2014,
+                "arxiv_id": "1409.0473",
+                "url": "https://arxiv.org/abs/1409.0473",
+                "verified": true,
+                "note": "Listed in the folder README but not in the main README table",
+                "source": "arXiv API, queried 2026-10-18; 01_Sequence_to_Sequence_Learning/README.md"
+              }
+            ],
+            "implementation": "PyTorch LSTM encoder-decoder baseline (weights initialized uniformly between -0.08 and 0.08, following the Seq2Seq paper) and a bidirectional-GRU encoder with additive (Bahdanau) attention, compared with BLEU and ROUGE.",
+            "dataset": "Synthetic dataset of 10,000 generated examples (create_dataset.py) that map natural-language reminders to structured task lists; the folder README says a synthetic dataset was used because no GPU was available.",
+            "reported_results": [
+              {
+                "metric": "BLEU",
+                "baseline_seq2seq": "~0.84",
+                "seq2seq_with_attention": "~0.91"
+              },
+              {
+                "metric": "ROUGE-1",
+                "baseline_seq2seq": "~0.876",
+                "seq2seq_with_attention": "~0.944"
+              },
+              {
+                "metric": "ROUGE-2",
+                "baseline_seq2seq": "~0.845",
+                "seq2seq_with_attention": "~0.937"
+              },
+              {
+                "metric": "ROUGE-L",
+                "baseline_seq2seq": "~0.876",
+                "seq2seq_with_attention": "~0.943"
+              }
+            ],
+            "verification": {
+              "result": "verified",
+              "notes": "The code (models/seq2seq_baseline.py, models/seq2seq_attention.py) implements the core model of each paper. Results come from a synthetic dataset rather than the papers' machine-translation benchmarks, so they are not comparable with published numbers."
+            },
+            "list_on_site": true,
+            "source": [
+              "01_Sequence_to_Sequence_Learning/README.md",
+              "01_Sequence_to_Sequence_Learning/models/*.py",
+              "01_Sequence_to_Sequence_Learning/create_dataset.py"
+            ],
+            "status": "Completed",
+            "status_source": "Paper-Reimplementations README",
+            "list_on_site_source": "author decision 2026-10-18 (relayed by coordinator) (NR-08, NR-09)"
+          },
+          {
+            "number": "02",
+            "name": "Attention Is All You Need",
+            "folder_url": "https://github.com/Fasmanuel2002/Paper-Reimplementations/tree/main/02_Attention_Is_All_You_Need",
+            "readme_status": "Completed",
+            "area": "Transformers / NLP",
+            "original_papers": [
+              {
+                "title": "Attention Is All You Need",
+                "authors": [
+                  "Ashish Vaswani",
+                  "Noam Shazeer",
+                  "Niki Parmar",
+                  "Jakob Uszkoreit",
+                  "Llion Jones",
+                  "Aidan N. Gomez",
+                  "Lukasz Kaiser",
+                  "Illia Polosukhin"
+                ],
+                "year": 2017,
+                "arxiv_id": "1706.03762",
+                "url": "https://arxiv.org/abs/1706.03762",
+                "verified": true,
+                "source": "arXiv API, queried 2026-10-18; Paper-Reimplementations README"
+              }
+            ],
+            "implementation": "Decoder-only, GPT-style Transformer language model (about 11 million parameters) with token and positional embeddings, causal masked multi-head self-attention, feed-forward layers, layer normalization and residual connections, trained for next-token prediction on a dataset of William Shakespeare's works on an NVIDIA L4 GPU, following Andrej Karpathy's 'Let's build GPT: from scratch' tutorial.",
+            "verification": {
+              "result": "partial",
+              "notes": "The code (gpt.py) implements the paper's scaled dot-product and multi-head attention, but not its encoder-decoder architecture; the folder README states the model is decoder-only 'instead of the traditional encoder-decoder structure'."
+            },
+            "list_on_site": true,
+            "source": [
+              "02_Attention_Is_All_You_Need/README.md",
+              "02_Attention_Is_All_You_Need/gpt.py"
+            ],
+            "status": "Completed",
+            "status_source": "Paper-Reimplementations README",
+            "list_on_site_source": "author decision 2026-10-18 (relayed by coordinator) (NR-08, NR-09)",
+            "display_note": "Describe as a decoder-only, GPT-style language model built on the paper's attention mechanism, not as a reproduction of the paper's encoder-decoder model.",
+            "review": "NR-08"
+          },
+          {
+            "number": "03",
+            "name": "Predicting Issue Types with seBERT",
+            "folder_url": "https://github.com/Fasmanuel2002/Paper-Reimplementations/tree/main/03_Predicting_Issue_Types_with_seBERT",
+            "readme_status": "Completed",
+            "area": "NLP",
+            "original_papers": [
+              {
+                "title": "Predicting Issue Types with seBERT",
+                "authors": [
+                  "Alexander Trautsch",
+                  "Steffen Herbold"
+                ],
+                "year": 2022,
+                "arxiv_id": "2205.01335",
+                "url": "https://arxiv.org/abs/2205.01335",
+                "verified": true,
+                "source": "arXiv API, queried 2026-10-18; Paper-Reimplementations README"
+              }
+            ],
+            "implementation": "Fine-tunes a locally stored seBERT checkpoint (24-layer BERT encoder, hidden size 1024) with two binary heads, worth_automating and enough_information, on github-labels-annotated.csv using the Hugging Face Trainer.",
+            "verification": {
+              "result": "mismatch",
+              "notes": "The labels predicted (worth_automating, enough_information) are not the issue types named in the paper's title. The code imports modules that are not in the repository (src.classic_ml.*), and the evaluation cell scores the model on the full dataset, including training rows, so the printed metrics are not held-out results. No folder README."
+            },
+            "list_on_site": true,
+            "source": [
+              "03_Predicting_Issue_Types_with_seBERT/model/seBERT.py",
+              "03_Predicting_Issue_Types_with_seBERT/model/seBERT_model.py",
+              "03_Predicting_Issue_Types_with_seBERT/seBERT_fintuning.ipynb"
+            ],
+            "status": "Completed",
+            "status_source": "Paper-Reimplementations README",
+            "list_on_site_source": "author decision 2026-10-18 (relayed by coordinator) (NR-06)",
+            "display_note": "Describe as fine-tuning the seBERT model from the paper for a different task (two binary labels: worth_automating and enough_information). Do not show the notebook's metrics; they were computed on data that includes the training set.",
+            "review": "NR-06"
+          },
+          {
+            "number": "04",
+            "name": "An Image Is Worth 16×16 Words",
+            "folder_url": "https://github.com/Fasmanuel2002/Paper-Reimplementations/tree/main/04_An_Image_Is_Worth_16x16_Words",
+            "readme_status": "In Progress (displayed with the 'Completed' icon)",
+            "readme_status_review": "NR-09",
+            "area": "Computer Vision / Transformers",
+            "original_papers": [
+              {
+                "title": "An Image is Worth 16x16 Words: Transformers for Image Recognition at Scale",
+                "authors": [
+                  "Alexey Dosovitskiy",
+                  "Lucas Beyer",
+                  "Alexander Kolesnikov",
+                  "Dirk Weissenborn",
+                  "Xiaohua Zhai",
+                  "Thomas Unterthiner",
+                  "Mostafa Dehghani",
+                  "Matthias Minderer",
+                  "Georg Heigold",
+                  "Sylvain Gelly",
+                  "Jakob Uszkoreit",
+                  "Neil Houlsby"
+                ],
+                "year": 2020,
+                "arxiv_id": "2010.11929",
+                "url": "https://arxiv.org/abs/2010.11929",
+                "verified": true,
+                "note": "The main README links this arXiv ID; the folder README's arXiv link has a truncated ID and is not used.",
+                "source": "arXiv API, queried 2026-10-18; Paper-Reimplementations README"
+              }
+            ],
+            "implementation": "Encoder-only Vision Transformer in PyTorch: 16x16 patch embedding (224x224 images into 196 patches), learnable [CLS] token and position embeddings, pre-norm encoder blocks with multi-head self-attention and a GELU MLP; 12 layers, hidden size 384, MLP size 1536, 6 attention heads, about 21.5 million parameters; trained on an NVIDIA L4 GPU.",
+            "dataset": "Trained from scratch on Imagenette2 (10 classes), then partially fine-tuned (last two Transformer blocks, final layer normalization and a new head; 3.75M of 21.5M parameters trainable) on a 525-class bird species dataset.",
+            "reported_results": [
+              {
+                "metric": "Test accuracy on Imagenette2 (100 test images)",
+                "value": "66.00%"
+              },
+              {
+                "metric": "Validation accuracy after partial fine-tuning on 525 bird species",
+                "value": "39.07%"
+              }
+            ],
+            "verification": {
+              "result": "verified",
+              "notes": "The code (model/ViT.py) implements the ViT method: patch embedding, [CLS] token, position embeddings and a Transformer encoder. It is trained at small scale from scratch, so accuracy is not comparable with the paper's results."
+            },
+            "list_on_site": true,
+            "source": [
+              "04_An_Image_Is_Worth_16x16_Words/README.md",
+              "04_An_Image_Is_Worth_16x16_Words/model/ViT.py"
+            ],
+            "status": "In progress",
+            "status_source": "Paper-Reimplementations README (status text; the icon shows Completed)",
+            "list_on_site_source": "author decision 2026-10-18 (relayed by coordinator) (NR-08, NR-09)"
+          },
+          {
+            "number": "05",
+            "name": "Revisiting Deep Learning Models for Tabular Data",
+            "folder_url": "https://github.com/Fasmanuel2002/Paper-Reimplementations/tree/main/05_Feature_Tokenizer_Transformer",
+            "readme_status": "Planned (displayed with the 'In Progress' icon)",
+            "area": "Deep Learning / Tabular Data",
+            "original_papers": [
+              {
+                "title": "Revisiting Deep Learning Models for Tabular Data",
+                "authors": [
+                  "Yury Gorishniy",
+                  "Ivan Rubachev",
+                  "Valentin Khrulkov",
+                  "Artem Babenko"
+                ],
+                "year": 2021,
+                "arxiv_id": "2106.11959",
+                "url": "https://arxiv.org/abs/2106.11959",
+                "verified": true,
+                "source": "arXiv API, queried 2026-10-18; Paper-Reimplementations README"
+              }
+            ],
+            "implementation": null,
+            "implementation_note": "The folder 05_Feature_Tokenizer_Transformer holds only data preprocessing (data/preprocess.py) and an exploratory notebook for a Porto Seguro insurance dataset; there is no model code yet. The main README links to a folder name that does not exist.",
+            "verification": {
+              "result": "not_implemented"
+            },
+            "list_on_site": true,
+            "review": "NR-09",
+            "source": [
+              "Paper-Reimplementations README",
+              "Paper-Reimplementations file tree",
+              "05_Feature_Tokenizer_Transformer/data/preprocess.py",
+              "05_Feature_Tokenizer_Transformer/main.ipynb"
+            ],
+            "status": "Planned/in progress",
+            "status_source": "author decision 2026-10-18 (relayed by coordinator) (NR-09)",
+            "list_on_site_source": "author decision 2026-10-18 (relayed by coordinator) (NR-08, NR-09)",
+            "folder_note": "This folder exists and holds data preprocessing only. The README's link to a folder named after the paper points to a folder that does not exist and is not used.",
+            "display_note": "Show as planned/in progress. Data preprocessing has started; there is no model yet."
+          },
+          {
+            "number": "06",
+            "name": "Switch Transformers (MoE)",
+            "folder_url": null,
+            "readme_status": "Planned",
+            "area": "Sparse Transformers / Scaling",
+            "original_papers": [
+              {
+                "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity",
+                "authors": [
+                  "William Fedus",
+                  "Barret Zoph",
+                  "Noam Shazeer"
+                ],
+                "year": 2021,
+                "arxiv_id": "2101.03961",
+                "url": "https://arxiv.org/abs/2101.03961",
+                "verified": true,
+                "source": "arXiv API, queried 2026-10-18; Paper-Reimplementations README"
+              }
+            ],
+            "implementation": null,
+            "implementation_note": "No folder for this paper exists in the repository.",
+            "verification": {
+              "result": "not_implemented"
+            },
+            "list_on_site": true,
+            "review": "NR-09",
+            "source": [
+              "Paper-Reimplementations README",
+              "Paper-Reimplementations file tree"
+            ],
+            "status": "Planned/in progress",
+            "status_source": "author decision 2026-10-18 (relayed by coordinator) (NR-09)",
+            "list_on_site_source": "author decision 2026-10-18 (relayed by coordinator) (NR-08, NR-09)",
+            "display_note": "Show as planned/in progress, with no folder link. The repository has no folder for this paper yet."
+          }
+        ],
+        "technologies": {
+          "items": [
+            "Python",
+            "PyTorch",
+            "Jupyter"
+          ],
+          "source": [
+            "Paper-Reimplementations README",
+            "GitHub repository languages"
+          ]
+        },
+        "source": [
+          "source/projects.md (project 3)",
+          "https://github.com/Fasmanuel2002/Paper-Reimplementations"
+        ]
+      }
+    ],
+    "github_profile_link": {
+      "label": "More projects on GitHub",
+      "url": "https://github.com/Fasmanuel2002",
+      "source": [
+        "source/cv_Manuel_final.pdf, page 1, header (hyperlink)",
+        "default set by coordinator 2026-10-18 (no answer from the author) (NR-23)"
+      ]
+    },
+    "other_public_repositories_show_on_site": false,
+    "other_public_repositories_note": "Not shown on the site (NR-23, default). Kept for reference only; the Projects page links to the GitHub profile instead.",
+    "other_public_repositories": [
+      {
+        "name": "ManuelFas_website",
+        "url": "https://github.com/Fasmanuel2002/ManuelFas_website",
+        "description": "Website for my resume and life",
+        "primary_language": null,
+        "languages": [],
+        "created": "2026-10-18",
+        "last_pushed": "2026-10-18",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "this-website",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "DeepMind_AI_research_foundations",
+        "url": "https://github.com/Fasmanuel2002/DeepMind_AI_research_foundations",
+        "description": null,
+        "primary_language": "Jupyter Notebook",
+        "languages": [
+          "Jupyter Notebook"
+        ],
+        "created": "2026-08-27",
+        "last_pushed": "2026-10-06",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "Fasmanuel2002",
+        "url": "https://github.com/Fasmanuel2002/Fasmanuel2002",
+        "description": "Repository for my github",
+        "primary_language": null,
+        "languages": [],
+        "created": "2025-10-14",
+        "last_pushed": "2026-08-26",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "profile-readme",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "Machine_Learning",
+        "url": "https://github.com/Fasmanuel2002/Machine_Learning",
+        "description": "Repository for re-implementation of practices in Machine Learning",
+        "primary_language": "Jupyter Notebook",
+        "languages": [
+          "Python",
+          "Jupyter Notebook"
+        ],
+        "created": "2024-11-14",
+        "last_pushed": "2026-08-24",
+        "stars": 2,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "ArxivApp",
+        "url": "https://github.com/Fasmanuel2002/ArxivApp",
+        "description": null,
+        "primary_language": "TypeScript",
+        "languages": [
+          "TypeScript",
+          "HTML",
+          "CSS",
+          "JavaScript"
+        ],
+        "created": "2026-03-10",
+        "last_pushed": "2026-05-27",
+        "stars": 0,
+        "homepage": "https://arxiv-app-kappa.vercel.app",
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "makemore",
+        "url": "https://github.com/Fasmanuel2002/makemore",
+        "description": "An autoregressive character-level language model for making more things",
+        "primary_language": "Python",
+        "languages": [
+          "Python",
+          "Jupyter Notebook"
+        ],
+        "created": "2026-03-17",
+        "last_pushed": "2026-03-17",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": true,
+        "kind": "fork",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "MetaGPT",
+        "url": "https://github.com/Fasmanuel2002/MetaGPT",
+        "description": "🌟 The Multi-Agent Framework: First AI Software Company, Towards Natural Language Programming",
+        "primary_language": "Python",
+        "languages": [
+          "Shell",
+          "JavaScript",
+          "Python",
+          "TypeScript",
+          "Dockerfile"
+        ],
+        "created": "2026-04-14",
+        "last_pushed": "2026-01-21",
+        "stars": 0,
+        "homepage": "https://atoms.dev/",
+        "is_fork": true,
+        "kind": "fork",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "AICompetition",
+        "url": "https://github.com/Fasmanuel2002/AICompetition",
+        "description": "Kaggle Competition HSLU",
+        "primary_language": "Jupyter Notebook",
+        "languages": [
+          "Jupyter Notebook",
+          "Python"
+        ],
+        "created": "2025-09-19",
+        "last_pushed": "2026-01-11",
+        "stars": 2,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "LeetCodesProblems",
+        "url": "https://github.com/Fasmanuel2002/LeetCodesProblems",
+        "description": "Its going to be an repository that I will always upload a problem per Day. The purpose of this is to train",
+        "primary_language": "Python",
+        "languages": [
+          "Python"
+        ],
+        "created": "2024-12-04",
+        "last_pushed": "2025-12-01",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "Rust",
+        "url": "https://github.com/Fasmanuel2002/Rust",
+        "description": "Trying to learn Rust",
+        "primary_language": "Rust",
+        "languages": [
+          "Rust"
+        ],
+        "created": "2025-09-20",
+        "last_pushed": "2025-09-25",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "DDDPets",
+        "url": "https://github.com/Fasmanuel2002/DDDPets",
+        "description": "This is for making MicroServices with the DDDProject Repository",
+        "primary_language": "C#",
+        "languages": [
+          "C#",
+          "Dockerfile"
+        ],
+        "created": "2025-09-01",
+        "last_pushed": "2025-09-01",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "PhpChatbot",
+        "url": "https://github.com/Fasmanuel2002/PhpChatbot",
+        "description": null,
+        "primary_language": "JavaScript",
+        "languages": [
+          "PHP",
+          "HTML",
+          "Python",
+          "CSS",
+          "JavaScript"
+        ],
+        "created": "2025-08-18",
+        "last_pushed": "2025-08-27",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "DDDProject",
+        "url": "https://github.com/Fasmanuel2002/DDDProject",
+        "description": null,
+        "primary_language": "C#",
+        "languages": [
+          "C#"
+        ],
+        "created": "2025-08-19",
+        "last_pushed": "2025-08-22",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "Csharp_MiniProjects",
+        "url": "https://github.com/Fasmanuel2002/Csharp_MiniProjects",
+        "description": "Projects of C#",
+        "primary_language": "C#",
+        "languages": [
+          "C#",
+          "PLpgSQL",
+          "Java"
+        ],
+        "created": "2025-07-24",
+        "last_pushed": "2025-08-04",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "PokemonStadium",
+        "url": "https://github.com/Fasmanuel2002/PokemonStadium",
+        "description": null,
+        "primary_language": "Python",
+        "languages": [
+          "Python"
+        ],
+        "created": "2025-03-21",
+        "last_pushed": "2025-03-28",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "Hack4Edu",
+        "url": "https://github.com/Fasmanuel2002/Hack4Edu",
+        "description": "DL algorithm for hack4edu 2024",
+        "primary_language": "Python",
+        "languages": [
+          "Python",
+          "Procfile",
+          "Dockerfile",
+          "CSS",
+          "HTML"
+        ],
+        "created": "2024-10-22",
+        "last_pushed": "2025-02-28",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "AI50",
+        "url": "https://github.com/Fasmanuel2002/AI50",
+        "description": "All my poyects in my course of Introduction to Artificial Intelligence with Python",
+        "primary_language": "Python",
+        "languages": [
+          "Python"
+        ],
+        "created": "2025-02-25",
+        "last_pushed": "2025-02-25",
+        "stars": 1,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "Classes_C_university",
+        "url": "https://github.com/Fasmanuel2002/Classes_C_university",
+        "description": "This are all my code from the univirsity(C language)",
+        "primary_language": "C",
+        "languages": [
+          "C"
+        ],
+        "created": "2024-11-07",
+        "last_pushed": "2024-11-07",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "JavaProyects",
+        "url": "https://github.com/Fasmanuel2002/JavaProyects",
+        "description": "Pokemon Stadium at Java",
+        "primary_language": "Java",
+        "languages": [
+          "Java"
+        ],
+        "created": "2024-10-10",
+        "last_pushed": "2024-10-10",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      },
+      {
+        "name": "CS50-Python",
+        "url": "https://github.com/Fasmanuel2002/CS50-Python",
+        "description": null,
+        "primary_language": "Python",
+        "languages": [
+          "Python"
+        ],
+        "created": "2024-08-21",
+        "last_pushed": "2024-08-21",
+        "stars": 0,
+        "homepage": null,
+        "is_fork": false,
+        "kind": "project",
+        "featured": false,
+        "review": "NR-23",
+        "source": "gh repo list Fasmanuel2002 --visibility public (retrieved 2026-10-18)"
+      }
+    ]
+  },
+  "skills": {
+    "languages": [
+      "Python",
+      "C#",
+      "Java",
+      "SQL"
+    ],
+    "machine_learning": [
+      "PyTorch",
+      "TensorFlow",
+      "Keras",
+      "Hugging Face Transformers",
+      "scikit-learn",
+      "NumPy",
+      "pandas"
+    ],
+    "engineering_and_infrastructure": [
+      "FastAPI",
+      "Docker",
+      "Microsoft Azure",
+      "Linux/WSL",
+      "CUDA",
+      "Ollama",
+      "Qdrant",
+      "Git",
+      "Jupyter",
+      "LaTeX"
+    ],
+    "methods": [
+      "Transformer architectures",
+      "NLP & LLMs",
+      "retrieval-augmented generation (RAG)",
+      "computer vision",
+      "survival analysis",
+      "paper reimplementation",
+      "experiment design and ablation studies"
+    ],
+    "source": "source/cv_Manuel_final.pdf, page 1, Technical Skills (category names and items verbatim)"
+  },
+  "certifications": [
+    {
+      "id": "cert-genai-llm",
+      "title": "Generative AI with Large Language Models",
+      "issuer": "DeepLearning.AI and Amazon Web Services",
+      "issuer_review": "NR-19",
+      "platform": "Coursera",
+      "date": "2026-08",
+      "date_display": "Aug 2026",
+      "date_on_certificate": "Aug 4, 2026",
+      "verification_url": "https://www.coursera.org/account/accomplishments/certificate/6NA3EOD4W4GZ",
+      "verification_url_source": "source/certifications.md (#1); same URL hyperlinked in source/cv_Manuel_final.pdf",
+      "verification_check": "Code 6NA3EOD4W4GZ confirmed on coursera.org on 2026-10-18 ('Completion Certificate for Generative AI with Large Language Models')",
+      "certificate_file": "source/GENAI.pdf",
+      "cv_note": "PEFT/LoRA, RLHF (PPO, DPO).",
+      "notes": "In this course, I learned about the complete lifecycle of large language models, including pre-training, fine-tuning, and post-training techniques. I deepened my understanding of Transformer architectures, distributed training strategies, PEFT methods such as LoRA, RLHF algorithms such as PPO and DPO, and optimization techniques for efficient LLM deployment.",
+      "notes_verbatim": true,
+      "specialization_id": null,
+      "source": [
+        "source/certifications.md (#1)",
+        "source/GENAI.pdf",
+        "source/cv_Manuel_final.pdf, page 1, Certifications"
+      ],
+      "issuer_source": [
+        "source/GENAI.pdf (as printed on the certificate)",
+        "default set by coordinator 2026-10-18 (no answer from the author) (NR-19)"
+      ]
+    },
+    {
+      "id": "cert-sequence-models",
+      "title": "Sequence Models",
+      "issuer": "DeepLearning.AI",
+      "platform": "Coursera",
+      "date": "2026-02",
+      "date_display": "Feb 2026",
+      "date_on_certificate": "Feb 24, 2026",
+      "verification_url": "https://www.coursera.org/account/accomplishments/verify/7PGB1GU7TR02",
+      "verification_url_source": "source/certifications.md (#2)",
+      "verification_check": "Confirmed on coursera.org on 2026-10-18 ('Completion Certificate for Sequence Models')",
+      "certificate_file": "source/SQ.jpeg",
+      "notes": "In this course I learned about sequence models in Deep Learning and deepened my understanding of how RNNs and Bi-RNNs work. I expanded my knowledge of LSTMs and GRUs, including how their gating mechanisms function and the mathematics behind them. I also strengthened my understanding of the attention mechanism and studied Transformer architectures",
+      "notes_verbatim": true,
+      "specialization_id": "spec-deep-learning",
+      "source": [
+        "source/certifications.md (#2)",
+        "source/SQ.jpeg"
+      ]
+    },
+    {
+      "id": "cert-cnn",
+      "title": "Convolutional Neural Networks",
+      "issuer": "DeepLearning.AI",
+      "platform": "Coursera",
+      "date": "2025-10",
+      "date_display": "Oct 2025",
+      "date_on_certificate": "Oct 28, 2025",
+      "verification_url": "https://www.coursera.org/account/accomplishments/verify/0RUW63UWTFO6",
+      "verification_url_source": "source/certifications.md (#3)",
+      "verification_check": "Confirmed on coursera.org on 2026-10-18 ('Completion Certificate for Convolutional Neural Networks')",
+      "certificate_file": "source/CNN.jpeg",
+      "notes": "I strengthened my skills in Convolutional Neural Networks (CNNs) and Computer Vision, learning layers, fine-tuning, and key architectures like VGG-16, ResNet-50, Inception, and MobileNet. I also worked with YOLO for object detection, U-Net for semantic segmentation, and advanced applications such as face recognition (DeepFace) and neural style transfer.",
+      "notes_verbatim": true,
+      "specialization_id": "spec-deep-learning",
+      "source": [
+        "source/certifications.md (#3)",
+        "source/CNN.jpeg"
+      ]
+    },
+    {
+      "id": "cert-structuring-ml-projects",
+      "title": "Structuring Machine Learning Projects",
+      "issuer": "DeepLearning.AI",
+      "platform": "Coursera",
+      "date": "2025-08",
+      "date_display": "Aug 2025",
+      "date_on_certificate": "Aug 21, 2025",
+      "verification_url": "https://www.coursera.org/account/accomplishments/verify/XRG7BK81UC9U",
+      "verification_url_source": "source/certifications.md (#4)",
+      "verification_check": "Confirmed on coursera.org on 2026-10-18 ('Completion Certificate for Structuring Machine Learning Projects')",
+      "certificate_file": "source/SMLP.jpeg",
+      "notes": "In this course, I learned about orthogonalization in machine learning scenarios, how to properly split data into Train, Training-Dev, Dev, and Test sets, and why these divisions are so important. I also explored how to leverage avoidable bias, variance, and data mismatch to optimize models. Additionally, I gained hands-on knowledge of Transfer Learning (Fine-Tuning), Multi-Task Learning, and End-to-End Learning.",
+      "notes_verbatim": true,
+      "specialization_id": "spec-deep-learning",
+      "source": [
+        "source/certifications.md (#4)",
+        "source/SMLP.jpeg"
+      ]
+    },
+    {
+      "id": "cert-improving-dnn",
+      "title": "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization",
+      "issuer": "DeepLearning.AI",
+      "platform": "Coursera",
+      "date": "2025-08",
+      "date_display": "Aug 2025",
+      "date_on_certificate": "Aug 7, 2025",
+      "verification_url": "https://www.coursera.org/account/accomplishments/verify/30NNLHSTQ1Z2",
+      "verification_url_source": "source/certifications.md (#5)",
+      "verification_check": "Confirmed on coursera.org on 2026-10-18 ('Completion Certificate for Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization')",
+      "certificate_file": "source/IDNN.jpeg",
+      "notes": "In this course, I gained knowledge of optimizing deep neural networks. I learned when and how to tune hyperparameters, and I explored various algorithms—such as Adam, Momentum and RMSProp—that accelerate gradient descent. Additionally, I studied mini-batch training and batch normalization, and delved into regularization techniques like Dropout and L2 to address underfitting and overfitting. Overall, the course greatly enhanced my understanding of advanced optimization and training strategies.",
+      "notes_verbatim": true,
+      "specialization_id": "spec-deep-learning",
+      "source": [
+        "source/certifications.md (#5)",
+        "source/IDNN.jpeg"
+      ]
+    },
+    {
+      "id": "cert-nndl",
+      "title": "Neural Networks and Deep Learning",
+      "issuer": "DeepLearning.AI",
+      "platform": "Coursera",
+      "date": "2025-06",
+      "date_display": "Jun 2025",
+      "date_on_certificate": "Jun 29, 2025",
+      "verification_url": "https://www.coursera.org/account/accomplishments/verify/K0ENXQBYAMWU",
+      "verification_url_source": "source/certifications.md (#6)",
+      "verification_check": "Confirmed on coursera.org on 2026-10-18 ('Completion Certificate for Neural Networks and Deep Learning')",
+      "certificate_file": "source/NNDL.jpeg",
+      "notes": "I finished this course on Neural Networks and Deep Learning, where I explored in greater depth topics such as neural networks and deep learning as essential parts of machine learning. I learned how to vectorize operations to optimize neural networks, and I gained knowledge about various activation functions and their practical applications. I also studied CNNs and RNNs and how we can apply them in everyday scenarios. It was an amazing course",
+      "notes_verbatim": true,
+      "specialization_id": "spec-deep-learning",
+      "source": [
+        "source/certifications.md (#6)",
+        "source/NNDL.jpeg"
+      ]
+    },
+    {
+      "id": "cert-probability-statistics",
+      "title": "Probability & Statistics for Machine Learning & Data Science",
+      "issuer": "DeepLearning.AI",
+      "platform": "Coursera",
+      "date": "2025-03",
+      "date_display": "Mar 2025",
+      "date_on_certificate": "Mar 22, 2025",
+      "verification_url": "https://coursera.org/verify/1VKWVN6H5QEI",
+      "verification_url_source": [
+        "source/PS.jpeg ('Verify at' URL printed on the certificate)",
+        "author decision 2026-10-18 (relayed by coordinator) (NR-07)"
+      ],
+      "verification_check": "Confirmed on coursera.org on 2026-10-18 ('Completion Certificate for Probability & Statistics for Machine Learning & Data Science'). The link in certifications.md had a typo (NR-07).",
+      "verification_url_review": "NR-07",
+      "certificate_file": "source/PS.jpeg",
+      "notes": "In this course I learned a lot about Probability and Statistics, including how probability works, its components, random variables, the Probability Density Function (PDF), cumulative distribution function (CDF), Uniform and Gaussian distributions, and using these distributions in Machine Learning models. I also studied descriptive statistics, variance, Maximum Likelihood Estimation (MLE), regularization, and model evaluation with hypothesis testing and p-values in my final A/B model project",
+      "notes_verbatim": true,
+      "specialization_id": "spec-math-ml-ds",
+      "source": [
+        "source/certifications.md (#7)",
+        "source/PS.jpeg"
+      ]
+    },
+    {
+      "id": "cert-calculus",
+      "title": "Calculus for Machine Learning and Data Science",
+      "issuer": "DeepLearning.AI",
+      "platform": "Coursera",
+      "date": "2025-02",
+      "date_display": "Feb 2025",
+      "date_on_certificate": "Feb 21, 2025",
+      "verification_url": "https://www.coursera.org/account/accomplishments/verify/QO05CSKQD5N6",
+      "verification_url_source": "source/certifications.md (#8)",
+      "verification_check": "Confirmed on coursera.org on 2026-10-18 ('Completion Certificate for Calculus for Machine Learning and Data Science')",
+      "certificate_file": "source/CMD.jpeg",
+      "notes": "In this course, I deepened my understanding of derivatives and optimization in Machine Learning algorithms. I explored the fundamental steps in building AI models, including Forward Propagation, Backward Propagation, Gradient Descent, and the Newton Method for optimization. What I loved most about this course is how it challenges me to think mathematically and continuously expand my knowledge.",
+      "notes_verbatim": true,
+      "specialization_id": "spec-math-ml-ds",
+      "source": [
+        "source/certifications.md (#8)",
+        "source/CMD.jpeg"
+      ]
+    },
+    {
+      "id": "cert-linear-algebra",
+      "title": "Linear Algebra for Machine Learning and Data Science",
+      "issuer": "DeepLearning.AI",
+      "platform": "Coursera",
+      "date": "2024-12",
+      "date_display": "Dec 2024",
+      "date_on_certificate": "Dec 30, 2024",
+      "verification_url": "https://www.coursera.org/account/accomplishments/verify/97QUD0IA46QO",
+      "verification_url_source": "source/certifications.md (#9)",
+      "verification_check": "Confirmed on coursera.org on 2026-10-18 ('Completion Certificate for Linear Algebra for Machine Learning and Data Science')",
+      "certificate_file": "source/LAML.jpeg",
+      "notes": "In this course on Linear Algebra for Machine Learning and Data Science, I am learning how to solve systems of linear equations, how to represent them as matrices and vectors, how to use these matrices in linear transformations, and how to apply eigenvalues and eigenvectors for dimensionality reduction (PCA), among many other topics for Machine Learning Algorithms and Data Science",
+      "notes_verbatim": true,
+      "specialization_id": "spec-math-ml-ds",
+      "source": [
+        "source/certifications.md (#9)",
+        "source/LAML.jpeg"
+      ]
+    },
+    {
+      "id": "cert-cs50-ai",
+      "title": "Introduction to Artificial Intelligence with Python",
+      "title_on_certificate": "CS50's Introduction to Artificial Intelligence with Python",
+      "issuer": "Harvard University",
+      "issuer_review": "NR-13",
+      "platform": null,
+      "date": "2024-10",
+      "date_display": "2024",
+      "date_on_certificate": "2024 (year only)",
+      "verification_url": "https://certificates.cs50.io/085e881c-0bbf-477a-ab7a-9d7bf2181109.pdf?size=letter",
+      "verification_url_source": "source/certifications.md (#10)",
+      "alternate_url": "https://cs50.harvard.edu/certificates/085e881c-0bbf-477a-ab7a-9d7bf2181109",
+      "alternate_url_source": "source/cv_Manuel_final.pdf (hyperlink) and URL printed on source/CSAI.jpeg; redirects to the verification_url",
+      "verification_check": "Certificate PDF returned HTTP 200 on 2026-10-18 (an invalid ID returns 404)",
+      "certificate_file": "source/CSAI.jpeg",
+      "certificate_detail": "including twelve projects",
+      "notes": "Covered the core principles behind modern artificial intelligence systems, including search algorithms, optimization techniques, and probabilistic reasoning. Implemented machine learning and deep learning models using Python while working on practical projects involving uncertainty modeling, logical decision-making systems, and Natural Language Processing (NLP). Projects included building intelligent agents, game-playing engines, and data recognition systems",
+      "notes_verbatim": true,
+      "specialization_id": null,
+      "source": [
+        "source/certifications.md (#10)",
+        "source/CSAI.jpeg",
+        "source/cv_Manuel_final.pdf, page 1, Certifications"
+      ],
+      "issuer_source": [
+        "source/CSAI.jpeg (signed by David J. Malan, Harvard University)",
+        "source/cv_Manuel_final.pdf, page 1, Certifications (issuer name only, platform omitted)",
+        "default set by coordinator 2026-10-18 (no answer from the author) (NR-13)"
+      ],
+      "date_display_source": [
+        "source/CSAI.jpeg (year only)",
+        "default set by coordinator 2026-10-18 (no answer from the author) (NR-13)"
+      ],
+      "date_note": "The ISO date uses the month from certifications.md for sorting only; the site shows the year printed on the certificate.",
+      "date_review": "NR-13"
+    },
+    {
+      "id": "cert-ai-for-everyone",
+      "title": "AI For Everyone",
+      "title_source": "source/AIFE.jpeg and coursera.org verification page (certifications.md writes 'AI for everyone')",
+      "issuer": "DeepLearning.AI",
+      "platform": "Coursera",
+      "date": "2024-04",
+      "date_display": "Apr 2024",
+      "date_on_certificate": "Apr 1, 2024",
+      "date_in_certifications_md": "Mar 2024",
+      "date_review": "NR-14",
+      "verification_url": "https://www.coursera.org/account/accomplishments/verify/G4NQGHR3Y5YV",
+      "verification_url_source": "source/certifications.md (#11)",
+      "verification_check": "Confirmed on coursera.org on 2026-10-18 ('Completion Certificate for AI For Everyone')",
+      "certificate_file": "source/AIFE.jpeg",
+      "notes": null,
+      "notes_note": "Omitted: the notes for this entry in certifications.md are a verbatim copy of the CS50 AI notes (see NR-14).",
+      "specialization_id": null,
+      "source": [
+        "source/certifications.md (#11)",
+        "source/AIFE.jpeg",
+        "default set by coordinator 2026-10-18 (no answer from the author) (NR-14)"
+      ]
+    },
+    {
+      "id": "cert-cs50-python",
+      "title": "Introduction to Programming with Python",
+      "title_on_certificate": "CS50's Introduction to Programming with Python",
+      "issuer": "Harvard University",
+      "issuer_review": "NR-13",
+      "platform": null,
+      "date": "2023-09",
+      "date_display": "2023",
+      "date_on_certificate": "2023 (year only)",
+      "date_review": "NR-13",
+      "verification_url": "https://certificates.cs50.io/660b81b1-c787-412b-8524-53be6224a068.pdf?size=letter",
+      "verification_url_source": "source/certifications.md (#12)",
+      "alternate_url": "https://cs50.harvard.edu/certificates/660b81b1-c787-412b-8524-53be6224a068",
+      "alternate_url_source": "source/cv_Manuel_final.pdf (hyperlink) and URL printed on source/PY.jpeg; redirects to the verification_url",
+      "verification_check": "Certificate PDF returned HTTP 200 on 2026-10-18 (an invalid ID returns 404)",
+      "certificate_file": "source/PY.jpeg",
+      "certificate_detail": "including nine problem sets and one final project",
+      "notes": "It's an introductory course on programming with Python, which includes nine problem sets and one final project.",
+      "notes_verbatim": true,
+      "specialization_id": null,
+      "source": [
+        "source/certifications.md (#12)",
+        "source/PY.jpeg"
+      ],
+      "issuer_source": [
+        "source/PY.jpeg (signed by David J. Malan, Harvard University)",
+        "source/cv_Manuel_final.pdf, page 1, Certifications (issuer name only, platform omitted)",
+        "default set by coordinator 2026-10-18 (no answer from the author) (NR-13)"
+      ],
+      "date_display_source": [
+        "source/PY.jpeg (year only)",
+        "default set by coordinator 2026-10-18 (no answer from the author) (NR-13)"
+      ],
+      "date_note": "The ISO date uses the month from certifications.md for sorting only; the site shows the year printed on the certificate."
+    }
+  ],
+  "specializations": [
+    {
+      "id": "spec-deep-learning",
+      "title": "Deep Learning Specialization",
+      "issuer": "DeepLearning.AI",
+      "platform": "Coursera",
+      "date": "2026-02",
+      "date_display": "Feb 2026",
+      "course_count": 5,
+      "course_ids": [
+        "cert-nndl",
+        "cert-improving-dnn",
+        "cert-structuring-ml-projects",
+        "cert-cnn",
+        "cert-sequence-models"
+      ],
+      "course_ids_note": "Grouping matched from the CV ('5 courses') and the five DeepLearning.AI deep learning course titles in certifications.md; the latest course certificate (Sequence Models) is dated Feb 24, 2026",
+      "cv_note": "CNNs, sequence models, Transformers.",
+      "verification_url": "https://www.coursera.org/account/accomplishments/specialization/certificate/00RDBED98XWU",
+      "verification_url_source": "source/cv_Manuel_final.pdf, page 1, Certifications (hyperlink)",
+      "verification_check": "Not verifiable automatically (Coursera does not render specialization pages server-side)",
+      "verification_url_review": "NR-20",
+      "source": "source/cv_Manuel_final.pdf, page 1, Certifications"
+    },
+    {
+      "id": "spec-math-ml-ds",
+      "title": "Mathematics for Machine Learning and Data Science",
+      "issuer": "DeepLearning.AI",
+      "platform": "Coursera",
+      "date": "2025-03",
+      "date_display": "Mar 2025",
+      "course_count": 3,
+      "course_ids": [
+        "cert-linear-algebra",
+        "cert-calculus",
+        "cert-probability-statistics"
+      ],
+      "course_ids_note": "Grouping matched from course titles in certifications.md; the latest course certificate (Probability & Statistics) is dated Mar 22, 2025",
+      "verification_url": "https://www.coursera.org/account/accomplishments/specialization/PMIMWEI2Q8ZK",
+      "verification_url_source": "source/cv_Manuel_final.pdf, page 1, Certifications (hyperlink)",
+      "verification_check": "Not verifiable automatically (Coursera does not render specialization pages server-side)",
+      "verification_url_review": "NR-20",
+      "source": "source/cv_Manuel_final.pdf, page 1, Certifications"
+    }
+  ],
+  "needs_review": [
+    {
+      "id": "NR-01",
+      "priority": "high",
+      "topic": "Site URL and deployment repository",
+      "issue": "CLAUDE.md says the repository is 'yourusername.github.io' (a placeholder) served from the root with base href '/', but this working directory's remote is https://github.com/Fasmanuel2002/ManuelFas_website. As a GitHub Pages project site it would be served under /ManuelFas_website/ (base href '/ManuelFas_website/'). Serving from the root requires a repository named Fasmanuel2002.github.io.",
+      "affects": [
+        "site.base_url",
+        "canonical URLs",
+        "sitemap.xml",
+        "robots.txt",
+        "Open Graph tags",
+        "JSON-LD"
+      ],
+      "action": "Confirm the final public URL and repository name.",
+      "sources": [
+        "CLAUDE.md (Deployment)",
+        "git remote origin"
+      ],
+      "status": "open (deploy-time)",
+      "decision": "There is no domain yet. site.base_url is set to the placeholder https://manuelfas.vercel.app, clearly marked as a placeholder. Replace it before deploy. CLAUDE.md now targets Vercel, served from the root with base href '/', so the GitHub Pages question no longer applies.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": "deploy"
+    },
+    {
+      "id": "NR-02",
+      "priority": "high",
+      "topic": "Thesis results conflict",
+      "issue": "The thesis abstract (English and Spanish, page iii) says DeepSurv had the best C-index (about 0.82) and was the only model with a statistically significant risk stratification. The thesis Results chapter (Table 2, page 27) and the repository README report Cox-nnet best (C-index 0.8750), DeepSurv 0.8032, and significant log-rank tests for every model except the Random Survival Forest (p = 0.1669). data.json uses the Table 2 and README values and omits the abstract.",
+      "affects": [
+        "projects.featured[upsa-thesis-cancer-survival].results",
+        "papers[paper-tfg-thesis].abstract"
+      ],
+      "action": "Confirm which results are correct.",
+      "sources": [
+        "source/papers/TFG_ManuelFasRuiz.pdf pages iii and 27",
+        "UPSA_Thesis_Research README"
+      ],
+      "status": "resolved",
+      "decision": "DeepSurv is correct, matching the thesis abstract: best model, C-index approximately 0.82, and the only statistically significant risk stratification. The abstract's figures are used and the Table 2/README per-model table was removed. The hosted thesis PDF (Table 2) and the public README still show Cox-nnet 0.8750 as the best model.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": false
+    },
+    {
+      "id": "NR-03",
+      "priority": "high",
+      "topic": "Thesis cohort size",
+      "issue": "The CV says '819 patients, 20,440 genes'. In the thesis, 819 x 20,440 is the raw cBioPortal matrix; 299 patients with unknown subtype were excluded, leaving 519 analyzed patients (abstract, README). Page 24 also says 104 more patients were excluded after gene filtering, so the final cohort is unclear (519 or 415).",
+      "affects": [
+        "projects.featured[upsa-thesis-cancer-survival].data",
+        "education[edu-upsa].cv_details"
+      ],
+      "action": "Confirm the analyzed cohort size and how the CV line should read.",
+      "sources": [
+        "source/cv_Manuel_final.pdf (Education)",
+        "source/papers/TFG_ManuelFasRuiz.pdf pages iii, 20, 23-24",
+        "UPSA_Thesis_Research README"
+      ],
+      "status": "resolved",
+      "decision": "519 is the count after preprocessing. Display '819 patients raw, 519 after preprocessing', or '519 patients' where a single figure is needed.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": false
+    },
+    {
+      "id": "NR-04",
+      "priority": "high",
+      "topic": "CV claim 'with PCA preprocessing' is not supported",
+      "issue": "The CV says the thesis models were benchmarked 'with PCA preprocessing'. The thesis and README use PCA only for exploratory plots (Figure 3); model inputs come from low-expression filtering, limma and univariate Cox screening (1,000 genes). data.json leaves PCA out of the method description.",
+      "affects": [
+        "education[edu-upsa].cv_details",
+        "projects.featured[upsa-thesis-cancer-survival].method"
+      ],
+      "action": "Confirm and correct the CV wording if needed.",
+      "sources": [
+        "source/cv_Manuel_final.pdf (Education)",
+        "source/papers/TFG_ManuelFasRuiz.pdf pages 22-25",
+        "UPSA_Thesis_Research README"
+      ],
+      "status": "resolved",
+      "decision": "Removed 'with PCA preprocessing'.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": false
+    },
+    {
+      "id": "NR-05",
+      "priority": "high",
+      "topic": "Thesis title for an English-only site",
+      "issue": "The exact cover title is Spanish: 'Aplicación de métodos de Inteligencia Artificial y Aprendizaje Profundo (Deep Learning) al análisis de datos genómicos y transcriptómicos en cáncer'. The English versions differ: CV and projects.md say 'Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer'; the GitHub description says 'Application of Artificial Intelligence and Deep Learning methods to the analysis of genomic and transcriptomic data in cancer'; the README title is 'Breast Cancer Survival Analysis — Classical vs. Deep Survival Models'.",
+      "affects": [
+        "papers[paper-tfg-thesis].title_en",
+        "projects.featured[upsa-thesis-cancer-survival].title_en"
+      ],
+      "action": "Choose the display title (for example the Spanish original plus one approved English translation).",
+      "sources": [
+        "source/papers/TFG_ManuelFasRuiz.pdf (cover)",
+        "source/projects.md",
+        "source/cv_Manuel_final.pdf",
+        "UPSA_Thesis_Research (description, README)"
+      ],
+      "status": "resolved",
+      "decision": "Display the English title from the CV: 'Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer'. The Spanish cover title is kept as title_original for reference only.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": false
+    },
+    {
+      "id": "NR-06",
+      "priority": "high",
+      "topic": "Paper-Reimplementations #03 (seBERT) does not match its paper",
+      "issue": "The code fine-tunes a local seBERT checkpoint to predict 'worth_automating' and 'enough_information', not the issue types named in the paper. It imports modules that are not in the repository (src.classic_ml.*) and evaluates on the full dataset, including training rows, so its metrics (MCC about 0.945) are not held-out results. The notebook output also shows a local path 'Practicas_Manuel\\T3.8.4'. data.json sets list_on_site = false.",
+      "affects": [
+        "projects.featured[paper-reimplementations].implementations[03]"
+      ],
+      "action": "Decide whether to drop it, fix it, or describe it as fine-tuning seBERT for a different task. Confirm the code and data can be public.",
+      "sources": [
+        "Paper-Reimplementations/03_Predicting_Issue_Types_with_seBERT",
+        "arXiv:2205.01335"
+      ],
+      "status": "resolved",
+      "decision": "seBERT (#03) stays public and is listed. Its description follows the code (fine-tuning seBERT for two binary labels). Data collector note: the notebook's metrics are excluded because they were computed on data that includes the training set.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": false
+    },
+    {
+      "id": "NR-07",
+      "priority": "high",
+      "topic": "Broken certificate link: Probability & Statistics",
+      "issue": "certifications.md gave this course's verify link with an extra trailing 'P' in the code, so it did not resolve to a certificate. PS.jpeg prints https://coursera.org/verify/1VKWVN6H5QEI, which Coursera confirms as this course.",
+      "affects": [
+        "certifications[cert-probability-statistics].verification_url"
+      ],
+      "action": "Confirm the corrected link and fix certifications.md.",
+      "sources": [
+        "source/certifications.md (#7)",
+        "source/PS.jpeg",
+        "coursera.org (checked 2026-10-18)"
+      ],
+      "status": "resolved",
+      "decision": "Use the certificate link https://coursera.org/verify/1VKWVN6H5QEI (confirmed). The mistyped link from certifications.md was removed from data.json.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": false
+    },
+    {
+      "id": "NR-08",
+      "priority": "medium",
+      "topic": "Paper-Reimplementations #02 is a decoder-only GPT",
+      "issue": "Folder 02 is listed as a reimplementation of 'Attention Is All You Need', but it is a decoder-only GPT-style language model (about 11M parameters, Shakespeare text) built after Karpathy's 'Let's build GPT' tutorial, not the paper's encoder-decoder model. The folder README also says the GPT architecture was 'introduced by OpenAI in 2022', which looks wrong (GPT-1 dates from 2018).",
+      "affects": [
+        "projects.featured[paper-reimplementations].implementations[02]"
+      ],
+      "action": "Approve the wording in data.json or exclude it.",
+      "sources": [
+        "Paper-Reimplementations/02_Attention_Is_All_You_Need (README.md, gpt.py)"
+      ],
+      "status": "resolved",
+      "decision": "All six reimplementations are listed. #02 is described as a decoder-only, GPT-style model.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": false
+    },
+    {
+      "id": "NR-09",
+      "priority": "medium",
+      "topic": "Paper-Reimplementations README statuses and links",
+      "issue": "#04 ViT shows 'In Progress' with the 'Completed' icon, and its folder README links arXiv 2010.1192 instead of 2010.11929. #05 shows 'Planned' with the 'In Progress' icon, its README link points to a folder that does not exist (the real folder is 05_Feature_Tokenizer_Transformer), and it has no model code. #06 Switch Transformers has no folder. The README 'Focus Areas' lists Reinforcement Learning, but no RL implementation exists. data.json lists only #01 and #04 as verified.",
+      "affects": [
+        "projects.featured[paper-reimplementations].implementations"
+      ],
+      "action": "Confirm the status of #04, #05 and #06; optionally fix the README.",
+      "sources": [
+        "Paper-Reimplementations README and file tree"
+      ],
+      "status": "resolved",
+      "decision": "All six are listed. #05 and #06 are marked 'Planned/in progress'; #06 has no folder link and #05 links only to its existing folder 05_Feature_Tokenizer_Transformer. Only working arXiv links are used (all eight returned HTTP 200 on 2026-10-18). Data collector note: #04 shows 'In progress', as written in the README status text.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": false
+    },
+    {
+      "id": "NR-10",
+      "priority": "low",
+      "topic": "Number of thesis models",
+      "issue": "The thesis English abstract says six models, including Cox Ridge; the Spanish resumen and objectives say five; the Results table and README report five (no Ridge result). data.json lists the five models with reported results.",
+      "affects": [
+        "projects.featured[upsa-thesis-cancer-survival].method.models"
+      ],
+      "action": "Confirm the model list.",
+      "sources": [
+        "source/papers/TFG_ManuelFasRuiz.pdf pages iii, 8, 15, 27",
+        "UPSA_Thesis_Research README"
+      ],
+      "status": "open",
+      "decision": "Left open as a low-priority note; it does not block the build.",
+      "decision_source": "default set by coordinator 2026-10-18 (no answer from the author)",
+      "blocking": false
+    },
+    {
+      "id": "NR-11",
+      "priority": "medium",
+      "topic": "Business degree completion date",
+      "issue": "The CV says 'B.S. Business Administration completed May 2026', but the thesis for that degree is dated 'Salamanca, Julio de 2026' and the supervisors' signatures are dated 02/07/2026.",
+      "affects": [
+        "education[edu-upsa].degrees[0].completed"
+      ],
+      "action": "Confirm the completion month.",
+      "sources": [
+        "source/cv_Manuel_final.pdf (Education)",
+        "source/papers/TFG_ManuelFasRuiz.pdf (cover)"
+      ],
+      "status": "resolved",
+      "decision": "Use the CV date, May 2026.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": false
+    },
+    {
+      "id": "NR-12",
+      "priority": "medium",
+      "topic": "Degree names",
+      "issue": "The sources name the degrees differently. CV: 'Dual B.S., Computer Science and Business Administration of Technology Companies'. Background.md: 'Computer Science / Computer Engineering' and 'Technological Business Administration (ADET)'. GitHub profile: 'dual degree in Computer Science and Business Administration with Technology'. Thesis cover (official): 'Grado en Administración y Dirección de Empresas Tecnológicas'. data.json uses the CV wording.",
+      "affects": [
+        "education[edu-upsa].program",
+        "person.about[1]"
+      ],
+      "action": "Choose one exact English name per degree and say whether the CS degree is 'Computer Science' or 'Computer Engineering'.",
+      "sources": [
+        "source/cv_Manuel_final.pdf",
+        "source/Background.md",
+        "GitHub profile README",
+        "source/papers/TFG_ManuelFasRuiz.pdf (cover)"
+      ],
+      "status": "resolved",
+      "decision": "The degree name is 'Business Administration for Tech Companies and Computer Science', used everywhere; 'Computer Engineering' is dropped. Components: 'B.S. Business Administration for Tech Companies' and 'B.S. Computer Science'. The official Spanish name from the thesis cover is kept only as degree_official_es.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": false
+    },
+    {
+      "id": "NR-13",
+      "priority": "medium",
+      "topic": "CS50 dates and issuer on the CV",
+      "issue": "The CV line 'CS50: Intro to AI with Python & Intro to Programming with Python — Harvard University (edX), Oct 2024' gives one date for both courses, but certifications.md and PY.jpeg date Introduction to Programming with Python to 2023 (Sep 2023). The issuer also differs: certifications.md says 'CS50 (Harvard)', while the CV says 'Harvard University (edX)'. The certificates are CS50 certificates hosted on cs50.harvard.edu and mention no edX. data.json uses the certifications.md dates and issuer.",
+      "affects": [
+        "certifications[cert-cs50-ai]",
+        "certifications[cert-cs50-python]",
+        "cv_certifications_section"
+      ],
+      "action": "Confirm the issuer display name and fix the CV date.",
+      "sources": [
+        "source/cv_Manuel_final.pdf (Certifications)",
+        "source/certifications.md (#10, #12)",
+        "source/CSAI.jpeg",
+        "source/PY.jpeg"
+      ],
+      "status": "resolved (default)",
+      "decision": "Certificate dates are used for display (CS50 AI: 2024; CS50 Python: 2023; the certificates show the year only). The issuer is 'Harvard University', with no '(edX)'. The verbatim CV certification lines were removed from data.json.",
+      "decision_source": "default set by coordinator 2026-10-18 (no answer from the author)",
+      "blocking": false
+    },
+    {
+      "id": "NR-14",
+      "priority": "medium",
+      "topic": "AI For Everyone entry",
+      "issue": "certifications.md says 'Mar 2024', but the certificate (AIFE.jpeg) is dated Apr 1, 2024. Its notes are a verbatim copy of the CS50 AI notes (Python projects, game-playing engines), which do not describe this course. The official title is 'AI For Everyone'. data.json uses the certificate date and official title and omits the notes.",
+      "affects": [
+        "certifications[cert-ai-for-everyone]"
+      ],
+      "action": "Confirm the date and provide notes for this course, or leave them empty.",
+      "sources": [
+        "source/certifications.md (#10, #11)",
+        "source/AIFE.jpeg"
+      ],
+      "status": "resolved (default)",
+      "decision": "Apr 2024, title 'AI For Everyone', no notes.",
+      "decision_source": "default set by coordinator 2026-10-18 (no answer from the author)",
+      "blocking": false
+    },
+    {
+      "id": "NR-15",
+      "priority": "medium",
+      "topic": "No public links for the TRACE report and thesis PDFs",
+      "issue": "In projects.md, 'Public link to share' is empty for both PDFs, so data.json links only to the GitHub repositories. If you host the thesis PDF: its cover shows the supervisors' electronic-signature stamps with partial ID numbers, and it still contains template placeholder text (planned table of contents and figure index notes).",
+      "affects": [
+        "papers[*].public_url",
+        "projects.featured[*].public_link"
+      ],
+      "action": "Provide public links if wanted and decide whether a redacted thesis PDF is needed.",
+      "sources": [
+        "source/projects.md",
+        "source/papers/TFG_ManuelFasRuiz.pdf (cover, pages v-vi)"
+      ],
+      "status": "resolved",
+      "decision": "Host both PDFs: /papers/TRACEPAPER_Report.pdf (from source/papers/TRACEPAPER_Report.pdf) and /papers/TFG_ManuelFasRuiz.pdf (from source/papers/TFG_ManuelFasRuiz.pdf). The developer copies them into the site's public assets. The thesis PDF is hosted as-is.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": false
+    },
+    {
+      "id": "NR-16",
+      "priority": "medium",
+      "topic": "Phone number not included",
+      "issue": "The CV header lists a phone number. It is not in data.json because everything in data.json can be published on the public site.",
+      "affects": [
+        "contact.phone"
+      ],
+      "action": "Confirm that the phone number should stay off the site.",
+      "sources": [
+        "source/cv_Manuel_final.pdf (header)"
+      ],
+      "status": "resolved",
+      "decision": "The phone number stays off the site.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": false
+    },
+    {
+      "id": "NR-17",
+      "priority": "low",
+      "topic": "Display name",
+      "issue": "'Manuel Fas Ruiz' appears in CLAUDE.md, Background.md, the thesis cover and most certificates. 'Manuel Fas' appears in the CV header, the TRACE report, the GitHub profile and two certificates. data.json uses 'Manuel Fas Ruiz' with 'Manuel Fas' as the alternate name.",
+      "affects": [
+        "person.name"
+      ],
+      "action": "Confirm the name for the h1, titles and JSON-LD.",
+      "sources": [
+        "CLAUDE.md",
+        "source/cv_Manuel_final.pdf",
+        "source/Background.md",
+        "certificate files"
+      ],
+      "status": "resolved",
+      "decision": "Display name 'Manuel Fas'. 'Manuel Fas Ruiz' is kept as the legal or alternate name, for JSON-LD alternateName.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": false
+    },
+    {
+      "id": "NR-18",
+      "priority": "low",
+      "topic": "BISITE job title wording",
+      "issue": "The CV says 'Junior Machine Learning Researcher'; the GitHub profile README says 'Research Machine Learning Junior at BISITE'. data.json uses the CV title.",
+      "affects": [
+        "experience[exp-bisite].title"
+      ],
+      "action": "Confirm the title (and optionally align the GitHub profile).",
+      "sources": [
+        "source/cv_Manuel_final.pdf",
+        "GitHub profile README"
+      ],
+      "status": "resolved",
+      "decision": "Use the CV title 'Junior Machine Learning Researcher'.",
+      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "blocking": false
+    },
+    {
+      "id": "NR-19",
+      "priority": "low",
+      "topic": "Generative AI with LLMs issuer",
+      "issue": "certifications.md and the CV say DeepLearning.AI; the certificate says 'authorized by DeepLearning.AI and Amazon Web Services'. The date and verification code match.",
+      "affects": [
+        "certifications[cert-genai-llm].issuer"
+      ],
+      "action": "Choose the issuer display name.",
+      "sources": [
+        "source/certifications.md (#1)",
+        "source/GENAI.pdf"
+      ],
+      "status": "resolved (default)",
+      "decision": "Issuers are listed as printed on the certificates (Generative AI with Large Language Models: 'DeepLearning.AI and Amazon Web Services').",
+      "decision_source": "default set by coordinator 2026-10-18 (no answer from the author)",
+      "blocking": false
+    },
+    {
+      "id": "NR-20",
+      "priority": "low",
+      "topic": "Specialization links not verified",
+      "issue": "The Deep Learning Specialization and Mathematics for Machine Learning and Data Science links come from CV hyperlinks, but Coursera does not render specialization pages server-side, so they could not be checked automatically.",
+      "affects": [
+        "specializations[*].verification_url"
+      ],
+      "action": "Open both links in a browser and confirm they show your certificates.",
+      "sources": [
+        "source/cv_Manuel_final.pdf (Certifications hyperlinks)"
+      ],
+      "status": "open",
+      "decision": "Left open as a low-priority note; it does not block the build.",
+      "decision_source": "default set by coordinator 2026-10-18 (no answer from the author)",
+      "blocking": false
+    },
+    {
+      "id": "NR-21",
+      "priority": "low",
+      "topic": "TRACE report internal inconsistencies",
+      "issue": "Inside the report: OTTO session count 12,899,779 (Table 1) vs 12,899,799 (text); Synerise 22,298,361 vs 22,289,361; ATC true-positive rate 79.59% vs 79.56%. The report says eight attention heads, while the code (Otto_TRACE/model/trace.py) uses nhead=6. The report also calls OTTO 'a Swiss retail company', though the dataset is published by otto-de. data.json avoids these figures and the country.",
+      "affects": [
+        "projects.featured[trace-reimplementation]"
+      ],
+      "action": "None unless these figures will be quoted; optionally fix the report.",
+      "sources": [
+        "source/papers/TRACEPAPER_Report.pdf pages 5, 11, 19-21, 29, 31",
+        "AAI_HSLU_TRACE/Otto_TRACE/model/trace.py"
+      ],
+      "status": "open",
+      "decision": "Left open as a low-priority note; it does not block the build.",
+      "decision_source": "default set by coordinator 2026-10-18 (no answer from the author)",
+      "blocking": false
+    },
+    {
+      "id": "NR-22",
+      "priority": "low",
+      "topic": "Certificate file paths in certifications.md",
+      "issue": "certifications.md points to source/certificates/<file>, but there is no certificates/ folder; the files sit directly in source/. data.json uses the real paths.",
+      "affects": [
+        "certifications[*].certificate_file"
+      ],
+      "action": "Fix the paths in certifications.md, or move the files.",
+      "sources": [
+        "source/certifications.md",
+        "source/ directory listing"
+      ],
+      "status": "open",
+      "decision": "Left open as a low-priority note; it does not block the build.",
+      "decision_source": "default set by coordinator 2026-10-18 (no answer from the author)",
+      "blocking": false
+    },
+    {
+      "id": "NR-23",
+      "priority": "low",
+      "topic": "Non-featured public repositories",
+      "issue": "There are 20 other public repositories, including 2 forks (makemore, MetaGPT), the profile README repository and this website repository. Several have empty descriptions or descriptions with typos.",
+      "affects": [
+        "projects.other_public_repositories"
+      ],
+      "action": "Decide which, if any, the Projects page should show.",
+      "sources": [
+        "gh repo list Fasmanuel2002 --visibility public (2026-10-18)"
+      ],
+      "status": "resolved (default)",
+      "decision": "Non-featured repositories are not shown. The Projects page links to the GitHub profile (https://github.com/Fasmanuel2002) instead.",
+      "decision_source": "default set by coordinator 2026-10-18 (no answer from the author)",
+      "blocking": false
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "lede": "A dual bachelor's degree at the Pontifical University of Salamanca (UPSA), expected May 2027, and a visiting exchange in computer science at the Lucerne University of Applied Sciences and Arts (HSLU).",
+  "entries": [
+    {
+      "id": "edu-upsa",
+      "institution": "Pontifical University of Salamanca (UPSA)",
+      "location": "Salamanca, Spain",
+      "degreeType": "Dual B.S.",
+      "program": "Business Administration for Tech Companies and Computer Science",
+      "start": "2022-09",
+      "end": "2027-05",
+      "datesDisplay": "Sep 2022 – May 2027 (expected)",
+      "startDisplay": "Sep 2022",
+      "endDisplay": "May 2027 (expected)",
+      "status": "B.S. Business Administration for Tech Companies completed May 2026; B.S. Computer Science in progress.",
+      "degrees": [
+        {
+          "name": "B.S. Business Administration for Tech Companies",
+          "status": "completed",
+          "completedDisplay": "May 2026"
+        },
+        {
+          "name": "B.S. Computer Science",
+          "status": "in progress",
+          "completedDisplay": null
+        }
+      ],
+      "thesis": {
+        "id": "paper-tfg-thesis",
+        "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
+        "documentType": "Bachelor's Thesis",
+        "authors": [
+          "Manuel Fas Ruiz"
+        ],
+        "supervisor": null,
+        "director": "Dr. Manuel Merino",
+        "coDirector": "Dr. Santiago Bueno",
+        "institution": "Pontifical University of Salamanca (UPSA)",
+        "date": "2026-07",
+        "dateDisplay": "July 2026",
+        "pages": 39,
+        "pdf": "/papers/TFG_ManuelFasRuiz.pdf",
+        "repository": "https://github.com/Fasmanuel2002/UPSA_Thesis_Research",
+        "abstract": null,
+        "keywords": [
+          "Survival analysis",
+          "Deep learning",
+          "RNA-seq transcriptomics",
+          "Breast cancer prognosis",
+          "Explainable AI (SHAP)"
+        ],
+        "description": "Survival modelling on TCGA RNA-seq data (819 patients and 20,440 genes raw; 519 patients after preprocessing); benchmarked regularised Cox models, Random Survival Forest, DeepSurv and Cox-nnet, evaluated by concordance index and Kaplan–Meier analysis.",
+        "projectId": "upsa-thesis-cancer-survival",
+        "degree": "B.S. Business Administration for Tech Companies"
+      },
+      "relatedRole": null
+    },
+    {
+      "id": "edu-hslu",
+      "institution": "Lucerne University of Applied Sciences and Arts (HSLU)",
+      "location": "Lucerne, Switzerland",
+      "degreeType": null,
+      "program": "Visiting Exchange Student, Computer Science",
+      "start": "2025-09",
+      "end": "2026-01",
+      "datesDisplay": "Sep 2025 – Jan 2026",
+      "startDisplay": "Sep 2025",
+      "endDisplay": "Jan 2026",
+      "status": null,
+      "degrees": [],
+      "thesis": null,
+      "relatedRole": {
+        "id": "exp-hslu-aai-lab",
+        "title": "Machine Learning Research Assistant",
+        "organization": "Applied Artificial Intelligence (AAI) Lab, HSLU",
+        "datesDisplay": "Oct 2025 – Jan 2026"
+      }
+    }
+  ]
+}

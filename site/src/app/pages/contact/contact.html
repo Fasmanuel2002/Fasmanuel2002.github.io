@@ -1,0 +1,37 @@
+<header class="page-head">
+  <div class="wrap page-head__grid">
+    <div class="page-head__text">
+      <h1 class="page-title reveal" style="--i: 0">Contact</h1>
+      <p class="lede lede--head reveal" style="--i: 1">{{ page.lede }}</p>
+    </div>
+    <app-attention-mask class="page-mask" [size]="7" />
+  </div>
+</header>
+
+<section class="section wrap" aria-labelledby="contact-details">
+  <h2 id="contact-details" class="visually-hidden">Contact details</h2>
+  <dl class="kv kv--contact">
+    <div>
+      <dt>{{ site.links.email.label }}</dt>
+      <dd>
+        <a [href]="site.links.email.url">{{ site.links.email.display }}</a>
+      </dd>
+    </div>
+    @for (link of site.links.social; track link.url) {
+      <div>
+        <dt>{{ link.label }}</dt>
+        <dd>
+          <a [href]="link.url">{{ link.display }}</a>
+        </dd>
+      </div>
+    }
+    <div>
+      <dt>Location</dt>
+      <dd>{{ site.person.location }}</dd>
+    </div>
+    <div>
+      <dt>Languages</dt>
+      <dd>{{ languages }}</dd>
+    </div>
+  </dl>
+</section>
