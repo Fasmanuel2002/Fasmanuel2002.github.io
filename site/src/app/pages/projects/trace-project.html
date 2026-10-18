@@ -1,0 +1,181 @@
+<app-project-head [project]="project" [figure]="project.figure">
+  <ul class="actions reveal" style="--i: 5">
+    <li>
+      <a class="button" [href]="project.pdf.href" type="application/pdf"
+        >Read the report (PDF, {{ project.pdf.pages }} pages)</a
+      >
+    </li>
+    <li>
+      <a class="button button--quiet" [href]="project.repository.url">Code on GitHub</a>
+    </li>
+    <li>
+      <a class="button button--quiet" [href]="project.originalPaper.url"
+        >Original paper (arXiv:{{ project.originalPaper.arxivId }})</a
+      >
+    </li>
+  </ul>
+</app-project-head>
+
+<div class="wrap project__body">
+  <dl class="kv">
+    <div>
+      <dt>Context</dt>
+      <dd>
+        <a routerLink="/experience" [fragment]="project.context.experienceId">{{ project.context.position }}</a>,
+        {{ project.context.organization }}, {{ project.context.location }}
+      </dd>
+    </div>
+    <div>
+      <dt>Dates</dt>
+      <dd>{{ project.context.datesDisplay }}</dd>
+    </div>
+    <div>
+      <dt>Supervisor</dt>
+      <dd>{{ project.context.supervisor }}</dd>
+    </div>
+    <div>
+      <dt>Repository</dt>
+      <dd>
+        <a [href]="project.repository.url">{{ project.repository.name }}</a>
+        · {{ project.repository.license }} license · {{ project.repository.languages.join(', ') }}
+      </dd>
+    </div>
+    <div>
+      <dt>Report</dt>
+      <dd>
+        <a [href]="project.pdf.href" type="application/pdf">{{ project.pdf.documentType }}</a>
+        (PDF, {{ project.pdf.pages }} pages)
+      </dd>
+    </div>
+  </dl>
+
+  <section class="block">
+    <h2 class="block__title">Overview</h2>
+    <ul class="points">
+      @for (point of project.points; track $index) {
+        <li>{{ point }}</li>
+      }
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">Original paper</h2>
+    <p class="citation">
+      <a [href]="project.originalPaper.url">{{ project.originalPaper.title }}</a>.
+      {{ project.originalPaper.authors.join(', ') }}, {{ project.originalPaper.year }}.
+      arXiv:{{ project.originalPaper.arxivId }}.
+    </p>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">Datasets</h2>
+    <dl class="kv kv--compact">
+      @for (dataset of project.datasets; track dataset.name) {
+        <div>
+          <dt>
+            @if (dataset.url) {
+              <a [href]="dataset.url">{{ dataset.name }}</a>
+            } @else {
+              {{ dataset.name }}
+            }
+          </dt>
+          <dd>{{ dataset.role }}</dd>
+        </div>
+      }
+    </dl>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">Method</h2>
+    <dl class="kv">
+      <div>
+        <dt>Architecture</dt>
+        <dd>{{ project.method.architecture }}</dd>
+      </div>
+      <div>
+        <dt>Prediction tasks</dt>
+        <dd>
+          <dl class="tasks">
+            @for (task of project.method.tasks; track task.code) {
+              <div>
+                <dt>{{ task.code }}</dt>
+                <dd>{{ task.definition }}</dd>
+              </div>
+            }
+          </dl>
+        </dd>
+      </div>
+      <div>
+        <dt>Loss</dt>
+        <dd>{{ project.method.loss }}</dd>
+      </div>
+      <div>
+        <dt>Data preparation</dt>
+        <dd>{{ project.method.dataPreparation }}</dd>
+      </div>
+      <div>
+        <dt>Training modes</dt>
+        <dd>{{ project.method.trainingModes.join('; ') }}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">Results</h2>
+    <figure class="table-figure">
+      <figcaption id="trace-results-caption">{{ project.results.caption }}</figcaption>
+      <div class="table-wrap" role="region" aria-labelledby="trace-results-caption" tabindex="0">
+        <table class="data-table" aria-labelledby="trace-results-caption">
+          <thead>
+            <tr>
+              <th scope="col">Model</th>
+              @for (column of project.results.columns; track column) {
+                <th scope="col">{{ column }}</th>
+              }
+            </tr>
+          </thead>
+          <tbody>
+            @for (row of project.results.rows; track row.model; let first = $first) {
+              <tr [class.is-highlight]="first">
+                <th scope="row">{{ row.model }}</th>
+                @for (value of row.values; track $index) {
+                  <td>{{ value }}</td>
+                }
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </figure>
+    <ul class="points">
+      @for (finding of project.results.findings; track $index) {
+        <li>{{ finding }}</li>
+      }
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">Limitations</h2>
+    <ul class="points">
+      @for (limitation of project.results.limitations; track $index) {
+        <li>{{ limitation }}</li>
+      }
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">Technologies</h2>
+    <ul class="tags">
+      @for (tech of project.technologies; track tech) {
+        <li>{{ tech }}</li>
+      }
+    </ul>
+  </section>
+
+  <details class="disclosure">
+    <summary>Report abstract</summary>
+    <p>{{ project.abstract }}</p>
+  </details>
+
+  <p class="back-link"><a routerLink="/projects">All projects</a></p>
+</div>

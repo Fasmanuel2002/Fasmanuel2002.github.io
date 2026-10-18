@@ -77,6 +77,24 @@ const specializations = data.specializations;
 const certificationsById = byId(certifications);
 const educationById = byId(educationList);
 const experienceById = byId(experience);
+const featuredById = byId(featured);
+
+// Each featured project has its own page at /projects/<slug>. data.json has no `slug` field, so the
+// slug is the project's kebab-case `id`; a slug derived from the repository name is the fallback.
+const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+const slugify = (text) =>
+  text
+    .replace(/([a-z0-9])([A-Z])/g, '$1-$2')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+const projectSlug = (project) => {
+  const slug = project.slug ?? project.id ?? slugify(repoName(project.repository.url));
+  expect(SLUG_PATTERN.test(slug), `invalid project slug "${slug}"`);
+  return slug;
+};
+const projectPath = (project) => `/projects/${projectSlug(project)}`;
+expect(new Set(featured.map(projectSlug)).size === featured.length, 'project slugs must be unique');
 
 const current = experience.find((role) => role.current);
 expect(current, 'expected one current role');
@@ -120,7 +138,7 @@ const experienceOut = experience.map((role) => ({
   highlights: role.highlights,
   technologies: role.technologies_mentioned ?? [],
   links: (role.links ?? []).map((link) => ({ label: link.label, url: link.url })),
-  relatedProjectId: role.related_project_id ?? null,
+  relatedProjectPath: role.related_project_id ? projectPath(get(featuredById, role.related_project_id)) : null,
 }));
 
 const researchRoles = experience.filter((role) => /Research/.test(role.title));
@@ -190,7 +208,7 @@ const educationOut = educationList.map((entry) => ({
       ? {
           ...paperOut(thesisPaper),
           description: upperFirst(thesisDetail.slice(`Thesis: ${thesisPaper.title} — `.length)),
-          projectId: thesisProject.id,
+          projectPath: projectPath(thesisProject),
           degree: thesisPaper.degree,
         }
       : null,
@@ -228,6 +246,40 @@ const repositoryOut = (repo) => ({
 
 const pdfOut = (paper) => ({ href: paper.site_path, pages: paper.pages, documentType: paper.document_type });
 
+// Architecture figures: data.json points at data/figures/<name>.png; the site serves an optimised
+// copy at public/images/figures/<name>.webp. Width and height are read from the WebP itself so the
+// <img> attributes always match the shipped file (no layout shift).
+function webpSize(file) {
+  const b = readFileSync(file);
+  expect(b.toString('ascii', 0, 4) === 'RIFF' && b.toString('ascii', 8, 12) === 'WEBP', `${file} is not a WebP file`);
+  const chunk = b.toString('ascii', 12, 16);
+  if (chunk === 'VP8X') return { width: 1 + b.readUIntLE(24, 3), height: 1 + b.readUIntLE(27, 3) };
+  if (chunk === 'VP8L') {
+    const bits = b.readUInt32LE(21);
+    return { width: (bits & 0x3fff) + 1, height: ((bits >>> 14) & 0x3fff) + 1 };
+  }
+  if (chunk === 'VP8 ') return { width: b.readUInt16LE(26) & 0x3fff, height: b.readUInt16LE(28) & 0x3fff };
+  throw new Error(`sync-content: unknown WebP chunk ${chunk} in ${file}`);
+}
+const figureOut = (figure) => {
+  if (!figure) return null;
+  const name = figure.file.split('/').pop().replace(/\.png$/i, '');
+  const src = `/images/figures/${name}.webp`;
+  const file = resolve(siteRoot, 'public', src.slice(1));
+  expect(existsSync(file), `missing ${file}: optimise ${figure.file} to WebP first (see docs/build-summary.md)`);
+  const { width, height } = webpSize(file);
+  expect(figure.alt && figure.caption && figure.credit, `${figure.file}: alt, caption and credit are required`);
+  return {
+    src,
+    width,
+    height,
+    orientation: height > width ? 'portrait' : 'landscape',
+    alt: figure.alt,
+    caption: figure.caption,
+    credit: figure.credit,
+  };
+};
+
 // TRACE reimplementation
 const traceReport = get(papers, traceSource.paper_id);
 const traceMetrics = traceSource.results.metrics_table;
@@ -240,6 +292,8 @@ const trace = {
   id: traceSource.id,
   rank: traceSource.featured_rank,
   kind: 'trace',
+  slug: projectSlug(traceSource),
+  path: projectPath(traceSource),
   title: traceSource.title,
   summary: traceSource.summary,
   role: traceSource.role,
@@ -276,6 +330,7 @@ const trace = {
     limitations: traceSource.results.limitations,
   },
   abstract: traceReport.abstract,
+  figure: figureOut(traceSource.architecture_figure),
   technologies: traceSource.technologies.items,
   highlight: {
     value: `AUROC ${traceMain.auroc} · AUPRC ${traceMain.auprc}`,
@@ -288,6 +343,8 @@ const thesis = {
   id: thesisSource.id,
   rank: thesisSource.featured_rank,
   kind: 'thesis',
+  slug: projectSlug(thesisSource),
+  path: projectPath(thesisSource),
   title: thesisSource.title,
   summary: thesisSource.summary,
   role: thesisSource.role,
@@ -363,6 +420,7 @@ const implementations = reimplSource.implementations
         ? ['Baseline Seq2Seq', 'Seq2Seq with attention']
         : ['Value'],
       caveat: verifiedNotes,
+      figure: figureOut(item.architecture_figure),
     };
   });
 const countStatus = (status) => implementations.filter((item) => item.status === status).length;
@@ -371,6 +429,8 @@ const reimplementations = {
   id: reimplSource.id,
   rank: reimplSource.featured_rank,
   kind: 'reimplementations',
+  slug: projectSlug(reimplSource),
+  path: projectPath(reimplSource),
   title: reimplSource.title,
   summary: reimplSource.summary,
   role: reimplSource.role,
@@ -379,15 +439,31 @@ const reimplementations = {
   technologies: reimplSource.technologies.items,
   highlight: {
     value: `${implementations.length} papers listed`,
-    note: `${countStatus('Completed')} completed, ${countStatus('In progress')} in progress, ${countStatus('Planned/in progress')} planned/in progress`,
+    note: [
+      [countStatus('Completed'), 'completed'],
+      [countStatus('In progress'), 'in progress'],
+      [countStatus('Planned/in progress'), 'planned/in progress'],
+    ]
+      .filter(([count]) => count > 0)
+      .map(([count, label]) => `${count} ${label}`)
+      .join(', '),
   },
 };
 
 const projectCards = [trace, thesis, reimplementations].map((project) => ({
   id: project.id,
+  slug: project.slug,
+  path: project.path,
   rank: project.rank,
   title: project.title,
   summary: project.summary,
+  role: project.role,
+  context:
+    project.kind === 'trace'
+      ? `${project.context.position}, ${project.context.organization}`
+      : project.kind === 'thesis'
+        ? `${project.context.documentType}, ${project.context.organization}`
+        : null,
   dateDisplay: project.dateDisplay ?? null,
   date: project.date ?? null,
   highlight: project.highlight,
@@ -450,7 +526,11 @@ expect(cs50.length === 2, 'certifications lede assumes two Harvard University co
 // ---------------------------------------------------------------------------------------------
 // Recent activity timeline (newest first)
 
-const paperProject = (paperId) => featured.find((project) => project.paper_id === paperId)?.id ?? null;
+const paperProjectPath = (paperId) => {
+  const project = featured.find((item) => item.paper_id === paperId);
+  expect(project, `no project for paper ${paperId}`);
+  return projectPath(project);
+};
 const timelineAll = [
   ...experience.map((role) => ({
     date: role.start,
@@ -469,8 +549,8 @@ const timelineAll = [
     group: 'document',
     title: paper.title,
     detail: paper.institution,
-    route: '/projects',
-    fragment: paperProject(paper.id),
+    route: paperProjectPath(paper.id),
+    fragment: null,
   })),
   ...specializations.map((spec) => ({
     date: spec.date,
@@ -564,7 +644,38 @@ expect(reimplSource.summary.startsWith('PyTorch reimplementations'), 'reimplemen
 expect(hslu.program === 'Visiting Exchange Student, Computer Science', 'education wording assumes the HSLU exchange program');
 expect(upsa.dates_display.endsWith('May 2027 (expected)'), 'education wording assumes May 2027 (expected)');
 
-for (const [key, page] of Object.entries(pages)) {
+const projectDescriptions = {
+  trace: `PyTorch reimplementation of the TRACE Transformer for clickstream user representations, evaluated on OTTO: average AUROC ${traceMain.auroc} and AUPRC ${traceMain.auprc}.`,
+  thesis: `${thesis.context.documentType} (UPSA): classical and deep survival models on TCGA breast cancer RNA-seq data. Best model: ${thesisSource.results.best_model}, C-index ${thesisSource.results.best_model_c_index_display}.`,
+  reimplementations: `PyTorch reimplementations of ${numberWord(implementations.length)} machine learning papers (${reimplementations.highlight.note}), from Seq2Seq and Attention Is All You Need to ViT.`,
+};
+expect(traceSource.datasets[0].name.startsWith('OTTO'), 'TRACE description assumes OTTO as the primary dataset');
+expect(thesis.context.organization.endsWith('(UPSA)'), 'thesis description abbreviates the institution as UPSA');
+expect(
+  ['Cox Lasso', 'DeepSurv'].every((model) => thesisSource.method.models.includes(model)),
+  'thesis description assumes classical (Cox) and deep (DeepSurv) survival models',
+);
+expect(
+  implementations[0].implementation?.includes('Seq2Seq') &&
+    implementations[1].name === 'Attention Is All You Need' &&
+    implementations[3].caveat?.includes('ViT'),
+  'reimplementations description names #01 (Seq2Seq), #02 and #04 (ViT)',
+);
+
+// Keyed by project kind; each page lives at /projects/<slug>.
+const projectPages = Object.fromEntries(
+  [trace, thesis, reimplementations].map((project) => [
+    project.kind,
+    {
+      slug: project.slug,
+      path: project.path,
+      title: `${project.title} — ${person.name}`,
+      description: projectDescriptions[project.kind],
+    },
+  ]),
+);
+
+for (const [key, page] of [...Object.entries(pages), ...Object.entries(projectPages)]) {
   expect(page.description.length < 160, `${key} description is ${page.description.length} characters (must be < 160)`);
 }
 
@@ -576,7 +687,7 @@ const ledes = {
   experience: `Four positions since ${rangeStart(oldestRole.dates_display)}: three machine learning research roles in ${listJoin(researchCountries)}, and one machine learning and backend engineering role at ${otherRoles[0].organization}.`,
   skills: 'Programming languages, machine learning libraries, engineering tools and methods, plus spoken languages.',
   projects:
-    "Three featured projects, each with a public GitHub repository: a PyTorch reimplementation of the TRACE clickstream model (HSLU), a bachelor's thesis on cancer survival analysis (UPSA), and PyTorch reimplementations of machine learning papers.",
+    "Three featured projects, each with its own page and a public GitHub repository: a PyTorch reimplementation of the TRACE clickstream model (HSLU), a bachelor's thesis on cancer survival analysis (UPSA), and PyTorch reimplementations of machine learning papers.",
   projectsMore: `Other public repositories are on ${person.name}'s GitHub profile.`,
   certifications: `Twelve course certificates dated ${certDates[0].date_display} to ${certDates.at(-1).date_display}, issued by ${listJoin(issuers)}. Eight of the DeepLearning.AI courses make up two Coursera specializations.`,
   education: `A dual bachelor's degree at the ${upsa.institution}, ${rangeEnd(upsa.dates_display).replace(/^(.*) \(expected\)$/, 'expected $1')}, and a visiting exchange in computer science at the ${hslu.institution}.`,
@@ -627,10 +738,10 @@ const scholarly = (paper) => ({
 });
 const softwareSourceCode = (project, extra) => ({
   '@type': 'SoftwareSourceCode',
-  '@id': abs(`/projects#${project.id}`),
+  '@id': abs(`${project.path}#code`),
   name: project.title,
   description: project.summary,
-  url: abs(`/projects#${project.id}`),
+  url: abs(project.path),
   codeRepository: project.repository.url,
   programmingLanguage: 'Python',
   dateCreated: project.repository.created,
@@ -638,10 +749,31 @@ const softwareSourceCode = (project, extra) => ({
   author,
   ...extra,
 });
-const projectsJsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
+const breadcrumbJsonLd = (project) => ({
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Home', item: abs('/') },
+    { '@type': 'ListItem', position: 2, name: 'Projects', item: abs(pages.projects.path) },
+    { '@type': 'ListItem', position: 3, name: project.title, item: abs(project.path) },
+  ],
+});
+const projectGraph = (project, code) => ({ '@context': 'https://schema.org', '@graph': [code, breadcrumbJsonLd(project)] });
+const projectJsonLd = {
+  trace: projectGraph(
+    trace,
     softwareSourceCode(trace, {
+      ...(trace.figure
+        ? {
+            image: {
+              '@type': 'ImageObject',
+              url: abs(trace.figure.src),
+              width: trace.figure.width,
+              height: trace.figure.height,
+              caption: trace.figure.caption,
+              creditText: trace.figure.credit,
+            },
+          }
+        : {}),
       isBasedOn: scholarly(trace.originalPaper),
       subjectOf: {
         '@type': 'Report',
@@ -651,6 +783,9 @@ const projectsJsonLd = {
         author,
       },
     }),
+  ),
+  thesis: projectGraph(
+    thesis,
     softwareSourceCode(thesis, {
       subjectOf: {
         '@type': 'Thesis',
@@ -662,10 +797,24 @@ const projectsJsonLd = {
         author,
       },
     }),
+  ),
+  reimplementations: projectGraph(
+    reimplementations,
     softwareSourceCode(reimplementations, {
       isBasedOn: implementations.flatMap((item) => item.papers).map(scholarly),
     }),
-  ],
+  ),
+};
+const catalogJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: pages.projects.title,
+  itemListElement: [trace, thesis, reimplementations].map((project, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    url: abs(project.path),
+    name: project.title,
+  })),
 };
 for (const tech of [trace, thesis, reimplementations]) {
   expect(tech.technologies.includes('Python'), `${tech.id}: programmingLanguage assumes Python`);
@@ -680,6 +829,7 @@ const contentFiles = {
     generatedFrom: 'data/data.json',
     site: { url: siteUrl, urlIsPlaceholder: Boolean(data.site.base_url_is_placeholder), language: data.site.language },
     pages,
+    projectPages,
     person: {
       name: person.name,
       alternateName: person.alternate_name,
@@ -716,11 +866,12 @@ const contentFiles = {
     lede: ledes.projects,
     moreLede: ledes.projectsMore,
     githubProfile,
-    trace,
-    thesis,
-    reimplementations,
-    jsonLd: projectsJsonLd,
+    cards: projectCards,
+    jsonLd: catalogJsonLd,
   },
+  'project-trace': { ...trace, jsonLd: projectJsonLd.trace },
+  'project-thesis': { ...thesis, jsonLd: projectJsonLd.thesis },
+  'project-reimplementations': { ...reimplementations, jsonLd: projectJsonLd.reimplementations },
   certifications: { lede: ledes.certifications, entries: certificationEntries },
   education: { lede: ledes.education, entries: educationOut },
   contact: { lede: ledes.contact },
@@ -729,12 +880,20 @@ const contentFiles = {
 // ---------------------------------------------------------------------------------------------
 // Crawl files
 
-const routeOrder = ['home', 'experience', 'projects', 'certifications', 'education', 'contact'];
-const pageUrl = (key) => abs(pages[key].path);
+// Every public route, in navigation order. Keep in sync with src/app/app.routes.ts.
+const pageList = [
+  pages.home,
+  pages.experience,
+  pages.projects,
+  ...Object.values(projectPages),
+  pages.certifications,
+  pages.education,
+  pages.contact,
+];
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${routeOrder.map((key) => `  <url>\n    <loc>${pageUrl(key)}</loc>\n  </url>`).join('\n')}
+${pageList.map((page) => `  <url>\n    <loc>${abs(page.path)}</loc>\n  </url>`).join('\n')}
 </urlset>
 `;
 
@@ -763,9 +922,9 @@ const llms = `# ${person.name}
 
 ## Projects
 
-- [${trace.title}](${abs(`/projects#${trace.id}`)}): ${trace.summary} ${trace.points[0]} Result: ${trace.highlight.value} for ${trace.highlight.note}. Code: ${trace.repository.url}. ${trace.pdf.documentType} (PDF): ${abs(trace.pdf.href)}
-- [${thesis.title}](${abs(`/projects#${thesis.id}`)}): ${thesis.context.documentType}, ${thesis.context.organization}, ${thesis.dateDisplay}. ${thesis.summary} Data: ${thesis.data.dataset}; ${thesis.data.patients}. Models: ${thesis.method.models.join(', ')}. ${thesis.results.findings[0]} Code: ${thesis.repository.url}. Thesis (PDF): ${abs(thesis.pdf.href)}
-- [${reimplementations.title}](${abs(`/projects#${reimplementations.id}`)}): ${reimplementations.summary} Code: ${reimplementations.repository.url}. Papers:
+- [${trace.title}](${abs(trace.path)}): ${trace.summary} ${trace.points[0]} Result: ${trace.highlight.value} for ${trace.highlight.note}. Code: ${trace.repository.url}. ${trace.pdf.documentType} (PDF): ${abs(trace.pdf.href)}
+- [${thesis.title}](${abs(thesis.path)}): ${thesis.context.documentType}, ${thesis.context.organization}, ${thesis.dateDisplay}. ${thesis.summary} Data: ${thesis.data.dataset}; ${thesis.data.patients}. Models: ${thesis.method.models.join(', ')}. ${thesis.results.findings[0]} Code: ${thesis.repository.url}. Thesis (PDF): ${abs(thesis.pdf.href)}
+- [${reimplementations.title}](${abs(reimplementations.path)}): ${reimplementations.summary} Code: ${reimplementations.repository.url}. Papers:
 ${implementations.map(implementationLine).join('\n')}
 
 ## Experience
@@ -784,7 +943,7 @@ ${certificationEntries
 
 ## Pages
 
-${routeOrder.map((key) => `- [${pages[key].title}](${pageUrl(key)}): ${pages[key].description}`).join('\n')}
+${pageList.map((page) => `- [${page.title}](${abs(page.path)}): ${page.description}`).join('\n')}
 
 ## Contact
 

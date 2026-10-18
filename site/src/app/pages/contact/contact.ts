@@ -16,6 +16,6 @@ export default class Contact {
   protected readonly languages = SPOKEN_LANGUAGES;
 
   constructor() {
-    inject(Seo).apply('contact');
+    inject(Seo).apply(SITE.pages.contact);
   }
 }

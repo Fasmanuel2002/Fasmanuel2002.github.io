@@ -1,0 +1,162 @@
+{
+  "id": "upsa-thesis-cancer-survival",
+  "rank": 2,
+  "kind": "thesis",
+  "slug": "upsa-thesis-cancer-survival",
+  "path": "/projects/upsa-thesis-cancer-survival",
+  "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
+  "summary": "Application of AI and deep learning methods to genomic and transcriptomic data analysis in cancer.",
+  "role": "Author",
+  "date": "2026-07",
+  "dateDisplay": "July 2026",
+  "context": {
+    "organization": "Pontifical University of Salamanca (UPSA)",
+    "documentType": "Bachelor's Thesis",
+    "degree": "B.S. Business Administration for Tech Companies",
+    "director": "Dr. Manuel Merino",
+    "coDirector": "Dr. Santiago Bueno",
+    "educationId": "edu-upsa"
+  },
+  "pdf": {
+    "href": "/papers/TFG_ManuelFasRuiz.pdf",
+    "pages": 39,
+    "documentType": "Bachelor's Thesis"
+  },
+  "repository": {
+    "url": "https://github.com/Fasmanuel2002/UPSA_Thesis_Research",
+    "name": "UPSA_Thesis_Research",
+    "license": null,
+    "languages": [
+      "Python",
+      "Jupyter Notebook",
+      "Dockerfile"
+    ],
+    "created": "2026-02-04"
+  },
+  "researchQuestion": "When we try to predict how long a breast-cancer patient will survive from their tumour's gene expression, do modern deep survival networks actually beat a well-regularised classical Cox model — or do they just look more impressive?",
+  "data": {
+    "dataset": "TCGA breast cancer RNA-seq (RSEM) expression and clinical data from cBioPortal, study brca_tcga_pub2015 (Breast Invasive Carcinoma, TCGA, Cell 2015)",
+    "datasetUrl": "https://www.cbioportal.org/study/summary?id=brca_tcga_pub2015",
+    "patients": "819 patients raw, 519 after preprocessing",
+    "genes": "20,440 raw; 18,492 after the low-expression filter; 1,000 selected",
+    "subtypes": [
+      "Luminal A",
+      "Luminal B",
+      "HER2-enriched",
+      "TNBC"
+    ],
+    "endpoint": "Overall survival, administratively censored at 60 months"
+  },
+  "method": {
+    "featureSelection": "Low-expression filter (genes with more than 80% zero values removed), then limma differential expression and univariate Cox screening, fitted on the training split only",
+    "models": [
+      "Cox Lasso",
+      "Cox Elastic Net",
+      "Random Survival Forest",
+      "DeepSurv",
+      "Cox-nnet"
+    ],
+    "validation": "Fixed patient split shared by all models (splits.json); hyperparameters chosen without the test set (k-fold cross-validation for Cox and Random Survival Forest models, validation set and grid search for DeepSurv and Cox-nnet); fixed random seed 42",
+    "evaluation": "Harrell's concordance index (C-index) on held-out test patients; Kaplan–Meier curves and log-rank test on median-split high- and low-risk groups",
+    "interpretability": "SHAP attributions with 50 bootstrap resamples for DeepSurv and Cox-nnet; gene-set enrichment against GO, KEGG and Reactome with GSEApy; STRING protein-protein interaction cross-check; Random Survival Forest minimal-depth interaction analysis"
+  },
+  "results": {
+    "findings": [
+      "DeepSurv achieved the best discriminative performance (C-index of approximately 0.82).",
+      "DeepSurv was the only model to produce a statistically significant risk stratification, outperforming both the linear Cox models and the Random Survival Forest.",
+      "DeepSurv and Cox-nnet shared 257 prognostic genes in the bootstrap SHAP consensus."
+    ],
+    "limitations": [
+      "The test set has about one hundred patients and no confidence interval is reported.",
+      "The neural networks' loss curves show overfitting.",
+      "There is no external validation cohort."
+    ]
+  },
+  "keywords": [
+    "Survival analysis",
+    "Deep learning",
+    "RNA-seq transcriptomics",
+    "Breast cancer prognosis",
+    "Explainable AI (SHAP)"
+  ],
+  "technologies": [
+    "Python",
+    "pandas",
+    "NumPy",
+    "InMoose (limma)",
+    "scikit-learn",
+    "scikit-survival",
+    "PyTorch",
+    "PyCox",
+    "SHAP",
+    "GSEApy",
+    "matplotlib",
+    "Jupyter",
+    "Docker",
+    "uv"
+  ],
+  "highlight": {
+    "value": "Best model: DeepSurv, C-index approximately 0.82",
+    "note": "819 patients raw, 519 after preprocessing"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://manuelfas.vercel.app/projects/upsa-thesis-cancer-survival#code",
+        "name": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
+        "description": "Application of AI and deep learning methods to genomic and transcriptomic data analysis in cancer.",
+        "url": "https://manuelfas.vercel.app/projects/upsa-thesis-cancer-survival",
+        "codeRepository": "https://github.com/Fasmanuel2002/UPSA_Thesis_Research",
+        "programmingLanguage": "Python",
+        "dateCreated": "2026-02-04",
+        "keywords": "Python, pandas, NumPy, InMoose (limma), scikit-learn, scikit-survival, PyTorch, PyCox, SHAP, GSEApy, matplotlib, Jupyter, Docker, uv",
+        "author": {
+          "@type": "Person",
+          "@id": "https://manuelfas.vercel.app/#person",
+          "name": "Manuel Fas"
+        },
+        "subjectOf": {
+          "@type": "Thesis",
+          "name": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
+          "url": "https://manuelfas.vercel.app/papers/TFG_ManuelFasRuiz.pdf",
+          "datePublished": "2026-07",
+          "inSupportOf": "B.S. Business Administration for Tech Companies",
+          "sourceOrganization": {
+            "@type": "CollegeOrUniversity",
+            "name": "Pontifical University of Salamanca (UPSA)"
+          },
+          "author": {
+            "@type": "Person",
+            "@id": "https://manuelfas.vercel.app/#person",
+            "name": "Manuel Fas"
+          }
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://manuelfas.vercel.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "https://manuelfas.vercel.app/projects"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
+            "item": "https://manuelfas.vercel.app/projects/upsa-thesis-cancer-survival"
+          }
+        ]
+      }
+    ]
+  }
+}

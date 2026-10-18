@@ -1,0 +1,143 @@
+<app-project-head [project]="project">
+  <ul class="actions reveal" style="--i: 5">
+    <li>
+      <a class="button" [href]="project.pdf.href" type="application/pdf"
+        >Read the thesis (PDF, {{ project.pdf.pages }} pages)</a
+      >
+    </li>
+    <li>
+      <a class="button button--quiet" [href]="project.repository.url">Code on GitHub</a>
+    </li>
+    <li>
+      <a class="button button--quiet" [href]="project.data.datasetUrl">Dataset on cBioPortal</a>
+    </li>
+  </ul>
+</app-project-head>
+
+<div class="wrap project__body">
+  <dl class="kv">
+    <div>
+      <dt>Context</dt>
+      <dd>
+        {{ project.context.documentType }},
+        <a routerLink="/education" [fragment]="project.context.educationId">{{ project.context.degree }}</a>,
+        {{ project.context.organization }}
+      </dd>
+    </div>
+    <div>
+      <dt>Director</dt>
+      <dd>{{ project.context.director }}</dd>
+    </div>
+    <div>
+      <dt>Co-director</dt>
+      <dd>{{ project.context.coDirector }}</dd>
+    </div>
+    <div>
+      <dt>Repository</dt>
+      <dd>
+        <a [href]="project.repository.url">{{ project.repository.name }}</a>
+        · {{ project.repository.languages.join(', ') }}
+      </dd>
+    </div>
+    <div>
+      <dt>Thesis</dt>
+      <dd>
+        <a [href]="project.pdf.href" type="application/pdf">{{ project.pdf.documentType }}</a>
+        (PDF, {{ project.pdf.pages }} pages)
+      </dd>
+    </div>
+  </dl>
+
+  <section class="block">
+    <h2 class="block__title">Research question</h2>
+    <blockquote class="question">
+      <p>{{ project.researchQuestion }}</p>
+    </blockquote>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">Data</h2>
+    <dl class="kv">
+      <div>
+        <dt>Dataset</dt>
+        <dd>{{ project.data.dataset }}</dd>
+      </div>
+      <div>
+        <dt>Patients</dt>
+        <dd>{{ project.data.patients }}</dd>
+      </div>
+      <div>
+        <dt>Genes</dt>
+        <dd>{{ project.data.genes }}</dd>
+      </div>
+      <div>
+        <dt>Molecular subtypes</dt>
+        <dd>{{ project.data.subtypes.join(', ') }}</dd>
+      </div>
+      <div>
+        <dt>Survival endpoint</dt>
+        <dd>{{ project.data.endpoint }}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">Method</h2>
+    <dl class="kv">
+      <div>
+        <dt>Feature selection</dt>
+        <dd>{{ project.method.featureSelection }}</dd>
+      </div>
+      <div>
+        <dt>Models</dt>
+        <dd>{{ project.method.models.join(', ') }}</dd>
+      </div>
+      <div>
+        <dt>Validation</dt>
+        <dd>{{ project.method.validation }}</dd>
+      </div>
+      <div>
+        <dt>Evaluation</dt>
+        <dd>{{ project.method.evaluation }}</dd>
+      </div>
+      <div>
+        <dt>Interpretability</dt>
+        <dd>{{ project.method.interpretability }}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">Results</h2>
+    <ul class="points">
+      @for (finding of project.results.findings; track $index) {
+        <li>{{ finding }}</li>
+      }
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">Limitations</h2>
+    <ul class="points">
+      @for (limitation of project.results.limitations; track $index) {
+        <li>{{ limitation }}</li>
+      }
+    </ul>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">Keywords and technologies</h2>
+    <ul class="tags tags--keywords" aria-label="Keywords">
+      @for (keyword of project.keywords; track keyword) {
+        <li>{{ keyword }}</li>
+      }
+    </ul>
+    <ul class="tags" aria-label="Technologies">
+      @for (tech of project.technologies; track tech) {
+        <li>{{ tech }}</li>
+      }
+    </ul>
+  </section>
+
+  <p class="back-link"><a routerLink="/projects">All projects</a></p>
+</div>

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AttentionMask } from '../../attention-mask';
 import certifications from '../../content/certifications.json';
+import { SITE } from '../../content/content';
 import { Seo } from '../../seo';
 
 @Component({
@@ -13,6 +14,6 @@ export default class Certifications {
   protected readonly page = certifications;
 
   constructor() {
-    inject(Seo).apply('certifications');
+    inject(Seo).apply(SITE.pages.certifications);
   }
 }

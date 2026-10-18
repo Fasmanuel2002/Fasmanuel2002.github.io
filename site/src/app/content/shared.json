@@ -37,6 +37,26 @@
       "description": "Contact Manuel Fas, machine learning researcher and engineer in Salamanca, Spain, by email (manuelfasruiz@gmail.com), GitHub or LinkedIn."
     }
   },
+  "projectPages": {
+    "trace": {
+      "slug": "trace-reimplementation",
+      "path": "/projects/trace-reimplementation",
+      "title": "Reimplementation of clickstream event sequence analysis model TRACE — Manuel Fas",
+      "description": "PyTorch reimplementation of the TRACE Transformer for clickstream user representations, evaluated on OTTO: average AUROC 0.787 and AUPRC 0.696."
+    },
+    "thesis": {
+      "slug": "upsa-thesis-cancer-survival",
+      "path": "/projects/upsa-thesis-cancer-survival",
+      "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer — Manuel Fas",
+      "description": "Bachelor's Thesis (UPSA): classical and deep survival models on TCGA breast cancer RNA-seq data. Best model: DeepSurv, C-index approximately 0.82."
+    },
+    "reimplementations": {
+      "slug": "paper-reimplementations",
+      "path": "/projects/paper-reimplementations",
+      "title": "Paper-Reimplementations — Manuel Fas",
+      "description": "PyTorch reimplementations of six machine learning papers (4 completed, 2 planned/in progress), from Seq2Seq and Attention Is All You Need to ViT."
+    }
+  },
   "person": {
     "name": "Manuel Fas",
     "alternateName": "Manuel Fas Ruiz",

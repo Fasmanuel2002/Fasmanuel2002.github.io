@@ -44,14 +44,14 @@
             }
           </ul>
         }
-        @if (role.links.length || role.relatedProjectId) {
+        @if (role.links.length || role.relatedProjectPath) {
           <ul class="link-list">
             @for (link of role.links; track link.url) {
               <li><a [href]="link.url">{{ link.label }}</a></li>
             }
-            @if (role.relatedProjectId) {
+            @if (role.relatedProjectPath) {
               <li>
-                <a routerLink="/projects" [fragment]="role.relatedProjectId">Project details</a>
+                <a [routerLink]="role.relatedProjectPath">Project details</a>
               </li>
             }
           </ul>

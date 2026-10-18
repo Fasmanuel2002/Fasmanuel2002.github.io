@@ -44,9 +44,13 @@
   "projectCards": [
     {
       "id": "trace-reimplementation",
+      "slug": "trace-reimplementation",
+      "path": "/projects/trace-reimplementation",
       "rank": 1,
       "title": "Reimplementation of clickstream event sequence analysis model TRACE",
       "summary": "Transformer-based user representation learned from attributed clickstream event sequences.",
+      "role": "Author",
+      "context": "Machine Learning Research Assistant, Applied Artificial Intelligence (AAI) Lab, HSLU",
       "dateDisplay": "January 2026",
       "date": "2026-01",
       "highlight": {
@@ -72,9 +76,13 @@
     },
     {
       "id": "upsa-thesis-cancer-survival",
+      "slug": "upsa-thesis-cancer-survival",
+      "path": "/projects/upsa-thesis-cancer-survival",
       "rank": 2,
       "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
       "summary": "Application of AI and deep learning methods to genomic and transcriptomic data analysis in cancer.",
+      "role": "Author",
+      "context": "Bachelor's Thesis, Pontifical University of Salamanca (UPSA)",
       "dateDisplay": "July 2026",
       "date": "2026-07",
       "highlight": {
@@ -100,14 +108,18 @@
     },
     {
       "id": "paper-reimplementations",
+      "slug": "paper-reimplementations",
+      "path": "/projects/paper-reimplementations",
       "rank": 3,
       "title": "Paper-Reimplementations",
       "summary": "PyTorch reimplementations of baseline and state-of-the-art machine learning and AI models.",
+      "role": "Author",
+      "context": null,
       "dateDisplay": null,
       "date": null,
       "highlight": {
         "value": "6 papers listed",
-        "note": "3 completed, 1 in progress, 2 planned/in progress"
+        "note": "4 completed, 2 planned/in progress"
       },
       "technologies": [
         "Python",
@@ -146,8 +158,8 @@
       "kind": "Bachelor's Thesis",
       "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
       "detail": "Pontifical University of Salamanca (UPSA)",
-      "route": "/projects",
-      "fragment": "upsa-thesis-cancer-survival"
+      "route": "/projects/upsa-thesis-cancer-survival",
+      "fragment": null
     },
     {
       "date": "2026-05",
@@ -182,8 +194,8 @@
       "kind": "Research project report",
       "title": "Reimplementation of clickstream event sequence analysis model TRACE",
       "detail": "HSLU",
-      "route": "/projects",
-      "fragment": "trace-reimplementation"
+      "route": "/projects/trace-reimplementation",
+      "fragment": null
     },
     {
       "date": "2025-10",

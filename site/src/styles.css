@@ -952,32 +952,44 @@ a:hover {
    Projects
    -------------------------------------------------------------------------- */
 
-.toc {
-  margin-top: 1.5rem;
+/* Project pages: breadcrumb and title block */
+
+.breadcrumb {
+  margin-bottom: 1.1rem;
+  font-size: 0.92rem;
 }
 
-.toc__list {
-  display: grid;
-  gap: 0.35rem;
-  max-width: var(--measure);
-  padding-left: 1.4rem;
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.55rem;
+  margin: 0;
+  padding: 0;
+  color: var(--muted);
+  list-style: none;
+}
+
+.breadcrumb__list li:not(:last-child)::after {
+  content: '/';
+  content: '/' / '';
+  margin-left: 0.55rem;
+  color: var(--rule-strong);
+}
+
+.breadcrumb__list a {
   font-weight: 600;
 }
 
-.toc__list li::marker {
-  color: var(--accent);
-  font-variant-numeric: tabular-nums;
-}
-
-.project {
-  padding-top: clamp(2.5rem, 6vw, 4rem);
-  scroll-margin-top: 1rem;
-}
-
-.project__head {
-  max-width: 52rem;
-  padding-top: 1rem;
-  border-top: 2px solid var(--ink);
+/* The full title is the h1 just below; here it is shortened visually only. */
+.breadcrumb__current {
+  display: inline-block;
+  max-width: min(28ch, 60vw);
+  overflow: hidden;
+  color: var(--text);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: bottom;
 }
 
 .project__meta {
@@ -994,37 +1006,120 @@ a:hover {
   letter-spacing: 0.1em;
 }
 
-.project__title {
-  margin-top: 0.6rem;
-  font-size: clamp(1.75rem, 1.25rem + 2vw, 2.6rem);
-  line-height: 1.12;
+.entry__when .project__idx {
+  margin-right: 0.75rem;
 }
 
-.project__summary {
-  margin-top: 0.75rem;
-  color: var(--text);
-  font-size: clamp(1.1rem, 1rem + 0.35vw, 1.25rem);
+.page-title--project {
+  margin-top: 0.6rem;
+  max-width: 52rem;
+  font-size: clamp(2rem, 1.35rem + 2.6vw, 3.4rem);
+  letter-spacing: -0.015em;
+  line-height: 1.06;
+}
+
+.page-head--project .result {
+  max-width: 46rem;
+}
+
+.page-head--project .actions {
+  margin-top: 1.25rem;
+}
+
+/* Architecture figures (white diagrams sit on a white panel) */
+
+app-architecture-figure {
+  display: block;
+}
+
+.figure {
+  margin: 0;
+}
+
+.figure__link {
+  display: block;
+  padding: 0.6rem;
+  border: 1px solid var(--rule);
+  background: #ffffff;
+}
+
+.figure__link:hover {
+  border-color: var(--ink);
+}
+
+.figure__img {
+  width: 100%;
+  height: auto;
+}
+
+.figure--portrait .figure__link {
+  max-width: 20rem;
+  margin-inline: auto;
+}
+
+.figure__caption {
+  margin-top: 0.6rem;
+  color: var(--muted);
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
-.project__head .actions {
-  margin-top: 1.25rem;
+.figure__credit {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.85rem;
+}
+
+/* A project hero with a figure: stacked below the actions, side by side from 64rem */
+
+.page-head--figure .page-head__grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 64rem) {
+  .page-head--figure .page-head__grid {
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+    column-gap: 3rem;
+  }
+
+  .hero-figure {
+    padding-top: 0.35rem;
+  }
 }
 
 .project__body {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 2.25rem;
-  margin-top: 2.25rem;
+  padding-top: 2.25rem;
 }
 
 .project__body > :not(.block--wide) {
   max-width: 52rem;
 }
 
+.back-link a {
+  font-weight: 600;
+}
+
+/* Project catalog entries */
+
+.entry__title-link {
+  color: var(--ink);
+  text-decoration-color: rgb(15 42 50 / 0.3);
+}
+
+.entry__title-link:hover {
+  color: var(--accent);
+}
+
+.entry__summary {
+  margin-block: 0.6rem 0.9rem;
+}
+
 .block__title {
   margin-bottom: 0.75rem;
-  font-size: 1.3rem;
+  font-size: 1.35rem;
 }
 
 .points {

@@ -1,0 +1,108 @@
+<app-project-head [project]="project">
+  <ul class="actions reveal" style="--i: 5">
+    <li>
+      <a class="button" [href]="project.repository.url">Code on GitHub</a>
+    </li>
+  </ul>
+</app-project-head>
+
+<div class="wrap project__body">
+  <dl class="kv">
+    <div>
+      <dt>Repository</dt>
+      <dd>
+        <a [href]="project.repository.url">{{ project.repository.name }}</a>
+        · {{ project.repository.languages.join(', ') }}
+      </dd>
+    </div>
+    <div>
+      <dt>Status</dt>
+      <dd>{{ project.highlight.value }}: {{ project.highlight.note }}</dd>
+    </div>
+  </dl>
+
+  <section class="block block--wide">
+    <h2 class="block__title">Implementations</h2>
+    <div class="impls">
+      @for (item of project.implementations; track item.number) {
+        <article class="impl" [attr.aria-labelledby]="'impl-' + item.number">
+          <p class="impl__head">
+            <span class="impl__num">{{ item.number }}</span>
+            <span class="status" [attr.data-status]="item.statusKey">{{ item.status }}</span>
+          </p>
+          <h3 class="impl__title" [id]="'impl-' + item.number">{{ item.name }}</h3>
+          <p class="impl__area">{{ item.area }}</p>
+          <ul class="impl__papers">
+            @for (paper of item.papers; track paper.arxivId) {
+              <li>
+                <a [href]="paper.url">{{ paper.title }}</a>
+                <span class="impl__cite">{{ cite(paper.authors) }}, {{ paper.year }} · arXiv:{{ paper.arxivId }}</span>
+              </li>
+            }
+          </ul>
+          @if (item.implementation) {
+            <p>{{ item.implementation }}</p>
+          } @else {
+            <p class="impl__note">{{ item.note }}</p>
+          }
+          @if (item.figure; as fig) {
+            <app-architecture-figure [figure]="fig" />
+          }
+          @if (item.dataset) {
+            <p><span class="label">Dataset</span> {{ item.dataset }}</p>
+          }
+          @if (item.results.length) {
+            <div
+              class="table-wrap"
+              role="region"
+              [attr.aria-label]="'Reported results: ' + item.name"
+              tabindex="0"
+            >
+              <table class="data-table data-table--compact" [attr.aria-label]="'Reported results: ' + item.name">
+                <thead>
+                  <tr>
+                    <th scope="col">Metric</th>
+                    @for (column of item.resultColumns; track column) {
+                      <th scope="col">{{ column }}</th>
+                    }
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (result of item.results; track result.metric) {
+                    <tr>
+                      <th scope="row">{{ result.metric }}</th>
+                      @for (value of result.values; track $index) {
+                        <td>{{ value }}</td>
+                      }
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          }
+          @if (item.caveat) {
+            <p class="impl__caveat">{{ item.caveat }}</p>
+          }
+          @if (item.folderUrl) {
+            <p class="impl__link">
+              <a [href]="item.folderUrl"
+                >Folder on GitHub<span class="visually-hidden">: {{ item.name }}</span></a
+              >
+            </p>
+          }
+        </article>
+      }
+    </div>
+  </section>
+
+  <section class="block">
+    <h2 class="block__title">Technologies</h2>
+    <ul class="tags">
+      @for (tech of project.technologies; track tech) {
+        <li>{{ tech }}</li>
+      }
+    </ul>
+  </section>
+
+  <p class="back-link"><a routerLink="/projects">All projects</a></p>
+</div>

@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AttentionMask } from '../../attention-mask';
-import { SPOKEN_LANGUAGES } from '../../content/content';
+import { SITE, SPOKEN_LANGUAGES } from '../../content/content';
 import experience from '../../content/experience.json';
 import { Seo } from '../../seo';
 
@@ -16,6 +16,6 @@ export default class Experience {
   protected readonly languages = SPOKEN_LANGUAGES;
 
   constructor() {
-    inject(Seo).apply('experience');
+    inject(Seo).apply(SITE.pages.experience);
   }
 }

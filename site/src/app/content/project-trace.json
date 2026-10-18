@@ -1,0 +1,265 @@
+{
+  "id": "trace-reimplementation",
+  "rank": 1,
+  "kind": "trace",
+  "slug": "trace-reimplementation",
+  "path": "/projects/trace-reimplementation",
+  "title": "Reimplementation of clickstream event sequence analysis model TRACE",
+  "summary": "Transformer-based user representation learned from attributed clickstream event sequences.",
+  "role": "Author",
+  "date": "2026-01",
+  "dateDisplay": "January 2026",
+  "context": {
+    "organization": "Applied Artificial Intelligence (AAI) Lab, HSLU",
+    "location": "Lucerne, Switzerland",
+    "position": "Machine Learning Research Assistant",
+    "datesDisplay": "Oct 2025 – Jan 2026",
+    "supervisor": "Jan Svoboda",
+    "experienceId": "exp-hslu-aai-lab"
+  },
+  "pdf": {
+    "href": "/papers/TRACEPAPER_Report.pdf",
+    "pages": 36,
+    "documentType": "Research project report"
+  },
+  "repository": {
+    "url": "https://github.com/Fasmanuel2002/AAI_HSLU_TRACE",
+    "name": "AAI_HSLU_TRACE",
+    "license": "MIT",
+    "languages": [
+      "Jupyter Notebook",
+      "Python"
+    ],
+    "created": "2025-11-05"
+  },
+  "originalPaper": {
+    "title": "TRACE: Transformer-based user Representations from Attributed Clickstream Event sequences",
+    "authors": [
+      "William Black",
+      "Alexander Manlove",
+      "Jack Pennington",
+      "Andrea Marchini",
+      "Ercument Ilhan",
+      "Vilda Markeviciute"
+    ],
+    "year": 2024,
+    "arxivId": "2409.12972",
+    "url": "https://arxiv.org/abs/2409.12972"
+  },
+  "points": [
+    "Re-implements the TRACE architecture in PyTorch and evaluates it on alternative public e-commerce datasets, because the dataset used in the original TRACE paper is not publicly available.",
+    "TRACE uses a multi-task learning framework in which a shared Transformer encoder learns user representations by predicting several future engagement signals from clickstream event sequences.",
+    "Three public datasets were assessed (OTTO, Synerise RecSys Challenge 2025, RetailRocket); OTTO was used as the primary dataset for training and evaluation.",
+    "The model is compared against a single-task cohort (one TRACE model per task) and a multi-task Bi-LSTM baseline."
+  ],
+  "datasets": [
+    {
+      "name": "OTTO RecSys dataset",
+      "role": "Primary dataset for training and evaluation",
+      "url": "https://github.com/otto-de/recsys-dataset"
+    },
+    {
+      "name": "Synerise RecSys Challenge 2025 dataset",
+      "role": "Assessed during dataset selection; viable but with fewer sessions than OTTO",
+      "url": null
+    },
+    {
+      "name": "RetailRocket recommender system dataset",
+      "role": "Assessed and rejected: a 15-event minimum per session removed about 99.59% of sessions",
+      "url": null
+    }
+  ],
+  "method": {
+    "architecture": "Transformer encoder with multi-task output heads producing a shared user representation",
+    "tasks": [
+      {
+        "code": "ATC",
+        "definition": "The user adds products to the cart at least two times during a session"
+      },
+      {
+        "code": "SAT",
+        "definition": "The user views the same article (AID) at least four times within a session"
+      },
+      {
+        "code": "MAP",
+        "definition": "The user purchases a product during the session"
+      }
+    ],
+    "loss": "Class-weighted binary cross-entropy (PyTorch BCEWithLogitsLoss with per-task positive-class weights)",
+    "dataPreparation": "Sessions with fewer than 32 events removed (1,621,909 of 3,164,777 sessions retained); each session split into input and target at a random point between 70% and 80% of its length",
+    "trainingModes": [
+      "Single-task learning (STL)",
+      "Multi-task learning (MTL)"
+    ]
+  },
+  "results": {
+    "caption": "Average over the ATC, SAT and MAP tasks on the OTTO dataset (report Table 2)",
+    "rows": [
+      {
+        "model": "TRACE (multi-task)",
+        "values": [
+          "0.787",
+          "0.696",
+          "0.662",
+          "0.679",
+          "0.689"
+        ]
+      },
+      {
+        "model": "Single-task cohort",
+        "values": [
+          "0.787",
+          "0.694",
+          "0.664",
+          "0.68",
+          "0.694"
+        ]
+      },
+      {
+        "model": "Multi-task Bi-LSTM",
+        "values": [
+          "0.738",
+          "0.664",
+          "0.62",
+          "0.661",
+          "0.679"
+        ]
+      }
+    ],
+    "columns": [
+      "AUROC",
+      "AUPRC",
+      "Binary F1",
+      "Macro F1",
+      "Accuracy"
+    ],
+    "findings": [
+      "TRACE outperforms the multi-task Bi-LSTM baseline on all five metrics.",
+      "TRACE and the single-task cohort tie on AUROC (0.787); TRACE is slightly higher on AUPRC (0.696 vs 0.694), while the single-task cohort is slightly higher on binary F1, macro F1 and accuracy."
+    ],
+    "limitations": [
+      "Evaluated on OTTO because the original TRACE dataset is not publicly available, so the numbers are not directly comparable with the original paper.",
+      "TRACE shows lower negative-class performance (higher false-positive rates) than both baselines; the report attributes this to the 70-80% input/target split and the class-weighting strategy."
+    ]
+  },
+  "abstract": "On e-commerce websites, users often follow complex navigation paths while searching for products and ultimately completing a purchase. These navigation patterns generate clickstream data that captures detailed information about user interactions over time and across sessions. Such data can be leveraged to enhance personalization and improve recommendation systems by more effectively modeling user behavior and intent. This research presents a re-implementation and investigation of the TRACE architecture, a novel transformer-based approach designed to generate rich user embeddings from multi-session clickstream data for real-world recommendation applications. The study evaluates the effectiveness of TRACE in modeling complex user navigation patterns using alternative large-scale e-commerce datasets, due to the unavailability of the original dataset used in the TRACE paper.",
+  "figure": {
+    "src": "/images/figures/trace-architecture.webp",
+    "width": 677,
+    "height": 449,
+    "orientation": "landscape",
+    "alt": "Diagram of the TRACE multi-task transformer: input clickstream journeys pass through feature engineering and event position encoding into a transformer encoder block and feed-forward network, producing a journey embedding and five task-specific dense layers trained with a multi-task loss against targets extracted from future engagement.",
+    "caption": "Overview of the TRACE multi-task transformer architecture, illustrating the transformation of input clickstream journeys into shared user embeddings and multiple task-specific predictions.",
+    "credit": "Figure 4 of the author's TRACE report, adapted from Black et al. (2024), arXiv:2409.12972."
+  },
+  "technologies": [
+    "Python",
+    "PyTorch",
+    "NumPy",
+    "pandas",
+    "scikit-learn",
+    "matplotlib",
+    "seaborn",
+    "TensorBoard",
+    "Docker"
+  ],
+  "highlight": {
+    "value": "AUROC 0.787 · AUPRC 0.696",
+    "note": "TRACE (multi-task), average over the ATC, SAT and MAP tasks on the OTTO dataset"
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://manuelfas.vercel.app/projects/trace-reimplementation#code",
+        "name": "Reimplementation of clickstream event sequence analysis model TRACE",
+        "description": "Transformer-based user representation learned from attributed clickstream event sequences.",
+        "url": "https://manuelfas.vercel.app/projects/trace-reimplementation",
+        "codeRepository": "https://github.com/Fasmanuel2002/AAI_HSLU_TRACE",
+        "programmingLanguage": "Python",
+        "dateCreated": "2025-11-05",
+        "keywords": "Python, PyTorch, NumPy, pandas, scikit-learn, matplotlib, seaborn, TensorBoard, Docker",
+        "author": {
+          "@type": "Person",
+          "@id": "https://manuelfas.vercel.app/#person",
+          "name": "Manuel Fas"
+        },
+        "image": {
+          "@type": "ImageObject",
+          "url": "https://manuelfas.vercel.app/images/figures/trace-architecture.webp",
+          "width": 677,
+          "height": 449,
+          "caption": "Overview of the TRACE multi-task transformer architecture, illustrating the transformation of input clickstream journeys into shared user embeddings and multiple task-specific predictions.",
+          "creditText": "Figure 4 of the author's TRACE report, adapted from Black et al. (2024), arXiv:2409.12972."
+        },
+        "isBasedOn": {
+          "@type": "ScholarlyArticle",
+          "name": "TRACE: Transformer-based user Representations from Attributed Clickstream Event sequences",
+          "url": "https://arxiv.org/abs/2409.12972",
+          "datePublished": "2024",
+          "author": [
+            {
+              "@type": "Person",
+              "name": "William Black"
+            },
+            {
+              "@type": "Person",
+              "name": "Alexander Manlove"
+            },
+            {
+              "@type": "Person",
+              "name": "Jack Pennington"
+            },
+            {
+              "@type": "Person",
+              "name": "Andrea Marchini"
+            },
+            {
+              "@type": "Person",
+              "name": "Ercument Ilhan"
+            },
+            {
+              "@type": "Person",
+              "name": "Vilda Markeviciute"
+            }
+          ]
+        },
+        "subjectOf": {
+          "@type": "Report",
+          "name": "Reimplementation of clickstream event sequence analysis model TRACE",
+          "url": "https://manuelfas.vercel.app/papers/TRACEPAPER_Report.pdf",
+          "datePublished": "2026-01",
+          "author": {
+            "@type": "Person",
+            "@id": "https://manuelfas.vercel.app/#person",
+            "name": "Manuel Fas"
+          }
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://manuelfas.vercel.app/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "https://manuelfas.vercel.app/projects"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Reimplementation of clickstream event sequence analysis model TRACE",
+            "item": "https://manuelfas.vercel.app/projects/trace-reimplementation"
+          }
+        ]
+      }
+    ]
+  }
+}

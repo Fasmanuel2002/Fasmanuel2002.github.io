@@ -17,6 +17,6 @@ export default class Home {
   protected readonly languages = SPOKEN_LANGUAGES;
 
   constructor() {
-    inject(Seo).apply('home', home.jsonLd);
+    inject(Seo).apply(SITE.pages.home, home.jsonLd);
   }
 }

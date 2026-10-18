@@ -25,7 +25,7 @@
               class="site-nav__link"
               [routerLink]="item.path"
               routerLinkActive="is-active"
-              ariaCurrentWhenActive="page"
+              [attr.aria-current]="ariaCurrent(item.path)"
               >{{ item.label }}</a
             >
           </li>

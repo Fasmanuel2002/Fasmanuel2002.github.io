@@ -25,7 +25,7 @@
         "Ollama"
       ],
       "links": [],
-      "relatedProjectId": null
+      "relatedProjectPath": null
     },
     {
       "id": "exp-air-institute",
@@ -48,7 +48,7 @@
         "PyTorch"
       ],
       "links": [],
-      "relatedProjectId": null
+      "relatedProjectPath": null
     },
     {
       "id": "exp-hslu-aai-lab",
@@ -81,7 +81,7 @@
           "url": "https://github.com/Fasmanuel2002/AAI_HSLU_TRACE"
         }
       ],
-      "relatedProjectId": "trace-reimplementation"
+      "relatedProjectPath": "/projects/trace-reimplementation"
     },
     {
       "id": "exp-wembley-studios",
@@ -106,7 +106,7 @@
         ".NET Core"
       ],
       "links": [],
-      "relatedProjectId": null
+      "relatedProjectPath": null
     }
   ],
   "skills": [

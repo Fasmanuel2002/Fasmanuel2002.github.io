@@ -688,7 +688,15 @@
           "https://github.com/Fasmanuel2002/AAI_HSLU_TRACE"
         ],
         "public_link_type": "Site path of the hosted PDF report",
-        "public_link_source": "author decision 2026-10-18 (relayed by coordinator) (NR-15)"
+        "public_link_source": "author decision 2026-10-18 (relayed by coordinator) (NR-15)",
+        "architecture_figure": {
+          "file": "data/figures/trace-architecture.png",
+          "alt": "Diagram of the TRACE multi-task transformer: input clickstream journeys pass through feature engineering and event position encoding into a transformer encoder block and feed-forward network, producing a journey embedding and five task-specific dense layers trained with a multi-task loss against targets extracted from future engagement.",
+          "caption": "Overview of the TRACE multi-task transformer architecture, illustrating the transformation of input clickstream journeys into shared user embeddings and multiple task-specific predictions.",
+          "credit": "Figure 4 of the author's TRACE report, adapted from Black et al. (2024), arXiv:2409.12972.",
+          "source": "source/papers/TRACEPAPER_Report.pdf, page 22, Figure 4 (caption verbatim, reference [1] = arXiv:2409.12972)",
+          "added_by": "author request 2026-10-18 (direct)"
+        }
       },
       {
         "id": "upsa-thesis-cancer-survival",
@@ -995,7 +1003,15 @@
             "status_source": "Paper-Reimplementations README",
             "list_on_site_source": "author decision 2026-10-18 (relayed by coordinator) (NR-08, NR-09)",
             "display_note": "Describe as a decoder-only, GPT-style language model built on the paper's attention mechanism, not as a reproduction of the paper's encoder-decoder model.",
-            "review": "NR-08"
+            "review": "NR-08",
+            "architecture_figure": {
+              "file": "data/figures/gpt-decoder-only.png",
+              "alt": "Decoder-only Transformer diagram: input and output embeddings with positional encoding feed N stacked blocks of masked multi-head attention and feed-forward layers with add and norm, followed by a linear layer and softmax over output probabilities.",
+              "caption": "Decoder-only Transformer architecture used for the GPT-style model.",
+              "credit": "Adapted from Figure 1 of Vaswani et al. (2017), \"Attention Is All You Need\", arXiv:1706.03762.",
+              "source": "https://github.com/Fasmanuel2002/Paper-Reimplementations/blob/main/assets/gpt_decoder_only.png (used in 02_Attention_Is_All_You_Need/README.md under 'Decoder Architecture')",
+              "added_by": "author request 2026-10-18 (direct)"
+            }
           },
           {
             "number": "03",
@@ -1087,9 +1103,17 @@
               "04_An_Image_Is_Worth_16x16_Words/README.md",
               "04_An_Image_Is_Worth_16x16_Words/model/ViT.py"
             ],
-            "status": "In progress",
-            "status_source": "Paper-Reimplementations README (status text; the icon shows Completed)",
-            "list_on_site_source": "author decision 2026-10-18 (relayed by coordinator) (NR-08, NR-09)"
+            "status": "Completed",
+            "status_source": "author decision 2026-10-18 (direct): the ViT reimplementation is finished. The Paper-Reimplementations README still says 'In Progress'.",
+            "list_on_site_source": "author decision 2026-10-18 (relayed by coordinator) (NR-08, NR-09)",
+            "architecture_figure": {
+              "file": "data/figures/vit-overview.png",
+              "alt": "Vision Transformer overview: an image is split into fixed-size patches, each patch is linearly projected and combined with a position embedding plus an extra learnable class embedding, passed through a Transformer encoder, and classified by an MLP head.",
+              "caption": "Vision Transformer (ViT) model overview.",
+              "credit": "Figure 1 of Dosovitskiy et al. (2020), \"An Image is Worth 16x16 Words\", arXiv:2010.11929 (the repository README marks it as taken from the original paper).",
+              "source": "https://github.com/Fasmanuel2002/Paper-Reimplementations/blob/main/assets/Vision_transformer_patch_embedding.png (04_An_Image_Is_Worth_16x16_Words/README.md, Figure 1)",
+              "added_by": "author request 2026-10-18 (direct)"
+            }
           },
           {
             "number": "05",
@@ -2384,6 +2408,21 @@
       "decision": "Non-featured repositories are not shown. The Projects page links to the GitHub profile (https://github.com/Fasmanuel2002) instead.",
       "decision_source": "default set by coordinator 2026-10-18 (no answer from the author)",
       "blocking": false
+    },
+    {
+      "id": "NR-24",
+      "severity": "low",
+      "topic": "Third-party architecture figures",
+      "issue": "The three architecture figures come from or are adapted from the original papers (TRACE, Attention Is All You Need, ViT). They are shown with attribution, but reuse rights were not checked. #01, #03, #05 and #06 have no architecture figure in the author's sources.",
+      "affects": [
+        "projects.featured[0].architecture_figure",
+        "projects.featured[2].implementations[1].architecture_figure",
+        "projects.featured[2].implementations[3].architecture_figure"
+      ],
+      "action": "Confirm attribution is acceptable, or supply self-made diagrams.",
+      "status": "open",
+      "blocking": false,
+      "source": "coordinator 2026-10-18"
     }
   ]
 }

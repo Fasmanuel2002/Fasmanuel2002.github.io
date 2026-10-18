@@ -50,7 +50,7 @@
           "Explainable AI (SHAP)"
         ],
         "description": "Survival modelling on TCGA RNA-seq data (819 patients and 20,440 genes raw; 519 patients after preprocessing); benchmarked regularised Cox models, Random Survival Forest, DeepSurv and Cox-nnet, evaluated by concordance index and Kaplan–Meier analysis.",
-        "projectId": "upsa-thesis-cancer-survival",
+        "projectPath": "/projects/upsa-thesis-cancer-survival",
         "degree": "B.S. Business Administration for Tech Companies"
       },
       "relatedRole": null

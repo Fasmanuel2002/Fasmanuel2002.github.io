@@ -73,7 +73,7 @@
           }
         </p>
         <h3 class="card__title">
-          <a routerLink="/projects" [fragment]="project.id">{{ project.title }}</a>
+          <a [routerLink]="project.path">{{ project.title }}</a>
         </h3>
         <p class="card__summary">{{ project.summary }}</p>
         <p class="result result--compact">
@@ -118,7 +118,7 @@
         <div class="timeline__body">
           <p class="timeline__kind">{{ item.kind }}</p>
           <p class="timeline__title">
-            <a [routerLink]="item.route" [fragment]="item.fragment">{{ item.title }}</a>
+            <a [routerLink]="item.route" [fragment]="item.fragment ?? undefined">{{ item.title }}</a>
           </p>
           <p class="timeline__detail">{{ item.detail }}</p>
         </div>

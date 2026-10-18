@@ -1,6 +1,6 @@
 import { DOCUMENT, Injectable, inject } from '@angular/core';
 import { Meta, MetaDefinition, Title } from '@angular/platform-browser';
-import { PageKey, SITE, absoluteUrl } from './content/content';
+import { PageMeta, SITE, absoluteUrl } from './content/content';
 
 /**
  * Sets the per-route head tags: title, meta description, canonical URL, Open Graph tags and
@@ -12,8 +12,7 @@ export class Seo {
   private readonly meta = inject(Meta);
   private readonly document = inject(DOCUMENT);
 
-  apply(key: PageKey, jsonLd?: object): void {
-    const page = SITE.pages[key];
+  apply(page: PageMeta, jsonLd?: object): void {
     const url = absoluteUrl(page.path);
     const photo = SITE.person.photo;
 

@@ -4,7 +4,15 @@ import shared from './shared.json';
 
 export const SITE = shared;
 
-export type PageKey = keyof typeof shared.pages;
+/** Title, description and path of one route (used for head tags). */
+export interface PageMeta {
+  path: string;
+  title: string;
+  description: string;
+}
+
+/** Project detail pages, keyed by kind. Paths are /projects/<slug> with slugs from data.json. */
+export const PROJECT_PAGES = shared.projectPages;
 
 /** Absolute URL on the public site. The origin comes from data/data.json `site.base_url`. */
 export function absoluteUrl(path: string): string {

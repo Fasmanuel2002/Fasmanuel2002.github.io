@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs';
@@ -21,13 +21,22 @@ export class App {
     { path: '/contact', label: 'Contact' },
   ];
 
-  // The skip link needs the current path: with <base href="/">, a bare "#main" would resolve
-  // to the home page. Computed during prerendering, so it also works without JavaScript.
-  protected readonly skipHref = toSignal(
+  private readonly currentPath = toSignal(
     inject(Router).events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      map((event) => `${event.urlAfterRedirects.split(/[?#]/)[0]}#main`),
+      map((event) => event.urlAfterRedirects.split(/[?#]/)[0]),
     ),
-    { initialValue: '#main' },
+    { initialValue: '/' },
   );
+
+  // The skip link needs the current path: with <base href="/">, a bare "#main" would resolve
+  // to the home page. Computed during prerendering, so it also works without JavaScript.
+  protected readonly skipHref = computed(() => `${this.currentPath()}#main`);
+
+  /** "page" on the exact page, "true" on its subpages (for example a project under /projects). */
+  protected ariaCurrent(path: string): 'page' | 'true' | null {
+    const current = this.currentPath();
+    if (current === path) return 'page';
+    return current.startsWith(`${path}/`) ? 'true' : null;
+  }
 }
