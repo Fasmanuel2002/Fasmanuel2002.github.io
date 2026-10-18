@@ -25,13 +25,19 @@
         "Ollama"
       ],
       "links": [],
-      "relatedProjectPath": null
+      "relatedProjectPath": null,
+      "logo": {
+        "src": "/images/logos/bisite-logo.webp",
+        "width": 160,
+        "height": 160,
+        "alt": "BISITE Research Group logo"
+      }
     },
     {
       "id": "exp-air-institute",
       "title": "Machine Learning Research Intern",
       "organization": "AIR Institute",
-      "organizationUrl": null,
+      "organizationUrl": "https://air-institute.com/en",
       "location": "Salamanca, Spain",
       "start": "2026-04",
       "end": "2026-06",
@@ -48,13 +54,19 @@
         "PyTorch"
       ],
       "links": [],
-      "relatedProjectPath": null
+      "relatedProjectPath": null,
+      "logo": {
+        "src": "/images/logos/air-institute-logo.webp",
+        "width": 160,
+        "height": 160,
+        "alt": "AIR Institute logo"
+      }
     },
     {
       "id": "exp-hslu-aai-lab",
       "title": "Machine Learning Research Assistant",
       "organization": "Applied Artificial Intelligence (AAI) Lab, HSLU",
-      "organizationUrl": null,
+      "organizationUrl": "https://www.hslu.ch/en/",
       "location": "Lucerne, Switzerland",
       "start": "2025-10",
       "end": "2026-01",
@@ -81,13 +93,19 @@
           "url": "https://github.com/Fasmanuel2002/AAI_HSLU_TRACE"
         }
       ],
-      "relatedProjectPath": "/projects/trace-reimplementation"
+      "relatedProjectPath": "/projects/trace-reimplementation",
+      "logo": {
+        "src": "/images/logos/hslu-logo.webp",
+        "width": 160,
+        "height": 84,
+        "alt": "Lucerne University of Applied Sciences and Arts (HSLU) logo"
+      }
     },
     {
       "id": "exp-wembley-studios",
       "title": "Machine Learning & Backend Engineer",
       "organization": "Wembley Studios",
-      "organizationUrl": null,
+      "organizationUrl": "https://wembleystudios.com/",
       "location": "Salamanca, Spain",
       "start": "2025-07",
       "end": "2025-09",
@@ -106,7 +124,13 @@
         ".NET Core"
       ],
       "links": [],
-      "relatedProjectPath": null
+      "relatedProjectPath": null,
+      "logo": {
+        "src": "/images/logos/wembleys-studios.webp",
+        "width": 160,
+        "height": 160,
+        "alt": "Wembley Studios logo"
+      }
     }
   ],
   "skills": [

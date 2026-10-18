@@ -30,10 +30,7 @@ Read this first when you continue. `CLAUDE.md` is still the project authority; `
 - `source/` is git-ignored, because it holds the CV, which contains your phone number, and the certificate scans.
 
 ## Next session: start here
-1. **Company logos on Experience** (requested, not started). You want each employer's logo next to its role, in the top-right of each entry, as circled in your screenshot.
-   - Employers: BISITE (University of Salamanca), AIR Institute, AAI Lab at HSLU, and Wembley Studios.
-   - Easiest and safest: put official logo files (SVG or PNG) in `source/logos/`, then ask Claude to add them.
-   - Otherwise, Claude must take each logo from the organization's official website and record the source in `data.json`.
+1. Company logos on Experience: **done** (author-supplied files, organization links for all four employers).
 2. Approve the preview, then run QA (step 3) and SEO/GEO (step 4), then the developer fix pass.
 3. Before you deploy to Vercel:
    - Replace the placeholder `site.base_url` (`https://manuelfas.vercel.app`) in `data/data.json` with your real domain, then run `npm run build` in `site/`.

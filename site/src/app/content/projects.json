@@ -14,7 +14,11 @@
       "title": "Reimplementation of clickstream event sequence analysis model TRACE",
       "summary": "Transformer-based user representation learned from attributed clickstream event sequences.",
       "role": "Author",
-      "context": "Machine Learning Research Assistant, Applied Artificial Intelligence (AAI) Lab, HSLU",
+      "context": {
+        "label": "Machine Learning Research Assistant",
+        "organization": "Applied Artificial Intelligence (AAI) Lab, HSLU",
+        "url": "https://www.hslu.ch/en/"
+      },
       "dateDisplay": "January 2026",
       "date": "2026-01",
       "highlight": {
@@ -46,7 +50,11 @@
       "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
       "summary": "Application of AI and deep learning methods to genomic and transcriptomic data analysis in cancer.",
       "role": "Author",
-      "context": "Bachelor's Thesis, Pontifical University of Salamanca (UPSA)",
+      "context": {
+        "label": "Bachelor's Thesis",
+        "organization": "Pontifical University of Salamanca (UPSA)",
+        "url": null
+      },
       "dateDisplay": "July 2026",
       "date": "2026-07",
       "highlight": {

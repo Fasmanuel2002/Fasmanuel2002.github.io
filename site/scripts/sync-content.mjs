@@ -122,6 +122,16 @@ const githubProfile = {
 // ---------------------------------------------------------------------------------------------
 // Experience
 
+// Employer logos (author-supplied): source/logos/<file> is served as public/images/logos/<slug>.webp.
+const logoOut = (logo) => {
+  if (!logo) return null;
+  const name = slugify(logo.file.split('/').pop().replace(/\.[a-z]+$/i, ''));
+  const src = `/images/logos/${name}.webp`;
+  const file = resolve(siteRoot, 'public', src.slice(1));
+  expect(existsSync(file), `missing ${file}: convert ${logo.file} to WebP first`);
+  return { src, ...webpSize(file), alt: logo.alt };
+};
+
 const experienceOut = experience.map((role) => ({
   id: role.id,
   title: role.title,
@@ -139,6 +149,7 @@ const experienceOut = experience.map((role) => ({
   technologies: role.technologies_mentioned ?? [],
   links: (role.links ?? []).map((link) => ({ label: link.label, url: link.url })),
   relatedProjectPath: role.related_project_id ? projectPath(get(featuredById, role.related_project_id)) : null,
+  logo: logoOut(role.logo),
 }));
 
 const researchRoles = experience.filter((role) => /Research/.test(role.title));
@@ -306,6 +317,7 @@ const trace = {
     datesDisplay: traceSource.context.dates_display,
     supervisor: traceSource.context.supervisor,
     experienceId: traceSource.context.experience_id,
+    organizationUrl: get(experienceById, traceSource.context.experience_id).organization_url ?? null,
   },
   pdf: pdfOut(traceReport),
   repository: repositoryOut(traceSource.repository),
@@ -460,9 +472,9 @@ const projectCards = [trace, thesis, reimplementations].map((project) => ({
   role: project.role,
   context:
     project.kind === 'trace'
-      ? `${project.context.position}, ${project.context.organization}`
+      ? { label: project.context.position, organization: project.context.organization, url: project.context.organizationUrl }
       : project.kind === 'thesis'
-        ? `${project.context.documentType}, ${project.context.organization}`
+        ? { label: project.context.documentType, organization: project.context.organization, url: null }
         : null,
   dateDisplay: project.dateDisplay ?? null,
   date: project.date ?? null,
@@ -539,6 +551,7 @@ const timelineAll = [
     group: 'role',
     title: role.title,
     detail: role.organization,
+    detailUrl: role.organization_url ?? null,
     route: '/experience',
     fragment: role.id,
   })),
@@ -843,12 +856,18 @@ const contentFiles = {
   },
   home: {
     ledes: { featured: ledes.homeFeatured, activity: ledes.homeActivity, about: ledes.homeAbout },
-    currentRole: { id: current.id, title: current.title, organization: current.organization, datesDisplay: current.dates_display },
+    currentRole: {
+      id: current.id,
+      title: current.title,
+      organization: current.organization,
+      organizationUrl: current.organization_url ?? null,
+      datesDisplay: current.dates_display,
+    },
     education: { id: upsa.id, degreeType: upsa.degree_type, program: upsa.program, institution: upsa.institution, datesDisplay: upsa.dates_display },
     interests: person.interests.items,
     about: person.about.map((block) => ({ heading: block.heading, text: block.text })),
     projectCards,
-    timeline: timeline.map(({ group, ...item }) => item),
+    timeline: timeline.map(({ group, ...item }) => ({ detailUrl: null, ...item })),
     jsonLd: personJsonLd,
   },
   experience: {
@@ -929,7 +948,7 @@ ${implementations.map(implementationLine).join('\n')}
 
 ## Experience
 
-${experience.map((role) => `- ${role.title}, ${role.organization}, ${role.location}, ${role.dates_display}.`).join('\n')}
+${experience.map((role) => `- ${role.title}, ${role.organization}${role.organization_url ? ` (${role.organization_url})` : ''}, ${role.location}, ${role.dates_display}.`).join('\n')}
 
 ## Certifications
 

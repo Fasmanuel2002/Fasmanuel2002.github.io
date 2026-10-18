@@ -23,10 +23,10 @@
 
 ## Experience
 
-- Junior Machine Learning Researcher, BISITE Research Group (University of Salamanca), Salamanca, Spain, Sep 2026 – Present.
-- Machine Learning Research Intern, AIR Institute, Salamanca, Spain, Apr 2026 – Jun 2026.
-- Machine Learning Research Assistant, Applied Artificial Intelligence (AAI) Lab, HSLU, Lucerne, Switzerland, Oct 2025 – Jan 2026.
-- Machine Learning & Backend Engineer, Wembley Studios, Salamanca, Spain, Jul 2025 – Sep 2025.
+- Junior Machine Learning Researcher, BISITE Research Group (University of Salamanca) (https://bisite.usal.es), Salamanca, Spain, Sep 2026 – Present.
+- Machine Learning Research Intern, AIR Institute (https://air-institute.com/en), Salamanca, Spain, Apr 2026 – Jun 2026.
+- Machine Learning Research Assistant, Applied Artificial Intelligence (AAI) Lab, HSLU (https://www.hslu.ch/en/), Lucerne, Switzerland, Oct 2025 – Jan 2026.
+- Machine Learning & Backend Engineer, Wembley Studios (https://wembleystudios.com/), Salamanca, Spain, Jul 2025 – Sep 2025.
 
 ## Certifications
 

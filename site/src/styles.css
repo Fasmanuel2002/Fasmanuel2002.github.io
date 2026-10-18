@@ -723,6 +723,53 @@ a:hover {
   font-size: clamp(1.45rem, 1.2rem + 1vw, 1.85rem);
 }
 
+/* Title row with the employer logo: logo above the title on small screens, top-right from 48rem */
+.entry__head {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.logo-tile {
+  display: flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  padding: 0.3rem;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.logo-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+@media (min-width: 48rem) {
+  .entry__body {
+    position: relative;
+  }
+
+  .entry__head {
+    display: block;
+    padding-right: 6rem;
+  }
+
+  .logo-tile {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4.5rem;
+    height: 4.5rem;
+    padding: 0.45rem;
+  }
+}
+
 .entry__org {
   margin-top: 0.35rem;
   font-weight: 600;

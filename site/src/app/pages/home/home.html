@@ -24,7 +24,13 @@
             <dt>Current role</dt>
             <dd>
               <a routerLink="/experience" [fragment]="page.currentRole.id">{{ page.currentRole.title }}</a>
-              <span class="glance__sub">{{ page.currentRole.organization }}</span>
+              <span class="glance__sub">
+                @if (page.currentRole.organizationUrl) {
+                  <a [href]="page.currentRole.organizationUrl">{{ page.currentRole.organization }}</a>
+                } @else {
+                  {{ page.currentRole.organization }}
+                }
+              </span>
               <span class="glance__sub">{{ page.currentRole.datesDisplay }}</span>
             </dd>
           </div>
@@ -120,7 +126,13 @@
           <p class="timeline__title">
             <a [routerLink]="item.route" [fragment]="item.fragment ?? undefined">{{ item.title }}</a>
           </p>
-          <p class="timeline__detail">{{ item.detail }}</p>
+          <p class="timeline__detail">
+            @if (item.detailUrl) {
+              <a [href]="item.detailUrl">{{ item.detail }}</a>
+            } @else {
+              {{ item.detail }}
+            }
+          </p>
         </div>
       </li>
     }

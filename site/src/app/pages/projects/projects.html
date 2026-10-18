@@ -21,8 +21,15 @@
         <h2 class="entry__title" [id]="card.slug + '-title'">
           <a class="entry__title-link" [routerLink]="card.path">{{ card.title }}</a>
         </h2>
-        @if (card.context) {
-          <p class="entry__org">{{ card.context }}</p>
+        @if (card.context; as context) {
+          <p class="entry__org">
+            {{ context.label }},
+            @if (context.url) {
+              <a [href]="context.url">{{ context.organization }}</a>
+            } @else {
+              {{ context.organization }}
+            }
+          </p>
         }
         <p class="entry__summary">{{ card.summary }}</p>
         <p class="result result--compact">

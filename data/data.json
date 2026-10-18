@@ -250,7 +250,12 @@
       "source": [
         "source/cv_Manuel_final.pdf, page 1, Experience",
         "source/Background.md (What I do) confirms current role"
-      ]
+      ],
+      "logo": {
+        "file": "source/logos/Bisite_logo.png",
+        "alt": "BISITE Research Group logo",
+        "source": "author-supplied file, 2026-10-18 (direct)"
+      }
     },
     {
       "id": "exp-air-institute",
@@ -269,7 +274,14 @@
       "technologies_mentioned": [
         "PyTorch"
       ],
-      "source": "source/cv_Manuel_final.pdf, page 1, Experience"
+      "source": "source/cv_Manuel_final.pdf, page 1, Experience",
+      "logo": {
+        "file": "source/logos/air_institute_logo.jpeg",
+        "alt": "AIR Institute logo",
+        "source": "author-supplied file, 2026-10-18 (direct)"
+      },
+      "organization_url": "https://air-institute.com/en",
+      "organization_url_source": "author request 2026-10-18 (direct); official site, checked with curl 2026-10-18 (HTTP 200)"
     },
     {
       "id": "exp-hslu-aai-lab",
@@ -305,7 +317,14 @@
       "technologies_mentioned": [
         "PyTorch"
       ],
-      "source": "source/cv_Manuel_final.pdf, page 1, Experience"
+      "source": "source/cv_Manuel_final.pdf, page 1, Experience",
+      "logo": {
+        "file": "source/logos/HSLU_Logo.jpg",
+        "alt": "Lucerne University of Applied Sciences and Arts (HSLU) logo",
+        "source": "author-supplied file, 2026-10-18 (direct)"
+      },
+      "organization_url": "https://www.hslu.ch/en/",
+      "organization_url_source": "author request 2026-10-18 (direct); official site, checked with curl 2026-10-18 (HTTP 200)"
     },
     {
       "id": "exp-wembley-studios",
@@ -326,7 +345,14 @@
         "C#",
         ".NET Core"
       ],
-      "source": "source/cv_Manuel_final.pdf, page 1, Experience"
+      "source": "source/cv_Manuel_final.pdf, page 1, Experience",
+      "logo": {
+        "file": "source/logos/wembleys_studios.png",
+        "alt": "Wembley Studios logo",
+        "source": "author-supplied file, 2026-10-18 (direct)"
+      },
+      "organization_url": "https://wembleystudios.com/",
+      "organization_url_source": "author request 2026-10-18 (direct); official site, checked with curl 2026-10-18 (HTTP 200)"
     }
   ],
   "education": [

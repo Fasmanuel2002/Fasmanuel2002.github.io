@@ -8,6 +8,7 @@
     "id": "exp-bisite",
     "title": "Junior Machine Learning Researcher",
     "organization": "BISITE Research Group (University of Salamanca)",
+    "organizationUrl": "https://bisite.usal.es",
     "datesDisplay": "Sep 2026 – Present"
   },
   "education": {
@@ -50,7 +51,11 @@
       "title": "Reimplementation of clickstream event sequence analysis model TRACE",
       "summary": "Transformer-based user representation learned from attributed clickstream event sequences.",
       "role": "Author",
-      "context": "Machine Learning Research Assistant, Applied Artificial Intelligence (AAI) Lab, HSLU",
+      "context": {
+        "label": "Machine Learning Research Assistant",
+        "organization": "Applied Artificial Intelligence (AAI) Lab, HSLU",
+        "url": "https://www.hslu.ch/en/"
+      },
       "dateDisplay": "January 2026",
       "date": "2026-01",
       "highlight": {
@@ -82,7 +87,11 @@
       "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
       "summary": "Application of AI and deep learning methods to genomic and transcriptomic data analysis in cancer.",
       "role": "Author",
-      "context": "Bachelor's Thesis, Pontifical University of Salamanca (UPSA)",
+      "context": {
+        "label": "Bachelor's Thesis",
+        "organization": "Pontifical University of Salamanca (UPSA)",
+        "url": null
+      },
       "dateDisplay": "July 2026",
       "date": "2026-07",
       "highlight": {
@@ -135,6 +144,7 @@
   ],
   "timeline": [
     {
+      "detailUrl": "https://bisite.usal.es",
       "date": "2026-09",
       "display": "Sep 2026",
       "kind": "Role",
@@ -144,6 +154,7 @@
       "fragment": "exp-bisite"
     },
     {
+      "detailUrl": null,
       "date": "2026-08",
       "display": "Aug 2026",
       "kind": "Certificate",
@@ -153,6 +164,7 @@
       "fragment": "cert-genai-llm"
     },
     {
+      "detailUrl": null,
       "date": "2026-07",
       "display": "July 2026",
       "kind": "Bachelor's Thesis",
@@ -162,6 +174,7 @@
       "fragment": null
     },
     {
+      "detailUrl": null,
       "date": "2026-05",
       "display": "May 2026",
       "kind": "Degree completed",
@@ -171,6 +184,7 @@
       "fragment": "edu-upsa"
     },
     {
+      "detailUrl": "https://air-institute.com/en",
       "date": "2026-04",
       "display": "Apr 2026",
       "kind": "Role",
@@ -180,6 +194,7 @@
       "fragment": "exp-air-institute"
     },
     {
+      "detailUrl": null,
       "date": "2026-02",
       "display": "Feb 2026",
       "kind": "Specialization",
@@ -189,6 +204,7 @@
       "fragment": "spec-deep-learning"
     },
     {
+      "detailUrl": null,
       "date": "2026-01",
       "display": "January 2026",
       "kind": "Research project report",
@@ -198,6 +214,7 @@
       "fragment": null
     },
     {
+      "detailUrl": "https://www.hslu.ch/en/",
       "date": "2025-10",
       "display": "Oct 2025",
       "kind": "Role",

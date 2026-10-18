@@ -9,7 +9,7 @@
 </header>
 
 <div class="wrap entries">
-  @for (role of page.roles; track role.id) {
+  @for (role of page.roles; track role.id; let first = $first) {
     <article class="entry" [id]="role.id" [attr.aria-labelledby]="role.id + '-title'">
       <p class="entry__when">
         <time [attr.datetime]="role.start">{{ role.startDisplay }}</time> –
@@ -20,7 +20,22 @@
         }
       </p>
       <div class="entry__body">
-        <h2 class="entry__title" [id]="role.id + '-title'">{{ role.title }}</h2>
+        <div class="entry__head">
+          <h2 class="entry__title" [id]="role.id + '-title'">{{ role.title }}</h2>
+          @if (role.logo; as logo) {
+            <!-- Decorative: the organization name below is the link and the accessible name. -->
+            <span class="logo-tile" aria-hidden="true">
+              <img
+                [src]="logo.src"
+                [width]="logo.width"
+                [height]="logo.height"
+                alt=""
+                [attr.loading]="first ? null : 'lazy'"
+                decoding="async"
+              />
+            </span>
+          }
+        </div>
         <p class="entry__org">
           @if (role.organizationUrl) {
             <a [href]="role.organizationUrl">{{ role.organization }}</a>

@@ -22,7 +22,12 @@
       <dt>Context</dt>
       <dd>
         <a routerLink="/experience" [fragment]="project.context.experienceId">{{ project.context.position }}</a>,
-        {{ project.context.organization }}, {{ project.context.location }}
+        @if (project.context.organizationUrl) {
+          <a [href]="project.context.organizationUrl">{{ project.context.organization }}</a>,
+        } @else {
+          {{ project.context.organization }},
+        }
+        {{ project.context.location }}
       </dd>
     </div>
     <div>
