@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { AttentionMask } from '../../attention-mask';
 import education from '../../content/education.json';
 import { SITE } from '../../content/content';
 import { Seo } from '../../seo';
 
 @Component({
   selector: 'app-education',
-  imports: [RouterLink, AttentionMask],
+  imports: [RouterLink],
   templateUrl: './education.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

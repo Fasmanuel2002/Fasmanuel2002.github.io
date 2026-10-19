@@ -85,14 +85,14 @@
   },
   "site": {
     "language": "en",
-    "deploy_target": "Vercel",
+    "deploy_target": "GitHub Pages (user site)",
     "deploy_target_source": "CLAUDE.md (Purpose, Deployment)",
     "base_href": "/",
     "base_href_source": "CLAUDE.md (Deployment)",
-    "base_url": "https://manuelfas.vercel.app",
-    "base_url_is_placeholder": true,
-    "base_url_note": "PLACEHOLDER. There is no domain yet. Replace with the real URL before deploy; canonical URLs, sitemap.xml, robots.txt, Open Graph tags and JSON-LD depend on it.",
-    "base_url_source": "author decision 2026-10-18 (relayed by coordinator) (NR-01)",
+    "base_url": "https://fasmanuel2002.github.io",
+    "base_url_is_placeholder": false,
+    "base_url_note": "GitHub Pages user site. Requires the repository to be named Fasmanuel2002.github.io.",
+    "base_url_source": "author decision 2026-10-19 (switch from Vercel to GitHub Pages)",
     "base_url_review": "NR-01",
     "repository": "https://github.com/Fasmanuel2002/ManuelFas_website",
     "repository_source": "git remote origin of the working directory",
@@ -2020,9 +2020,9 @@
         "CLAUDE.md (Deployment)",
         "git remote origin"
       ],
-      "status": "open (deploy-time)",
-      "decision": "There is no domain yet. site.base_url is set to the placeholder https://manuelfas.vercel.app, clearly marked as a placeholder. Replace it before deploy. CLAUDE.md now targets Vercel, served from the root with base href '/', so the GitHub Pages question no longer applies.",
-      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "status": "resolved",
+      "decision": "Author chose GitHub Pages as a user site on 2026-10-19: https://fasmanuel2002.github.io, base href \"/\". The repository must be named Fasmanuel2002.github.io.",
+      "decision_source": "author decision 2026-10-19",
       "blocking": "deploy"
     },
     {

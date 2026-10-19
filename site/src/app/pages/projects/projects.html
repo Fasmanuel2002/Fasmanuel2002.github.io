@@ -1,74 +1,63 @@
 <header class="page-head">
-  <div class="wrap page-head__grid">
-    <div class="page-head__text">
-      <h1 class="page-title reveal" style="--i: 0">Projects</h1>
-      <p class="lede lede--head reveal" style="--i: 1">{{ page.lede }}</p>
-    </div>
-    <app-attention-mask class="page-mask" [size]="7" />
-  </div>
+  <h1 class="page-title reveal" style="--i: 0">Projects</h1>
+  <p class="lede reveal" style="--i: 1">{{ page.lede }}</p>
 </header>
 
-<div class="wrap entries">
+<div class="entries">
   @for (card of page.cards; track card.slug) {
     <article class="entry" [attr.aria-labelledby]="card.slug + '-title'">
-      <p class="entry__when">
-        <span class="project__idx">0{{ card.rank }}</span>
-        @if (card.dateDisplay) {
-          <time [attr.datetime]="card.date">{{ card.dateDisplay }}</time>
-        }
-      </p>
-      <div class="entry__body">
-        <h2 class="entry__title" [id]="card.slug + '-title'">
-          <a class="entry__title-link" [routerLink]="card.path">{{ card.title }}</a>
-        </h2>
-        @if (card.context; as context) {
-          <p class="entry__org">
+      <h2 class="entry__title" [id]="card.slug + '-title'">
+        <a [routerLink]="card.path">{{ card.title }}</a>
+      </h2>
+      @if (card.context || card.dateDisplay) {
+        <p class="entry__meta">
+          @if (card.context; as context) {
             {{ context.label }},
             @if (context.url) {
               <a [href]="context.url">{{ context.organization }}</a>
             } @else {
               {{ context.organization }}
             }
-          </p>
-        }
-        <p class="entry__summary">{{ card.summary }}</p>
-        <p class="result result--compact">
-          <strong>{{ card.highlight.value }}</strong>
-          <span>{{ card.highlight.note }}</span>
+          }
+          @if (card.context && card.dateDisplay) {
+            ·
+          }
+          @if (card.dateDisplay) {
+            <time [attr.datetime]="card.date">{{ card.dateDisplay }}</time>
+          }
         </p>
-        <ul class="tags" aria-label="Technologies">
-          @for (tech of card.technologies; track tech) {
-            <li>{{ tech }}</li>
-          }
-        </ul>
-        <ul class="link-list">
+      }
+      <p class="entry__text">{{ card.summary }}</p>
+      <p class="result">
+        <strong>{{ card.highlight.value }}</strong>
+        <span>{{ card.highlight.note }}</span>
+      </p>
+      <p class="tech"><span class="label">Technologies</span> {{ card.technologies.join(', ') }}</p>
+      <ul class="link-list">
+        <li>
+          <a [routerLink]="card.path"
+            >Project details<span class="visually-hidden">: {{ card.title }}</span></a
+          >
+        </li>
+        <li>
+          <a [href]="card.repository.url"
+            >Code on GitHub<span class="visually-hidden">: {{ card.repository.name }}</span></a
+          >
+        </li>
+        @if (card.pdf) {
           <li>
-            <a [routerLink]="card.path"
-              >Project details<span class="visually-hidden">: {{ card.title }}</span></a
-            >
+            <a [href]="card.pdf.href" type="application/pdf">{{ card.pdf.documentType }} (PDF)</a>
           </li>
-          <li>
-            <a [href]="card.repository.url"
-              >Code on GitHub<span class="visually-hidden">: {{ card.repository.name }}</span></a
-            >
-          </li>
-          @if (card.pdf) {
-            <li>
-              <a [href]="card.pdf.href" type="application/pdf">{{ card.pdf.documentType }} (PDF)</a>
-            </li>
-          }
-        </ul>
-      </div>
+        }
+      </ul>
     </article>
   }
 </div>
 
-<section class="section wrap" aria-labelledby="more-title">
-  <div class="section-head">
-    <h2 id="more-title" class="section-head__title">More on GitHub</h2>
-  </div>
-  <p class="lede">{{ page.moreLede }}</p>
-  <p>
-    <a class="button button--quiet" [href]="page.githubProfile.url">{{ page.githubProfile.label }}</a>
-  </p>
+<section class="section" aria-labelledby="more-title">
+  <h2 id="more-title" class="section__title">More on GitHub</h2>
+  <p class="section__lede">{{ page.moreLede }}</p>
+  <ul class="link-list">
+    <li><a [href]="page.githubProfile.url">{{ page.githubProfile.label }}</a></li>
+  </ul>
 </section>

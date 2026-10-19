@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DOCUMENT, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs';
@@ -29,9 +29,22 @@ export class App {
     { initialValue: '/' },
   );
 
+  private readonly document = inject(DOCUMENT);
+
   // The skip link needs the current path: with <base href="/">, a bare "#main" would resolve
   // to the home page. Computed during prerendering, so it also works without JavaScript.
   protected readonly skipHref = computed(() => `${this.currentPath()}#main`);
+
+  /**
+   * With JavaScript, move focus to <main> without a navigation. GitHub Pages serves each page
+   * at "/<route>/" (with a trailing slash), so following "/<route>#main" would reload the page.
+   */
+  protected skipToMain(event: Event): void {
+    const main = this.document.getElementById('main');
+    if (!main) return;
+    event.preventDefault();
+    main.focus();
+  }
 
   /** "page" on the exact page, "true" on its subpages (for example a project under /projects). */
   protected ariaCurrent(path: string): 'page' | 'true' | null {

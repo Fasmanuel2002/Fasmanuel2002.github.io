@@ -1,7 +1,7 @@
 # Portfolio website: Manuel Fas Ruiz
 
 ## Purpose
-Build an English-language personal portfolio website for Manuel Fas Ruiz. The site presents his CV, certifications, and public GitHub projects. It is deployed to Vercel.
+Build an English-language personal portfolio website for Manuel Fas Ruiz. The site presents his CV, certifications, and public GitHub projects. It is deployed to GitHub Pages at `https://fasmanuel2002.github.io`.
 
 ## Audience and tone
 - Primary audience: recruiters and hiring managers for machine learning and AI engineering roles.
@@ -24,7 +24,7 @@ Build an English-language personal portfolio website for Manuel Fas Ruiz. The si
 - Language: English only. Set `lang="en"` on the HTML element. Do not add i18n scaffolding, locale routing, or translation files. Spanish is out of scope for this version.
 
 ## Site structure
-- Home: short professional summary and featured projects.
+- Home: short professional summary with photo, an "At a glance" summary, About, and recent activity. No featured projects section (author decision 2026-10-19); projects live on the Projects page.
 - Experience
 - Projects
 - Certifications
@@ -32,11 +32,10 @@ Build an English-language personal portfolio website for Manuel Fas Ruiz. The si
 - Contact: include only links that exist in `data/data.json`.
 
 ## Deployment
-- The target is Vercel. The site is served from the root and the base href is `/`.
-- The Vercel output directory is the build output folder defined in `angular.json`.
-- Prepare the project for Vercel, but do not run the Vercel CLI or deploy.
-- Add `vercel.json` only if Angular routing requires it, and justify it in `docs/build-summary.md`.
-- Deployment happens only after the author approves. The author deploys to Vercel.
+- The target is GitHub Pages as a user site: repository `Fasmanuel2002.github.io`, URL `https://fasmanuel2002.github.io`. The site is served from the root and the base href is `/`.
+- A GitHub Actions workflow (`.github/workflows/deploy.yml`) builds `site/` and publishes the browser build folder defined in `angular.json`.
+- Prepare the project for GitHub Pages, but do not push, trigger the workflow, or change repository settings.
+- Deployment happens only after the author approves. The author pushes to GitHub and enables Pages.
 
 ## Workflow rules
 - The data collector must stop after writing `data/data.json`. Do not start the developer until the author approves the data.

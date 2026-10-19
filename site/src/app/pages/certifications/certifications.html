@@ -1,21 +1,16 @@
 <header class="page-head">
-  <div class="wrap page-head__grid">
-    <div class="page-head__text">
-      <h1 class="page-title reveal" style="--i: 0">Certifications</h1>
-      <p class="lede lede--head reveal" style="--i: 1">{{ page.lede }}</p>
-    </div>
-    <app-attention-mask class="page-mask" [size]="7" />
-  </div>
+  <h1 class="page-title reveal" style="--i: 0">Certifications</h1>
+  <p class="lede reveal" style="--i: 1">{{ page.lede }}</p>
 </header>
 
-<div class="wrap entries">
+<div class="entries">
   @for (entry of page.entries; track entry.id) {
-    <article class="entry" [id]="entry.id" [attr.aria-labelledby]="entry.id + '-title'">
+    <article class="entry entry--dated" [id]="entry.id" [attr.aria-labelledby]="entry.id + '-title'">
       <p class="entry__when">
         <time [attr.datetime]="entry.date">{{ entry.dateDisplay }}</time>
       </p>
-      <div class="entry__body">
-        <p class="entry__kind">
+      <div>
+        <p class="kind">
           @if (entry.kind === 'specialization') {
             Specialization · {{ entry.courseCount }} courses
           } @else {
@@ -23,16 +18,16 @@
           }
         </p>
         <h2 class="entry__title" [id]="entry.id + '-title'">{{ entry.title }}</h2>
-        <p class="entry__org">
+        <p class="entry__meta">
           {{ entry.issuer }}
           @if (entry.platform) {
-            <span class="entry__place">{{ entry.platform }}</span>
+            · {{ entry.platform }}
           }
         </p>
         @if (entry.topics) {
-          <p class="entry__topics"><span class="label">Topics</span> {{ entry.topics }}</p>
+          <p class="entry__text"><span class="label">Topics</span> {{ entry.topics }}</p>
         }
-        <p class="verify">
+        <p class="link-list">
           <a [href]="entry.url"
             >Verify {{ entry.kind }}<span class="visually-hidden">: {{ entry.title }}</span></a
           >
@@ -47,16 +42,16 @@
         @if (entry.courses.length) {
           <ol class="courses">
             @for (course of entry.courses; track course.id) {
-              <li class="course" [id]="course.id">
-                <h3 class="course__title">{{ course.title }}</h3>
-                <p class="course__meta">
+              <li [id]="course.id">
+                <h3>{{ course.title }}</h3>
+                <p class="entry__meta">
                   <time [attr.datetime]="course.date">{{ course.dateDisplay }}</time>
                   · {{ course.issuer }}
                   @if (course.platform) {
                     · {{ course.platform }}
                   }
                 </p>
-                <p class="verify">
+                <p class="link-list">
                   <a [href]="course.url"
                     >Verify certificate<span class="visually-hidden">: {{ course.title }}</span></a
                   >

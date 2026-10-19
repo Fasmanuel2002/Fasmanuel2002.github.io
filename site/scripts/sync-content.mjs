@@ -25,7 +25,7 @@ const outputs = {
 };
 
 if (!existsSync(dataPath)) {
-  // For example a Vercel build that cannot see files outside the `site` root directory.
+  // For example a build that only has the `site` folder (data.json lives one level up, in `data/`).
   console.warn(`sync-content: ${dataPath} not found; keeping the committed generated files.`);
   process.exit(0);
 }
@@ -65,6 +65,9 @@ expect(data.meta?.approval_status === 'approved', 'data.json is not approved (me
 const siteUrl = data.site.base_url.replace(/\/+$/, '');
 expect(/^https:\/\/[^/]+$/.test(siteUrl), `site.base_url must be an https origin, got "${siteUrl}"`);
 const abs = (path) => `${siteUrl}${path}`;
+// GitHub Pages serves every route except home at "/<route>/" (from <route>/index.html) and
+// redirects "/<route>" there, so canonical page URLs end with a slash. Files keep `abs()`.
+const pageUrl = (path) => abs(path === '/' ? '/' : `${path.replace(/\/+$/, '')}/`);
 
 const person = data.person;
 const contact = data.contact;
@@ -688,6 +691,8 @@ const projectPages = Object.fromEntries(
   ]),
 );
 
+for (const page of [...Object.values(pages), ...Object.values(projectPages)]) page.url = pageUrl(page.path);
+
 for (const [key, page] of [...Object.entries(pages), ...Object.entries(projectPages)]) {
   expect(page.description.length < 160, `${key} description is ${page.description.length} characters (must be < 160)`);
 }
@@ -751,10 +756,10 @@ const scholarly = (paper) => ({
 });
 const softwareSourceCode = (project, extra) => ({
   '@type': 'SoftwareSourceCode',
-  '@id': abs(`${project.path}#code`),
+  '@id': `${pageUrl(project.path)}#code`,
   name: project.title,
   description: project.summary,
-  url: abs(project.path),
+  url: pageUrl(project.path),
   codeRepository: project.repository.url,
   programmingLanguage: 'Python',
   dateCreated: project.repository.created,
@@ -766,8 +771,8 @@ const breadcrumbJsonLd = (project) => ({
   '@type': 'BreadcrumbList',
   itemListElement: [
     { '@type': 'ListItem', position: 1, name: 'Home', item: abs('/') },
-    { '@type': 'ListItem', position: 2, name: 'Projects', item: abs(pages.projects.path) },
-    { '@type': 'ListItem', position: 3, name: project.title, item: abs(project.path) },
+    { '@type': 'ListItem', position: 2, name: 'Projects', item: pageUrl(pages.projects.path) },
+    { '@type': 'ListItem', position: 3, name: project.title, item: pageUrl(project.path) },
   ],
 });
 const projectGraph = (project, code) => ({ '@context': 'https://schema.org', '@graph': [code, breadcrumbJsonLd(project)] });
@@ -825,7 +830,7 @@ const catalogJsonLd = {
   itemListElement: [trace, thesis, reimplementations].map((project, index) => ({
     '@type': 'ListItem',
     position: index + 1,
-    url: abs(project.path),
+    url: pageUrl(project.path),
     name: project.title,
   })),
 };
@@ -912,7 +917,7 @@ const pageList = [
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${pageList.map((page) => `  <url>\n    <loc>${abs(page.path)}</loc>\n  </url>`).join('\n')}
+${pageList.map((page) => `  <url>\n    <loc>${pageUrl(page.path)}</loc>\n  </url>`).join('\n')}
 </urlset>
 `;
 
@@ -941,9 +946,9 @@ const llms = `# ${person.name}
 
 ## Projects
 
-- [${trace.title}](${abs(trace.path)}): ${trace.summary} ${trace.points[0]} Result: ${trace.highlight.value} for ${trace.highlight.note}. Code: ${trace.repository.url}. ${trace.pdf.documentType} (PDF): ${abs(trace.pdf.href)}
-- [${thesis.title}](${abs(thesis.path)}): ${thesis.context.documentType}, ${thesis.context.organization}, ${thesis.dateDisplay}. ${thesis.summary} Data: ${thesis.data.dataset}; ${thesis.data.patients}. Models: ${thesis.method.models.join(', ')}. ${thesis.results.findings[0]} Code: ${thesis.repository.url}. Thesis (PDF): ${abs(thesis.pdf.href)}
-- [${reimplementations.title}](${abs(reimplementations.path)}): ${reimplementations.summary} Code: ${reimplementations.repository.url}. Papers:
+- [${trace.title}](${pageUrl(trace.path)}): ${trace.summary} ${trace.points[0]} Result: ${trace.highlight.value} for ${trace.highlight.note}. Code: ${trace.repository.url}. ${trace.pdf.documentType} (PDF): ${abs(trace.pdf.href)}
+- [${thesis.title}](${pageUrl(thesis.path)}): ${thesis.context.documentType}, ${thesis.context.organization}, ${thesis.dateDisplay}. ${thesis.summary} Data: ${thesis.data.dataset}; ${thesis.data.patients}. Models: ${thesis.method.models.join(', ')}. ${thesis.results.findings[0]} Code: ${thesis.repository.url}. Thesis (PDF): ${abs(thesis.pdf.href)}
+- [${reimplementations.title}](${pageUrl(reimplementations.path)}): ${reimplementations.summary} Code: ${reimplementations.repository.url}. Papers:
 ${implementations.map(implementationLine).join('\n')}
 
 ## Experience
@@ -962,7 +967,7 @@ ${certificationEntries
 
 ## Pages
 
-${pageList.map((page) => `- [${page.title}](${abs(page.path)}): ${page.description}`).join('\n')}
+${pageList.map((page) => `- [${page.title}](${pageUrl(page.path)}): ${page.description}`).join('\n')}
 
 ## Contact
 

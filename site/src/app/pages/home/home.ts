@@ -1,13 +1,12 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { AttentionMask } from '../../attention-mask';
 import { SITE, SPOKEN_LANGUAGES } from '../../content/content';
 import home from '../../content/home.json';
 import { Seo } from '../../seo';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink, AttentionMask],
+  imports: [RouterLink],
   templateUrl: './home.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

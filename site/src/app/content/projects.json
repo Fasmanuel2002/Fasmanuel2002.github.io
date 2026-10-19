@@ -113,19 +113,19 @@
       {
         "@type": "ListItem",
         "position": 1,
-        "url": "https://manuelfas.vercel.app/projects/trace-reimplementation",
+        "url": "https://fasmanuel2002.github.io/projects/trace-reimplementation/",
         "name": "Reimplementation of clickstream event sequence analysis model TRACE"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "url": "https://manuelfas.vercel.app/projects/upsa-thesis-cancer-survival",
+        "url": "https://fasmanuel2002.github.io/projects/upsa-thesis-cancer-survival/",
         "name": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer"
       },
       {
         "@type": "ListItem",
         "position": 3,
-        "url": "https://manuelfas.vercel.app/projects/paper-reimplementations",
+        "url": "https://fasmanuel2002.github.io/projects/paper-reimplementations/",
         "name": "Paper-Reimplementations"
       }
     ]

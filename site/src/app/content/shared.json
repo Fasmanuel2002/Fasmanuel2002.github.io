@@ -1,40 +1,46 @@
 {
   "generatedFrom": "data/data.json",
   "site": {
-    "url": "https://manuelfas.vercel.app",
-    "urlIsPlaceholder": true,
+    "url": "https://fasmanuel2002.github.io",
+    "urlIsPlaceholder": false,
     "language": "en"
   },
   "pages": {
     "home": {
       "path": "/",
       "title": "Manuel Fas — Machine learning researcher and engineer",
-      "description": "Manuel Fas, machine learning researcher and engineer in Salamanca, Spain, specialising in Transformer architectures, NLP and large language models."
+      "description": "Manuel Fas, machine learning researcher and engineer in Salamanca, Spain, specialising in Transformer architectures, NLP and large language models.",
+      "url": "https://fasmanuel2002.github.io/"
     },
     "experience": {
       "path": "/experience",
       "title": "Experience — Manuel Fas",
-      "description": "Machine learning roles: BISITE Research Group (University of Salamanca); AIR Institute; Applied Artificial Intelligence (AAI) Lab, HSLU; Wembley Studios."
+      "description": "Machine learning roles: BISITE Research Group (University of Salamanca); AIR Institute; Applied Artificial Intelligence (AAI) Lab, HSLU; Wembley Studios.",
+      "url": "https://fasmanuel2002.github.io/experience/"
     },
     "projects": {
       "path": "/projects",
       "title": "Projects — Manuel Fas",
-      "description": "PyTorch reimplementation of the TRACE clickstream Transformer, a cancer survival-analysis thesis on TCGA RNA-seq data, and PyTorch paper reimplementations."
+      "description": "PyTorch reimplementation of the TRACE clickstream Transformer, a cancer survival-analysis thesis on TCGA RNA-seq data, and PyTorch paper reimplementations.",
+      "url": "https://fasmanuel2002.github.io/projects/"
     },
     "certifications": {
       "path": "/certifications",
       "title": "Certifications — Manuel Fas",
-      "description": "Generative AI with Large Language Models, Deep Learning Specialization, Mathematics for Machine Learning and Data Science, and two CS50 courses."
+      "description": "Generative AI with Large Language Models, Deep Learning Specialization, Mathematics for Machine Learning and Data Science, and two CS50 courses.",
+      "url": "https://fasmanuel2002.github.io/certifications/"
     },
     "education": {
       "path": "/education",
       "title": "Education — Manuel Fas",
-      "description": "Dual B.S., Business Administration for Tech Companies and Computer Science, Pontifical University of Salamanca (UPSA); exchange at HSLU, Lucerne."
+      "description": "Dual B.S., Business Administration for Tech Companies and Computer Science, Pontifical University of Salamanca (UPSA); exchange at HSLU, Lucerne.",
+      "url": "https://fasmanuel2002.github.io/education/"
     },
     "contact": {
       "path": "/contact",
       "title": "Contact — Manuel Fas",
-      "description": "Contact Manuel Fas, machine learning researcher and engineer in Salamanca, Spain, by email (manuelfasruiz@gmail.com), GitHub or LinkedIn."
+      "description": "Contact Manuel Fas, machine learning researcher and engineer in Salamanca, Spain, by email (manuelfasruiz@gmail.com), GitHub or LinkedIn.",
+      "url": "https://fasmanuel2002.github.io/contact/"
     }
   },
   "projectPages": {
@@ -42,19 +48,22 @@
       "slug": "trace-reimplementation",
       "path": "/projects/trace-reimplementation",
       "title": "Reimplementation of clickstream event sequence analysis model TRACE — Manuel Fas",
-      "description": "PyTorch reimplementation of the TRACE Transformer for clickstream user representations, evaluated on OTTO: average AUROC 0.787 and AUPRC 0.696."
+      "description": "PyTorch reimplementation of the TRACE Transformer for clickstream user representations, evaluated on OTTO: average AUROC 0.787 and AUPRC 0.696.",
+      "url": "https://fasmanuel2002.github.io/projects/trace-reimplementation/"
     },
     "thesis": {
       "slug": "upsa-thesis-cancer-survival",
       "path": "/projects/upsa-thesis-cancer-survival",
       "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer — Manuel Fas",
-      "description": "Bachelor's Thesis (UPSA): classical and deep survival models on TCGA breast cancer RNA-seq data. Best model: DeepSurv, C-index approximately 0.82."
+      "description": "Bachelor's Thesis (UPSA): classical and deep survival models on TCGA breast cancer RNA-seq data. Best model: DeepSurv, C-index approximately 0.82.",
+      "url": "https://fasmanuel2002.github.io/projects/upsa-thesis-cancer-survival/"
     },
     "reimplementations": {
       "slug": "paper-reimplementations",
       "path": "/projects/paper-reimplementations",
       "title": "Paper-Reimplementations — Manuel Fas",
-      "description": "PyTorch reimplementations of six machine learning papers (4 completed, 2 planned/in progress), from Seq2Seq and Attention Is All You Need to ViT."
+      "description": "PyTorch reimplementations of six machine learning papers (4 completed, 2 planned/in progress), from Seq2Seq and Attention Is All You Need to ViT.",
+      "url": "https://fasmanuel2002.github.io/projects/paper-reimplementations/"
     }
   },
   "person": {

@@ -4,9 +4,11 @@ import shared from './shared.json';
 
 export const SITE = shared;
 
-/** Title, description and path of one route (used for head tags). */
+/** Title, description, path and canonical URL of one route (used for head tags). */
 export interface PageMeta {
   path: string;
+  /** Absolute canonical URL, with the trailing slash GitHub Pages serves ("/" for home). */
+  url: string;
   title: string;
   description: string;
 }

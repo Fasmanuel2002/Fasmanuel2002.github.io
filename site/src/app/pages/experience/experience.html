@@ -1,16 +1,11 @@
 <header class="page-head">
-  <div class="wrap page-head__grid">
-    <div class="page-head__text">
-      <h1 class="page-title reveal" style="--i: 0">Experience</h1>
-      <p class="lede lede--head reveal" style="--i: 1">{{ page.lede }}</p>
-    </div>
-    <app-attention-mask class="page-mask" [size]="7" />
-  </div>
+  <h1 class="page-title reveal" style="--i: 0">Experience</h1>
+  <p class="lede reveal" style="--i: 1">{{ page.lede }}</p>
 </header>
 
-<div class="wrap entries">
+<div class="entries">
   @for (role of page.roles; track role.id; let first = $first) {
-    <article class="entry" [id]="role.id" [attr.aria-labelledby]="role.id + '-title'">
+    <article class="entry entry--dated" [id]="role.id" [attr.aria-labelledby]="role.id + '-title'">
       <p class="entry__when">
         <time [attr.datetime]="role.start">{{ role.startDisplay }}</time> –
         @if (role.end) {
@@ -19,45 +14,45 @@
           <span>{{ role.endDisplay }}</span>
         }
       </p>
-      <div class="entry__body">
+      <div>
         <div class="entry__head">
-          <h2 class="entry__title" [id]="role.id + '-title'">{{ role.title }}</h2>
+          <div>
+            <h2 class="entry__title" [id]="role.id + '-title'">{{ role.title }}</h2>
+            <p class="entry__meta">
+              @if (role.organizationUrl) {
+                <a [href]="role.organizationUrl">{{ role.organization }}</a>
+              } @else {
+                {{ role.organization }}
+              }
+            </p>
+            <p class="entry__place">
+              {{ role.location }}
+              @if (role.supervisor) {
+                · Supervisor: {{ role.supervisor }}
+              }
+            </p>
+          </div>
           @if (role.logo; as logo) {
-            <!-- Decorative: the organization name below is the link and the accessible name. -->
-            <span class="logo-tile" aria-hidden="true">
-              <img
-                [src]="logo.src"
-                [width]="logo.width"
-                [height]="logo.height"
-                alt=""
-                [attr.loading]="first ? null : 'lazy'"
-                decoding="async"
-              />
-            </span>
+            <!-- Decorative: the organization name is the link and the accessible name. -->
+            <img
+              class="entry__logo"
+              [src]="logo.src"
+              [width]="logo.width"
+              [height]="logo.height"
+              alt=""
+              aria-hidden="true"
+              [attr.loading]="first ? null : 'lazy'"
+              decoding="async"
+            />
           }
         </div>
-        <p class="entry__org">
-          @if (role.organizationUrl) {
-            <a [href]="role.organizationUrl">{{ role.organization }}</a>
-          } @else {
-            {{ role.organization }}
-          }
-          <span class="entry__place">{{ role.location }}</span>
-        </p>
-        @if (role.supervisor) {
-          <p class="entry__note">Supervisor: {{ role.supervisor }}</p>
-        }
-        <ul class="entry__points">
+        <ul class="points">
           @for (point of role.highlights; track $index) {
             <li>{{ point }}</li>
           }
         </ul>
         @if (role.technologies.length) {
-          <ul class="tags" aria-label="Technologies">
-            @for (tech of role.technologies; track tech) {
-              <li>{{ tech }}</li>
-            }
-          </ul>
+          <p class="tech"><span class="label">Technologies</span> {{ role.technologies.join(', ') }}</p>
         }
         @if (role.links.length || role.relatedProjectPath) {
           <ul class="link-list">
@@ -65,9 +60,7 @@
               <li><a [href]="link.url">{{ link.label }}</a></li>
             }
             @if (role.relatedProjectPath) {
-              <li>
-                <a [routerLink]="role.relatedProjectPath">Project details</a>
-              </li>
+              <li><a [routerLink]="role.relatedProjectPath">Project details</a></li>
             }
           </ul>
         }
@@ -76,22 +69,14 @@
   }
 </div>
 
-<section class="section wrap" aria-labelledby="skills-title">
-  <div class="section-head">
-    <h2 id="skills-title" class="section-head__title">Technical skills</h2>
-  </div>
-  <p class="lede">{{ page.skillsLede }}</p>
-  <dl class="kv">
+<section class="section" aria-labelledby="skills-title">
+  <h2 id="skills-title" class="section__title">Technical skills</h2>
+  <p class="section__lede">{{ page.skillsLede }}</p>
+  <dl class="facts">
     @for (group of page.skills; track group.label) {
       <div>
         <dt>{{ group.label }}</dt>
-        <dd>
-          <ul class="tags">
-            @for (item of group.items; track item) {
-              <li>{{ item }}</li>
-            }
-          </ul>
-        </dd>
+        <dd>{{ group.items.join(', ') }}</dd>
       </div>
     }
     <div>

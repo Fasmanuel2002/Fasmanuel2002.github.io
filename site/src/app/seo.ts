@@ -13,7 +13,7 @@ export class Seo {
   private readonly document = inject(DOCUMENT);
 
   apply(page: PageMeta, jsonLd?: object): void {
-    const url = absoluteUrl(page.path);
+    const url = page.url;
     const photo = SITE.person.photo;
 
     this.title.setTitle(page.title);

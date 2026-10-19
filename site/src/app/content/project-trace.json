@@ -173,22 +173,22 @@
     "@graph": [
       {
         "@type": "SoftwareSourceCode",
-        "@id": "https://manuelfas.vercel.app/projects/trace-reimplementation#code",
+        "@id": "https://fasmanuel2002.github.io/projects/trace-reimplementation/#code",
         "name": "Reimplementation of clickstream event sequence analysis model TRACE",
         "description": "Transformer-based user representation learned from attributed clickstream event sequences.",
-        "url": "https://manuelfas.vercel.app/projects/trace-reimplementation",
+        "url": "https://fasmanuel2002.github.io/projects/trace-reimplementation/",
         "codeRepository": "https://github.com/Fasmanuel2002/AAI_HSLU_TRACE",
         "programmingLanguage": "Python",
         "dateCreated": "2025-11-05",
         "keywords": "Python, PyTorch, NumPy, pandas, scikit-learn, matplotlib, seaborn, TensorBoard, Docker",
         "author": {
           "@type": "Person",
-          "@id": "https://manuelfas.vercel.app/#person",
+          "@id": "https://fasmanuel2002.github.io/#person",
           "name": "Manuel Fas"
         },
         "image": {
           "@type": "ImageObject",
-          "url": "https://manuelfas.vercel.app/images/figures/trace-architecture.webp",
+          "url": "https://fasmanuel2002.github.io/images/figures/trace-architecture.webp",
           "width": 677,
           "height": 449,
           "caption": "Overview of the TRACE multi-task transformer architecture, illustrating the transformation of input clickstream journeys into shared user embeddings and multiple task-specific predictions.",
@@ -229,11 +229,11 @@
         "subjectOf": {
           "@type": "Report",
           "name": "Reimplementation of clickstream event sequence analysis model TRACE",
-          "url": "https://manuelfas.vercel.app/papers/TRACEPAPER_Report.pdf",
+          "url": "https://fasmanuel2002.github.io/papers/TRACEPAPER_Report.pdf",
           "datePublished": "2026-01",
           "author": {
             "@type": "Person",
-            "@id": "https://manuelfas.vercel.app/#person",
+            "@id": "https://fasmanuel2002.github.io/#person",
             "name": "Manuel Fas"
           }
         }
@@ -245,19 +245,19 @@
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://manuelfas.vercel.app/"
+            "item": "https://fasmanuel2002.github.io/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Projects",
-            "item": "https://manuelfas.vercel.app/projects"
+            "item": "https://fasmanuel2002.github.io/projects/"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": "Reimplementation of clickstream event sequence analysis model TRACE",
-            "item": "https://manuelfas.vercel.app/projects/trace-reimplementation"
+            "item": "https://fasmanuel2002.github.io/projects/trace-reimplementation/"
           }
         ]
       }

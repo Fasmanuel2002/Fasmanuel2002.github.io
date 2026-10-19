@@ -104,23 +104,23 @@
     "@graph": [
       {
         "@type": "SoftwareSourceCode",
-        "@id": "https://manuelfas.vercel.app/projects/upsa-thesis-cancer-survival#code",
+        "@id": "https://fasmanuel2002.github.io/projects/upsa-thesis-cancer-survival/#code",
         "name": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
         "description": "Application of AI and deep learning methods to genomic and transcriptomic data analysis in cancer.",
-        "url": "https://manuelfas.vercel.app/projects/upsa-thesis-cancer-survival",
+        "url": "https://fasmanuel2002.github.io/projects/upsa-thesis-cancer-survival/",
         "codeRepository": "https://github.com/Fasmanuel2002/UPSA_Thesis_Research",
         "programmingLanguage": "Python",
         "dateCreated": "2026-02-04",
         "keywords": "Python, pandas, NumPy, InMoose (limma), scikit-learn, scikit-survival, PyTorch, PyCox, SHAP, GSEApy, matplotlib, Jupyter, Docker, uv",
         "author": {
           "@type": "Person",
-          "@id": "https://manuelfas.vercel.app/#person",
+          "@id": "https://fasmanuel2002.github.io/#person",
           "name": "Manuel Fas"
         },
         "subjectOf": {
           "@type": "Thesis",
           "name": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
-          "url": "https://manuelfas.vercel.app/papers/TFG_ManuelFasRuiz.pdf",
+          "url": "https://fasmanuel2002.github.io/papers/TFG_ManuelFasRuiz.pdf",
           "datePublished": "2026-07",
           "inSupportOf": "B.S. Business Administration for Tech Companies",
           "sourceOrganization": {
@@ -129,7 +129,7 @@
           },
           "author": {
             "@type": "Person",
-            "@id": "https://manuelfas.vercel.app/#person",
+            "@id": "https://fasmanuel2002.github.io/#person",
             "name": "Manuel Fas"
           }
         }
@@ -141,19 +141,19 @@
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://manuelfas.vercel.app/"
+            "item": "https://fasmanuel2002.github.io/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Projects",
-            "item": "https://manuelfas.vercel.app/projects"
+            "item": "https://fasmanuel2002.github.io/projects/"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
-            "item": "https://manuelfas.vercel.app/projects/upsa-thesis-cancer-survival"
+            "item": "https://fasmanuel2002.github.io/projects/upsa-thesis-cancer-survival/"
           }
         ]
       }

@@ -297,17 +297,17 @@
     "@graph": [
       {
         "@type": "SoftwareSourceCode",
-        "@id": "https://manuelfas.vercel.app/projects/paper-reimplementations#code",
+        "@id": "https://fasmanuel2002.github.io/projects/paper-reimplementations/#code",
         "name": "Paper-Reimplementations",
         "description": "PyTorch reimplementations of baseline and state-of-the-art machine learning and AI models.",
-        "url": "https://manuelfas.vercel.app/projects/paper-reimplementations",
+        "url": "https://fasmanuel2002.github.io/projects/paper-reimplementations/",
         "codeRepository": "https://github.com/Fasmanuel2002/Paper-Reimplementations",
         "programmingLanguage": "Python",
         "dateCreated": "2026-09-06",
         "keywords": "Python, PyTorch, Jupyter",
         "author": {
           "@type": "Person",
-          "@id": "https://manuelfas.vercel.app/#person",
+          "@id": "https://fasmanuel2002.github.io/#person",
           "name": "Manuel Fas"
         },
         "isBasedOn": [
@@ -516,19 +516,19 @@
             "@type": "ListItem",
             "position": 1,
             "name": "Home",
-            "item": "https://manuelfas.vercel.app/"
+            "item": "https://fasmanuel2002.github.io/"
           },
           {
             "@type": "ListItem",
             "position": 2,
             "name": "Projects",
-            "item": "https://manuelfas.vercel.app/projects"
+            "item": "https://fasmanuel2002.github.io/projects/"
           },
           {
             "@type": "ListItem",
             "position": 3,
             "name": "Paper-Reimplementations",
-            "item": "https://manuelfas.vercel.app/projects/paper-reimplementations"
+            "item": "https://fasmanuel2002.github.io/projects/paper-reimplementations/"
           }
         ]
       }

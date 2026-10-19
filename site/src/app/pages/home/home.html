@@ -1,168 +1,108 @@
-<header class="page-head page-head--home">
-  <div class="wrap page-head__grid">
-    <div class="page-head__text">
-      <p class="eyebrow reveal" style="--i: 0">{{ site.person.headline }}</p>
-      <h1 class="page-title page-title--name reveal" style="--i: 1">{{ site.person.name }}</h1>
-      <p class="hero-summary reveal" style="--i: 2">{{ site.person.summary }}</p>
-      <ul class="actions reveal" style="--i: 3">
-        <li><a class="button" routerLink="/projects">View projects</a></li>
-        <li><a class="button button--quiet" [href]="site.links.email.url">Email</a></li>
-        @for (link of site.links.social; track link.url) {
-          <li>
-            <a class="button button--quiet" [href]="link.url">{{ link.label }}</a>
-          </li>
-        }
-      </ul>
-    </div>
-
-    <div class="page-head__side">
-      <app-attention-mask class="hero-mask" [size]="12" />
-      <aside class="glance reveal" style="--i: 4" aria-labelledby="glance-title">
-        <h2 id="glance-title" class="glance__title">At a glance</h2>
-        <dl class="glance__list">
-          <div>
-            <dt>Current role</dt>
-            <dd>
-              <a routerLink="/experience" [fragment]="page.currentRole.id">{{ page.currentRole.title }}</a>
-              <span class="glance__sub">
-                @if (page.currentRole.organizationUrl) {
-                  <a [href]="page.currentRole.organizationUrl">{{ page.currentRole.organization }}</a>
-                } @else {
-                  {{ page.currentRole.organization }}
-                }
-              </span>
-              <span class="glance__sub">{{ page.currentRole.datesDisplay }}</span>
-            </dd>
-          </div>
-          <div>
-            <dt>Based in</dt>
-            <dd>{{ site.person.location }}</dd>
-          </div>
-          <div>
-            <dt>Education</dt>
-            <dd>
-              <a routerLink="/education" [fragment]="page.education.id"
-                >{{ page.education.degreeType }}, {{ page.education.program }}</a
-              >
-              <span class="glance__sub">{{ page.education.institution }}</span>
-              <span class="glance__sub">{{ page.education.datesDisplay }}</span>
-            </dd>
-          </div>
-          <div>
-            <dt>Interests</dt>
-            <dd>{{ page.interests.join(', ') }}</dd>
-          </div>
-          <div>
-            <dt>Languages</dt>
-            <dd>{{ languages }}</dd>
-          </div>
-        </dl>
-      </aside>
-    </div>
-  </div>
+<header class="page-head home-hero">
+  <p class="eyebrow reveal" style="--i: 0">{{ site.person.headline }}</p>
+  <h1 class="page-title page-title--name reveal" style="--i: 1">{{ site.person.name }}</h1>
+  <!-- Above the fold at every width: not lazy-loaded and not animated. -->
+  <picture class="home-hero__photo">
+    <source [attr.srcset]="site.person.photo.webp" type="image/webp" />
+    <img
+      [src]="site.person.photo.src"
+      [width]="site.person.photo.width"
+      [height]="site.person.photo.height"
+      [alt]="site.person.photo.alt"
+      loading="eager"
+      fetchpriority="high"
+      decoding="async"
+    />
+  </picture>
+  <p class="lede reveal" style="--i: 2">{{ site.person.summary }}</p>
+  <ul class="link-list reveal" style="--i: 3">
+    <li><a routerLink="/projects">View projects</a></li>
+    <li><a [href]="site.links.email.url">Email</a></li>
+    @for (link of site.links.social; track link.url) {
+      <li><a [href]="link.url">{{ link.label }}</a></li>
+    }
+  </ul>
 </header>
 
-<section class="section wrap" aria-labelledby="featured-title">
-  <div class="section-head">
-    <span class="section-head__idx" aria-hidden="true">01</span>
-    <h2 id="featured-title" class="section-head__title">Featured projects</h2>
-  </div>
-  <p class="lede">{{ page.ledes.featured }}</p>
-
-  <div class="cards">
-    @for (project of page.projectCards; track project.id) {
-      <article class="card">
-        <p class="card__meta">
-          <span class="card__idx">0{{ project.rank }}</span>
-          @if (project.dateDisplay) {
-            <time [attr.datetime]="project.date">{{ project.dateDisplay }}</time>
+<!-- Compact strip of key facts directly under the hero -->
+<aside class="glance" aria-labelledby="glance-title">
+  <h2 id="glance-title" class="glance__title">At a glance</h2>
+  <dl class="glance__list">
+    <div>
+      <dt>Current role</dt>
+      <dd>
+        <a routerLink="/experience" [fragment]="page.currentRole.id">{{ page.currentRole.title }}</a>
+        <span class="sub">
+          @if (page.currentRole.organizationUrl) {
+            <a [href]="page.currentRole.organizationUrl">{{ page.currentRole.organization }}</a>
+          } @else {
+            {{ page.currentRole.organization }}
           }
-        </p>
-        <h3 class="card__title">
-          <a [routerLink]="project.path">{{ project.title }}</a>
-        </h3>
-        <p class="card__summary">{{ project.summary }}</p>
-        <p class="result result--compact">
-          <strong>{{ project.highlight.value }}</strong>
-          <span>{{ project.highlight.note }}</span>
-        </p>
-        <ul class="tags" aria-label="Technologies">
-          @for (tech of project.technologies; track tech) {
-            <li>{{ tech }}</li>
-          }
-        </ul>
-        <ul class="card__links">
-          <li>
-            <a [href]="project.repository.url"
-              >Code on GitHub<span class="visually-hidden">: {{ project.repository.name }}</span></a
-            >
-          </li>
-          @if (project.pdf) {
-            <li>
-              <a [href]="project.pdf.href" type="application/pdf"
-                >{{ project.pdf.documentType }} (PDF)</a
-              >
-            </li>
-          }
-        </ul>
-      </article>
-    }
-  </div>
-</section>
+        </span>
+        <span class="sub">{{ page.currentRole.datesDisplay }}</span>
+      </dd>
+    </div>
+    <div>
+      <dt>Based in</dt>
+      <dd>{{ site.person.location }}</dd>
+    </div>
+    <div>
+      <dt>Education</dt>
+      <dd>
+        <a routerLink="/education" [fragment]="page.education.id"
+          >{{ page.education.degreeType }}, {{ page.education.program }}</a
+        >
+        <span class="sub">{{ page.education.institution }}</span>
+        <span class="sub">{{ page.education.datesDisplay }}</span>
+      </dd>
+    </div>
+    <div>
+      <dt>Languages</dt>
+      <dd>{{ languages }}</dd>
+    </div>
+    <div>
+      <dt>Interests</dt>
+      <dd>{{ page.interests.join(', ') }}</dd>
+    </div>
+  </dl>
+</aside>
 
-<section class="section wrap" aria-labelledby="activity-title">
-  <div class="section-head">
-    <span class="section-head__idx" aria-hidden="true">02</span>
-    <h2 id="activity-title" class="section-head__title">Recent activity</h2>
-  </div>
-  <p class="lede">{{ page.ledes.activity }}</p>
-
-  <ol class="timeline">
-    @for (item of page.timeline; track item.fragment; let first = $first) {
-      <li class="timeline__item" [class.timeline__item--latest]="first">
-        <time class="timeline__date" [attr.datetime]="item.date">{{ item.display }}</time>
-        <div class="timeline__body">
-          <p class="timeline__kind">{{ item.kind }}</p>
-          <p class="timeline__title">
-            <a [routerLink]="item.route" [fragment]="item.fragment ?? undefined">{{ item.title }}</a>
-          </p>
-          <p class="timeline__detail">
-            @if (item.detailUrl) {
-              <a [href]="item.detailUrl">{{ item.detail }}</a>
-            } @else {
-              {{ item.detail }}
-            }
-          </p>
-        </div>
-      </li>
-    }
-  </ol>
-</section>
-
-<section class="section wrap" aria-labelledby="about-title">
-  <div class="section-head">
-    <span class="section-head__idx" aria-hidden="true">03</span>
-    <h2 id="about-title" class="section-head__title">About</h2>
-  </div>
-  <p class="lede">{{ page.ledes.about }}</p>
-
-  <div class="about">
-    <picture class="portrait">
-      <source [attr.srcset]="site.person.photo.webp" type="image/webp" />
-      <img
-        [src]="site.person.photo.src"
-        [width]="site.person.photo.width"
-        [height]="site.person.photo.height"
-        [alt]="site.person.photo.alt"
-        loading="lazy"
-        decoding="async"
-      />
-    </picture>
-    <div class="about__text">
+<!-- About and Recent activity side by side from 64rem; stacked (About first) below. -->
+<div class="home-columns">
+  <section class="section" aria-labelledby="about-title">
+    <h2 id="about-title" class="section__title">About</h2>
+    <p class="section__lede">{{ page.ledes.about }}</p>
+    <div class="about">
       @for (block of page.about; track block.heading) {
-        <h3 class="about__heading">{{ block.heading }}</h3>
+        <h3>{{ block.heading }}</h3>
         <p>{{ block.text }}</p>
       }
     </div>
-  </div>
-</section>
+  </section>
+
+  <section class="section" aria-labelledby="activity-title">
+    <h2 id="activity-title" class="section__title">Recent activity</h2>
+    <p class="section__lede">{{ page.ledes.activity }}</p>
+
+    <ol class="news">
+      @for (item of page.timeline; track $index) {
+        <li>
+          <time [attr.datetime]="item.date">{{ item.display }}</time>
+          <div>
+            <p class="news__title">
+              <a [routerLink]="item.route" [fragment]="item.fragment ?? undefined">{{ item.title }}</a>
+            </p>
+            <p class="news__detail">
+              <span class="kind">{{ item.kind }}</span>
+              @if (item.detailUrl) {
+                <a [href]="item.detailUrl">{{ item.detail }}</a>
+              } @else {
+                {{ item.detail }}
+              }
+            </p>
+          </div>
+        </li>
+      }
+    </ol>
+  </section>
+</div>

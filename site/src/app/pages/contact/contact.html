@@ -1,16 +1,11 @@
 <header class="page-head">
-  <div class="wrap page-head__grid">
-    <div class="page-head__text">
-      <h1 class="page-title reveal" style="--i: 0">Contact</h1>
-      <p class="lede lede--head reveal" style="--i: 1">{{ page.lede }}</p>
-    </div>
-    <app-attention-mask class="page-mask" [size]="7" />
-  </div>
+  <h1 class="page-title reveal" style="--i: 0">Contact</h1>
+  <p class="lede reveal" style="--i: 1">{{ page.lede }}</p>
 </header>
 
-<section class="section wrap" aria-labelledby="contact-details">
+<section aria-labelledby="contact-details">
   <h2 id="contact-details" class="visually-hidden">Contact details</h2>
-  <dl class="kv kv--contact">
+  <dl class="facts">
     <div>
       <dt>{{ site.links.email.label }}</dt>
       <dd>
