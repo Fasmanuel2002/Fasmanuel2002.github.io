@@ -27,6 +27,16 @@
 <!-- Compact strip of key facts directly under the hero -->
 <aside class="glance" aria-labelledby="glance-title">
   <h2 id="glance-title" class="glance__title">At a glance</h2>
+  <ul class="stats">
+    @for (stat of stats; track stat.label) {
+      <li>
+        <a [routerLink]="stat.path">
+          <span class="stats__num" [attr.data-count]="stat.value">{{ stat.value }}</span>
+          <span class="stats__label">{{ stat.label }}</span>
+        </a>
+      </li>
+    }
+  </ul>
   <dl class="glance__list">
     <div>
       <dt>Current role</dt>

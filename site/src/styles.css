@@ -700,6 +700,50 @@ app-root > main {
   margin-top: 0.2rem;
 }
 
+/* Counts above the label/value pairs. Each links to its page; the number counts up on scroll. */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem 1.25rem;
+  margin: 0 0 1.5rem;
+  padding: 0 0 1.25rem;
+  border-bottom: 1px solid var(--rule);
+  list-style: none;
+}
+
+@media (min-width: 40rem) {
+  .stats {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.stats a {
+  display: flex;
+  flex-direction: column;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.stats__num {
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 1.8rem + 1.6vw, 3rem);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.stats__label {
+  margin-top: 0.35rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.stats a:hover .stats__num,
+.stats a:hover .stats__label {
+  color: var(--accent);
+}
+
 /* --------------------------------------------------------------------------
    Project pages
    -------------------------------------------------------------------------- */
@@ -900,4 +944,33 @@ app-architecture-figure {
     animation: rise 0.5s cubic-bezier(0.2, 0.7, 0.2, 1) both;
     animation-delay: calc(var(--i, 0) * 70ms);
   }
+
+  /* Set by scroll-effects.ts on blocks below the fold; .is-in is added as each one scrolls in. */
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 0.6s ease-out,
+      transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .scroll-reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  .entry__when,
+  .entries > .entry .entry__title a {
+    transition: color 0.3s;
+  }
+}
+
+/* The entry being read (the one crossing the middle of the screen) takes the accent colour. */
+.entries > .entry.is-current .entry__when {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.entries > .entry:not(.entry--dated).is-current .entry__title a {
+  color: var(--accent);
 }

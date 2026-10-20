@@ -1,8 +1,17 @@
-import { ChangeDetectionStrategy, Component, DOCUMENT, computed, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DOCUMENT,
+  afterNextRender,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs';
 import { SITE } from './content/content';
+import { ScrollEffects } from './scroll-effects';
 
 @Component({
   selector: 'app-root',
@@ -30,6 +39,18 @@ export class App {
   );
 
   private readonly document = inject(DOCUMENT);
+
+  protected readonly scroll = inject(ScrollEffects);
+
+  constructor() {
+    afterNextRender(() => this.scroll.start());
+  }
+
+  /** Back to the top of the page, with focus on <main> for keyboard and screen reader users. */
+  protected toTop(): void {
+    this.document.defaultView?.scrollTo({ top: 0 });
+    this.document.getElementById('main')?.focus({ preventScroll: true });
+  }
 
   /** Mobile menu state. Below 48rem the nav collapses behind a toggle (only when JavaScript runs). */
   protected readonly menuOpen = signal(false);

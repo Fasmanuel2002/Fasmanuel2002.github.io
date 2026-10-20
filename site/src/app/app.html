@@ -1,5 +1,7 @@
 <a class="skip-link" [href]="skipHref()" (click)="skipToMain($event)">Skip to main content</a>
 
+<div class="scroll-progress" aria-hidden="true" [style.transform]="'scaleX(' + scroll.progress() + ')'"></div>
+
 <header class="site-header" (keydown.escape)="closeMenu(menuToggle)">
   <div class="wrap site-header__inner">
     <a class="wordmark" routerLink="/">{{ site.person.name }}</a>
@@ -42,6 +44,12 @@
 <main id="main" class="wrap" tabindex="-1">
   <router-outlet />
 </main>
+
+<button type="button" class="to-top" [class.is-shown]="scroll.showTop()" aria-label="Back to top" (click)="toTop()">
+  <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false">
+    <path d="M12 19V5M5 12l7-7 7 7" />
+  </svg>
+</button>
 
 <footer class="site-footer">
   <div class="wrap">

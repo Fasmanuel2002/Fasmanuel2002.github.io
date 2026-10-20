@@ -80,6 +80,71 @@
   outline-color: var(--amber);
 }
 
+/* Reading progress: a thin accent line along the top edge that fills as the page scrolls. */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  pointer-events: none;
+}
+
+/* Back to top: appears after one screen of scrolling. Hidden (and not focusable) until then. */
+.to-top {
+  position: fixed;
+  right: max(1rem, env(safe-area-inset-right));
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--on-ink);
+  box-shadow: 0 4px 14px rgb(15 42 50 / 0.25);
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(0.5rem);
+}
+
+.to-top.is-shown {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.to-top:hover {
+  background: var(--accent);
+}
+
+.to-top svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .to-top {
+    transition:
+      opacity 0.2s,
+      transform 0.2s,
+      visibility 0.2s,
+      background-color 0.2s;
+  }
+}
+
 /* Mobile menu. The toggle exists only when JavaScript runs (html.js); without it the inline nav stays. */
 .menu-toggle {
   display: none;
