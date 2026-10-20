@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DOCUMENT, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DOCUMENT, computed, inject, signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { filter, map } from 'rxjs';
@@ -30,6 +30,15 @@ export class App {
   );
 
   private readonly document = inject(DOCUMENT);
+
+  /** Mobile menu state. Below 48rem the nav collapses behind a toggle (only when JavaScript runs). */
+  protected readonly menuOpen = signal(false);
+
+  protected closeMenu(toggle: HTMLButtonElement): void {
+    if (!this.menuOpen()) return;
+    this.menuOpen.set(false);
+    toggle.focus();
+  }
 
   // The skip link needs the current path: with <base href="/">, a bare "#main" would resolve
   // to the home page. Computed during prerendering, so it also works without JavaScript.

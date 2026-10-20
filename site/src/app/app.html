@@ -1,9 +1,26 @@
 <a class="skip-link" [href]="skipHref()" (click)="skipToMain($event)">Skip to main content</a>
 
-<header class="site-header">
+<header class="site-header" (keydown.escape)="closeMenu(menuToggle)">
   <div class="wrap site-header__inner">
     <a class="wordmark" routerLink="/">{{ site.person.name }}</a>
-    <nav class="site-nav" aria-label="Primary">
+    <button
+      #menuToggle
+      type="button"
+      class="menu-toggle"
+      aria-label="Menu"
+      aria-controls="site-nav"
+      [attr.aria-expanded]="menuOpen()"
+      (click)="menuOpen.set(!menuOpen())"
+    >
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
+        @if (menuOpen()) {
+          <path d="M5 5l14 14M19 5L5 19" />
+        } @else {
+          <path d="M3 6h18M3 12h18M3 18h18" />
+        }
+      </svg>
+    </button>
+    <nav id="site-nav" class="site-nav" [class.is-open]="menuOpen()" aria-label="Primary">
       <ul class="site-nav__list">
         @for (item of nav; track item.path) {
           <li>
@@ -12,6 +29,7 @@
               [routerLink]="item.path"
               routerLinkActive="is-active"
               [attr.aria-current]="ariaCurrent(item.path)"
+              (click)="menuOpen.set(false)"
               >{{ item.label }}</a
             >
           </li>
