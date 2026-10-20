@@ -55,11 +55,15 @@
   <div class="wrap">
     <ul class="site-footer__links">
       <li>
-        <a [href]="site.links.email.url">{{ site.links.email.display }}</a>
+        <a class="with-icon" [href]="site.links.email.url"
+          ><app-contact-icon [label]="site.links.email.label" /><span>{{ site.links.email.display }}</span></a
+        >
       </li>
       @for (link of site.links.social; track link.url) {
         <li>
-          <a [href]="link.url">{{ link.label }}</a>
+          <a class="with-icon" [href]="link.url"
+            ><app-contact-icon [label]="link.label" /><span>{{ link.label }}</span></a
+          >
         </li>
       }
     </ul>

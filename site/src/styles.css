@@ -360,8 +360,7 @@ app-root > main {
 }
 
 .entry,
-.impl,
-.courses li {
+.impl {
   scroll-margin-top: 1.5rem;
 }
 
@@ -884,27 +883,6 @@ app-architecture-figure {
    Certifications and education
    -------------------------------------------------------------------------- */
 
-.courses {
-  margin-top: 1.5rem;
-  padding-left: 1.1rem;
-  border-left: 2px solid var(--rule);
-  list-style: none;
-}
-
-.courses li + li {
-  margin-top: 1.25rem;
-}
-
-.entry .courses h3 {
-  margin-top: 0;
-  font-size: 1.15rem;
-  line-height: 1.3;
-}
-
-.courses .link-list {
-  margin-top: 0.35rem;
-}
-
 .disclosure {
   margin-top: 0.6rem;
 }
@@ -973,4 +951,30 @@ app-architecture-figure {
 
 .entries > .entry:not(.entry--dated).is-current .entry__title a {
   color: var(--accent);
+}
+
+/* --------------------------------------------------------------------------
+   Contact links with their icon (email envelope, GitHub and LinkedIn marks)
+   -------------------------------------------------------------------------- */
+
+.with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+  max-width: 100%;
+}
+
+.with-icon > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.contact-icon {
+  display: inline-flex;
+  flex: none;
+  font-size: 1.1em;
+}
+
+.contact-icon svg {
+  fill: currentColor;
 }

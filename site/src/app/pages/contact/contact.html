@@ -9,14 +9,18 @@
     <div>
       <dt>{{ site.links.email.label }}</dt>
       <dd>
-        <a [href]="site.links.email.url">{{ site.links.email.display }}</a>
+        <a class="with-icon" [href]="site.links.email.url"
+          ><app-contact-icon [label]="site.links.email.label" /><span>{{ site.links.email.display }}</span></a
+        >
       </dd>
     </div>
     @for (link of site.links.social; track link.url) {
       <div>
         <dt>{{ link.label }}</dt>
         <dd>
-          <a [href]="link.url">{{ link.display }}</a>
+          <a class="with-icon" [href]="link.url"
+            ><app-contact-icon [label]="link.label" /><span>{{ link.display }}</span></a
+          >
         </dd>
       </div>
     }

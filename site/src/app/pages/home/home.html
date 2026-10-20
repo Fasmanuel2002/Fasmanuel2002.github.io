@@ -17,9 +17,17 @@
   <p class="lede reveal" style="--i: 2">{{ site.person.summary }}</p>
   <ul class="link-list reveal" style="--i: 3">
     <li><a routerLink="/projects">View projects</a></li>
-    <li><a [href]="site.links.email.url">Email</a></li>
+    <li>
+      <a class="with-icon" [href]="site.links.email.url"
+        ><app-contact-icon label="Email" /><span>Email</span></a
+      >
+    </li>
     @for (link of site.links.social; track link.url) {
-      <li><a [href]="link.url">{{ link.label }}</a></li>
+      <li>
+        <a class="with-icon" [href]="link.url"
+          ><app-contact-icon [label]="link.label" /><span>{{ link.label }}</span></a
+        >
+      </li>
     }
   </ul>
 </header>

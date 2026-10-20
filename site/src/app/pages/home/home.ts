@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { ContactIcon } from '../../contact-icon';
 import { PROJECT_PAGES, SITE, SPOKEN_LANGUAGES } from '../../content/content';
 import certifications from '../../content/certifications.json';
 import experience from '../../content/experience.json';
@@ -10,7 +11,7 @@ import { Seo } from '../../seo';
 
 @Component({
   selector: 'app-home',
-  imports: [RouterLink],
+  imports: [RouterLink, ContactIcon],
   templateUrl: './home.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -28,7 +29,12 @@ export default class Home {
       label: 'Papers reimplemented',
       path: PROJECT_PAGES.reimplementations.path,
     },
-    { value: certifications.entries.length, label: 'Certifications', path: '/certifications' },
+    {
+      // Every course certificate: standalone ones plus the courses inside each specialization.
+      value: certifications.entries.reduce((n, e) => n + (e.courses.length || 1), 0),
+      label: 'Certifications',
+      path: '/certifications',
+    },
   ];
 
   constructor() {
