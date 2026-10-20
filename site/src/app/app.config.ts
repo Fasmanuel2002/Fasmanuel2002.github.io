@@ -1,7 +1,8 @@
 import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { provideClientHydration } from '@angular/platform-browser';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import { UrlSerializer, provideRouter, withInMemoryScrolling } from '@angular/router';
 import { routes } from './app.routes';
+import { TrailingSlashUrlSerializer } from './trailing-slash';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,5 +12,6 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({ anchorScrolling: 'enabled', scrollPositionRestoration: 'enabled' }),
     ),
     provideClientHydration(),
+    { provide: UrlSerializer, useClass: TrailingSlashUrlSerializer },
   ],
 };

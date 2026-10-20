@@ -94,7 +94,7 @@
     "base_url_note": "GitHub Pages user site. Requires the repository to be named Fasmanuel2002.github.io.",
     "base_url_source": "author decision 2026-10-19 (switch from Vercel to GitHub Pages)",
     "base_url_review": "NR-01",
-    "repository": "https://github.com/Fasmanuel2002/ManuelFas_website",
+    "repository": "https://github.com/Fasmanuel2002/Fasmanuel2002.github.io",
     "repository_source": "git remote origin of the working directory",
     "source": [
       "CLAUDE.md (Deployment)",
@@ -266,6 +266,9 @@
       "end": "2026-06",
       "current": false,
       "dates_display": "Apr 2026 – Jun 2026",
+      "supervisor": "Stephany Nieves Uribe",
+      "supervisor_url": "https://www.linkedin.com/in/stephanynievesuribe/",
+      "supervisor_source": "author request 2026-10-20 (direct): name and LinkedIn URL",
       "highlights": [
         "Investigated NLP methodologies and Transformer-based large language models to advance the SOFIA scientific initiative, surveying the literature and prototyping the most promising approaches.",
         "Reconstructed state-of-the-art deep learning architectures from academic papers into functional, documented PyTorch codebases, validating each reproduction against reported results."
@@ -295,6 +298,8 @@
       "dates_display": "Oct 2025 – Jan 2026",
       "supervisor": "Jan Svoboda",
       "supervisor_source": "source/papers/TRACEPAPER_Report.pdf (cover)",
+      "supervisor_url": "https://www.linkedin.com/in/jan-svoboda-8946a615b/",
+      "supervisor_url_source": "author request 2026-10-20 (direct)",
       "highlights": [
         "Reimplemented the TRACE paper (arXiv:2409.12972) in PyTorch, engineering Transformer encoder models over clickstream event sequences for user recommendation — github.com/Fasmanuel2002/AAI_HSLU_TRACE.",
         "Built Big Data preprocessing pipelines converting raw clickstream event logs into model-ready training sequences.",
@@ -335,6 +340,9 @@
       "end": "2025-09",
       "current": false,
       "dates_display": "Jul 2025 – Sep 2025",
+      "supervisor": "Ernesto Fernández Calles",
+      "supervisor_url": "https://www.linkedin.com/in/ernestofc/",
+      "supervisor_source": "author request 2026-10-20 (direct): name and LinkedIn URL",
       "highlights": [
         "Deployed machine learning models into production on Microsoft Azure, exposing them as serving endpoints for application consumption.",
         "Engineered high-throughput backend microservices in C# (.NET Core) integrating those ML endpoints into existing application workflows."
@@ -1249,8 +1257,8 @@
     "other_public_repositories_note": "Not shown on the site (NR-23, default). Kept for reference only; the Projects page links to the GitHub profile instead.",
     "other_public_repositories": [
       {
-        "name": "ManuelFas_website",
-        "url": "https://github.com/Fasmanuel2002/ManuelFas_website",
+        "name": "Fasmanuel2002.github.io",
+        "url": "https://github.com/Fasmanuel2002/Fasmanuel2002.github.io",
         "description": "Website for my resume and life",
         "primary_language": null,
         "languages": [],
@@ -1802,7 +1810,7 @@
       "date": "2025-03",
       "date_display": "Mar 2025",
       "date_on_certificate": "Mar 22, 2025",
-      "verification_url": "https://coursera.org/verify/1VKWVN6H5QEI",
+      "verification_url": "https://www.coursera.org/account/accomplishments/verify/1VKWVN6H5QEI",
       "verification_url_source": [
         "source/PS.jpeg ('Verify at' URL printed on the certificate)",
         "author decision 2026-10-18 (relayed by coordinator) (NR-07)"

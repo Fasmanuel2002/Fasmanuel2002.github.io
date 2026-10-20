@@ -34,7 +34,8 @@ export class App {
   private readonly currentPath = toSignal(
     inject(Router).events.pipe(
       filter((event): event is NavigationEnd => event instanceof NavigationEnd),
-      map((event) => event.urlAfterRedirects.split(/[?#]/)[0]),
+      // Without the trailing slash the serializer adds, so "/experience/" compares as "/experience"
+      map((event) => event.urlAfterRedirects.split(/[?#]/)[0].replace(/(.)\/$/, '$1')),
     ),
     { initialValue: '/' },
   );
@@ -64,7 +65,7 @@ export class App {
 
   // The skip link needs the current path: with <base href="/">, a bare "#main" would resolve
   // to the home page. Computed during prerendering, so it also works without JavaScript.
-  protected readonly skipHref = computed(() => `${this.currentPath()}#main`);
+  protected readonly skipHref = computed(() => `${this.currentPath().replace(/\/?$/, '/')}#main`);
 
   /**
    * With JavaScript, move focus to <main> without a navigation. GitHub Pages serves each page

@@ -32,7 +32,7 @@
         @for (paper of item.papers; track paper.arxivId) {
           <li>
             <a [href]="paper.url">{{ paper.title }}</a>
-            <span>{{ cite(paper.authors) }}, {{ paper.year }} · arXiv:{{ paper.arxivId }}</span>
+            <span>{{ cite(paper.authors) }}, {{ paper.year }} · <a [href]="paper.url">arXiv:{{ paper.arxivId }}</a></span>
           </li>
         }
       </ul>

@@ -31,7 +31,13 @@
   </div>
   <div>
     <dt>Supervisor</dt>
-    <dd>{{ project.context.supervisor }}</dd>
+    <dd>
+      @if (project.context.supervisorUrl) {
+        <a [href]="project.context.supervisorUrl">{{ project.context.supervisor }}</a>
+      } @else {
+        {{ project.context.supervisor }}
+      }
+    </dd>
   </div>
   <div>
     <dt>Repository</dt>
@@ -63,7 +69,7 @@
   <p class="citation">
     <a [href]="project.originalPaper.url">{{ project.originalPaper.title }}</a>.
     {{ project.originalPaper.authors.join(', ') }}, {{ project.originalPaper.year }}.
-    arXiv:{{ project.originalPaper.arxivId }}.
+    <a [href]="project.originalPaper.url">arXiv:{{ project.originalPaper.arxivId }}</a>.
   </p>
 </section>
 

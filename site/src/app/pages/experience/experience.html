@@ -28,7 +28,12 @@
             <p class="entry__place">
               {{ role.location }}
               @if (role.supervisor) {
-                · Supervisor: {{ role.supervisor }}
+                · Supervisor:
+                @if (role.supervisorUrl) {
+                  <a [href]="role.supervisorUrl">{{ role.supervisor }}</a>
+                } @else {
+                  {{ role.supervisor }}
+                }
               }
             </p>
           </div>
@@ -48,7 +53,7 @@
         </div>
         <ul class="points">
           @for (point of role.highlights; track $index) {
-            <li>{{ point }}</li>
+            <li><app-linked-text [text]="point" /></li>
           }
         </ul>
         @if (role.technologies.length) {

@@ -1,4 +1,4 @@
-# ManuelFas_website
+# Fasmanuel2002.github.io
 Website for my resume and life
 
 The site is an English portfolio for Manuel Fas, built with Angular. Every page is prerendered to static HTML, and the site deploys to GitHub Pages at https://fasmanuel2002.github.io.

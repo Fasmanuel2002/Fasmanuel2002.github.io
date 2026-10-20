@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SITE, SPOKEN_LANGUAGES } from '../../content/content';
 import experience from '../../content/experience.json';
+import { LinkedText } from '../../linked-text';
 import { Seo } from '../../seo';
 
 @Component({
   selector: 'app-experience',
-  imports: [RouterLink],
+  imports: [RouterLink, LinkedText],
   templateUrl: './experience.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

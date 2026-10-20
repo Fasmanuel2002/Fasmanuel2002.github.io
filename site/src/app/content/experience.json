@@ -15,6 +15,7 @@
       "startDisplay": "Sep 2026",
       "endDisplay": "Present",
       "supervisor": null,
+      "supervisorUrl": null,
       "highlights": [
         "Research and benchmark Transformer-based architectures for financial and tabular data.",
         "Build reproducible PyTorch training and evaluation pipelines with leakage-safe splits, ablation studies and documented results, supporting the group’s research and technology-transfer projects.",
@@ -45,7 +46,8 @@
       "datesDisplay": "Apr 2026 – Jun 2026",
       "startDisplay": "Apr 2026",
       "endDisplay": "Jun 2026",
-      "supervisor": null,
+      "supervisor": "Stephany Nieves Uribe",
+      "supervisorUrl": "https://www.linkedin.com/in/stephanynievesuribe/",
       "highlights": [
         "Investigated NLP methodologies and Transformer-based large language models to advance the SOFIA scientific initiative, surveying the literature and prototyping the most promising approaches.",
         "Reconstructed state-of-the-art deep learning architectures from academic papers into functional, documented PyTorch codebases, validating each reproduction against reported results."
@@ -75,6 +77,7 @@
       "startDisplay": "Oct 2025",
       "endDisplay": "Jan 2026",
       "supervisor": "Jan Svoboda",
+      "supervisorUrl": "https://www.linkedin.com/in/jan-svoboda-8946a615b/",
       "highlights": [
         "Reimplemented the TRACE paper (arXiv:2409.12972) in PyTorch, engineering Transformer encoder models over clickstream event sequences for user recommendation — github.com/Fasmanuel2002/AAI_HSLU_TRACE.",
         "Built Big Data preprocessing pipelines converting raw clickstream event logs into model-ready training sequences.",
@@ -113,7 +116,8 @@
       "datesDisplay": "Jul 2025 – Sep 2025",
       "startDisplay": "Jul 2025",
       "endDisplay": "Sep 2025",
-      "supervisor": null,
+      "supervisor": "Ernesto Fernández Calles",
+      "supervisorUrl": "https://www.linkedin.com/in/ernestofc/",
       "highlights": [
         "Deployed machine learning models into production on Microsoft Azure, exposing them as serving endpoints for application consumption.",
         "Engineered high-throughput backend microservices in C# (.NET Core) integrating those ML endpoints into existing application workflows."

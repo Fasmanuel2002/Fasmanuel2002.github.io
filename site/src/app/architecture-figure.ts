@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { LinkedText } from './linked-text';
 
 export interface FigureData {
   src: string;
@@ -17,6 +18,7 @@ export interface FigureData {
  */
 @Component({
   selector: 'app-architecture-figure',
+  imports: [LinkedText],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <figure class="figure" [class.figure--portrait]="figure().orientation === 'portrait'">
@@ -35,7 +37,7 @@ export interface FigureData {
       </a>
       <figcaption class="figure__caption">
         {{ figure().caption }}
-        <span class="figure__credit">Credit: {{ figure().credit }}</span>
+        <span class="figure__credit">Credit: <app-linked-text [text]="figure().credit" /></span>
       </figcaption>
     </figure>
   `,
