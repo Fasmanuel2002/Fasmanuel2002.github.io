@@ -222,6 +222,14 @@
     ],
     "phone": null,
     "phone_review": "NR-16",
+    "cv": {
+      "label": "CV (PDF)",
+      "site_path": "/cv/Manuel-Fas-CV.pdf",
+      "pages": 1,
+      "source_file": "source/cv_Manuel_final.pdf",
+      "note": "Public copy of the CV with the phone number removed from the header (NR-16); everything else is unchanged.",
+      "source": "author decision 2026-10-21 (download link on the site, phone number removed)"
+    },
     "source": "source/cv_Manuel_final.pdf, page 1, header"
   },
   "experience": [

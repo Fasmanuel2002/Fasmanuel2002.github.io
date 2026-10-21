@@ -23,6 +23,13 @@
       ></a>
     </li>
     <li>
+      <a class="with-icon" [href]="site.links.cv.href" [attr.download]="site.links.cv.filename" type="application/pdf"
+        ><app-contact-icon [label]="site.links.cv.name" /><span
+          >{{ site.links.cv.text }}<span class="visually-hidden"> ({{ site.links.cv.format }})</span></span
+        ></a
+      >
+    </li>
+    <li>
       <a class="with-icon" [href]="site.links.email.url"
         ><app-contact-icon label="Email" /><span>Email</span></a
       >

@@ -112,6 +112,13 @@
         "url": "https://linkedin.com/in/manuel-fas-48b2b9257",
         "display": "linkedin.com/in/manuel-fas-48b2b9257"
       }
-    ]
+    ],
+    "cv": {
+      "name": "CV",
+      "text": "Download CV",
+      "format": "PDF",
+      "href": "/cv/Manuel-Fas-CV.pdf",
+      "filename": "Manuel-Fas-CV.pdf"
+    }
   }
 }

@@ -25,6 +25,16 @@
       </div>
     }
     <div>
+      <dt>{{ site.links.cv.name }}</dt>
+      <dd>
+        <a class="with-icon" [href]="site.links.cv.href" [attr.download]="site.links.cv.filename" type="application/pdf"
+          ><app-contact-icon [label]="site.links.cv.name" /><span
+            >{{ site.links.cv.text }}<span class="visually-hidden"> ({{ site.links.cv.format }})</span></span
+          ></a
+        >
+      </dd>
+    </div>
+    <div>
       <dt>Location</dt>
       <dd>{{ site.person.location }}</dd>
     </div>

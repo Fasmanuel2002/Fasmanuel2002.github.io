@@ -113,10 +113,32 @@ const photo = {
   alt: person.photo.alt,
 };
 
+// The public CV (contact.cv): a copy without the phone number, served from public/ at site_path.
+// The link reads "Download CV"; the "(PDF)" from the data label completes its accessible name.
+const cvLabel = contact.cv.label.match(/^(.+) \((PDF)\)$/);
+expect(cvLabel, `contact.cv.label should read "<name> (PDF)", got "${contact.cv.label}"`);
+const cvFile = resolve(siteRoot, 'public', contact.cv.site_path.slice(1));
+expect(existsSync(cvFile), `missing ${cvFile}: copy the public CV (without the phone number) there`);
+expect(readFileSync(cvFile).toString('latin1', 0, 5) === '%PDF-', `${cvFile} is not a PDF file`);
+
 const links = {
   email: { label: 'Email', url: contact.email.url, display: contact.email.value },
   social: contact.links.map((link) => ({ label: link.label, url: link.url, display: bareUrl(link.url) })),
+  cv: {
+    name: cvLabel[1],
+    text: `Download ${cvLabel[1]}`,
+    format: cvLabel[2],
+    href: contact.cv.site_path,
+    filename: contact.cv.site_path.split('/').pop(),
+  },
 };
+
+// public/404.html is static and repeats the footer links by hand: check they still match.
+const notFoundHtml = readFileSync(resolve(siteRoot, 'public/404.html'), 'utf8');
+for (const href of [links.email.url, ...links.social.map((link) => link.url), links.cv.href]) {
+  expect(notFoundHtml.includes(`href="${href}"`), `public/404.html is missing the footer link ${href}: update it by hand`);
+}
+expect(notFoundHtml.includes(`download="${links.cv.filename}"`), 'public/404.html: the CV link needs its download attribute');
 const githubProfile = {
   label: data.projects.github_profile_link.label,
   url: data.projects.github_profile_link.url,
@@ -1105,6 +1127,7 @@ ${pageList.map((page) => `- [${page.title}](${pageUrl(page.path)}): ${page.descr
 
 - Email: ${contact.email.value}
 ${contact.links.map((link) => `- ${link.label}: ${link.url}`).join('\n')}
+- ${contact.cv.label}: ${abs(contact.cv.site_path)}
 `;
 
 // ---------------------------------------------------------------------------------------------
