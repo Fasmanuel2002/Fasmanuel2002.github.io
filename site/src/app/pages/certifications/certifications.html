@@ -3,44 +3,43 @@
   <p class="lede reveal" style="--i: 1">{{ page.lede }}</p>
 </header>
 
-<div class="entries">
-  @for (entry of certificates; track entry.id) {
-    <article class="entry entry--dated" [id]="entry.id" [attr.aria-labelledby]="entry.id + '-title'">
-      <p class="entry__when">
-        @if (entry.specAnchor) {
-          <span [id]="entry.specAnchor"></span>
-        }
-        <time [attr.datetime]="entry.date">{{ entry.dateDisplay }}</time>
-      </p>
-      <div>
-        <p class="kind">
-          Certificate
-          @if (entry.part; as part) {
-            · Part of <a [href]="part.url">{{ part.title }}</a>
-          }
-        </p>
-        <h2 class="entry__title" [id]="entry.id + '-title'">{{ entry.title }}</h2>
-        <p class="entry__meta">
-          {{ entry.issuer }}
-          @if (entry.platform) {
-            · {{ entry.platform }}
-          }
-        </p>
-        @if (entry.topics) {
-          <p class="entry__text"><span class="label">Topics</span> {{ entry.topics }}</p>
-        }
-        <p class="link-list">
-          <a [href]="entry.url"
-            >Verify certificate<span class="visually-hidden">: {{ entry.title }}</span></a
-          >
-        </p>
-        @if (entry.notes) {
-          <details class="disclosure">
-            <summary>Course notes<span class="visually-hidden">: {{ entry.title }}</span></summary>
-            <p>{{ entry.notes }}</p>
-          </details>
-        }
-      </div>
-    </article>
-  }
-</div>
+@for (group of page.groups; track group.id) {
+  <section class="section cert-group" [id]="group.id" [attr.aria-labelledby]="group.id + '-title'">
+    <h2 class="section__title" [id]="group.id + '-title'">
+      @if (group.url) {
+        <a [href]="group.url">{{ group.title }}</a>
+      } @else {
+        {{ group.title }}
+      }
+    </h2>
+    <p class="section__lede">{{ group.summary }}</p>
+    <div class="entries">
+      @for (cert of group.certificates; track cert.id) {
+        <article class="entry entry--dated entry--compact" [id]="cert.id" [attr.aria-labelledby]="cert.id + '-title'">
+          <p class="entry__when"><time [attr.datetime]="cert.date">{{ cert.dateDisplay }}</time></p>
+          <div>
+            <h3 class="entry__title" [id]="cert.id + '-title'">{{ cert.title }}</h3>
+            @if (cert.meta) {
+              <p class="entry__meta">{{ cert.meta }}</p>
+            }
+            @if (cert.topics) {
+              <p class="entry__meta"><span class="label">Topics</span> {{ cert.topics }}</p>
+            }
+            <!-- The link floats so "Course notes" sits beside it and the notes open full width below. -->
+            <div class="cert-actions">
+              <a class="cert-actions__verify" [href]="cert.url"
+                >Verify certificate<span class="visually-hidden">: {{ cert.title }}</span></a
+              >
+              @if (cert.notes) {
+                <details class="disclosure">
+                  <summary>Course notes<span class="visually-hidden">: {{ cert.title }}</span></summary>
+                  <p>{{ cert.notes }}</p>
+                </details>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </section>
+}

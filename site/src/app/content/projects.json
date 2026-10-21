@@ -22,8 +22,26 @@
       "dateDisplay": "January 2026",
       "date": "2026-01",
       "highlight": {
-        "value": "AUROC 0.787 · AUPRC 0.696",
-        "note": "TRACE (multi-task), average over the ATC, SAT and MAP tasks on the OTTO dataset"
+        "value": "0.787 AUROC · 0.696 AUPRC",
+        "note": "TRACE (multi-task), average over the ATC, SAT and MAP tasks on the OTTO dataset",
+        "parts": [
+          {
+            "text": "0.787",
+            "figure": true
+          },
+          {
+            "text": " AUROC · ",
+            "figure": false
+          },
+          {
+            "text": "0.696",
+            "figure": true
+          },
+          {
+            "text": " AUPRC",
+            "figure": false
+          }
+        ]
       },
       "technologies": [
         "Python",
@@ -59,7 +77,17 @@
       "date": "2026-07",
       "highlight": {
         "value": "Best model: DeepSurv, C-index approximately 0.82",
-        "note": "819 patients raw, 519 after preprocessing"
+        "note": "819 patients raw, 519 after preprocessing",
+        "parts": [
+          {
+            "text": "Best model: DeepSurv, C-index approximately ",
+            "figure": false
+          },
+          {
+            "text": "0.82",
+            "figure": true
+          }
+        ]
       },
       "technologies": [
         "Python",
@@ -91,7 +119,17 @@
       "date": null,
       "highlight": {
         "value": "6 papers listed",
-        "note": "4 completed, 2 planned/in progress"
+        "note": "4 completed, 2 planned/in progress",
+        "parts": [
+          {
+            "text": "6",
+            "figure": true
+          },
+          {
+            "text": " papers listed",
+            "figure": false
+          }
+        ]
       },
       "technologies": [
         "Python",

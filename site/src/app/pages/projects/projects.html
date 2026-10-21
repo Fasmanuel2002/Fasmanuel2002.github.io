@@ -5,9 +5,9 @@
 
 <div class="entries">
   @for (card of page.cards; track card.slug) {
-    <article class="entry" [attr.aria-labelledby]="card.slug + '-title'">
+    <article class="entry project" [attr.aria-labelledby]="card.slug + '-title'">
       <h2 class="entry__title" [id]="card.slug + '-title'">
-        <a [routerLink]="card.path">{{ card.title }}</a>
+        <a class="title-link" [routerLink]="card.path">{{ card.title }}</a>
       </h2>
       @if (card.context || card.dateDisplay) {
         <p class="entry__meta">
@@ -28,12 +28,9 @@
         </p>
       }
       <p class="entry__text">{{ card.summary }}</p>
-      <p class="result">
-        <strong>{{ card.highlight.value }}</strong>
-        <span>{{ card.highlight.note }}</span>
-      </p>
+      <app-result [highlight]="card.highlight" />
       <p class="tech"><span class="label">Technologies</span> {{ card.technologies.join(', ') }}</p>
-      <ul class="link-list">
+      <ul class="link-list link-list--row">
         <li>
           <a [routerLink]="card.path"
             >Project details<span class="visually-hidden">: {{ card.title }}</span></a

@@ -276,6 +276,30 @@ function webpSize(file) {
   if (chunk === 'VP8 ') return { width: b.readUInt16LE(26) & 0x3fff, height: b.readUInt16LE(28) & 0x3fff };
   throw new Error(`sync-content: unknown WebP chunk ${chunk} in ${file}`);
 }
+function pngSize(file) {
+  const b = readFileSync(file);
+  expect(b.toString('latin1', 1, 4) === 'PNG' && b.toString('ascii', 12, 16) === 'IHDR', `${file} is not a PNG file`);
+  return { width: b.readUInt32BE(16), height: b.readUInt32BE(20) };
+}
+
+/**
+ * The headline result split for display: the figures (in order) are set large, the words around
+ * them small. Joined, the parts are exactly `value`, so the wording never differs from the text.
+ */
+function highlightOut(value, note, figures) {
+  const parts = [];
+  let rest = value;
+  for (const figure of figures) {
+    const at = rest.indexOf(figure);
+    expect(at >= 0, `result "${value}" does not contain "${figure}"`);
+    if (at > 0) parts.push({ text: rest.slice(0, at), figure: false });
+    parts.push({ text: figure, figure: true });
+    rest = rest.slice(at + figure.length);
+  }
+  if (rest) parts.push({ text: rest, figure: false });
+  expect(parts.map((part) => part.text).join('') === value, `result parts must join to "${value}"`);
+  return { value, note, parts };
+}
 const figureOut = (figure) => {
   if (!figure) return null;
   const name = figure.file.split('/').pop().replace(/\.png$/i, '');
@@ -349,13 +373,16 @@ const trace = {
   abstract: traceReport.abstract,
   figure: figureOut(traceSource.architecture_figure),
   technologies: traceSource.technologies.items,
-  highlight: {
-    value: `AUROC ${traceMain.auroc} · AUPRC ${traceMain.auprc}`,
-    note: `${traceMain.model}, ${lowerFirst(traceResultsScope)}`,
-  },
+  highlight: highlightOut(
+    `${traceMain.auroc} AUROC · ${traceMain.auprc} AUPRC`,
+    `${traceMain.model}, ${lowerFirst(traceResultsScope)}`,
+    [String(traceMain.auroc), String(traceMain.auprc)],
+  ),
 };
 
 // Thesis
+const thesisCIndex = thesisSource.results.best_model_c_index_display.match(/\d+(?:\.\d+)?/)?.[0];
+expect(thesisCIndex, 'thesis C-index display should contain a number');
 const thesis = {
   id: thesisSource.id,
   rank: thesisSource.featured_rank,
@@ -399,10 +426,12 @@ const thesis = {
   },
   keywords: thesisPaper.keywords,
   technologies: thesisSource.technologies.items,
-  highlight: {
-    value: `Best model: ${thesisSource.results.best_model}, C-index ${thesisSource.results.best_model_c_index_display}`,
-    note: thesisSource.data.patients_display,
-  },
+  // Wording under author review (NR-02): render it, never reword it. Only the numeral is set large.
+  highlight: highlightOut(
+    `Best model: ${thesisSource.results.best_model}, C-index ${thesisSource.results.best_model_c_index_display}`,
+    thesisSource.data.patients_display,
+    [thesisCIndex],
+  ),
 };
 
 // Paper-Reimplementations
@@ -454,9 +483,9 @@ const reimplementations = {
   repository: repositoryOut(reimplSource.repository),
   implementations,
   technologies: reimplSource.technologies.items,
-  highlight: {
-    value: `${implementations.length} papers listed`,
-    note: [
+  highlight: highlightOut(
+    `${implementations.length} papers listed`,
+    [
       [countStatus('Completed'), 'completed'],
       [countStatus('In progress'), 'in progress'],
       [countStatus('Planned/in progress'), 'planned/in progress'],
@@ -464,7 +493,8 @@ const reimplementations = {
       .filter(([count]) => count > 0)
       .map(([count, label]) => `${count} ${label}`)
       .join(', '),
-  },
+    [String(implementations.length)],
+  ),
 };
 
 const projectCards = [trace, thesis, reimplementations].map((project) => ({
@@ -539,6 +569,47 @@ expect(
 const standalone = certifications.filter((cert) => !cert.specialization_id);
 const cs50 = standalone.filter((cert) => cert.issuer === 'Harvard University');
 expect(cs50.length === 2, 'certifications lede assumes two Harvard University courses');
+
+// The /certifications page: one group per specialization (newest first), then the certificates
+// taken on their own. Rows are newest first within a group. Inside a specialization every course
+// shares the issuer and platform, so the group summary states them once instead of every row.
+const newestFirst = (a, b) => b.date.localeCompare(a.date);
+const certRow = (cert, withIssuer) => ({
+  ...certOut(cert),
+  meta: withIssuer ? [cert.issuer, cert.platform].filter(Boolean).join(' · ') : null,
+});
+const certificationGroups = [
+  ...[...specializations].sort(newestFirst).map((spec) => {
+    const courses = spec.course_ids.map((id) => get(certificationsById, id)).sort(newestFirst);
+    expect(spec.course_count === courses.length, `${spec.id}: course_count does not match course_ids`);
+    expect(
+      courses.every((course) => course.issuer === spec.issuer && course.platform === spec.platform),
+      `${spec.id}: the group summary assumes every course shares the specialization's issuer and platform`,
+    );
+    return {
+      id: spec.id,
+      title: spec.title,
+      url: spec.verification_url,
+      summary: `${upperFirst(numberWord(courses.length))} ${spec.issuer} courses on ${spec.platform}, ${courses.at(-1).date_display} to ${courses[0].date_display}.`,
+      certificates: courses.map((course) => certRow(course, false)),
+    };
+  }),
+  (() => {
+    const certs = [...standalone].sort(newestFirst);
+    return {
+      id: 'other-certificates',
+      title: 'Other certificates',
+      url: null,
+      summary: `${upperFirst(numberWord(certs.length))} courses taken outside the specializations, ${certs.at(-1).date_display} to ${certs[0].date_display}.`,
+      certificates: certs.map((cert) => certRow(cert, true)),
+    };
+  })(),
+];
+const groupedIds = certificationGroups.flatMap((group) => group.certificates.map((cert) => cert.id));
+expect(
+  groupedIds.length === certifications.length && new Set(groupedIds).size === certifications.length,
+  'every certificate should appear in exactly one group',
+);
 
 // ---------------------------------------------------------------------------------------------
 // Recent activity timeline (newest first)
@@ -703,7 +774,7 @@ const ledes = {
   homeFeatured:
     "Three projects with public code: a PyTorch reimplementation of the TRACE clickstream model, a bachelor's thesis on survival modelling with TCGA breast cancer RNA-seq data, and a repository of PyTorch paper reimplementations.",
   homeActivity: `${upperFirst(listJoin(activityParts))} between ${timeline.at(-1).display} and ${timeline[0].display}, newest first.`,
-  homeAbout: `${person.name}'s background, education, current work and interests, in his own words.`,
+  homeAbout: `Who ${person.name} is and what he does, in his own words.`,
   experience: `Four positions since ${rangeStart(oldestRole.dates_display)}: three machine learning research roles in ${listJoin(researchCountries)}, and one machine learning and backend engineering role at ${otherRoles[0].organization}.`,
   skills: 'Programming languages, machine learning libraries, engineering tools and methods, plus spoken languages.',
   projects:
@@ -715,6 +786,63 @@ const ledes = {
 };
 expect(certDates[0].date_display === '2023' && certDates.at(-1).date_display === 'Aug 2026', 'certification date range changed');
 expect(upsa.degree_type === 'Dual B.S.', 'education lede assumes a Dual B.S.');
+
+// ---------------------------------------------------------------------------------------------
+// Home
+
+// Hero: two short sentences restating the CV summary. The eyebrow above the name already carries
+// the headline; the full summary stays in the JSON-LD description and llms.txt.
+const heroLede =
+  'Specialising in Transformer architectures, NLP and large language models. ' +
+  `Reimplements state-of-the-art papers as reproducible PyTorch code, with research experience across ${numberWord(researchRoles.length)} labs in ${listJoin(researchCountries)}.`;
+for (const phrase of [
+  'specialising in Transformer architectures, NLP and large language models',
+  'Reimplements state-of-the-art papers into reproducible PyTorch codebases',
+  `experience across ${numberWord(researchRoles.length)} research labs in ${listJoin(researchCountries)}`,
+]) {
+  expect(person.summary.text.includes(phrase), `hero lede restates "${phrase}", which the summary no longer says`);
+}
+expect(heroLede.split(/\s+/).length <= 32, 'hero lede should stay at 32 words or fewer');
+expect(!heroLede.toLowerCase().includes(person.headline.toLowerCase()), 'hero lede should not repeat the headline');
+
+// About: two of the four Background.md blocks, verbatim. Education and interests are covered by
+// At a glance and /education.
+const homeAbout = ['Who I am', 'What I do'].map((heading) => {
+  const block = person.about.find((item) => item.heading === heading);
+  expect(block?.verbatim === true, `expected a verbatim about block "${heading}"`);
+  return { heading: block.heading, text: block.text };
+});
+
+// At a glance counts, each linked to its page. Counted from the content, never typed in.
+const homeStats = [
+  { value: experience.length, label: 'Roles', path: '/experience' },
+  { value: projectCards.length, label: 'Projects', path: '/projects' },
+  {
+    value: implementations.filter((item) => item.statusKey === 'done').length,
+    label: 'Papers reimplemented',
+    path: reimplementations.path,
+  },
+  // Every course certificate: the standalone ones plus the courses inside each specialization.
+  { value: certifications.length, label: 'Certifications', path: '/certifications' },
+];
+
+// Open Graph share card (1200×630), rendered from scripts/og-card.html with the local Chrome; the
+// command is in the root README. The card repeats facts from data.json, so check it still does.
+const ogImagePath = resolve(siteRoot, 'public/images/og-card.png');
+expect(existsSync(ogImagePath), `missing ${ogImagePath}: render scripts/og-card.html first (see README)`);
+const ogImage = {
+  src: '/images/og-card.png',
+  ...pngSize(ogImagePath),
+  alt: `${person.name}: ${person.headline}, ${person.location}`,
+};
+expect(ogImage.width === 1200 && ogImage.height === 630, `og-card.png is ${ogImage.width}×${ogImage.height}, expected 1200×630`);
+const ogCardHtml = readFileSync(resolve(siteRoot, 'scripts/og-card.html'), 'utf8');
+for (const fact of [person.name, person.headline, person.location, new URL(siteUrl).host]) {
+  expect(
+    ogCardHtml.includes(fact),
+    `scripts/og-card.html does not show "${fact}" from data.json: update it and re-render public/images/og-card.png (see README)`,
+  );
+}
 
 // ---------------------------------------------------------------------------------------------
 // JSON-LD
@@ -855,13 +983,15 @@ const contentFiles = {
       alternateName: person.alternate_name,
       headline: person.headline,
       location: person.location,
-      summary: person.summary.text,
       spokenLanguages: person.spoken_languages.items,
       photo,
     },
+    ogImage,
     links,
   },
   home: {
+    heroLede,
+    stats: homeStats,
     ledes: { featured: ledes.homeFeatured, activity: ledes.homeActivity, about: ledes.homeAbout },
     currentRole: {
       id: current.id,
@@ -872,7 +1002,7 @@ const contentFiles = {
     },
     education: { id: upsa.id, degreeType: upsa.degree_type, program: upsa.program, institution: upsa.institution, datesDisplay: upsa.dates_display },
     interests: person.interests.items,
-    about: person.about.map((block) => ({ heading: block.heading, text: block.text })),
+    about: homeAbout,
     projectCards,
     timeline: timeline.map(({ group, ...item }) => ({ detailUrl: null, ...item })),
     jsonLd: personJsonLd,
@@ -898,7 +1028,7 @@ const contentFiles = {
   'project-trace': { ...trace, jsonLd: projectJsonLd.trace },
   'project-thesis': { ...thesis, jsonLd: projectJsonLd.thesis },
   'project-reimplementations': { ...reimplementations, jsonLd: projectJsonLd.reimplementations },
-  certifications: { lede: ledes.certifications, entries: certificationEntries },
+  certifications: { lede: ledes.certifications, groups: certificationGroups },
   education: { lede: ledes.education, entries: educationOut },
   contact: { lede: ledes.contact },
 };

@@ -97,7 +97,17 @@
   ],
   "highlight": {
     "value": "Best model: DeepSurv, C-index approximately 0.82",
-    "note": "819 patients raw, 519 after preprocessing"
+    "note": "819 patients raw, 519 after preprocessing",
+    "parts": [
+      {
+        "text": "Best model: DeepSurv, C-index approximately ",
+        "figure": false
+      },
+      {
+        "text": "0.82",
+        "figure": true
+      }
+    ]
   },
   "jsonLd": {
     "@context": "https://schema.org",

@@ -166,8 +166,26 @@
     "Docker"
   ],
   "highlight": {
-    "value": "AUROC 0.787 · AUPRC 0.696",
-    "note": "TRACE (multi-task), average over the ATC, SAT and MAP tasks on the OTTO dataset"
+    "value": "0.787 AUROC · 0.696 AUPRC",
+    "note": "TRACE (multi-task), average over the ATC, SAT and MAP tasks on the OTTO dataset",
+    "parts": [
+      {
+        "text": "0.787",
+        "figure": true
+      },
+      {
+        "text": " AUROC · ",
+        "figure": false
+      },
+      {
+        "text": "0.696",
+        "figure": true
+      },
+      {
+        "text": " AUPRC",
+        "figure": false
+      }
+    ]
   },
   "jsonLd": {
     "@context": "https://schema.org",

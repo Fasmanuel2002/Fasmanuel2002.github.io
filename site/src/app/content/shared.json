@@ -71,7 +71,6 @@
     "alternateName": "Manuel Fas Ruiz",
     "headline": "Machine learning researcher and engineer",
     "location": "Salamanca, Spain",
-    "summary": "Machine learning researcher and engineer with experience across three research labs in Spain and Switzerland, specialising in Transformer architectures, NLP and large language models, and deep learning for sequential, tabular and biomedical data. Reimplements state-of-the-art papers into reproducible PyTorch codebases.",
     "spokenLanguages": [
       {
         "language": "Spanish",
@@ -89,6 +88,12 @@
       "height": 400,
       "alt": "Portrait of Manuel Fas"
     }
+  },
+  "ogImage": {
+    "src": "/images/og-card.png",
+    "width": 1200,
+    "height": 630,
+    "alt": "Manuel Fas: Machine learning researcher and engineer, Salamanca, Spain"
   },
   "links": {
     "email": {

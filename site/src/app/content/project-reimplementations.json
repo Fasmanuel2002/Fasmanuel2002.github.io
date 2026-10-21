@@ -290,7 +290,17 @@
   ],
   "highlight": {
     "value": "6 papers listed",
-    "note": "4 completed, 2 planned/in progress"
+    "note": "4 completed, 2 planned/in progress",
+    "parts": [
+      {
+        "text": "6",
+        "figure": true
+      },
+      {
+        "text": " papers listed",
+        "figure": false
+      }
+    ]
   },
   "jsonLd": {
     "@context": "https://schema.org",

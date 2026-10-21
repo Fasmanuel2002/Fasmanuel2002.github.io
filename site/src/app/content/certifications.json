@@ -1,64 +1,23 @@
 {
   "lede": "Twelve course certificates dated 2023 to Aug 2026, issued by DeepLearning.AI, Amazon Web Services and Harvard University. Eight of the DeepLearning.AI courses make up two Coursera specializations.",
-  "entries": [
+  "groups": [
     {
-      "kind": "certificate",
-      "id": "cert-genai-llm",
-      "title": "Generative AI with Large Language Models",
-      "issuer": "DeepLearning.AI and Amazon Web Services",
-      "platform": "Coursera",
-      "date": "2026-08",
-      "dateDisplay": "Aug 2026",
-      "url": "https://www.coursera.org/account/accomplishments/certificate/6NA3EOD4W4GZ",
-      "notes": "In this course, I learned about the complete lifecycle of large language models, including pre-training, fine-tuning, and post-training techniques. I deepened my understanding of Transformer architectures, distributed training strategies, PEFT methods such as LoRA, RLHF algorithms such as PPO and DPO, and optimization techniques for efficient LLM deployment.",
-      "topics": "PEFT/LoRA, RLHF (PPO, DPO).",
-      "courseCount": null,
-      "courses": []
-    },
-    {
-      "kind": "specialization",
       "id": "spec-deep-learning",
       "title": "Deep Learning Specialization",
-      "issuer": "DeepLearning.AI",
-      "platform": "Coursera",
-      "date": "2026-02",
-      "dateDisplay": "Feb 2026",
       "url": "https://www.coursera.org/account/accomplishments/specialization/certificate/00RDBED98XWU",
-      "topics": "CNNs, sequence models, Transformers.",
-      "courseCount": 5,
-      "courses": [
+      "summary": "Five DeepLearning.AI courses on Coursera, Jun 2025 to Feb 2026.",
+      "certificates": [
         {
-          "id": "cert-nndl",
-          "title": "Neural Networks and Deep Learning",
+          "id": "cert-sequence-models",
+          "title": "Sequence Models",
           "issuer": "DeepLearning.AI",
           "platform": "Coursera",
-          "date": "2025-06",
-          "dateDisplay": "Jun 2025",
-          "url": "https://www.coursera.org/account/accomplishments/verify/K0ENXQBYAMWU",
-          "notes": "I finished this course on Neural Networks and Deep Learning, where I explored in greater depth topics such as neural networks and deep learning as essential parts of machine learning. I learned how to vectorize operations to optimize neural networks, and I gained knowledge about various activation functions and their practical applications. I also studied CNNs and RNNs and how we can apply them in everyday scenarios. It was an amazing course",
-          "topics": null
-        },
-        {
-          "id": "cert-improving-dnn",
-          "title": "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization",
-          "issuer": "DeepLearning.AI",
-          "platform": "Coursera",
-          "date": "2025-08",
-          "dateDisplay": "Aug 2025",
-          "url": "https://www.coursera.org/account/accomplishments/verify/30NNLHSTQ1Z2",
-          "notes": "In this course, I gained knowledge of optimizing deep neural networks. I learned when and how to tune hyperparameters, and I explored various algorithms—such as Adam, Momentum and RMSProp—that accelerate gradient descent. Additionally, I studied mini-batch training and batch normalization, and delved into regularization techniques like Dropout and L2 to address underfitting and overfitting. Overall, the course greatly enhanced my understanding of advanced optimization and training strategies.",
-          "topics": null
-        },
-        {
-          "id": "cert-structuring-ml-projects",
-          "title": "Structuring Machine Learning Projects",
-          "issuer": "DeepLearning.AI",
-          "platform": "Coursera",
-          "date": "2025-08",
-          "dateDisplay": "Aug 2025",
-          "url": "https://www.coursera.org/account/accomplishments/verify/XRG7BK81UC9U",
-          "notes": "In this course, I learned about orthogonalization in machine learning scenarios, how to properly split data into Train, Training-Dev, Dev, and Test sets, and why these divisions are so important. I also explored how to leverage avoidable bias, variance, and data mismatch to optimize models. Additionally, I gained hands-on knowledge of Transfer Learning (Fine-Tuning), Multi-Task Learning, and End-to-End Learning.",
-          "topics": null
+          "date": "2026-02",
+          "dateDisplay": "Feb 2026",
+          "url": "https://www.coursera.org/account/accomplishments/verify/7PGB1GU7TR02",
+          "notes": "In this course I learned about sequence models in Deep Learning and deepened my understanding of how RNNs and Bi-RNNs work. I expanded my knowledge of LSTMs and GRUs, including how their gating mechanisms function and the mathematics behind them. I also strengthened my understanding of the attention mechanism and studied Transformer architectures",
+          "topics": null,
+          "meta": null
         },
         {
           "id": "cert-cnn",
@@ -69,43 +28,64 @@
           "dateDisplay": "Oct 2025",
           "url": "https://www.coursera.org/account/accomplishments/verify/0RUW63UWTFO6",
           "notes": "I strengthened my skills in Convolutional Neural Networks (CNNs) and Computer Vision, learning layers, fine-tuning, and key architectures like VGG-16, ResNet-50, Inception, and MobileNet. I also worked with YOLO for object detection, U-Net for semantic segmentation, and advanced applications such as face recognition (DeepFace) and neural style transfer.",
-          "topics": null
+          "topics": null,
+          "meta": null
         },
         {
-          "id": "cert-sequence-models",
-          "title": "Sequence Models",
+          "id": "cert-improving-dnn",
+          "title": "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization and Optimization",
           "issuer": "DeepLearning.AI",
           "platform": "Coursera",
-          "date": "2026-02",
-          "dateDisplay": "Feb 2026",
-          "url": "https://www.coursera.org/account/accomplishments/verify/7PGB1GU7TR02",
-          "notes": "In this course I learned about sequence models in Deep Learning and deepened my understanding of how RNNs and Bi-RNNs work. I expanded my knowledge of LSTMs and GRUs, including how their gating mechanisms function and the mathematics behind them. I also strengthened my understanding of the attention mechanism and studied Transformer architectures",
-          "topics": null
+          "date": "2025-08",
+          "dateDisplay": "Aug 2025",
+          "url": "https://www.coursera.org/account/accomplishments/verify/30NNLHSTQ1Z2",
+          "notes": "In this course, I gained knowledge of optimizing deep neural networks. I learned when and how to tune hyperparameters, and I explored various algorithms—such as Adam, Momentum and RMSProp—that accelerate gradient descent. Additionally, I studied mini-batch training and batch normalization, and delved into regularization techniques like Dropout and L2 to address underfitting and overfitting. Overall, the course greatly enhanced my understanding of advanced optimization and training strategies.",
+          "topics": null,
+          "meta": null
+        },
+        {
+          "id": "cert-structuring-ml-projects",
+          "title": "Structuring Machine Learning Projects",
+          "issuer": "DeepLearning.AI",
+          "platform": "Coursera",
+          "date": "2025-08",
+          "dateDisplay": "Aug 2025",
+          "url": "https://www.coursera.org/account/accomplishments/verify/XRG7BK81UC9U",
+          "notes": "In this course, I learned about orthogonalization in machine learning scenarios, how to properly split data into Train, Training-Dev, Dev, and Test sets, and why these divisions are so important. I also explored how to leverage avoidable bias, variance, and data mismatch to optimize models. Additionally, I gained hands-on knowledge of Transfer Learning (Fine-Tuning), Multi-Task Learning, and End-to-End Learning.",
+          "topics": null,
+          "meta": null
+        },
+        {
+          "id": "cert-nndl",
+          "title": "Neural Networks and Deep Learning",
+          "issuer": "DeepLearning.AI",
+          "platform": "Coursera",
+          "date": "2025-06",
+          "dateDisplay": "Jun 2025",
+          "url": "https://www.coursera.org/account/accomplishments/verify/K0ENXQBYAMWU",
+          "notes": "I finished this course on Neural Networks and Deep Learning, where I explored in greater depth topics such as neural networks and deep learning as essential parts of machine learning. I learned how to vectorize operations to optimize neural networks, and I gained knowledge about various activation functions and their practical applications. I also studied CNNs and RNNs and how we can apply them in everyday scenarios. It was an amazing course",
+          "topics": null,
+          "meta": null
         }
       ]
     },
     {
-      "kind": "specialization",
       "id": "spec-math-ml-ds",
       "title": "Mathematics for Machine Learning and Data Science",
-      "issuer": "DeepLearning.AI",
-      "platform": "Coursera",
-      "date": "2025-03",
-      "dateDisplay": "Mar 2025",
       "url": "https://www.coursera.org/account/accomplishments/specialization/PMIMWEI2Q8ZK",
-      "topics": null,
-      "courseCount": 3,
-      "courses": [
+      "summary": "Three DeepLearning.AI courses on Coursera, Dec 2024 to Mar 2025.",
+      "certificates": [
         {
-          "id": "cert-linear-algebra",
-          "title": "Linear Algebra for Machine Learning and Data Science",
+          "id": "cert-probability-statistics",
+          "title": "Probability & Statistics for Machine Learning & Data Science",
           "issuer": "DeepLearning.AI",
           "platform": "Coursera",
-          "date": "2024-12",
-          "dateDisplay": "Dec 2024",
-          "url": "https://www.coursera.org/account/accomplishments/verify/97QUD0IA46QO",
-          "notes": "In this course on Linear Algebra for Machine Learning and Data Science, I am learning how to solve systems of linear equations, how to represent them as matrices and vectors, how to use these matrices in linear transformations, and how to apply eigenvalues and eigenvectors for dimensionality reduction (PCA), among many other topics for Machine Learning Algorithms and Data Science",
-          "topics": null
+          "date": "2025-03",
+          "dateDisplay": "Mar 2025",
+          "url": "https://www.coursera.org/account/accomplishments/verify/1VKWVN6H5QEI",
+          "notes": "In this course I learned a lot about Probability and Statistics, including how probability works, its components, random variables, the Probability Density Function (PDF), cumulative distribution function (CDF), Uniform and Gaussian distributions, and using these distributions in Machine Learning models. I also studied descriptive statistics, variance, Maximum Likelihood Estimation (MLE), regularization, and model evaluation with hypothesis testing and p-values in my final A/B model project",
+          "topics": null,
+          "meta": null
         },
         {
           "id": "cert-calculus",
@@ -116,62 +96,78 @@
           "dateDisplay": "Feb 2025",
           "url": "https://www.coursera.org/account/accomplishments/verify/QO05CSKQD5N6",
           "notes": "In this course, I deepened my understanding of derivatives and optimization in Machine Learning algorithms. I explored the fundamental steps in building AI models, including Forward Propagation, Backward Propagation, Gradient Descent, and the Newton Method for optimization. What I loved most about this course is how it challenges me to think mathematically and continuously expand my knowledge.",
-          "topics": null
+          "topics": null,
+          "meta": null
         },
         {
-          "id": "cert-probability-statistics",
-          "title": "Probability & Statistics for Machine Learning & Data Science",
+          "id": "cert-linear-algebra",
+          "title": "Linear Algebra for Machine Learning and Data Science",
           "issuer": "DeepLearning.AI",
           "platform": "Coursera",
-          "date": "2025-03",
-          "dateDisplay": "Mar 2025",
-          "url": "https://www.coursera.org/account/accomplishments/verify/1VKWVN6H5QEI",
-          "notes": "In this course I learned a lot about Probability and Statistics, including how probability works, its components, random variables, the Probability Density Function (PDF), cumulative distribution function (CDF), Uniform and Gaussian distributions, and using these distributions in Machine Learning models. I also studied descriptive statistics, variance, Maximum Likelihood Estimation (MLE), regularization, and model evaluation with hypothesis testing and p-values in my final A/B model project",
-          "topics": null
+          "date": "2024-12",
+          "dateDisplay": "Dec 2024",
+          "url": "https://www.coursera.org/account/accomplishments/verify/97QUD0IA46QO",
+          "notes": "In this course on Linear Algebra for Machine Learning and Data Science, I am learning how to solve systems of linear equations, how to represent them as matrices and vectors, how to use these matrices in linear transformations, and how to apply eigenvalues and eigenvectors for dimensionality reduction (PCA), among many other topics for Machine Learning Algorithms and Data Science",
+          "topics": null,
+          "meta": null
         }
       ]
     },
     {
-      "kind": "certificate",
-      "id": "cert-cs50-ai",
-      "title": "Introduction to Artificial Intelligence with Python",
-      "issuer": "Harvard University",
-      "platform": null,
-      "date": "2024-10",
-      "dateDisplay": "2024",
-      "url": "https://certificates.cs50.io/085e881c-0bbf-477a-ab7a-9d7bf2181109.pdf?size=letter",
-      "notes": "Covered the core principles behind modern artificial intelligence systems, including search algorithms, optimization techniques, and probabilistic reasoning. Implemented machine learning and deep learning models using Python while working on practical projects involving uncertainty modeling, logical decision-making systems, and Natural Language Processing (NLP). Projects included building intelligent agents, game-playing engines, and data recognition systems",
-      "topics": null,
-      "courseCount": null,
-      "courses": []
-    },
-    {
-      "kind": "certificate",
-      "id": "cert-ai-for-everyone",
-      "title": "AI For Everyone",
-      "issuer": "DeepLearning.AI",
-      "platform": "Coursera",
-      "date": "2024-04",
-      "dateDisplay": "Apr 2024",
-      "url": "https://www.coursera.org/account/accomplishments/verify/G4NQGHR3Y5YV",
-      "notes": null,
-      "topics": null,
-      "courseCount": null,
-      "courses": []
-    },
-    {
-      "kind": "certificate",
-      "id": "cert-cs50-python",
-      "title": "Introduction to Programming with Python",
-      "issuer": "Harvard University",
-      "platform": null,
-      "date": "2023-09",
-      "dateDisplay": "2023",
-      "url": "https://certificates.cs50.io/660b81b1-c787-412b-8524-53be6224a068.pdf?size=letter",
-      "notes": "It's an introductory course on programming with Python, which includes nine problem sets and one final project.",
-      "topics": null,
-      "courseCount": null,
-      "courses": []
+      "id": "other-certificates",
+      "title": "Other certificates",
+      "url": null,
+      "summary": "Four courses taken outside the specializations, 2023 to Aug 2026.",
+      "certificates": [
+        {
+          "id": "cert-genai-llm",
+          "title": "Generative AI with Large Language Models",
+          "issuer": "DeepLearning.AI and Amazon Web Services",
+          "platform": "Coursera",
+          "date": "2026-08",
+          "dateDisplay": "Aug 2026",
+          "url": "https://www.coursera.org/account/accomplishments/certificate/6NA3EOD4W4GZ",
+          "notes": "In this course, I learned about the complete lifecycle of large language models, including pre-training, fine-tuning, and post-training techniques. I deepened my understanding of Transformer architectures, distributed training strategies, PEFT methods such as LoRA, RLHF algorithms such as PPO and DPO, and optimization techniques for efficient LLM deployment.",
+          "topics": "PEFT/LoRA, RLHF (PPO, DPO).",
+          "meta": "DeepLearning.AI and Amazon Web Services · Coursera"
+        },
+        {
+          "id": "cert-cs50-ai",
+          "title": "Introduction to Artificial Intelligence with Python",
+          "issuer": "Harvard University",
+          "platform": null,
+          "date": "2024-10",
+          "dateDisplay": "2024",
+          "url": "https://certificates.cs50.io/085e881c-0bbf-477a-ab7a-9d7bf2181109.pdf?size=letter",
+          "notes": "Covered the core principles behind modern artificial intelligence systems, including search algorithms, optimization techniques, and probabilistic reasoning. Implemented machine learning and deep learning models using Python while working on practical projects involving uncertainty modeling, logical decision-making systems, and Natural Language Processing (NLP). Projects included building intelligent agents, game-playing engines, and data recognition systems",
+          "topics": null,
+          "meta": "Harvard University"
+        },
+        {
+          "id": "cert-ai-for-everyone",
+          "title": "AI For Everyone",
+          "issuer": "DeepLearning.AI",
+          "platform": "Coursera",
+          "date": "2024-04",
+          "dateDisplay": "Apr 2024",
+          "url": "https://www.coursera.org/account/accomplishments/verify/G4NQGHR3Y5YV",
+          "notes": null,
+          "topics": null,
+          "meta": "DeepLearning.AI · Coursera"
+        },
+        {
+          "id": "cert-cs50-python",
+          "title": "Introduction to Programming with Python",
+          "issuer": "Harvard University",
+          "platform": null,
+          "date": "2023-09",
+          "dateDisplay": "2023",
+          "url": "https://certificates.cs50.io/660b81b1-c787-412b-8524-53be6224a068.pdf?size=letter",
+          "notes": "It's an introductory course on programming with Python, which includes nine problem sets and one final project.",
+          "topics": null,
+          "meta": "Harvard University"
+        }
+      ]
     }
   ]
 }

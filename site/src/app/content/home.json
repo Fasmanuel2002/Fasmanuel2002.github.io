@@ -1,8 +1,31 @@
 {
+  "heroLede": "Specialising in Transformer architectures, NLP and large language models. Reimplements state-of-the-art papers as reproducible PyTorch code, with research experience across three labs in Spain and Switzerland.",
+  "stats": [
+    {
+      "value": 4,
+      "label": "Roles",
+      "path": "/experience"
+    },
+    {
+      "value": 3,
+      "label": "Projects",
+      "path": "/projects"
+    },
+    {
+      "value": 4,
+      "label": "Papers reimplemented",
+      "path": "/projects/paper-reimplementations"
+    },
+    {
+      "value": 12,
+      "label": "Certifications",
+      "path": "/certifications"
+    }
+  ],
   "ledes": {
     "featured": "Three projects with public code: a PyTorch reimplementation of the TRACE clickstream model, a bachelor's thesis on survival modelling with TCGA breast cancer RNA-seq data, and a repository of PyTorch paper reimplementations.",
     "activity": "Three roles, two research documents, one completed degree and two certifications between Oct 2025 and Sep 2026, newest first.",
-    "about": "Manuel Fas's background, education, current work and interests, in his own words."
+    "about": "Who Manuel Fas is and what he does, in his own words."
   },
   "currentRole": {
     "id": "exp-bisite",
@@ -30,16 +53,8 @@
       "text": "I’m Manuel Fas Ruiz, a machine learning engineer and researcher based in Salamanca, Spain. Originally from Guatemala, I moved to Spain to continue my studies and build my career in technology. I’m curious by nature and enjoy exploring how things work, especially when mathematics, research, and software engineering come together to solve real problems."
     },
     {
-      "heading": "Education and international experience",
-      "text": "My academic background combines Business Administration for Tech Companies and Computer Science. I completed my business degree in 2026 and expect to finish my Computer Science degree in 2027. Studying both fields has helped me think about technology from different perspectives: how to build a solution, why it matters, and how it can be useful in practice. I also completed an international exchange at Lucerne University of Applied Sciences and Arts (HSLU) in Switzerland, which broadened my academic experience and strengthened my interest in working in international environments."
-    },
-    {
       "heading": "What I do",
       "text": "I currently work with the BISITE Research Group at the University of Salamanca, contributing to machine-learning and AI research activities."
-    },
-    {
-      "heading": "My interests",
-      "text": "My main interests are deep learning, computer vision, natural-language processing, large language models (LLMs). I enjoy both experimenting with models and understanding the engineering behind a complete system—from data preparation and evaluation to performance and deployment. I continue to learn through research papers, courses, and hands-on projects. My goal is to keep growing as an engineer and researcher, contribute to meaningful AI projects, and bridge the gap between research ideas and practical applications."
     }
   ],
   "projectCards": [
@@ -59,8 +74,26 @@
       "dateDisplay": "January 2026",
       "date": "2026-01",
       "highlight": {
-        "value": "AUROC 0.787 · AUPRC 0.696",
-        "note": "TRACE (multi-task), average over the ATC, SAT and MAP tasks on the OTTO dataset"
+        "value": "0.787 AUROC · 0.696 AUPRC",
+        "note": "TRACE (multi-task), average over the ATC, SAT and MAP tasks on the OTTO dataset",
+        "parts": [
+          {
+            "text": "0.787",
+            "figure": true
+          },
+          {
+            "text": " AUROC · ",
+            "figure": false
+          },
+          {
+            "text": "0.696",
+            "figure": true
+          },
+          {
+            "text": " AUPRC",
+            "figure": false
+          }
+        ]
       },
       "technologies": [
         "Python",
@@ -96,7 +129,17 @@
       "date": "2026-07",
       "highlight": {
         "value": "Best model: DeepSurv, C-index approximately 0.82",
-        "note": "819 patients raw, 519 after preprocessing"
+        "note": "819 patients raw, 519 after preprocessing",
+        "parts": [
+          {
+            "text": "Best model: DeepSurv, C-index approximately ",
+            "figure": false
+          },
+          {
+            "text": "0.82",
+            "figure": true
+          }
+        ]
       },
       "technologies": [
         "Python",
@@ -128,7 +171,17 @@
       "date": null,
       "highlight": {
         "value": "6 papers listed",
-        "note": "4 completed, 2 planned/in progress"
+        "note": "4 completed, 2 planned/in progress",
+        "parts": [
+          {
+            "text": "6",
+            "figure": true
+          },
+          {
+            "text": " papers listed",
+            "figure": false
+          }
+        ]
       },
       "technologies": [
         "Python",

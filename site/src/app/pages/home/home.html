@@ -14,9 +14,14 @@
       decoding="async"
     />
   </picture>
-  <p class="lede reveal" style="--i: 2">{{ site.person.summary }}</p>
+  <p class="lede reveal" style="--i: 2">{{ page.heroLede }}</p>
   <ul class="link-list reveal" style="--i: 3">
-    <li><a routerLink="/projects">View projects</a></li>
+    <li>
+      <a class="primary-link" routerLink="/projects"
+        >View projects<svg viewBox="0 0 24 24" width="1em" height="1em" aria-hidden="true" focusable="false">
+          <path d="M4 12h15M13 6l6 6-6 6" /></svg
+      ></a>
+    </li>
     <li>
       <a class="with-icon" [href]="site.links.email.url"
         ><app-contact-icon label="Email" /><span>Email</span></a
@@ -36,7 +41,7 @@
 <aside class="glance" aria-labelledby="glance-title">
   <h2 id="glance-title" class="glance__title">At a glance</h2>
   <ul class="stats">
-    @for (stat of stats; track stat.label) {
+    @for (stat of page.stats; track stat.label) {
       <li>
         <a [routerLink]="stat.path">
           <span class="stats__num" [attr.data-count]="stat.value">{{ stat.value }}</span>

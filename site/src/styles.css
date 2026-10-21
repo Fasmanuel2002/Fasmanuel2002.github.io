@@ -1,9 +1,10 @@
 /* ==========================================================================
-   Manuel Fas, portfolio. Design system, simplified on 2026-10-19.
-   The site's own identity with less on the page: one reading column on warm
-   paper, deep teal ink for headings, header and footer, teal text links and a
-   vermilion accent kept for small labels and markers. Self-hosted fonts:
-   Newsreader (headings) and Atkinson Hyperlegible Next (body).
+   Manuel Fas, portfolio. Design system, simplified on 2026-10-19, polished on
+   2026-10-21. The site's own identity with less on the page: one reading
+   column on warm paper, deep teal ink for headings, header and footer, teal
+   text links and a vermilion accent kept for small labels and markers. A dark
+   theme inverts the page to deep ink with paper-coloured text. Self-hosted
+   fonts: Newsreader (headings) and Atkinson Hyperlegible Next (body).
    ========================================================================== */
 
 @font-face {
@@ -37,10 +38,94 @@
   --amber: #f0a23b;
   --on-ink: #f5f2ea;
   --on-ink-muted: #a9bfc1;
+  --link-line: rgb(11 85 96 / 0.4);
+
+  /* The header, footer and back-to-top button: the same ink bar in both themes. */
+  --bar: #0f2a32;
+  --bar-edge: transparent;
+
+  /* Theme-dependent details: which icon the theme toggle shows (the moon offers the dark theme),
+     the employer logos (blended into the paper here, on a white chip in the dark theme) and the
+     portrait (its white background is toned down slightly on the dark page). */
+  --icon-moon: block;
+  --icon-sun: none;
+  --logo-blend: multiply;
+  --logo-chip: transparent;
+  --logo-pad: 0;
+  --photo-filter: none;
 
   --font-display: 'Newsreader', 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
   --font-body: 'Atkinson Hyperlegible Next', ui-sans-serif, system-ui, sans-serif;
   --measure: 46rem;
+  /* One frame for the header, main and footer on every route: the reading column, widened from
+     64rem. Home fills the frame; inner pages centre their 46rem column in it. */
+  --frame: 46rem;
+}
+
+@media (min-width: 64rem) {
+  :root {
+    --frame: 70rem;
+  }
+}
+
+/* Dark theme: deep ink page (darker than the ink bar, which keeps its colour), paper-coloured
+   text, lightened teal links and vermilion. It applies when the system prefers dark and the
+   reader has not picked light, or when the reader picks dark with the header toggle.
+   Text contrast on --paper #0a1b21: text 13.52:1, ink 15.75:1, muted 7.91:1, link 9.17:1, accent
+   7.24:1. The bar keeps its values: on-ink 13.43:1, on-ink-muted 7.81:1, amber 7.11:1.
+   The selectors say `html` rather than `:root` (the same element) on purpose: the build inlines
+   only the CSS whose selectors match the prerendered page, testing them with pseudo-classes
+   removed. `html:not(…)` and `html:is(…)` reduce to `html` and stay inlined, so a dark page is
+   dark from the first paint; `:root[data-theme='dark']` would be left out and flash light. */
+@media (prefers-color-scheme: dark) {
+  html:not([data-theme='light']) {
+    color-scheme: dark;
+    --ink: #f5f2ea;
+    --text: #e6e1d6;
+    --muted: #9fb1b4;
+    --paper: #0a1b21;
+    --rule: #24414a;
+    --link: #7cc7cf;
+    --accent: #f08c5f;
+    --link-line: rgb(124 199 207 / 0.45);
+    --bar-edge: #24414a;
+    --icon-moon: none;
+    --icon-sun: block;
+    --logo-blend: normal;
+    --logo-chip: #ffffff;
+    --logo-pad: 0.3rem;
+    --photo-filter: brightness(0.92);
+  }
+}
+
+/* The same values when the reader picks dark (data-theme is set by the toggle and index.html);
+   data-theme='light' turns the block above off, which forces the light theme. */
+html:is([data-theme='dark']) {
+  color-scheme: dark;
+  --ink: #f5f2ea;
+  --text: #e6e1d6;
+  --muted: #9fb1b4;
+  --paper: #0a1b21;
+  --rule: #24414a;
+  --link: #7cc7cf;
+  --accent: #f08c5f;
+  --link-line: rgb(124 199 207 / 0.45);
+  --bar-edge: #24414a;
+  --icon-moon: none;
+  --icon-sun: block;
+  --logo-blend: normal;
+  --logo-chip: #ffffff;
+  --logo-pad: 0.3rem;
+  --photo-filter: brightness(0.92);
+}
+
+/* The header's theme toggle offers the other theme: a moon in the light theme, a sun in the dark. */
+.theme-toggle__moon {
+  display: var(--icon-moon);
+}
+
+.theme-toggle__sun {
+  display: var(--icon-sun);
 }
 
 *,
@@ -106,7 +191,7 @@ a {
   color: var(--link);
   text-decoration-line: underline;
   text-decoration-thickness: 1px;
-  text-decoration-color: rgb(11 85 96 / 0.4);
+  text-decoration-color: var(--link-line);
   text-underline-offset: 0.18em;
 }
 
@@ -140,8 +225,20 @@ main:focus {
 }
 
 .wrap {
-  width: min(100% - 2.5rem, var(--measure));
+  width: min(100% - 2.5rem, var(--frame));
   margin-inline: auto;
+}
+
+/* Each page is rendered next to <router-outlet> in <main>. Inner pages keep the 46rem reading
+   column, centred in the frame; Home spans the whole frame, edge to edge with header and footer. */
+main > :not(router-outlet) {
+  display: block;
+  width: min(100%, var(--measure));
+  margin-inline: auto;
+}
+
+main > app-home {
+  width: auto;
 }
 
 /* Keep the footer at the bottom of short pages */
@@ -198,7 +295,7 @@ app-root > main {
 .entry__meta,
 .entry__place,
 .tech,
-.result span,
+.result,
 .sub,
 .news time,
 .news__detail,
@@ -212,7 +309,6 @@ app-root > main {
 .page-meta,
 .entry__when,
 .tech,
-.result span,
 .sub,
 .news time,
 .news__detail,
@@ -222,8 +318,6 @@ app-root > main {
   font-size: 0.95rem;
 }
 
-.result strong,
-.result span,
 .sub,
 .papers span,
 .figure__credit {
@@ -328,6 +422,11 @@ app-root > main {
   margin-top: 1.5rem;
 }
 
+/* A row of links that wraps between links, never inside one */
+.link-list--row li {
+  white-space: nowrap;
+}
+
 .glance__title {
   margin-bottom: 0.6rem;
 }
@@ -369,10 +468,6 @@ app-root > main {
   border-top: 1px solid var(--rule);
 }
 
-.section .entry {
-  padding-bottom: 0;
-}
-
 /* Dated entries: the dates sit in a narrow rail from 48rem */
 .entry--dated {
   display: grid;
@@ -407,9 +502,15 @@ app-root > main {
   line-height: 1.2;
 }
 
-.entry__title a {
+/* A heading that is a link (project titles): ink, underlined only on hover and keyboard focus. */
+.title-link {
   color: var(--ink);
-  text-decoration-color: rgb(15 42 50 / 0.3);
+  text-decoration-line: none;
+}
+
+.title-link:hover,
+.title-link:focus-visible {
+  text-decoration-line: underline;
 }
 
 .entry__meta {
@@ -424,14 +525,18 @@ app-root > main {
   margin-bottom: 0.3rem;
 }
 
-/* Employer logos: small, quiet marks; the organization name is the link. */
+/* Employer logos: small, quiet marks; the organization name is the link. The files are drawn on
+   white: blended into the paper in the light theme, on a white chip in the dark theme. */
 .entry__logo {
   flex: none;
   width: 3rem;
   height: 3rem;
+  padding: var(--logo-pad);
   object-fit: contain;
+  border-radius: 0.3rem;
+  background: var(--logo-chip);
   filter: grayscale(1) contrast(1.2);
-  mix-blend-mode: multiply;
+  mix-blend-mode: var(--logo-blend);
   opacity: 0.85;
 }
 
@@ -440,12 +545,13 @@ app-root > main {
   font-size: 1.2rem;
 }
 
+/* The title of the work, under its h3 label: lighter than the heading so the two do not compete. */
 .thesis-title {
   margin-top: 0.4rem;
   color: var(--ink);
   font-family: var(--font-display);
   font-size: 1.2rem;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.3;
 }
 
@@ -453,18 +559,35 @@ app-root > main {
   margin-top: 0.75rem;
 }
 
+/* Headline result (app-result): the figures are the anchor, set large in the display font with
+   tabular numerals; the words between them and the note below stay small and grey. */
+app-result {
+  display: block;
+}
+
 .result {
-  margin-top: 1rem;
-  padding-left: 0.85rem;
-  border-left: 3px solid var(--accent);
+  margin-top: 1.1rem;
 }
 
-.result strong {
+.result__value {
+  display: block;
+  line-height: 1.25;
+}
+
+.result__figure {
   color: var(--ink);
-  font-size: 1.05rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.9rem, 1.6rem + 1.2vw, 2.4rem);
+  font-weight: 500;
+  font-variant-numeric: lining-nums tabular-nums;
+  letter-spacing: -0.01em;
+  line-height: 1.1;
 }
 
-.result span {
+.result__note {
+  display: block;
+  margin-top: 0.3rem;
+  font-size: 0.9rem;
   line-height: 1.5;
 }
 
@@ -589,13 +712,15 @@ app-root > main {
 
 .home-hero__photo {
   grid-area: photo;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
 }
 
+/* A circle: the photo's white background reads as a clean disc on the paper. The file is
+   400×400, so it is never shown wider than 12rem (192 CSS px). */
 .home-hero__photo img {
-  width: 6.5rem;
-  border: 1px solid var(--ink);
-  border-radius: 6px;
+  width: 7.5rem;
+  border-radius: 50%;
+  filter: var(--photo-filter);
 }
 
 @media (min-width: 40rem) {
@@ -610,26 +735,38 @@ app-root > main {
   }
 
   .home-hero__photo {
-    align-self: start;
+    align-self: center;
     margin-bottom: 0;
   }
 
   .home-hero__photo img {
-    width: clamp(8rem, 14vw, 10rem);
+    width: clamp(9rem, 15vw, 10.5rem);
   }
 }
 
-/* Home from 64rem: the hero, the At a glance strip and the About | Recent activity block share
-   one 70rem width (wider than the reading column) and one 3fr / 2fr grid. */
+/* The hero's primary action: bolder, with a full-strength underline and an arrow. Still a link. */
+.link-list .primary-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3em;
+  font-weight: 700;
+  text-decoration-thickness: 2px;
+  text-decoration-color: currentColor;
+}
+
+.primary-link svg {
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.25;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* Home from 64rem: the hero, the At a glance strip and the About | Recent activity block fill the
+   70rem frame, edge to edge with the header and footer, on one 3fr / 2fr grid. */
 
 @media (min-width: 64rem) {
-  .home-hero,
-  .glance,
-  .home-columns {
-    width: min(100vw - 2.5rem, 70rem);
-    margin-inline: calc((100% - min(100vw - 2.5rem, 70rem)) / 2);
-  }
-
   .home-hero,
   .home-columns {
     grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
@@ -638,6 +775,10 @@ app-root > main {
 
   .home-hero__photo {
     justify-self: end;
+  }
+
+  .home-hero__photo img {
+    width: 12rem;
   }
 
   .home-columns {
@@ -661,6 +802,16 @@ app-root > main {
   /* The narrow column stacks date, title and organization */
   .home-columns .news li {
     grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* About is much shorter than Recent activity, so on screens tall enough to show all of it, it
+   stays beside the list while the reader scrolls (both in view at once, as the author asked). */
+@media (min-width: 64rem) and (min-height: 40rem) {
+  .home-columns > .section:first-child {
+    position: sticky;
+    top: 2rem;
+    align-self: start;
   }
 }
 
@@ -887,14 +1038,88 @@ app-architecture-figure {
   margin-top: 0.6rem;
 }
 
+/* A small chevron after the label instead of the browser's triangle: down when closed, up when open. */
 .disclosure summary {
-  width: fit-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
   color: var(--link);
   cursor: pointer;
+  list-style: none;
+}
+
+.disclosure summary::-webkit-details-marker {
+  display: none;
+}
+
+.disclosure summary::after {
+  content: '';
+  width: 0.4em;
+  height: 0.4em;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-0.15em) rotate(45deg);
+}
+
+.disclosure[open] summary::after {
+  transform: translateY(0.1em) rotate(225deg);
 }
 
 .disclosure[open] summary {
   margin-bottom: 0.4rem;
+}
+
+/* Certifications: one section per group (each specialization, then the other certificates),
+   with compact dated rows. */
+.page-head + .cert-group {
+  margin-top: 0;
+}
+
+/* Specialization headings link to the specialization; the underline marks the link, the colour
+   stays the heading ink so the three group headings match. */
+.cert-group .section__title a {
+  color: var(--ink);
+}
+
+.cert-group .section__title a:hover {
+  color: var(--accent);
+}
+
+.cert-group .entries {
+  margin-top: 1.25rem;
+}
+
+.entries > .entry--compact {
+  padding-block: 0.9rem;
+}
+
+.entry--compact .entry__title {
+  font-size: 1.15rem;
+  line-height: 1.3;
+}
+
+.entry--compact .entry__when {
+  padding-top: 0.05rem;
+}
+
+/* "Verify certificate" floats so "Course notes" sits beside it and the notes open full width. */
+.cert-actions {
+  display: flow-root;
+  margin-top: 0.35rem;
+}
+
+.cert-actions__verify {
+  float: left;
+  margin-right: 1.5rem;
+  font-weight: 600;
+}
+
+.cert-actions .disclosure {
+  margin-top: 0;
+}
+
+.cert-actions .disclosure p {
+  clear: left;
 }
 
 .back {

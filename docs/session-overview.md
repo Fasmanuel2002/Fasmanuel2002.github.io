@@ -1,4 +1,4 @@
-# Session overview: where we are (updated 2026-10-19)
+# Session overview: where we are (updated 2026-10-21)
 
 Read this first when you continue. `CLAUDE.md` is still the project authority; `docs/build-summary.md` has the full build details.
 
@@ -36,9 +36,23 @@ Read this first when you continue. `CLAUDE.md` is still the project authority; `
 - Home: photo in the hero, then At a glance, then About | Recent activity side by side. Featured projects removed from home.
 - Canonicals and the sitemap use trailing slashes, the favicon is an MF monogram, and `attention-mask.ts` is deleted.
 
+## Done on 2026-10-21
+- The site is live at https://fasmanuel2002.github.io (repo renamed, Pages source set to GitHub Actions).
+- Design polish pass, approved by the author ("simple but perfect"). Details are in `docs/build-summary.md`, section "Design polish pass (2026-10-21)":
+  - Header, content and footer share one frame.
+  - Shorter hero lede and a larger round photo.
+  - Home About shows two blocks ("Who I am", "What I do").
+  - `/projects` leads with large result figures.
+  - `/certifications` is grouped by specialization.
+  - Dark mode with a header toggle.
+  - 1200×630 share card (`site/public/images/og-card.png`).
+- Checked by the developer: axe 0 violations on 9 routes × 3 widths × light/dark; Lighthouse mobile 98/100/100/100, desktop 100.
+- Not committed yet. New untracked files `site/src/app/result.ts`, `site/scripts/og-card.html` and `site/public/images/og-card.png` must be committed with the rest, or the CI build fails.
+
 ## Next session: start here
-1. On GitHub: rename the repo to `Fasmanuel2002.github.io`, set Settings > Pages > Source to "GitHub Actions", then update the local remote (see README).
-2. Run QA (step 3) and SEO/GEO (step 4), then the developer fix pass.
+1. The author reviews the polish pass locally, then commits and pushes. Leave the `"analytics"` line in `site/angular.json` out of the commit.
+2. Decide NR-02 (DeepSurv about 0.82 vs Cox-nnet 0.8750). "0.82" is now set large on `/projects`.
+3. Run QA (step 3) and SEO/GEO (step 4), then the developer fix pass.
 
 ite/`.
 

@@ -11,16 +11,19 @@ Revision 2026-10-19:
 - GitHub Pages preparation: new base URL in all generated files, a static `404.html`, and a skip-link fix for GitHub Pages' trailing-slash redirects. See "Deploy to GitHub Pages".
 - A simplified design that keeps the site's own fonts, palette, links, navigation and lists. See "2026-10-19 minimal restyle".
 
+Revision 2026-10-21: design polish pass approved by the author: one shared frame for header, content and footer, a simpler home hero, results as the anchor on /projects, grouped certifications, a dark theme with a toggle, and a 1200×630 share card. See "Design polish pass (2026-10-21)" at the end. Sections between here and there describe the site as of 2026-10-19.
+
 ## External assets and justification
 
-The site loads nothing from third-party servers: no CDN, web-font service, analytics, tracking or third-party script. Everything below is self-hosted from `site/public/` and served from the site's own origin. The restyle of 2026-10-19 added no asset, font, library or script.
+The site loads nothing from third-party servers: no CDN, web-font service, analytics, tracking or third-party script. Everything below is self-hosted from `site/public/` and served from the site's own origin. The restyle of 2026-10-19 added no asset, font, library or script. The polish pass of 2026-10-21 added one image (the share card) and no font, library or script; its theme toggle is a few lines of the site's own Angular code plus a small inline script in `index.html`.
 
 | Asset | Source and licence | Served at | Size | Justification |
 |---|---|---|---|---|
 | Newsreader (variable font: weight 400–700, optical size 6–72) | Production Type / Google Fonts, SIL Open Font License 1.1. Taken from `@fontsource-variable/newsreader` 5.3.0 and subset to the 132 Latin glyphs headings use. The OFL declares no Reserved Font Name, so subsetting is permitted. | `/fonts/newsreader-latin-var.woff2` | 61 KB (original file 132 KB) | Display font for headings. An editorial, research-paper serif whose optical-size axis keeps large titles crisp. It gives the site an academic voice without imitating a LaTeX or arXiv template. |
 | Atkinson Hyperlegible Next (variable font: weight 200–800) | Braille Institute / Google Fonts, SIL Open Font License 1.1. Latin subset as published in `@fontsource-variable/atkinson-hyperlegible-next` 5.3.0. | `/fonts/atkinson-hyperlegible-next-latin-var.woff2` | 34 KB | Body font, chosen for legibility. It clearly separates 0/O and 1/l/I, which matters on a page full of metrics (AUROC 0.787), arXiv IDs and dates. It also has tabular figures for the results tables. |
 | Font licences | Copies of both OFL texts | `/fonts/OFL-*.txt` | 9 KB | The OFL requires the licence to travel with redistributed font files. |
-| Profile photo | `source/profile_picture/profile.jpeg` (author's own; no EXIF/GPS per data.json) | `/images/profile.jpg`, `/images/profile.webp` | 15.5 KB JPEG, 5.2 KB WebP | Required by the brief. The WebP was generated locally at quality 80, with the JPEG as fallback. It is shown in the home hero, above the fold at every width, loaded eagerly with `fetchpriority="high"` (it is the mobile LCP element), and used as the Open Graph image. |
+| Profile photo | `source/profile_picture/profile.jpeg` (author's own; no EXIF/GPS per data.json) | `/images/profile.jpg`, `/images/profile.webp` | 15.5 KB JPEG, 5.2 KB WebP | Required by the brief. The WebP was generated locally at quality 80, with the JPEG as fallback. It is shown in the home hero, above the fold at every width, loaded eagerly with `fetchpriority="high"` (it is the mobile LCP element), and it is the JSON-LD `Person` image. Since 2026-10-21 the Open Graph image is the share card below. |
+| Share card (Open Graph image) | Made for this site on 2026-10-21 from `site/scripts/og-card.html` (committed source): name, headline, location and domain from data.json, the profile photo, the two fonts above and the site palette. Rendered with the local Chrome; the command is in the root `README.md`. | `/images/og-card.png` (1200×630) | 100 KB | Link previews on LinkedIn, X, Slack and similar. The 400×400 headshot was too small for `summary_large_image` cards. `npm run build` fails if the card's text no longer matches data.json or the PNG is not 1200×630. |
 | Research PDFs | `source/papers/TRACEPAPER_Report.pdf`, `source/papers/TFG_ManuelFasRuiz.pdf` (byte-identical copies) | `/papers/TRACEPAPER_Report.pdf`, `/papers/TFG_ManuelFasRuiz.pdf` | 1.3 MB, 5.5 MB | Author decision NR-15: host both PDFs at these paths. The thesis is hosted as-is, also by author decision. |
 | Employer logos (BISITE, AIR Institute, HSLU, Wembley Studios) | Logos supplied by the author (`source/logos/`, recorded in data.json `experience[].logo`) | `/images/logos/*.webp` (160 px wide) | 1–3 KB each | Shown decoratively (empty alt, `aria-hidden`) as small grayscale marks beside each role on /experience; the organization name is the link to `organization_url`. |
 | Favicon | "MF" monogram drawn for this site as SVG paths (no font): paper letters on an ink rounded square. The `.ico` (16, 32 and 48 px) was rendered from the SVG with Chrome and Pillow | `/favicon.svg`, `/favicon.ico` | 0.3 KB SVG, 4 KB ICO | Site identity. No third-party icon. |
@@ -379,3 +382,135 @@ The full steps are in the root `README.md`. The workflow is `.github/workflows/d
 12. **`404.html` lists the navigation by hand.** If the nav ever changes, update `site/public/404.html` too.
 13. **Node environment.** I installed Node 24.22.0 with nvm. Your nvm default alias (`lts/*`) now resolves to it in new terminals. To go back to the system Node, run `nvm alias default system`.
 14. **Caching.** GitHub Pages sets its own cache headers, which cannot be configured, so hashed JS/CSS files are not cached long-term. This is acceptable for a site of this size.
+
+## Design polish pass (2026-10-21)
+
+**Request.** Approved by the author on 2026-10-21: "make it better, it needs to be simple but perfect". The 2026-10-19 constraints still apply: calm and text-first; the site's own fonts (Newsreader, Atkinson Hyperlegible Next) and palette (teal, paper, vermilion); all nine routes, the nav, the scroll effects, the home counters and the mobile menu; no new libraries, fonts or third-party scripts. `data/data.json` was not edited. The uncommitted `"analytics"` line in `site/angular.json` was left as it is.
+
+### What changed
+
+**1. One frame.** A `--frame` token (46rem, widened to 70rem from 64rem) sets the width of the header bar, `<main>` and the footer on every route. Home fills the frame. Inner pages centre their 46rem reading column inside it (`main > :not(router-outlet)`). The Home `100vw` breakout is gone. Measured edges in CSS px:
+
+| Width | Header and footer, left | Header, right (toggle icon) | Home content | Inner-page column |
+|---|---|---|---|---|
+| 375 | 20 | 355 | 20–355 | 20–355 |
+| 768 | 20 | 748 | 20–748 | 20–748 |
+| 1024 | 20 | 1004 | 20–1004 | 144–880 |
+| 1280 | 80 | 1200 | 80–1200 | 272–1008 |
+| 1440 | 160 | 1280 | 160–1280 | 352–1088 |
+
+The header and footer are the same on every route.
+
+**2. Home hero.**
+- **Portrait.** A circle with no border; the photo's white background reads as a clean disc on the paper. It is 7.5rem on phones, 9–10.5rem on tablets and 12rem (192 CSS px) from 64rem, so it never exceeds 192 px for the 400 px file. It is still loaded eagerly with `fetchpriority="high"` and is not animated.
+- **Lede.** "Specialising in Transformer architectures, NLP and large language models. Reimplements state-of-the-art papers as reproducible PyTorch code, with research experience across three labs in Spain and Switzerland." (26 words).
+  - It is composed in `sync-content.mjs`, and "three labs in Spain and Switzerland" is computed from the research roles.
+  - `expect` checks fail the build if the CV summary stops saying any of the three restated phrases, if the lede passes 32 words, or if it repeats the headline.
+  - The full summary stays in the JSON-LD `description` and in `llms.txt`. The home meta description is unchanged.
+- **Primary action.** "View projects" is bold, with a full-strength 2px underline and an arrow. It is still a text link.
+
+**3. Home About.**
+- Only "Who I am" and "What I do", verbatim (both are `verbatim: true`), selected in `sync-content.mjs`. The new lede is "Who Manuel Fas is and what he does, in his own words."
+- The HSLU exchange is stated on /education: the entry "Lucerne University of Applied Sciences and Arts (HSLU)", "Visiting Exchange Student, Computer Science", Sep 2025 – Jan 2026, and the page summary.
+- About is now much shorter than Recent activity. From 64rem wide and 40rem tall, it stays in view beside the list while the reader scrolls (`position: sticky`).
+
+**4. Projects list.** The headline result is the visual anchor, rendered by a new `app-result` component.
+- **Style.** Figures in Newsreader at 1.9–2.4rem with lining tabular figures. The words between them and the note below are small and grey. The vermilion bar is gone.
+- **Wording.**
+  - TRACE now reads "0.787 AUROC · 0.696 AUPRC" (number first, as suggested).
+  - The thesis keeps its exact wording, "Best model: DeepSurv, C-index approximately 0.82" (NR-02). Only "0.82" is set large.
+  - Paper-Reimplementations reads "6 papers listed".
+  - The generator splits each result into parts and checks that the parts join back to the exact text.
+- **Titles.** Ink, with no underline until hover or keyboard focus. The focus ring is unchanged.
+- **Links row.** It wraps only between links.
+- **Project pages.** The same component renders the result in the three project page heads, so the list and the detail pages match.
+
+**5. Certifications.** Three sections: Deep Learning Specialization, Mathematics for Machine Learning and Data Science, and Other certificates.
+- **Summaries.** Each section starts with a one-line summary composed in the generator:
+  - "Five DeepLearning.AI courses on Coursera, Jun 2025 to Feb 2026."
+  - "Three DeepLearning.AI courses on Coursera, Dec 2024 to Mar 2025."
+  - "Four courses taken outside the specializations, 2023 to Aug 2026."
+- **Links.** The two specialization headings link to their URLs from data.json.
+- **Rows.** Each row has the date rail, the course title (h3), then "Verify certificate" and the "Course notes" disclosure on one line. The notes open at full width below.
+- **Less repetition.** The repeated "Certificate · Part of …" eyebrow is gone. Issuer and platform are stated once per specialization and on each standalone row. The GenAI topics line stays.
+- **Structure.** Headings run h1, then an h2 per group, then an h3 per certificate. The anchors `#spec-deep-learning`, `#spec-math-ml-ds` and every `#cert-…` are kept.
+- **Height.** At 1280 px the page is 2,262 px tall instead of 3,491; at 375 px, 2,922 instead of 4,197.
+
+**6. Dark theme with a toggle.**
+- **Tokens.** Dark values sit under `@media (prefers-color-scheme: dark) { html:not([data-theme='light']) {…} }` and again under `html:is([data-theme='dark'])`. `data-theme='light'` forces the light theme, and `color-scheme` follows.
+  - Page `#0a1b21`: deep ink, darker than the `#0f2a32` ink bar.
+  - Text `#e6e1d6`, headings `#f5f2ea`, muted `#9fb1b4`.
+  - Links `#7cc7cf`, vermilion `#f08c5f`, rules `#24414a`.
+- **Contrast** on the dark page: text 13.52:1, headings 15.75:1, muted 7.91:1, links 9.17:1, vermilion 7.24:1. The bar keeps its colours (13.43, 7.81 and 7.11:1). The light values are unchanged.
+- **Header.** The header and footer keep the ink bar in both themes, with a hairline edge in dark. `theme-color` (`#0f2a32`) is therefore right in both themes and was not changed.
+- **Images.** Employer logos sit on a white chip in dark. Architecture figures stay on their white panel. The portrait is toned down slightly (`brightness(0.92)`).
+- **Toggle.**
+  - An icon button at the end of the header: a moon offers dark, a sun offers light (inline SVG).
+  - It comes after the nav on desktop and next to the menu button on mobile, in DOM order, so the focus order matches the visual order.
+  - Its accessible name is "Switch to dark theme" or "Switch to light theme". It is 44×44 px with the amber focus ring.
+  - The choice is stored in `localStorage` (`theme`) inside `try/catch`. Without a saved choice the theme follows the system setting, including live changes. The button is hidden without JavaScript.
+- **No flash.** An inline script in `index.html` sets `data-theme` before first paint. The build has a second trap:
+  - Beasties inlines only the CSS whose selectors match the prerendered page, and it tests selectors with pseudo-classes stripped. The rest of the CSS loads late.
+  - So `:root[data-theme='dark']` would have been left out, and dark pages would have flashed light.
+  - The `html:not(…)` and `html:is(…)` selectors mean the same thing and stay inlined.
+  - Verified by rendering pages with the stylesheet and all scripts blocked.
+- **Back to top.** On hover it is now amber with ink (7.11:1 in both themes). The old vermilion with paper text would have failed contrast in dark.
+
+**7. Share card.** See the asset table at the top.
+- `og:image` on all nine routes points to `/images/og-card.png`, with `og:image:width` 1200, `og:image:height` 630 and `og:image:alt` "Manuel Fas: Machine learning researcher and engineer, Salamanca, Spain".
+- `twitter:card` is `summary_large_image`.
+- The JSON-LD `Person` image is still the profile photo.
+
+**8. General polish.**
+- The Home breakout was replaced by the frame. This also removes the axe "incomplete" result on Home at 1280 px and a few pixels of misalignment with classic scrollbars.
+- Removed the unused rule `.section .entry { padding-bottom: 0 }`. It was left over from the removed home projects list and would have squeezed the certificate rows.
+- Disclosures ("Course notes", "Report abstract") use a small chevron after the label instead of the browser's triangle. It looks the same in every browser.
+- Certifications: all group headings use the heading ink, and the link is marked by its underline.
+- Thesis page: the Technologies line now matches the Keywords line above it, with the same size and colour as on the other project pages.
+- Education: the thesis title is set at weight 500, so it no longer competes with its "Bachelor's Thesis" heading.
+- Mobile menu: a hairline under the panel keeps it distinct from the page, which matters in dark.
+- Home no longer imports four content files just to count. The counts come precomputed in `home.json`, with the same values (4, 3, 4, 12).
+- `404.html`: the header uses the same frame, the page follows the dark theme and the saved choice, and the nav links have trailing slashes like the app.
+
+### Files touched
+- **Changed:**
+  - `site/scripts/sync-content.mjs`
+  - `site/src/index.html`
+  - `site/src/styles.css`
+  - `site/src/app/app.ts`, `app.html`, `app.css`
+  - `site/src/app/seo.ts`
+  - `site/src/app/pages/home/home.ts`, `home.html`
+  - `site/src/app/pages/projects/projects.ts`, `projects.html`, `project-head.ts`, `thesis-project.html`
+  - `site/src/app/pages/certifications/certifications.ts`, `certifications.html`
+  - `site/public/404.html`
+  - The generated `site/src/app/content/*.json`, and `site/public/llms.txt` (only the TRACE result wording)
+  - `README.md` (share card section) and this file
+- **Added:** `site/src/app/result.ts`, `site/scripts/og-card.html`, `site/public/images/og-card.png`.
+- **Not changed:** `data/data.json`; `site/angular.json` (the analytics line is still its only uncommitted change); the routes; `sitemap.xml`; `robots.txt`; the JSON-LD; page titles and descriptions. Nothing was deleted.
+
+### Verification (production build, served statically)
+
+| Check | Result |
+|---|---|
+| `npm run build` (Node 24.22.0) | Passes with no warnings or budget errors; 9 routes prerendered. Initial JS+CSS is 309 kB raw / 85 kB transferred (was 305 / 84). CSS is 13.8 kB / 3.6 kB. |
+| Routes | All nine return 200. Unknown paths return 404 with `404.html`. |
+| Overflow, h1, heading order, axe-core 4.14 (WCAG 2.0, 2.1 and 2.2 A and AA, plus best practices) | 9 routes × 375/768/1280 px × light, dark (system) and dark (saved choice): 81 of 81 pass. No horizontal overflow, one h1, no skipped levels, 0 violations, 0 incomplete. The 375 px runs use Playwright viewport emulation, which has no window-size minimum. `404.html` has 0 violations in both themes. |
+| Contrast | Computed values are listed above. axe found no contrast issue in either theme. |
+| Theme toggle | Reached by Tab after the nav (8th stop on desktop) and after the menu button on mobile. Enter and Space switch the theme. The label always names the action, and focus stays on the button. The choice persists across reloads, client-side navigation and full page loads. Without a saved choice it follows a live system change. It works with the mobile menu open, with no errors when storage throws. |
+| No flash | With the stylesheet and all scripts blocked: saved dark and system dark render dark; saved light (with system dark) and system light render light. |
+| Reduced motion | With `reduce`: 0 running animations on all nine routes in both themes, also after scrolling. The counters show their final values. |
+| Lighthouse 13.5 (localhost) | Home and /projects: mobile 98 / 100 / 100 / 100, desktop 100 / 100 / 100 / 100 (performance, accessibility, best practices, SEO). Mobile LCP is 2.3 s. |
+| Content | Every route has the same link targets and images (src and alt) as the committed build. Words removed: on Home, the two dropped About paragraphs, the long hero summary and the old About lede; on /certifications, the "Certificate · Part of" eyebrow. All 12 certificates keep their id, date and verification URL, and both specialization links are unchanged. |
+| Head tags | The 1200×630 card is the `og:image` on all nine routes, with alt text and `summary_large_image`. Titles and descriptions are unique; descriptions are 137–155 characters. The JSON-LD parses: Person, ItemList, and SoftwareSourceCode with BreadcrumbList. |
+| Key facts without JavaScript | The prerendered HTML contains the name, the headline, the current role and the other roles, the project titles and results (0.787, 0.696, DeepSurv C-index approximately 0.82, 6 papers), the certificates and the HSLU exchange. |
+| Generator | Deterministic: a second `npm run sync` changes nothing. `sitemap.xml` and `robots.txt` are unchanged. |
+
+Test tools ran from a scratch folder and were not added to the project: Playwright-core 1.64, axe-core 4.14 and Lighthouse 13.5, driving the installed Google Chrome 155.
+
+### For the author
+1. **Sticky About on Home (new).** I added it to avoid a tall empty column next to Recent activity, and it matches your earlier request to see both at once. If you prefer About to scroll away, delete the `@media` block under the comment "About is much shorter than Recent activity" in `site/src/styles.css`.
+2. **Dropped About text.** The facts from "Education and international experience" and "My interests" are on /education and in At a glance. Their personal sentences now appear nowhere on the site, for example "Studying both fields has helped me think about technology from different perspectives" and your goal of bridging research ideas and practical applications.
+3. **NR-02 is now more visible.** "0.82" is set large on /projects and on the thesis page. The wording is unchanged, and it still differs from the hosted PDF's Table 2 and the README (Cox-nnet 0.8750).
+4. **TRACE order.** The result now reads "0.787 AUROC · 0.696 AUPRC" everywhere it appears, including `llms.txt`.
+5. **Date formats in Recent activity.** Paper dates come from data.json as "July 2026" and "January 2026", while roles and certificates use "Sep 2026". I kept them verbatim.
+6. **Unused generated data.** `home.json` still carries `projectCards` and `ledes.featured` from the removed home projects section, about 3 kB in the home chunk. I did not remove them in this pass.

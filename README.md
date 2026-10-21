@@ -79,6 +79,20 @@ Or serve on another port, for example `-l 4300`.
 2. Run `npm run build` in `site/`.
 3. Preview with Option A.
 
+## Social share card
+
+Every page uses `site/public/images/og-card.png` (1200×630) as its Open Graph image. Its source is `site/scripts/og-card.html`, which uses the site's own fonts and the profile photo. If the name, headline or location in `data/data.json` changes, `npm run build` stops with a message until the card shows the new text.
+
+To re-render it after editing `og-card.html`, run this inside `site/` (macOS, with Google Chrome installed):
+
+```bash
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --hide-scrollbars \
+  --force-device-scale-factor=1 --allow-file-access-from-files --virtual-time-budget=5000 \
+  --window-size=1200,630 --screenshot="$PWD/public/images/og-card.png" "file://$PWD/scripts/og-card.html"
+```
+
+`--allow-file-access-from-files` lets the page load the fonts from `public/fonts/`, and `--virtual-time-budget` waits for them before the screenshot. Check that the PNG is 1200×630 and stays under about 150 KB.
+
 ## Pages
 
 | Route | Page |

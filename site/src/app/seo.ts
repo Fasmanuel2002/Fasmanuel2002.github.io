@@ -14,7 +14,8 @@ export class Seo {
 
   apply(page: PageMeta, jsonLd?: object): void {
     const url = page.url;
-    const photo = SITE.person.photo;
+    // The 1200×630 share card (scripts/og-card.html). The JSON-LD Person image stays the portrait.
+    const card = SITE.ogImage;
 
     this.title.setTitle(page.title);
     const tags: MetaDefinition[] = [
@@ -24,11 +25,11 @@ export class Seo {
       { property: 'og:title', content: page.title },
       { property: 'og:description', content: page.description },
       { property: 'og:url', content: url },
-      { property: 'og:image', content: absoluteUrl(photo.src) },
-      { property: 'og:image:width', content: String(photo.width) },
-      { property: 'og:image:height', content: String(photo.height) },
-      { property: 'og:image:alt', content: photo.alt },
-      { name: 'twitter:card', content: 'summary' },
+      { property: 'og:image', content: absoluteUrl(card.src) },
+      { property: 'og:image:width', content: String(card.width) },
+      { property: 'og:image:height', content: String(card.height) },
+      { property: 'og:image:alt', content: card.alt },
+      { name: 'twitter:card', content: 'summary_large_image' },
     ];
     for (const tag of tags) {
       this.meta.updateTag(tag);

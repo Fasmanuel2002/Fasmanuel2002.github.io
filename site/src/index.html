@@ -4,7 +4,17 @@
   <meta charset="utf-8">
   <title>Manuel Fas</title>
   <base href="/">
-  <script>document.documentElement.classList.add('js')</script>
+  <!-- Before first paint: mark that JavaScript runs, and apply the reader's saved colour theme
+       (set by the header toggle). Without a saved choice the system preference applies. -->
+  <script>
+    (function (root) {
+      root.classList.add('js');
+      try {
+        var theme = localStorage.getItem('theme');
+        if (theme === 'light' || theme === 'dark') root.setAttribute('data-theme', theme);
+      } catch (e) {}
+    })(document.documentElement);
+  </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#0f2a32">
   <link rel="icon" href="/favicon.ico" sizes="32x32">

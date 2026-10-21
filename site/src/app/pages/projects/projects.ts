@@ -2,12 +2,13 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { SITE } from '../../content/content';
 import projects from '../../content/projects.json';
+import { Result } from '../../result';
 import { Seo } from '../../seo';
 
 /** Project catalog: one entry per featured project, each linking to its own page. */
 @Component({
   selector: 'app-projects',
-  imports: [RouterLink],
+  imports: [RouterLink, Result],
   templateUrl: './projects.html',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

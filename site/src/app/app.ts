@@ -44,8 +44,38 @@ export class App {
 
   protected readonly scroll = inject(ScrollEffects);
 
+  /** True when the dark theme is in effect: the saved choice, otherwise the system setting. */
+  protected readonly darkTheme = signal(false);
+
   constructor() {
-    afterNextRender(() => this.scroll.start());
+    afterNextRender(() => {
+      this.scroll.start();
+      this.followTheme();
+    });
+  }
+
+  /** Keeps `darkTheme` (the toggle's label) in step with the theme in effect. */
+  private followTheme(): void {
+    const root = this.document.documentElement;
+    const system = this.document.defaultView?.matchMedia('(prefers-color-scheme: dark)');
+    const sync = () => {
+      const saved = root.getAttribute('data-theme');
+      this.darkTheme.set(saved ? saved === 'dark' : Boolean(system?.matches));
+    };
+    sync();
+    system?.addEventListener('change', sync);
+  }
+
+  /** Switches to the other theme and remembers the choice (read back in index.html before paint). */
+  protected toggleTheme(): void {
+    const theme = this.darkTheme() ? 'light' : 'dark';
+    this.document.documentElement.setAttribute('data-theme', theme);
+    this.darkTheme.set(theme === 'dark');
+    try {
+      this.document.defaultView?.localStorage.setItem('theme', theme);
+    } catch {
+      // Storage can be unavailable (private browsing, blocked storage); the theme then lasts until reload.
+    }
   }
 
   /** Back to the top of the page, with focus on <main> for keyboard and screen reader users. */

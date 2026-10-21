@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ArchitectureFigure, FigureData } from '../../architecture-figure';
+import { Highlight, Result } from '../../result';
 
 export interface ProjectHeadData {
   title: string;
@@ -8,7 +9,7 @@ export interface ProjectHeadData {
   role: string;
   date?: string | null;
   dateDisplay?: string | null;
-  highlight: { value: string; note: string };
+  highlight: Highlight;
 }
 
 /**
@@ -18,7 +19,7 @@ export interface ProjectHeadData {
  */
 @Component({
   selector: 'app-project-head',
-  imports: [RouterLink, ArchitectureFigure],
+  imports: [RouterLink, ArchitectureFigure, Result],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <header class="page-head">
@@ -39,10 +40,7 @@ export interface ProjectHeadData {
       </p>
       <h1 class="page-title page-title--project reveal" style="--i: 1">{{ project().title }}</h1>
       <p class="lede reveal" style="--i: 2">{{ project().summary }}</p>
-      <p class="result reveal" style="--i: 3">
-        <strong>{{ project().highlight.value }}</strong>
-        <span>{{ project().highlight.note }}</span>
-      </p>
+      <app-result class="reveal" style="--i: 3" [highlight]="project().highlight" />
       <ng-content />
       @if (figure(); as fig) {
         <app-architecture-figure [figure]="fig" [priority]="true" />

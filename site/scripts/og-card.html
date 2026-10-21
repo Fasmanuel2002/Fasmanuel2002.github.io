@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Share card: Manuel Fas</title>
+  <!--
+    Source of public/images/og-card.png (1200×630), the Open Graph image of every page.
+    Every fact on the card comes from data/data.json, and `npm run sync` fails if they drift apart.
+    Re-render it with the local Chrome after editing this file (command in the root README).
+  -->
+  <style>
+    @font-face {
+      font-family: 'Newsreader';
+      src: url('../public/fonts/newsreader-latin-var.woff2') format('woff2');
+      font-weight: 400 700;
+    }
+    @font-face {
+      font-family: 'Atkinson Hyperlegible Next';
+      src: url('../public/fonts/atkinson-hyperlegible-next-latin-var.woff2') format('woff2');
+      font-weight: 200 800;
+    }
+    html,
+    body {
+      margin: 0;
+    }
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      background: #f5f2ea;
+      color: #14262c;
+      font-family: 'Atkinson Hyperlegible Next', sans-serif;
+    }
+    .card {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-rows: minmax(0, 1fr) auto;
+      column-gap: 64px;
+      height: 100%;
+    }
+    .text {
+      align-self: center;
+      padding-left: 88px;
+    }
+    .eyebrow {
+      margin: 0 0 20px;
+      color: #9c370b;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    h1 {
+      margin: 0;
+      color: #0f2a32;
+      font-family: 'Newsreader', serif;
+      font-size: 124px;
+      font-weight: 560;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    .place {
+      margin: 28px 0 0;
+      color: #44555a;
+      font-size: 34px;
+    }
+    .photo {
+      align-self: center;
+      width: 296px;
+      height: 296px;
+      margin-right: 88px;
+      border-radius: 50%;
+    }
+    .bar {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      height: 92px;
+      margin: 0;
+      padding-inline: 88px;
+      border-top: 4px solid #f0a23b;
+      background: #0f2a32;
+      color: #f5f2ea;
+      font-size: 30px;
+      letter-spacing: 0.01em;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="text">
+      <p class="eyebrow">Machine learning researcher and engineer</p>
+      <h1>Manuel Fas</h1>
+      <p class="place">Salamanca, Spain</p>
+    </div>
+    <img class="photo" src="../public/images/profile.jpg" width="400" height="400" alt="">
+    <p class="bar">fasmanuel2002.github.io</p>
+  </div>
+</body>
+</html>
