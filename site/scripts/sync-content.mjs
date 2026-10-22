@@ -402,9 +402,29 @@ const trace = {
   ),
 };
 
-// Thesis
+// Thesis: per-model results from thesis Table 2, best first (author decision NR-02, 2026-10-22).
 const thesisCIndex = thesisSource.results.best_model_c_index_display.match(/\d+(?:\.\d+)?/)?.[0];
 expect(thesisCIndex, 'thesis C-index display should contain a number');
+const thesisMetrics = thesisSource.results.metrics_table;
+expect(
+  thesisMetrics[0].model === thesisSource.results.best_model &&
+    thesisMetrics[0].c_index_display === thesisSource.results.best_model_c_index_display,
+  'first thesis metrics row should be the best model',
+);
+expect(
+  thesisMetrics.every((row, i) => i === 0 || row.c_index <= thesisMetrics[i - 1].c_index),
+  'thesis metrics rows should be ordered by C-index, highest first',
+);
+expect(
+  thesisMetrics.length === thesisSource.method.models.length &&
+    thesisMetrics.every((row) => thesisSource.method.models.includes(row.model)),
+  'thesis metrics rows should cover exactly the models in method.models',
+);
+const thesisResultsCaption = thesisSource.results.description.replace(
+  / and the UPSA_Thesis_Research README results table \(author decision NR-02, 2026-10-22\)$/,
+  '',
+);
+expect(thesisResultsCaption === 'Held-out test results as reported in thesis Table 2 (page 27)', 'unexpected thesis results description');
 const thesis = {
   id: thesisSource.id,
   rank: thesisSource.featured_rank,
@@ -443,12 +463,15 @@ const thesis = {
     interpretability: thesisSource.method.interpretability,
   },
   results: {
+    caption: thesisResultsCaption,
+    rows: thesisMetrics.map((row) => ({ model: row.model, values: [row.c_index_display, row.log_rank_p_display] })),
+    columns: ['C-index', 'Log-rank p'],
     findings: thesisSource.results.findings,
     limitations: thesisSource.results.limitations,
   },
   keywords: thesisPaper.keywords,
   technologies: thesisSource.technologies.items,
-  // Wording under author review (NR-02): render it, never reword it. Only the numeral is set large.
+  // The best model and its C-index as data.json words them; only the numeral is set large.
   highlight: highlightOut(
     `Best model: ${thesisSource.results.best_model}, C-index ${thesisSource.results.best_model_c_index_display}`,
     thesisSource.data.patients_display,
@@ -843,9 +866,11 @@ const homeAbout = ['Who I am', 'What I do'].map((heading) => {
 const homeStats = [
   { value: experience.length, label: 'Roles', path: '/experience' },
   { value: projectCards.length, label: 'Projects', path: '/projects' },
+  // Implementations with status Completed (author wording 2026-10-22, QA B10): not every one is a
+  // faithful reimplementation of its paper, and #01 covers two papers.
   {
     value: implementations.filter((item) => item.statusKey === 'done').length,
-    label: 'Papers reimplemented',
+    label: 'Completed implementations',
     path: reimplementations.path,
   },
   // Every course certificate: the standalone ones plus the courses inside each specialization.

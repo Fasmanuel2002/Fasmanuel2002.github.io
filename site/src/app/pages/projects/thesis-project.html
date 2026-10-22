@@ -104,6 +104,31 @@
 
 <section class="section">
   <h2 class="section__title">Results</h2>
+  <figure class="table-figure">
+    <figcaption id="thesis-results-caption">{{ project.results.caption }}</figcaption>
+    <div class="table-wrap" role="region" aria-labelledby="thesis-results-caption" tabindex="0">
+      <table class="data-table" aria-labelledby="thesis-results-caption">
+        <thead>
+          <tr>
+            <th scope="col">Model</th>
+            @for (column of project.results.columns; track column) {
+              <th scope="col">{{ column }}</th>
+            }
+          </tr>
+        </thead>
+        <tbody>
+          @for (row of project.results.rows; track row.model; let first = $first) {
+            <tr [class.is-highlight]="first">
+              <th scope="row">{{ row.model }}</th>
+              @for (value of row.values; track $index) {
+                <td>{{ value }}</td>
+              }
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </figure>
   <ul class="points">
     @for (finding of project.results.findings; track $index) {
       <li>{{ finding }}</li>

@@ -7,7 +7,10 @@ export interface Highlight {
   parts: { text: string; figure: boolean }[];
 }
 
-/** A project's headline result: the figures as the visual anchor, the explanatory note below. */
+/**
+ * A project's headline result: the figures as the visual anchor, the explanatory note below.
+ * The visually hidden ". " keeps value and note apart in text read without CSS (S24).
+ */
 @Component({
   selector: 'app-result',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -17,8 +20,8 @@ export interface Highlight {
         >@for (part of highlight().parts; track $index) {@if (part.figure) {<span class="result__figure">{{
           part.text
         }}</span>} @else {{{ part.text }}}}</span
-      >
-      <span class="result__note">{{ highlight().note }}</span>
+      ><span class="visually-hidden">. </span
+      ><span class="result__note">{{ highlight().note }}</span>
     </p>
   `,
 })

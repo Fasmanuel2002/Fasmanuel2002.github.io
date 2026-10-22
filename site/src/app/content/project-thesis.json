@@ -61,9 +61,52 @@
     "interpretability": "SHAP attributions with 50 bootstrap resamples for DeepSurv and Cox-nnet; gene-set enrichment against GO, KEGG and Reactome with GSEApy; STRING protein-protein interaction cross-check; Random Survival Forest minimal-depth interaction analysis"
   },
   "results": {
+    "caption": "Held-out test results as reported in thesis Table 2 (page 27)",
+    "rows": [
+      {
+        "model": "Cox-nnet",
+        "values": [
+          "0.8750",
+          "0.019110"
+        ]
+      },
+      {
+        "model": "DeepSurv",
+        "values": [
+          "0.8032",
+          "0.030500"
+        ]
+      },
+      {
+        "model": "Cox Elastic Net",
+        "values": [
+          "0.7819",
+          "0.023514"
+        ]
+      },
+      {
+        "model": "Cox Lasso",
+        "values": [
+          "0.7713",
+          "0.016972"
+        ]
+      },
+      {
+        "model": "Random Survival Forest",
+        "values": [
+          "0.7181",
+          "0.166866"
+        ]
+      }
+    ],
+    "columns": [
+      "C-index",
+      "Log-rank p"
+    ],
     "findings": [
-      "DeepSurv achieved the best discriminative performance (C-index of approximately 0.82).",
-      "DeepSurv was the only model to produce a statistically significant risk stratification, outperforming both the linear Cox models and the Random Survival Forest.",
+      "The two deep survival networks had the highest C-index on the held-out test patients: Cox-nnet was best (0.8750), followed by DeepSurv (0.8032).",
+      "Of the penalized Cox models, Cox Elastic Net (C-index 0.7819) scored slightly above Cox Lasso (0.7713); the Random Survival Forest had the lowest C-index (0.7181).",
+      "Every model except the Random Survival Forest separated median-split high- and low-risk groups with a significant log-rank test (p < 0.05); the Random Survival Forest's groups did not differ significantly (p = 0.1669).",
       "DeepSurv and Cox-nnet shared 257 prognostic genes in the bootstrap SHAP consensus."
     ],
     "limitations": [
@@ -96,15 +139,15 @@
     "uv"
   ],
   "highlight": {
-    "value": "Best model: DeepSurv, C-index approximately 0.82",
+    "value": "Best model: Cox-nnet, C-index 0.8750",
     "note": "819 patients raw, 519 after preprocessing",
     "parts": [
       {
-        "text": "Best model: DeepSurv, C-index approximately ",
+        "text": "Best model: Cox-nnet, C-index ",
         "figure": false
       },
       {
-        "text": "0.82",
+        "text": "0.8750",
         "figure": true
       }
     ]

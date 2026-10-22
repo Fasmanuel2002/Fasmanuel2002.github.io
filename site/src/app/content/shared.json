@@ -55,7 +55,7 @@
       "slug": "upsa-thesis-cancer-survival",
       "path": "/projects/upsa-thesis-cancer-survival",
       "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer — Manuel Fas",
-      "description": "Bachelor's Thesis (UPSA): classical and deep survival models on TCGA breast cancer RNA-seq data. Best model: DeepSurv, C-index approximately 0.82.",
+      "description": "Bachelor's Thesis (UPSA): classical and deep survival models on TCGA breast cancer RNA-seq data. Best model: Cox-nnet, C-index 0.8750.",
       "url": "https://fasmanuel2002.github.io/projects/upsa-thesis-cancer-survival/"
     },
     "reimplementations": {

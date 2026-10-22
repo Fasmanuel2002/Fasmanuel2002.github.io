@@ -527,7 +527,7 @@
       ],
       "keywords_source": "source/papers/TFG_ManuelFasRuiz.pdf, page iv (Keywords)",
       "abstract": null,
-      "abstract_note": "The thesis abstract's results are used in the project results (NR-02). The full abstract text is not included because it describes six models while the project lists five (NR-10, open).",
+      "abstract_note": "The thesis abstract's results are not used: per the author's decision of 2026-10-22 (NR-02), the project results follow Table 2 (page 27) and the README, and the abstract (page iii) reports different figures (DeepSurv best with a C-index of about 0.82, and the only significant model). The full abstract text is not included because it describes six models while the project lists five (NR-10, open).",
       "source": "source/papers/TFG_ManuelFasRuiz.pdf (cover page, pages iii-iv)"
     }
   ],
@@ -849,17 +849,63 @@
           ]
         },
         "results": {
-          "description": "Results as reported in the thesis abstract (author decision NR-02)",
-          "best_model": "DeepSurv",
-          "best_model_c_index_display": "approximately 0.82",
+          "description": "Held-out test results as reported in thesis Table 2 (page 27) and the UPSA_Thesis_Research README results table (author decision NR-02, 2026-10-22)",
+          "best_model": "Cox-nnet",
+          "best_model_c_index_display": "0.8750",
+          "best_model_source": "source/papers/TFG_ManuelFasRuiz.pdf, page 27 (Table 2: highest C-index, 0.8750)",
+          "metrics_table": [
+            {
+              "model": "Cox-nnet",
+              "c_index": 0.875,
+              "c_index_display": "0.8750",
+              "log_rank_p": 0.01911,
+              "log_rank_p_display": "0.019110"
+            },
+            {
+              "model": "DeepSurv",
+              "c_index": 0.8032,
+              "c_index_display": "0.8032",
+              "log_rank_p": 0.0305,
+              "log_rank_p_display": "0.030500"
+            },
+            {
+              "model": "Cox Elastic Net",
+              "c_index": 0.7819,
+              "c_index_display": "0.7819",
+              "log_rank_p": 0.023514,
+              "log_rank_p_display": "0.023514"
+            },
+            {
+              "model": "Cox Lasso",
+              "c_index": 0.7713,
+              "c_index_display": "0.7713",
+              "log_rank_p": 0.016972,
+              "log_rank_p_display": "0.016972"
+            },
+            {
+              "model": "Random Survival Forest",
+              "c_index": 0.7181,
+              "c_index_display": "0.7181",
+              "log_rank_p": 0.166866,
+              "log_rank_p_display": "0.166866"
+            }
+          ],
+          "metrics_table_note": "Values and row order (highest C-index first) as printed in thesis Table 2. Table 2 labels the Random Survival Forest 'Random Forest'; the thesis text (page 28), the README and method.models use 'Random Survival Forest'. The README results table reports the same values rounded to three decimals (C-index / log-rank p: Cox-nnet 0.875 / 0.019, DeepSurv 0.803 / 0.031, Cox Elastic Net 0.782 / 0.024, Cox Lasso 0.771 / 0.017, Random Survival Forest 0.718 / 0.167), so the two sources do not conflict. The thesis treats log-rank p < 0.05 as significant (page 27).",
+          "metrics_table_source": [
+            "source/papers/TFG_ManuelFasRuiz.pdf, page 27 (Table 2)",
+            "UPSA_Thesis_Research README (Results — comparing the models), values rounded to three decimals (retrieved with gh 2026-10-22)"
+          ],
+          "metrics_table_review": "NR-25",
           "findings": [
-            "DeepSurv achieved the best discriminative performance (C-index of approximately 0.82).",
-            "DeepSurv was the only model to produce a statistically significant risk stratification, outperforming both the linear Cox models and the Random Survival Forest.",
+            "The two deep survival networks had the highest C-index on the held-out test patients: Cox-nnet was best (0.8750), followed by DeepSurv (0.8032).",
+            "Of the penalized Cox models, Cox Elastic Net (C-index 0.7819) scored slightly above Cox Lasso (0.7713); the Random Survival Forest had the lowest C-index (0.7181).",
+            "Every model except the Random Survival Forest separated median-split high- and low-risk groups with a significant log-rank test (p < 0.05); the Random Survival Forest's groups did not differ significantly (p = 0.1669).",
             "DeepSurv and Cox-nnet shared 257 prognostic genes in the bootstrap SHAP consensus."
           ],
           "findings_sources": [
-            "Findings 1-2: source/papers/TFG_ManuelFasRuiz.pdf, page iii (English abstract)",
-            "Finding 3: source/papers/TFG_ManuelFasRuiz.pdf, page 31"
+            "Findings 1-2: source/papers/TFG_ManuelFasRuiz.pdf, page 27 (Table 2); the UPSA_Thesis_Research README (Results — comparing the models) gives the same ranking and values rounded to three decimals",
+            "Finding 3: source/papers/TFG_ManuelFasRuiz.pdf, page 27 (Table 2 log-rank p-values, with 0.166866 rounded to 0.1669; p < 0.05 threshold in the paragraph below Table 2) and page 28 (Figure 6, median-split Kaplan–Meier curves); UPSA_Thesis_Research README (Results — comparing the models)",
+            "Finding 4: source/papers/TFG_ManuelFasRuiz.pdf, page 31"
           ],
           "limitations": [
             "The test set has about one hundred patients and no confidence interval is reported.",
@@ -867,12 +913,12 @@
             "There is no external validation cohort."
           ],
           "limitations_source": "UPSA_Thesis_Research README (Limitations)",
-          "superseded_note": "Per the author's decision, the per-model table from thesis Table 2 (page 27) and the repository README was removed. Those two sources still report different values (Cox-nnet highest with C-index 0.8750; DeepSurv 0.8032), so the hosted thesis PDF and the public README do not match the figures above.",
+          "superseded_note": "The thesis abstract (page iii, English and Spanish) reports different figures from Table 2: it says DeepSurv had the best C-index (about 0.82) and was the only model with a statistically significant risk stratification. Table 2 (page 27) gives DeepSurv 0.8032, below Cox-nnet (0.8750), and a significant log-rank test for four of the five models. Per the author's decision of 2026-10-22 (NR-02), which reverses the 2026-10-18 decision, the abstract's figures are not used. The hosted thesis PDF still contains them on page iii.",
           "review": "NR-02",
           "source": [
-            "source/papers/TFG_ManuelFasRuiz.pdf, page iii (Abstract) and page 31",
-            "UPSA_Thesis_Research README (Limitations)",
-            "author decision 2026-10-18 (relayed by coordinator) (NR-02)"
+            "source/papers/TFG_ManuelFasRuiz.pdf, page 27 (Table 2), page 28 (Figure 6) and page 31",
+            "UPSA_Thesis_Research README (Results — comparing the models; Limitations)",
+            "author decision 2026-10-22 (NR-02)"
           ]
         },
         "technologies": {
@@ -2056,8 +2102,8 @@
         "UPSA_Thesis_Research README"
       ],
       "status": "resolved",
-      "decision": "DeepSurv is correct, matching the thesis abstract: best model, C-index approximately 0.82, and the only statistically significant risk stratification. The abstract's figures are used and the Table 2/README per-model table was removed. The hosted thesis PDF (Table 2) and the public README still show Cox-nnet 0.8750 as the best model.",
-      "decision_source": "author decision 2026-10-18 (relayed by coordinator)",
+      "decision": "Reverses the author decision of 2026-10-18, which used the thesis abstract's figures. Thesis Table 2 (page 27) and the UPSA_Thesis_Research README are correct: Cox-nnet is the best model (C-index 0.8750), DeepSurv is second (0.8032), and every model except the Random Survival Forest (p = 0.1669) produces a statistically significant log-rank risk stratification. The per-model results from Table 2 are restored. The abstract's claim (DeepSurv best, C-index about 0.82, the only significant model) is no longer used; the hosted thesis PDF still states it on page iii.",
+      "decision_source": "author decision 2026-10-22",
       "blocking": false
     },
     {
@@ -2465,6 +2511,25 @@
       "status": "open",
       "blocking": false,
       "source": "coordinator 2026-10-18"
+    },
+    {
+      "id": "NR-25",
+      "priority": "low",
+      "topic": "Thesis Results page: rounded p-values and table numbering",
+      "issue": "On page 27 of the thesis, the paragraph below Table 2 gives the Random Survival Forest log-rank p as 0.1668 and Cox Lasso's as 0.0169, while Table 2 prints 0.166866 and 0.016972 (0.1669 and 0.0170 at four decimals; the README shows 0.167 and 0.017). That paragraph and page 28 also call the comparison table 'Table 1', as does the placeholder list of tables on page vi, but its caption on page 27 reads 'Table 2' (the Table 1 caption on page 20 belongs to the demographics table). data.json uses the Table 2 values and the caption numbering.",
+      "affects": [
+        "projects.featured[upsa-thesis-cancer-survival].results.metrics_table",
+        "projects.featured[upsa-thesis-cancer-survival].results.findings"
+      ],
+      "action": "None needed for the site, which follows Table 2. If the site shows p-values at four decimals or cites the table by number, the thesis prose differs; optionally fix the thesis PDF.",
+      "sources": [
+        "source/papers/TFG_ManuelFasRuiz.pdf pages vi, 20, 27, 28",
+        "UPSA_Thesis_Research README (Results — comparing the models)"
+      ],
+      "status": "open",
+      "decision": "Left open as a low-priority note; it does not block the build.",
+      "decision_source": "data collector 2026-10-22 (new item; no author decision yet)",
+      "blocking": false
     }
   ]
 }

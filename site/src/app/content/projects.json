@@ -76,15 +76,15 @@
       "dateDisplay": "July 2026",
       "date": "2026-07",
       "highlight": {
-        "value": "Best model: DeepSurv, C-index approximately 0.82",
+        "value": "Best model: Cox-nnet, C-index 0.8750",
         "note": "819 patients raw, 519 after preprocessing",
         "parts": [
           {
-            "text": "Best model: DeepSurv, C-index approximately ",
+            "text": "Best model: Cox-nnet, C-index ",
             "figure": false
           },
           {
-            "text": "0.82",
+            "text": "0.8750",
             "figure": true
           }
         ]

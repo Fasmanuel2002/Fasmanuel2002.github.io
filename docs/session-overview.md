@@ -1,4 +1,4 @@
-# Session overview: where we are (updated 2026-10-21)
+# Session overview: where we are (updated 2026-10-22)
 
 Read this first when you continue. `CLAUDE.md` is still the project authority; `docs/build-summary.md` has the full build details.
 
@@ -8,9 +8,9 @@ Read this first when you continue. `CLAUDE.md` is still the project authority; `
 |---|---|
 | 1. data-collector: `data/data.json` | Done. Approved by the author on 2026-10-18. |
 | 2. developer: Angular site in `site/` | Built and restyled. Approved by the author on 2026-10-19. |
-| 3. qa-engineer: `docs/qa-report.md` | Not started. Ready to run. |
-| 4. seo-geo-reviewer | Not started. Runs after QA. |
-| 5. Developer fix pass (high and medium issues), re-serve, push to deploy on GitHub Pages | Not started. |
+| 3. qa-engineer: `docs/qa-report.md` | Done 2026-10-22: 48 pass, 15 fail (1 high, 3 medium, 11 low), 1 skipped. |
+| 4. seo-geo-reviewer | Done 2026-10-22 (section at the end of `docs/qa-report.md`): 24 pass, 9 fail (1 medium, 8 low), 3 skipped. |
+| 5. Developer fix pass (high and medium issues), push to deploy on GitHub Pages | Done 2026-10-22. Low issues are listed in `docs/build-summary.md`, "Remaining issues for the author". |
 
 ## Done this session
 - `CLAUDE.md`: deploy target switched to Vercel, English only, no i18n.
@@ -49,15 +49,22 @@ Read this first when you continue. `CLAUDE.md` is still the project authority; `
 - Checked by the developer: axe 0 violations on 9 routes × 3 widths × light/dark; Lighthouse mobile 98/100/100/100, desktop 100.
 - Not committed yet. New untracked files `site/src/app/result.ts`, `site/scripts/og-card.html` and `site/public/images/og-card.png` must be committed with the rest, or the CI build fails.
 
+## Done on 2026-10-22
+- Home hero no longer shows the headline above the name, and the footer reads only "© Manuel Fas".
+- "Open to international roles and relocation" (author-provided, not in `data.json`) is on Home At a glance, the Contact intro and `llms.txt`. It is a constant in `site/scripts/sync-content.mjs`.
+- NR-02 reversed by the author: the thesis results follow Table 2 (page 27). Cox-nnet is best (0.8750), and the five-model table is on the thesis page.
+- The Home counter now reads "4 Completed implementations". Visually hidden separators keep values apart in the raw HTML text (SEO S24).
+- The author kept the CV PDF (B9) and the thesis PDF (C3) as they are.
+- Do not open `file://` URLs inside `~/Desktop` with headless Chrome. It made macOS revoke Terminal's Desktop access mid-session. Render the share card from a copy outside `~/Desktop`.
+
 ## Next session: start here
-1. The author reviews the polish pass locally, then commits and pushes. Leave the `"analytics"` line in `site/angular.json` out of the commit.
-2. Decide NR-02 (DeepSurv about 0.82 vs Cox-nnet 0.8750). "0.82" is now set large on `/projects`.
-3. Run QA (step 3) and SEO/GEO (step 4), then the developer fix pass.
+1. Check the 4 LinkedIn links and the cBioPortal link by hand in a browser (automated checks are blocked).
+2. Decide the low items in `docs/build-summary.md`, "Remaining issues for the author".
 
 ite/`.
 
 ## Open decisions
-- **NR-02 / DeepSurv:** the site says DeepSurv was best (C-index about 0.82, as in the abstract). The hosted thesis PDF (Table 2) and the GitHub README say Cox-nnet (0.8750).
+- **NR-02:** resolved 2026-10-22 (Cox-nnet 0.8750, from Table 2). The hosted thesis PDF's abstract (page iii) still says DeepSurv about 0.82.
 - **NR-24:** the architecture figures come from the original papers. They are shown with credit, but reuse rights are unchecked.
 - **Thesis PDF:** the hosted PDF's cover has signature stamps with partial ID numbers, and the document still contains template placeholder text.
 - **Paper-Reimplementations README on GitHub:**

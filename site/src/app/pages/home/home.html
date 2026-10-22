@@ -50,8 +50,8 @@
     @for (stat of page.stats; track stat.label) {
       <li>
         <a [routerLink]="stat.path">
-          <span class="stats__num" [attr.data-count]="stat.value">{{ stat.value }}</span>
-          <span class="stats__label">{{ stat.label }}</span>
+          <span class="stats__num" [attr.data-count]="stat.value">{{ stat.value }}</span
+          >&ngsp;<span class="stats__label">{{ stat.label }}</span>
         </a>
       </li>
     }
@@ -61,6 +61,7 @@
       <dt>Current role</dt>
       <dd>
         <a routerLink="/experience" [fragment]="page.currentRole.id">{{ page.currentRole.title }}</a>
+        <span class="visually-hidden">, </span>
         <span class="sub">
           @if (page.currentRole.organizationUrl) {
             <a [href]="page.currentRole.organizationUrl">{{ page.currentRole.organization }}</a>
@@ -68,6 +69,7 @@
             {{ page.currentRole.organization }}
           }
         </span>
+        <span class="visually-hidden">, </span>
         <span class="sub">{{ page.currentRole.datesDisplay }}</span>
       </dd>
     </div>
@@ -84,7 +86,9 @@
         <a routerLink="/education" [fragment]="page.education.id"
           >{{ page.education.degreeType }}, {{ page.education.program }}</a
         >
+        <span class="visually-hidden">, </span>
         <span class="sub">{{ page.education.institution }}</span>
+        <span class="visually-hidden">, </span>
         <span class="sub">{{ page.education.datesDisplay }}</span>
       </dd>
     </div>
@@ -126,6 +130,7 @@
             </p>
             <p class="news__detail">
               <span class="kind">{{ item.kind }}</span>
+              <span class="visually-hidden">: </span>
               @if (item.detailUrl) {
                 <a [href]="item.detailUrl">{{ item.detail }}</a>
               } @else {

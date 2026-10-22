@@ -17,6 +17,8 @@ Revision 2026-10-22 (author requests):
 - The home hero no longer shows the headline ("Machine learning researcher and engineer") above the name, and the footer line reads only "© Manuel Fas". The headline stays in data.json, page titles, meta descriptions, the share card, `llms.txt` and the JSON-LD. The unused `.eyebrow` styles and the hero's `eyebrow` grid row were removed.
 - "Open to international roles and relocation" was provided and approved by the author on 2026-10-22. The statement is not in data.json; it is a constant in `site/scripts/sync-content.mjs`. It appears under "Salamanca, Spain" in Home "At a glance", in the Contact intro and on the `llms.txt` Location line. By author decision it is left out of meta descriptions, Open Graph, the share card and JSON-LD.
 
+Revision 2026-10-22 (fix pass, pipeline step 5): fixed the high and medium findings from `docs/qa-report.md`. B8 (high): the thesis result now follows thesis Table 2 (Cox-nnet, C-index 0.8750) and the thesis page shows the five-model table (NR-02 reversed by the author). B10: the home stat now reads "Completed implementations". S24: text read without CSS keeps adjacent values apart. B9 and C3 are kept as they are, by author decision. No asset, font, library or script was added. See "Fix pass (2026-10-22)" and "Remaining issues for the author" at the end.
+
 ## External assets and justification
 
 The site loads nothing from third-party servers: no CDN, web-font service, analytics, tracking or third-party script. Everything below is self-hosted from `site/public/` and served from the site's own origin. The restyle of 2026-10-19 added no asset, font, library or script. The polish pass of 2026-10-21 added one image (the share card) and no font, library or script; its theme toggle is a few lines of the site's own Angular code plus a small inline script in `index.html`.
@@ -122,7 +124,7 @@ Crawl and AI-readability files in the build output: `sitemap.xml` (all nine rout
 - Page URLs end with a slash, as GitHub Pages serves them (`https://fasmanuel2002.github.io/experience/`; home stays `/`). This applies to the canonical, `og:url`, the sitemap, the JSON-LD `url`, `@id` and breadcrumb items, and the llms.txt links. Internal links stay `/experience`; Pages redirects them, and the router handles them in the app.
 
 ### Content decisions applied from `needs_review`
-- **NR-02**: the thesis result is DeepSurv, C-index approximately 0.82. No per-model table.
+- **NR-02**: the thesis result is DeepSurv, C-index approximately 0.82. No per-model table. *Reversed by the author on 2026-10-22: the site now follows thesis Table 2 (Cox-nnet, 0.8750) and shows the per-model table. See "Fix pass (2026-10-22)".*
 - **NR-03**: "819 patients raw, 519 after preprocessing".
 - **NR-04**: no PCA claim.
 - **NR-05**: English thesis title.
@@ -372,8 +374,10 @@ The full steps are in the root `README.md`. The workflow is `.github/workflows/d
 
 ## Open items for the author
 
+As of 2026-10-19, kept as a record. For the current list, see "Remaining issues for the author" at the end (2026-10-22).
+
 1. **Trailing slashes: resolved on 2026-10-19** (author approval). Every page URL now ends with a slash; see "SEO and GEO".
-2. **Hosted thesis PDF.** By your decisions NR-02 and NR-15, the site reports DeepSurv (C-index approximately 0.82), as in the abstract. The hosted PDF's Table 2 and the public README still show Cox-nnet 0.8750 as best. The PDF also keeps the supervisors' signature stamps and template placeholder text.
+2. **Hosted thesis PDF.** By your decisions NR-02 and NR-15, the site reports DeepSurv (C-index approximately 0.82), as in the abstract. The hosted PDF's Table 2 and the public README still show Cox-nnet 0.8750 as best. The PDF also keeps the supervisors' signature stamps and template placeholder text. *2026-10-22: NR-02 was reversed and the site now follows Table 2; the PDF is kept as is by author decision (QA C3).*
 3. **NR-20 (open).** The two specialization links come from your CV but could not be verified automatically. Please open them once in a browser.
 4. **NR-10 (open).** The site lists five thesis models; the English abstract mentions six.
 5. **NR-24 (open): third-party architecture figures.** The TRACE, #02 and #04 figures come from or are adapted from the original papers. They are shown with visible credit, but reuse rights were not checked. Confirm the attribution is acceptable, or supply self-made diagrams. Replacing a file in `data/figures/` and rebuilding is enough.
@@ -514,7 +518,99 @@ Test tools ran from a scratch folder and were not added to the project: Playwrig
 ### For the author
 1. **Sticky About on Home (new).** I added it to avoid a tall empty column next to Recent activity, and it matches your earlier request to see both at once. If you prefer About to scroll away, delete the `@media` block under the comment "About is much shorter than Recent activity" in `site/src/styles.css`.
 2. **Dropped About text.** The facts from "Education and international experience" and "My interests" are on /education and in At a glance. Their personal sentences now appear nowhere on the site, for example "Studying both fields has helped me think about technology from different perspectives" and your goal of bridging research ideas and practical applications.
-3. **NR-02 is now more visible.** "0.82" is set large on /projects and on the thesis page. The wording is unchanged, and it still differs from the hosted PDF's Table 2 and the README (Cox-nnet 0.8750).
+3. **NR-02 is now more visible.** "0.82" is set large on /projects and on the thesis page. The wording is unchanged, and it still differs from the hosted PDF's Table 2 and the README (Cox-nnet 0.8750). *Resolved on 2026-10-22: see "Fix pass (2026-10-22)".*
 4. **TRACE order.** The result now reads "0.787 AUROC · 0.696 AUPRC" everywhere it appears, including `llms.txt`.
 5. **Date formats in Recent activity.** Paper dates come from data.json as "July 2026" and "January 2026", while roles and certificates use "Sep 2026". I kept them verbatim.
 6. **Unused generated data.** `home.json` still carries `projectCards` and `ledes.featured` from the removed home projects section, about 3 kB in the home chunk. I did not remove them in this pass.
+
+## Fix pass (2026-10-22)
+
+Pipeline step 5: one revision pass for the high and medium findings in `docs/qa-report.md` (QA and SEO/GEO, both run on commit `93d050e`). Low findings were not changed; they are listed under "Remaining issues for the author". The developer did not edit `data/data.json`. It contains the data collector's NR-02 update, which the author approved on 2026-10-22.
+
+### What was fixed
+
+| ID | Severity | Fix | Where |
+|---|---|---|---|
+| B8 | high | NR-02 reversed by the author. The large result figure now reads "Best model: Cox-nnet, C-index 0.8750". The thesis page Results section opens with the five-model table: C-index and log-rank p as printed in thesis Table 2, best model highlighted, same layout as the TRACE table. The four rewritten findings from data.json follow. "DeepSurv best", "approximately 0.82" and "the only significant model" are gone from the HTML, the JS bundle, the meta and OG description, and `llms.txt`. | `site/scripts/sync-content.mjs`, `site/src/app/pages/projects/thesis-project.html`; generated `project-thesis.json`, `projects.json`, `home.json`, `shared.json`, `public/llms.txt` |
+| B10 | medium | Home At a glance "4 Papers reimplemented" now reads "4 Completed implementations" (author wording). | `sync-content.mjs`, generated `home.json` |
+| S24 | medium | Adjacent inline values no longer run together in text read without CSS. Separators were added where inline elements touched: visually hidden ". ", ", " or ": " spans, or a preserved space (`&ngsp;`) in flex rows, where white space is not rendered. Locations: the result line (value and note), the home stats, At a glance current role and education, the Recent activity labels, the project date and role line, and the Paper-Reimplementations number, status and paper citations. The visual layout is unchanged. | `site/src/app/result.ts`, `site/src/app/pages/home/home.html`, `site/src/app/pages/projects/project-head.ts`, `site/src/app/pages/projects/reimplementations-project.html` |
+
+Notes:
+- **Table caption.** It is data.json's `results.description` without its internal review reference: "Held-out test results as reported in thesis Table 2 (page 27)". The p-values are shown as printed in Table 2 (six decimals), so the rounding differences in the thesis prose (NR-25) do not reach the table.
+- **New build checks.** `expect()` guards in `sync-content.mjs` fail the build in four cases: the first table row is not the best model, the rows are not ordered by C-index, the rows do not cover exactly `method.models`, or the results description changes.
+- **Thesis metadata.** The meta and OG description is 134 characters: "Bachelor's Thesis (UPSA): classical and deep survival models on TCGA breast cancer RNA-seq data. Best model: Cox-nnet, C-index 0.8750." The thesis JSON-LD carries no result values; its name, description and repository match data.json.
+- **Separators in rendered text.** The hidden separators use the site's existing `.visually-hidden` class. Screen readers read them inline. In the browser's rendered `innerText` they sit on their own line, as the site's existing hidden link suffixes such as " (PDF)" do. Boundaries between block elements (list items, `dt`/`dd`, headings) come from the HTML structure and were not changed.
+
+### Author decisions recorded (no change)
+- **B9 (medium), downloadable CV.** `/cv/Manuel-Fas-CV.pdf` keeps the original CV wording. Its degree name, PCA claim, GenAI issuer and CS50 dates and issuer differ from the site. Author decision 2026-10-22: keep as is.
+- **C3 (medium), hosted thesis PDF.** `/papers/TFG_ManuelFasRuiz.pdf` keeps:
+  - the supervisors' e-signature stamps, with names and partially masked national ID numbers;
+  - the Word-template placeholder text on pp. 5–6;
+  - the abstract's DeepSurv figures on p. iii, which now differ from the site (Table 2).
+
+  Author decision 2026-10-22: keep as is.
+
+### Files touched
+- Source: `site/scripts/sync-content.mjs`, `site/src/app/pages/projects/thesis-project.html`, `site/src/app/result.ts`, `site/src/app/pages/home/home.html`, `site/src/app/pages/projects/project-head.ts`, `site/src/app/pages/projects/reimplementations-project.html`.
+- Generated by `npm run build`: `site/src/app/content/project-thesis.json`, `projects.json`, `home.json`, `shared.json`, and `site/public/llms.txt`. `sitemap.xml` and `robots.txt` are unchanged.
+- Docs: this file.
+
+### Verification (production build)
+
+| Check | Result |
+|---|---|
+| Build | `npm run build` (sync, then `ng build --configuration production`, Node 24.22.0): exit 0, 9 static routes prerendered. |
+| Prerendered HTML, all 9 routes | 87/87 checks pass: one h1 per route; the footer; unique titles and descriptions (134–155 characters); `og:description` equals the meta description; JSON-LD parses on the 5 routes that carry it. The thesis table rows and findings equal data.json, and the thesis JSON-LD matches data.json. |
+| Old thesis claim | No "0.82", "approximately", "only model" or "only significant" anywhere in `dist` (HTML, JS, text) or `llms.txt`. "DeepSurv" appears only in the model list, the method details, its table row (0.8032) and the new findings. |
+| S24 | A scan for inline elements whose text runs together finds 0 cases on the 9 routes (32 before). Naive strip-tags text reads "4 Roles", "Junior Machine Learning Researcher, BISITE Research Group (University of Salamanca), Sep 2026 – Present", "Role: BISITE Research Group (University of Salamanca)", "0.787 AUROC · 0.696 AUPRC. TRACE (multi-task)…", "Best model: Cox-nnet, C-index 0.8750. 819 patients raw…", "6 papers listed. 4 completed…", "January 2026 Role: Author", "01 Completed" and "Sequence to Sequence Learning with Neural Networks. Ilya Sutskever…". |
+| Layout | `/`, `/projects/` and the thesis page at 375, 768 and 1280 px, light and dark (18 loads in headless Chrome over http://127.0.0.1): 96/96 checks pass. No page overflow. The thesis table fits its column at every width (335 px at 375, no inner scrolling). Hidden separators render at 1 px or less, and result notes stay on their own line. Contrast is at least 6.97 (table cells 13.43 light, 15.75 dark). "Completed implementations" wraps to two lines at 375 and 768. |
+| Not re-run | axe-core and Lighthouse; no offline copy was available. QA's results (axe 0 violations, Lighthouse 93–100) predate this pass. |
+
+## Remaining issues for the author
+
+Per CLAUDE.md there is no further automatic revision cycle. Nothing below was changed in the fix pass; each item needs your decision.
+
+### Low findings: QA
+
+| ID | Finding | Where | Possible action |
+|---|---|---|---|
+| B11 | TRACE table shows "0.68" and "0.62"; the report prints "0.680" and "0.620" (data.json stores numbers). | `/projects/trace-reimplementation/` | Store display strings in data.json, or format to three decimals. |
+| B12 | Mixed month formats: "July 2026" and "January 2026" next to "Aug 2026". Each matches data.json. | Home Recent activity, `/projects/`, project pages, `/education/` | Abbreviate the papers' `date_display` in data.json. |
+| B13 (NR-10) | Five thesis models are listed; the thesis abstract mentions six (including Ridge). | Thesis page, `/education/`, `llms.txt` | Decide NR-10. |
+| B14 (NR-11) | Degree completed May 2026 (CV date), while the thesis is dated July 2026; Home lists the thesis above "Degree completed". | `/education/`, Home Recent activity | Confirm NR-11 or change the date. |
+| B15 | Paper-Reimplementations JSON-LD `isBasedOn` lists all six papers, including #05 and #06, which are not implemented yet. | `/projects/paper-reimplementations/` JSON-LD | List only completed papers. |
+| B16 | "Open to international roles and relocation" is a constant in `sync-content.mjs`, not in data.json (single-source rule). | Home, Contact, `llms.txt` | Add it to data.json, for example `person.open_to`. |
+| C2 | Both full PDFs are published (approved under NR-15). | `/papers/*.pdf` | None, unless NR-15 changes. |
+| E3 | At 375 px, table header text renders at about 10.9 px. The new thesis table uses the same header style. | TRACE, thesis and Paper-Reimplementations tables | Raise the header size on small screens. |
+| H3 | Course notes (verbatim author text): five lack a final period, one is in the present tense, "It was an amazing course" is informal, and British and American spellings are mixed. | `/certifications/` | Edit the notes in the source. |
+| I14 / S25 | Some h2 sections open with a list, table or definition list instead of a summary sentence. | TRACE, thesis and Paper-Reimplementations sections; Home At a glance; Contact details | Add a one-sentence lede from data.json facts. |
+| J1 (NR-24) | Third-party architecture figures are credited, but reuse rights are unconfirmed. | TRACE page, Paper-Reimplementations | Confirm, or supply your own diagrams. |
+
+### Low findings: SEO/GEO
+
+| ID | Finding | Where | Possible action |
+|---|---|---|---|
+| S3 | Long `<title>`s (thesis 102 characters, TRACE 80), so " — Manuel Fas" is cut in search results. | Thesis and TRACE pages | Shorter `<title>`/`og:title` from data.json wording, for example the README title. |
+| S12 | TRACE `SoftwareSourceCode` has no `license` (data.json: MIT). | TRACE JSON-LD | Add `license` to the TRACE block only. |
+| S13 | The thesis's Spanish cover title (`title_original`) is not on the site. | Thesis page and JSON-LD | Add it as `alternateName` (`inLanguage: es`) and one citation line. |
+| S14 | No `WebSite` or `ProfilePage` JSON-LD on `/`; roles and certificates are not machine-readable. | `/` | Add both nodes; `hasCredential` is optional. |
+| S19 | `index.csr.html` is deployed and crawlable. | Live site | `Disallow: /index.csr.html` in the generated robots.txt, or leave the file out of the published folder (removing files needs your approval). |
+| S26 | The thesis page lead repeats the h1 and gives no quotable facts. | Thesis page, its JSON-LD description, `/projects/` card | Use a lead built from data.json facts, consistent with NR-02 (now Table 2) and NR-10. |
+| S28 | The GitHub profile does not link back to the site. | GitHub profile (your account) | Set the profile website and add the link to the profile README. |
+
+### Open `needs_review` items
+- **NR-10 (low):** see B13.
+- **NR-21 (low):** inconsistent figures and the "Swiss retail company" line are inside the hosted TRACE report PDF only, not in the site's HTML.
+- **NR-24 (low):** see J1.
+- **NR-25 (low, new):** the thesis prose rounds two p-values differently from Table 2 and calls the table "Table 1". The site follows Table 2 (its caption number and printed values), so no site change is needed. Optionally fix the PDF.
+- **NR-20 and NR-22:** QA found both specialization links working (D7), so NR-20 can be closed. NR-22 has no site impact.
+
+### Checks that need a manual browser check
+- **D6:** the LinkedIn links (your profile and three supervisors) and the cBioPortal dataset link block automated requests.
+- **S34:** Google Rich Results Test on the 5 routes with JSON-LD. The schema.org validator found 0 errors.
+- **S35:** Search Console indexing (needs your Google account; submit `/sitemap.xml`).
+- **S36:** check that your LinkedIn profile links to https://fasmanuel2002.github.io.
+- Not covered by QA: real devices, Safari and Firefox, and screen readers.
+
+### Kept by author decision
+- B9 (downloadable CV) and C3 (hosted thesis PDF): see "Author decisions recorded" above.

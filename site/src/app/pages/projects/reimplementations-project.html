@@ -23,8 +23,8 @@
   @for (item of project.implementations; track item.number) {
     <article class="impl" [attr.aria-labelledby]="'impl-' + item.number">
       <p class="impl__head">
-        <span class="impl__num">{{ item.number }}</span>
-        <span class="status">{{ item.status }}</span>
+        <span class="impl__num">{{ item.number }}</span
+        >&ngsp;<span class="status">{{ item.status }}</span>
       </p>
       <h3 class="entry__title" [id]="'impl-' + item.number">{{ item.name }}</h3>
       <p class="entry__meta">{{ item.area }}</p>
@@ -32,6 +32,7 @@
         @for (paper of item.papers; track paper.arxivId) {
           <li>
             <a [href]="paper.url">{{ paper.title }}</a>
+            <span class="visually-hidden">. </span>
             <span>{{ cite(paper.authors) }}, {{ paper.year }} · <a [href]="paper.url">arXiv:{{ paper.arxivId }}</a></span>
           </li>
         }

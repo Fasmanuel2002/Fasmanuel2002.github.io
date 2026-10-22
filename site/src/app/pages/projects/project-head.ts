@@ -34,7 +34,7 @@ export interface ProjectHeadData {
       </nav>
       <p class="page-meta reveal" style="--i: 0">
         @if (project().dateDisplay) {
-          <time [attr.datetime]="project().date">{{ project().dateDisplay }}</time>
+          <time [attr.datetime]="project().date">{{ project().dateDisplay }}</time>&ngsp;
         }
         <span>Role: {{ project().role }}</span>
       </p>
