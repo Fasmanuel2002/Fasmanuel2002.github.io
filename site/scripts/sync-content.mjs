@@ -792,6 +792,10 @@ for (const [key, page] of [...Object.entries(pages), ...Object.entries(projectPa
   expect(page.description.length < 160, `${key} description is ${page.description.length} characters (must be < 160)`);
 }
 
+// Author-provided on 2026-10-22; not in data.json. Shown with the location in Home At a glance, the
+// Contact intro and llms.txt only: meta descriptions, Open Graph, the share card and JSON-LD omit it.
+const openTo = 'open to international roles and relocation';
+
 const ledes = {
   homeFeatured:
     "Three projects with public code: a PyTorch reimplementation of the TRACE clickstream model, a bachelor's thesis on survival modelling with TCGA breast cancer RNA-seq data, and a repository of PyTorch paper reimplementations.",
@@ -804,7 +808,7 @@ const ledes = {
   projectsMore: `Other public repositories are on ${person.name}'s GitHub profile.`,
   certifications: `Twelve course certificates dated ${certDates[0].date_display} to ${certDates.at(-1).date_display}, issued by ${listJoin(issuers)}. Eight of the DeepLearning.AI courses make up two Coursera specializations.`,
   education: `A dual bachelor's degree at the ${upsa.institution}, ${rangeEnd(upsa.dates_display).replace(/^(.*) \(expected\)$/, 'expected $1')}, and a visiting exchange in computer science at the ${hslu.institution}.`,
-  contact: `${person.name} is based in ${person.location}. He can be reached by email, on GitHub or on LinkedIn.`,
+  contact: `${person.name} is based in ${person.location}, and is ${openTo}. He can be reached by email, on GitHub or on LinkedIn.`,
 };
 expect(certDates[0].date_display === '2023' && certDates.at(-1).date_display === 'Aug 2026', 'certification date range changed');
 expect(upsa.degree_type === 'Dual B.S.', 'education lede assumes a Dual B.S.');
@@ -812,8 +816,8 @@ expect(upsa.degree_type === 'Dual B.S.', 'education lede assumes a Dual B.S.');
 // ---------------------------------------------------------------------------------------------
 // Home
 
-// Hero: two short sentences restating the CV summary. The eyebrow above the name already carries
-// the headline; the full summary stays in the JSON-LD description and llms.txt.
+// Hero: two short sentences restating the CV summary. The hero does not show the headline (author
+// decision 2026-10-22); the full summary stays in the JSON-LD description and llms.txt.
 const heroLede =
   'Specialising in Transformer architectures, NLP and large language models. ' +
   `Reimplements state-of-the-art papers as reproducible PyTorch code, with research experience across ${numberWord(researchRoles.length)} labs in ${listJoin(researchCountries)}.`;
@@ -1022,6 +1026,7 @@ const contentFiles = {
       organizationUrl: current.organization_url ?? null,
       datesDisplay: current.dates_display,
     },
+    openTo: upperFirst(openTo),
     education: { id: upsa.id, degreeType: upsa.degree_type, program: upsa.program, institution: upsa.institution, datesDisplay: upsa.dates_display },
     interests: person.interests.items,
     about: homeAbout,
@@ -1092,7 +1097,7 @@ const llms = `# ${person.name}
 > ${person.summary.text}
 
 - Name: ${person.name} (full name: ${person.alternate_name})
-- Location: ${person.location}
+- Location: ${person.location} (${openTo})
 - Current role: ${current.title}, ${current.organization}, ${current.location}, ${current.dates_display}.
 - Education: ${upsa.degree_type}, ${upsa.program}, ${upsa.institution}, ${upsa.dates_display}. ${hslu.program}, ${hslu.institution}, ${hslu.dates_display}.
 - Interests: ${person.interests.items.join(', ')}.

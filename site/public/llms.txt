@@ -3,7 +3,7 @@
 > Machine learning researcher and engineer with experience across three research labs in Spain and Switzerland, specialising in Transformer architectures, NLP and large language models, and deep learning for sequential, tabular and biomedical data. Reimplements state-of-the-art papers into reproducible PyTorch codebases.
 
 - Name: Manuel Fas (full name: Manuel Fas Ruiz)
-- Location: Salamanca, Spain
+- Location: Salamanca, Spain (open to international roles and relocation)
 - Current role: Junior Machine Learning Researcher, BISITE Research Group (University of Salamanca), Salamanca, Spain, Sep 2026 – Present.
 - Education: Dual B.S., Business Administration for Tech Companies and Computer Science, Pontifical University of Salamanca (UPSA), Sep 2022 – May 2027 (expected). Visiting Exchange Student, Computer Science, Lucerne University of Applied Sciences and Arts (HSLU), Sep 2025 – Jan 2026.
 - Interests: Deep learning, Computer vision, Natural-language processing, Large language models (LLMs).

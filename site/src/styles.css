@@ -257,7 +257,6 @@ app-root > main {
    -------------------------------------------------------------------------- */
 
 /* Small uppercase labels */
-.eyebrow,
 .label,
 .kind,
 .glance__title,
@@ -273,7 +272,6 @@ app-root > main {
   text-transform: uppercase;
 }
 
-.eyebrow,
 .kind,
 .impl__num,
 .tasks dt,
@@ -351,10 +349,6 @@ app-root > main {
 
 .page-head {
   padding-block: clamp(2.5rem, 7vw, 4.5rem) clamp(1.75rem, 4vw, 2.5rem);
-}
-
-.eyebrow {
-  margin-bottom: 0.9rem;
 }
 
 .page-title {
@@ -691,11 +685,7 @@ app-result {
 .home-hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-areas: 'photo' 'eyebrow' 'title' 'lede' 'links';
-}
-
-.home-hero > .eyebrow {
-  grid-area: eyebrow;
+  grid-template-areas: 'photo' 'title' 'lede' 'links';
 }
 
 .home-hero > h1 {
@@ -727,7 +717,6 @@ app-result {
   .home-hero {
     grid-template-columns: minmax(0, 1fr) auto;
     grid-template-areas:
-      'eyebrow photo'
       'title photo'
       'lede photo'
       'links photo';

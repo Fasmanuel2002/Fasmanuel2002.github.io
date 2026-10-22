@@ -13,6 +13,10 @@ Revision 2026-10-19:
 
 Revision 2026-10-21: design polish pass approved by the author: one shared frame for header, content and footer, a simpler home hero, results as the anchor on /projects, grouped certifications, a dark theme with a toggle, and a 1200×630 share card. See "Design polish pass (2026-10-21)" at the end. Sections between here and there describe the site as of 2026-10-19.
 
+Revision 2026-10-22 (author requests):
+- The home hero no longer shows the headline ("Machine learning researcher and engineer") above the name, and the footer line reads only "© Manuel Fas". The headline stays in data.json, page titles, meta descriptions, the share card, `llms.txt` and the JSON-LD. The unused `.eyebrow` styles and the hero's `eyebrow` grid row were removed.
+- "Open to international roles and relocation" was provided and approved by the author on 2026-10-22. The statement is not in data.json; it is a constant in `site/scripts/sync-content.mjs`. It appears under "Salamanca, Spain" in Home "At a glance", in the Contact intro and on the `llms.txt` Location line. By author decision it is left out of meta descriptions, Open Graph, the share card and JSON-LD.
+
 ## External assets and justification
 
 The site loads nothing from third-party servers: no CDN, web-font service, analytics, tracking or third-party script. Everything below is self-hosted from `site/public/` and served from the site's own origin. The restyle of 2026-10-19 added no asset, font, library or script. The polish pass of 2026-10-21 added one image (the share card) and no font, library or script; its theme toggle is a few lines of the site's own Angular code plus a small inline script in `index.html`.
