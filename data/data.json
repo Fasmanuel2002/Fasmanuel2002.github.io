@@ -185,15 +185,15 @@
       "source": "source/cv_Manuel_final.pdf, page 1, Technical Skills (Spoken languages)"
     },
     "photo": {
-      "path": "source/profile_picture/profile-2026-11.png",
-      "previous_path": "source/profile_picture/profile.jpeg (replaced 2026-11-16 at the author's request)",
+      "path": "source/profile_picture/linkedin_alejada_natural.png",
+      "previous_path": "source/profile_picture/profile.jpeg (replaced and deleted 2026-11-16 at the author's request; identical to site/public/images/profile.jpg before commit 867428e)",
       "format": "PNG 2660x2660 original; served as a 400x400 progressive JPEG and a WebP",
       "width_px": 400,
       "height_px": 400,
       "file_size_bytes": 16646,
       "alt": "Portrait of Manuel Fas",
       "metadata_check": "Metadata stripped on conversion (ImageMagick -strip, cwebp -metadata none)",
-      "source": "author upload 2026-11-16 (linkedin_alejada_natural.png), copied to source/profile_picture/profile-2026-11.png"
+      "source": "author upload 2026-11-16 (linkedin_alejada_natural.png), copied to source/profile_picture/linkedin_alejada_natural.png"
     },
     "alternate_name_use": "Legal name; use as JSON-LD alternateName"
   },
