@@ -24,7 +24,7 @@
   ],
   "ledes": {
     "featured": "Four projects with public code: Twins for Change, a Yorùbá–English RAG tutor that won first place in the ProFuturo challenges at Hack4Edu 2026, a PyTorch reimplementation of the TRACE clickstream model, a bachelor's thesis on survival modelling with TCGA breast cancer RNA-seq data, and a repository of PyTorch paper reimplementations.",
-    "activity": "Three roles, two research documents, one completed degree and two certifications between Oct 2025 and Sep 2026, newest first.",
+    "activity": "One award, two roles, two research documents, one completed degree and two certifications between January 2026 and Oct 2026, newest first.",
     "about": "Who Manuel Fas is and what he does, in his own words."
   },
   "currentRole": {
@@ -240,6 +240,16 @@
   ],
   "timeline": [
     {
+      "detailUrl": null,
+      "date": "2026-10",
+      "display": "Oct 2026",
+      "kind": "Award",
+      "title": "First place in the ProFuturo challenges, Hack4Edu 2026",
+      "detail": "Twins for Change",
+      "route": "/projects/hack4edu-twins-for-change",
+      "fragment": null
+    },
+    {
       "detailUrl": "https://bisite.usal.es",
       "date": "2026-09",
       "display": "Sep 2026",
@@ -308,16 +318,6 @@
       "detail": "HSLU",
       "route": "/projects/trace-reimplementation",
       "fragment": null
-    },
-    {
-      "detailUrl": "https://www.hslu.ch/en/",
-      "date": "2025-10",
-      "display": "Oct 2025",
-      "kind": "Role",
-      "title": "Machine Learning Research Assistant",
-      "detail": "Applied Artificial Intelligence (AAI) Lab, HSLU",
-      "route": "/experience",
-      "fragment": "exp-hslu-aai-lab"
     }
   ],
   "jsonLd": {

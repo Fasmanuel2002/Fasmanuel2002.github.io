@@ -711,6 +711,17 @@ const paperProjectPath = (paperId) => {
   return projectPath(project);
 };
 const timelineAll = [
+  // Hack4Edu award (author statement 2026-11-16; date is the repository creation month, NR-26)
+  {
+    date: hackathon.date,
+    display: hackathon.dateDisplay,
+    kind: 'Award',
+    group: 'award',
+    title: `${hackathon.award.text}, ${hackathon.award.event}`,
+    detail: hackathon.title,
+    route: hackathon.path,
+    fragment: null,
+  },
   ...experience.map((role) => ({
     date: role.start,
     display: rangeStart(role.dates_display),
@@ -771,6 +782,7 @@ const timeline = timelineAll.slice(0, 8);
 const groupCount = (group) => timeline.filter((item) => item.group === group).length;
 const pluralize = (n, singular, plural) => `${numberWord(n)} ${n === 1 ? singular : plural}`;
 const activityParts = [
+  [groupCount('award'), 'award', 'awards'],
   [groupCount('role'), 'role', 'roles'],
   [groupCount('document'), 'research document', 'research documents'],
   [groupCount('degree'), 'completed degree', 'completed degrees'],

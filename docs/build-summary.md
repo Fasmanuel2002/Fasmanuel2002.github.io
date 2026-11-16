@@ -623,6 +623,7 @@ Author request. Changes:
 - **#05 FT-Transformer** (Paper-Reimplementations) is now Completed, with the content of its folder README: architecture, both model sizes and training setup, Porto Seguro preprocessing, the test metrics and Kaggle scores for the 25.37M and 1.4M models, and the paper's overview figure. `sync-content.mjs` now accepts `reported_results[].values` with `result_columns` for multi-model tables. The home counter reads 5 completed implementations.
 - **New project page** `/projects/hack4edu-twins-for-change` (Twins for Change, Hack4Edu 2026), listed first on /projects: award, challenges, overview, architecture, dataset table and technologies, with `SoftwareSourceCode` JSON-LD (`award`, `sameAs` the live site), sitemap and llms.txt entries. New component `site/src/app/pages/projects/hackathon-project.{ts,html}` and one route.
 - The /projects lede and meta description, the reimplementations description and llms.txt are updated. 10 routes are prerendered.
+- Home "Recent activity" starts with an **Award** entry: "First place in the ProFuturo challenges, Hack4Edu 2026" (Oct 2026, links to the project page; date per NR-26). The section lede now counts awards.
 
 Checked: `npm run build` passes; one h1 and valid JSON-LD on all 10 routes; Playwright + axe-core 4.14 on home, /projects, the Hack4Edu page and the reimplementations page at 375/768/1280 px, light and dark: no horizontal overflow, 0 violations, no console errors. Lighthouse was not rerun.
 
