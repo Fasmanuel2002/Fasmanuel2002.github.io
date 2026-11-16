@@ -57,6 +57,12 @@ Read this first when you continue. `CLAUDE.md` is still the project authority; `
 - The author kept the CV PDF (B9) and the thesis PDF (C3) as they are.
 - Do not open `file://` URLs inside `~/Desktop` with headless Chrome. It made macOS revoke Terminal's Desktop access mid-session. Render the share card from a copy outside `~/Desktop`.
 
+## Done on 2026-11-16
+- New profile photo, with the share card re-rendered.
+- #05 FT-Transformer marked Completed, with its README content and figure.
+- New project page for Twins for Change (Hack4Edu 2026, first place in the ProFuturo challenges, author statement), listed first.
+- Details are in `docs/build-summary.md`, "Update 2026-11-16". Open: NR-26 (award wording, dates, role). Not committed.
+
 ## Next session: start here
 1. Check the 4 LinkedIn links and the cBioPortal link by hand in a browser (automated checks are blocked).
 2. Decide the low items in `docs/build-summary.md`, "Remaining issues for the author".

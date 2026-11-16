@@ -185,14 +185,15 @@
       "source": "source/cv_Manuel_final.pdf, page 1, Technical Skills (Spoken languages)"
     },
     "photo": {
-      "path": "source/profile_picture/profile.jpeg",
-      "format": "JPEG (progressive)",
+      "path": "source/profile_picture/profile-2026-11.png",
+      "previous_path": "source/profile_picture/profile.jpeg (replaced 2026-11-16 at the author's request)",
+      "format": "PNG 2660x2660 original; served as a 400x400 progressive JPEG and a WebP",
       "width_px": 400,
       "height_px": 400,
-      "file_size_bytes": 15455,
+      "file_size_bytes": 16646,
       "alt": "Portrait of Manuel Fas",
-      "metadata_check": "No EXIF block and no GPS data found",
-      "source": "source/profile_picture/profile.jpeg (inspected with file, sips and mdls)"
+      "metadata_check": "Metadata stripped on conversion (ImageMagick -strip, cwebp -metadata none)",
+      "source": "author upload 2026-11-16 (linkedin_alejada_natural.png), copied to source/profile_picture/profile-2026-11.png"
     },
     "alternate_name_use": "Legal name; use as JSON-LD alternateName"
   },
@@ -535,8 +536,75 @@
     "selection_source": "source/projects.md (# Featured projects, in the order listed)",
     "featured": [
       {
-        "id": "trace-reimplementation",
+        "id": "hack4edu-twins-for-change",
         "featured_rank": 1,
+        "featured_rank_source": "author request 2026-11-16 (direct) to add the project; placed first as the newest project and an award (coordinator choice, NR-26)",
+        "title": "Twins for Change",
+        "title_source": "Hack4Edu_2026 README (title image alt text and Overview)",
+        "summary": "Offline-first AI tutor for bilingual Yorùbá–English classrooms that grounds Gemma 3 answers in a 15,791-row corpus with hybrid retrieval-augmented generation.",
+        "summary_source": "Hack4Edu_2026 README (tagline and Overview), reworded",
+        "role": "Developer, Twins for Change team",
+        "role_source": "GitHub: Fasmanuel2002 owns the Hack4Edu_2026 repository and is its only contributor; the repository's docs/build-summary.md refers to the team (NR-26)",
+        "date": "2026-10",
+        "date_display": "Oct 2026",
+        "date_source": "GitHub repository creation date 2026-10-24 (gh api); the hackathon dates are not in the sources (NR-26)",
+        "award": {
+          "text": "First place in the ProFuturo challenges",
+          "event": "Hack4Edu 2026",
+          "source": "author statement 2026-11-16 (direct): won Hack4Edu in the ProFuturo challenges, first place"
+        },
+        "challenges": [
+          { "code": "Reto 06", "name": "La escuela habla tu idioma", "name_en": "The school speaks your language" },
+          { "code": "Reto 02", "name": "Aprender sin conexión", "name_en": "Learning without a connection" }
+        ],
+        "challenges_source": "Hack4Edu_2026 README (tagline: 'Built for Hack4Edu 2026 · Reto 06 La escuela habla tu idioma · Reto 02 Aprender sin conexión'); English names translated by the coordinator",
+        "public_link": "https://www.twinsforchange.com/",
+        "public_link_type": "live site",
+        "public_link_source": "author input 2026-11-16; GitHub repository homepage field (https://twinsforchange.com/)",
+        "repository": {
+          "url": "https://github.com/Fasmanuel2002/Hack4Edu_2026",
+          "license": null,
+          "languages": ["TypeScript", "Python"],
+          "created": "2026-10-24",
+          "source": "gh api repos/Fasmanuel2002/Hack4Edu_2026 and /languages, 2026-11-16 (main languages; CSS, HTML, Jupyter Notebook, JavaScript and Dockerfile also present)"
+        },
+        "problem": "Language models such as Gemma 3 4B often make things up when they answer in Yorùbá. Twins for Change grounds every answer in real data: it retrieves verified bilingual examples from a 15,791-row corpus and gives them to Gemma before it answers.",
+        "problem_source": "Hack4Edu_2026 README (Overview), verbatim",
+        "description_points": [
+          { "text": "Hybrid search: dense bge-m3 and keyword BM25 vectors in Qdrant, merged with Reciprocal Rank Fusion; the top three documents are passed to gemma3:4b before it answers." },
+          { "text": "Bilingual answers: the explanation is in Yorùbá, and key terms and the summary are in English." },
+          { "text": "Verified sources: every answer shows the three corpus documents it was based on." },
+          { "text": "Compare mode: plain Gemma and Gemma with RAG answer the same question side by side." },
+          { "text": "Offline: after a one-time setup, everything runs on a single laptop." }
+        ],
+        "description_points_source": "Hack4Edu_2026 README (Overview bullets and pipeline diagram), lightly reworded",
+        "architecture": "FastAPI backend and REST API with the RAG pipeline (storage, retrieval, prompts), an Angular frontend, models served by Ollama, and a Qdrant vector database; docker-compose deploys Qdrant, Ollama, FastAPI and Caddy.",
+        "architecture_source": "Hack4Edu_2026 README (Project Structure, Usage)",
+        "dataset": {
+          "description": "dataset_rag.csv, built in notebooks/creation_dataset_rag.ipynb from public benchmarks.",
+          "total_rows": 15791,
+          "rows": [
+            { "subject": "Mathematics", "source": "AfriMGSM, GSM8K", "rows": 7731 },
+            { "subject": "Sciences and humanities", "source": "AfriMMLU", "rows": 608 },
+            { "subject": "Reading comprehension", "source": "Belebele", "rows": 900 },
+            { "subject": "Translation", "source": "MAFAND", "rows": 6552 }
+          ],
+          "source": "Hack4Edu_2026 README (Overview: 15,791-row corpus; Dataset table)"
+        },
+        "technologies": {
+          "items": ["Python", "TypeScript", "FastAPI", "Angular", "Ollama", "Gemma 3 (gemma3:4b)", "bge-m3", "BM25", "Qdrant", "Docker", "Caddy", "uv"],
+          "source": "Hack4Edu_2026 README (badges, Overview, Getting Started, Project Structure)"
+        },
+        "review": "NR-26",
+        "source": [
+          "https://github.com/Fasmanuel2002/Hack4Edu_2026 (README and docs/build-summary.md, read 2026-11-16)",
+          "author statement 2026-11-16 (award)",
+          "https://www.twinsforchange.com/ (renders client-side; no text was readable by an automated fetch)"
+        ]
+      },
+      {
+        "id": "trace-reimplementation",
+        "featured_rank": 2,
         "title": "Reimplementation of clickstream event sequence analysis model TRACE",
         "title_source": "source/papers/TRACEPAPER_Report.pdf, cover page (identical to source/projects.md, project 1 heading)",
         "summary": "Transformer-based user representation learned from attributed clickstream event sequences.",
@@ -742,7 +810,7 @@
       },
       {
         "id": "upsa-thesis-cancer-survival",
-        "featured_rank": 2,
+        "featured_rank": 3,
         "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
         "title_language": "en",
         "title_source": [
@@ -952,7 +1020,7 @@
       },
       {
         "id": "paper-reimplementations",
-        "featured_rank": 3,
+        "featured_rank": 4,
         "title": "Paper-Reimplementations",
         "title_source": "source/projects.md (project 3 heading); GitHub repository name",
         "summary": "PyTorch reimplementations of baseline and state-of-the-art machine learning and AI models.",
@@ -1207,7 +1275,7 @@
             "number": "05",
             "name": "Revisiting Deep Learning Models for Tabular Data",
             "folder_url": "https://github.com/Fasmanuel2002/Paper-Reimplementations/tree/main/05_Feature_Tokenizer_Transformer",
-            "readme_status": "Planned (displayed with the 'In Progress' icon)",
+            "readme_status": "Completed (🟢), checked 2026-11-16",
             "area": "Deep Learning / Tabular Data",
             "original_papers": [
               {
@@ -1225,24 +1293,47 @@
                 "source": "arXiv API, queried 2026-10-18; Paper-Reimplementations README"
               }
             ],
-            "implementation": null,
-            "implementation_note": "The folder 05_Feature_Tokenizer_Transformer holds only data preprocessing (data/preprocess.py) and an exploratory notebook for a Porto Seguro insurance dataset; there is no model code yet. The main README links to a folder name that does not exist.",
+            "implementation": "Encoder-only FT-Transformer in PyTorch (Section 3.3 of the paper): a Feature Tokenizer turns each column into its own token, with an nn.Embedding per categorical column and an nn.Linear per continuous column, and prepends a learnable [CLS] token. No positional encoding is used, because column order has no meaning. Pre-norm Transformer encoder blocks with multi-head self-attention and a GELU MLP follow, and a linear head on the final [CLS] state predicts whether a driver files an insurance claim next year. Two sizes were trained from scratch on an NVIDIA A100 GPU: about 25.37 million parameters (8 layers, hidden size 512, 8 heads) and about 1.4 million parameters (3 layers, hidden size 192, 3 heads), with AdamW, batch size 2048, weight decay 1e-4, cosine annealing, early stopping (patience 5) and binary cross-entropy with logits.",
+            "dataset": "Porto Seguro's Safe Driver Prediction (Kaggle competition). Missing values (-1) become NaN; an 80/10/10 train, validation and test split; categorical columns label-encoded with a reserved \"unknown\" category and continuous columns median-imputed, both fit on the training split only to avoid data leakage.",
+            "dataset_url": "https://www.kaggle.com/competitions/porto-seguro-safe-driver-prediction",
+            "result_columns": [
+              "25.37M parameters",
+              "1.4M parameters"
+            ],
+            "reported_results": [
+              { "metric": "Test accuracy", "values": ["0.8626", "0.8859"] },
+              { "metric": "Test F1-score", "values": ["0.1206", "0.1217"] },
+              { "metric": "Test AUPRC", "values": ["0.0700", "0.0728"] },
+              { "metric": "Test AUROC", "values": ["0.6581", "0.6524"] },
+              { "metric": "Test normalized Gini", "values": ["0.3161", "0.3047"] },
+              { "metric": "Test precision", "values": ["0.0789", "0.0849"] },
+              { "metric": "Test recall", "values": ["0.2557", "0.2146"] },
+              { "metric": "Kaggle private score (normalized Gini)", "values": ["0.273", "0.276"] },
+              { "metric": "Kaggle public score (normalized Gini)", "values": ["0.268", "0.272"] }
+            ],
             "verification": {
-              "result": "not_implemented"
+              "result": "verified",
+              "notes": "The code (model/feature_tokenizer.py, model/FT_transformer.py) implements the FT-Transformer method: per-feature tokens, a [CLS] token and a Transformer encoder. No manual feature engineering was used; the competition's top solutions relied on feature engineering and gradient-boosted tree ensembles. The larger model did not beat the smaller one on either Kaggle leaderboard."
             },
             "list_on_site": true,
-            "review": "NR-09",
             "source": [
-              "Paper-Reimplementations README",
-              "Paper-Reimplementations file tree",
+              "05_Feature_Tokenizer_Transformer/README.md (read 2026-11-16)",
+              "05_Feature_Tokenizer_Transformer/model/feature_tokenizer.py",
+              "05_Feature_Tokenizer_Transformer/model/FT_transformer.py",
               "05_Feature_Tokenizer_Transformer/data/preprocess.py",
-              "05_Feature_Tokenizer_Transformer/main.ipynb"
+              "Paper-Reimplementations README (status 🟢 Completed)"
             ],
-            "status": "Planned/in progress",
-            "status_source": "author decision 2026-10-18 (relayed by coordinator) (NR-09)",
+            "status": "Completed",
+            "status_source": "author request 2026-11-16 (direct): the FT-Transformer reimplementation is finished; the repository README marks #05 Completed.",
             "list_on_site_source": "author decision 2026-10-18 (relayed by coordinator) (NR-08, NR-09)",
-            "folder_note": "This folder exists and holds data preprocessing only. The README's link to a folder named after the paper points to a folder that does not exist and is not used.",
-            "display_note": "Show as planned/in progress. Data preprocessing has started; there is no model yet."
+            "architecture_figure": {
+              "file": "data/figures/ft-transformer-overview.png",
+              "alt": "FT-Transformer overview: the input features x pass through a Feature Tokenizer to become tokens T, a [CLS] token is prepended, the sequence goes through a Transformer, and the final [CLS] representation feeds a prediction head that outputs y-hat.",
+              "caption": "FT-Transformer architecture overview.",
+              "credit": "Figure from Gorishniy et al. (2021), \"Revisiting Deep Learning Models for Tabular Data\", arXiv:2106.11959 (the repository README marks it as taken from the original paper).",
+              "source": "https://github.com/Fasmanuel2002/Paper-Reimplementations/blob/main/assets/architecture_overview_FTTransformer.png (05_Feature_Tokenizer_Transformer/README.md, Figure 1)",
+              "added_by": "author request 2026-11-16 (direct)"
+            }
           },
           {
             "number": "06",
@@ -2529,6 +2620,27 @@
       "status": "open",
       "decision": "Left open as a low-priority note; it does not block the build.",
       "decision_source": "data collector 2026-10-22 (new item; no author decision yet)",
+      "blocking": false
+    },
+    {
+      "id": "NR-26",
+      "priority": "medium",
+      "topic": "Hack4Edu 2026 (Twins for Change): award wording, dates, role and organizer",
+      "issue": "The first place comes from the author's message only ('won the hack4edu in the profuturo challenges at the first place'); there is no public announcement or certificate in the sources. The hackathon dates, the organizer and its official URL, the team members and the author's exact part of the work are not in the sources. The date shown is the repository creation month (Oct 2026). twinsforchange.com renders client-side and could not be read automatically.",
+      "affects": [
+        "projects.featured[hack4edu-twins-for-change].award",
+        "projects.featured[hack4edu-twins-for-change].date",
+        "projects.featured[hack4edu-twins-for-change].role",
+        "projects.featured[hack4edu-twins-for-change].featured_rank"
+      ],
+      "action": "Confirm the award wording (prize name, which challenge), the hackathon dates, the organizer link, the team and your role, and whether the project should be listed first. Optionally add a link to an official results announcement.",
+      "sources": [
+        "author message 2026-11-16",
+        "https://github.com/Fasmanuel2002/Hack4Edu_2026"
+      ],
+      "status": "open",
+      "decision": "Shown as 'First place in the ProFuturo challenges, Hack4Edu 2026', dated Oct 2026, role 'Developer, Twins for Change team', listed first.",
+      "decision_source": "coordinator 2026-11-16 (pending author confirmation)",
       "blocking": false
     }
   ]

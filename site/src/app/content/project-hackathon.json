@@ -1,0 +1,146 @@
+{
+  "id": "hack4edu-twins-for-change",
+  "rank": 1,
+  "kind": "hackathon",
+  "slug": "hack4edu-twins-for-change",
+  "path": "/projects/hack4edu-twins-for-change",
+  "title": "Twins for Change",
+  "summary": "Offline-first AI tutor for bilingual Yorùbá–English classrooms that grounds Gemma 3 answers in a 15,791-row corpus with hybrid retrieval-augmented generation.",
+  "role": "Developer, Twins for Change team",
+  "date": "2026-10",
+  "dateDisplay": "Oct 2026",
+  "award": {
+    "text": "First place in the ProFuturo challenges",
+    "event": "Hack4Edu 2026"
+  },
+  "challenges": [
+    "The school speaks your language (challenge 06)",
+    "Learning without a connection (challenge 02)"
+  ],
+  "liveSite": {
+    "url": "https://www.twinsforchange.com/",
+    "display": "twinsforchange.com"
+  },
+  "repository": {
+    "url": "https://github.com/Fasmanuel2002/Hack4Edu_2026",
+    "name": "Hack4Edu_2026",
+    "license": null,
+    "languages": [
+      "TypeScript",
+      "Python"
+    ],
+    "created": "2026-10-24"
+  },
+  "problem": "Language models such as Gemma 3 4B often make things up when they answer in Yorùbá. Twins for Change grounds every answer in real data: it retrieves verified bilingual examples from a 15,791-row corpus and gives them to Gemma before it answers.",
+  "points": [
+    "Hybrid search: dense bge-m3 and keyword BM25 vectors in Qdrant, merged with Reciprocal Rank Fusion; the top three documents are passed to gemma3:4b before it answers.",
+    "Bilingual answers: the explanation is in Yorùbá, and key terms and the summary are in English.",
+    "Verified sources: every answer shows the three corpus documents it was based on.",
+    "Compare mode: plain Gemma and Gemma with RAG answer the same question side by side.",
+    "Offline: after a one-time setup, everything runs on a single laptop."
+  ],
+  "architecture": "FastAPI backend and REST API with the RAG pipeline (storage, retrieval, prompts), an Angular frontend, models served by Ollama, and a Qdrant vector database; docker-compose deploys Qdrant, Ollama, FastAPI and Caddy.",
+  "dataset": {
+    "description": "dataset_rag.csv, built in notebooks/creation_dataset_rag.ipynb from public benchmarks.",
+    "total": "15,791",
+    "rows": [
+      {
+        "subject": "Mathematics",
+        "source": "AfriMGSM, GSM8K",
+        "rows": "7,731"
+      },
+      {
+        "subject": "Sciences and humanities",
+        "source": "AfriMMLU",
+        "rows": "608"
+      },
+      {
+        "subject": "Reading comprehension",
+        "source": "Belebele",
+        "rows": "900"
+      },
+      {
+        "subject": "Translation",
+        "source": "MAFAND",
+        "rows": "6,552"
+      }
+    ]
+  },
+  "technologies": [
+    "Python",
+    "TypeScript",
+    "FastAPI",
+    "Angular",
+    "Ollama",
+    "Gemma 3 (gemma3:4b)",
+    "bge-m3",
+    "BM25",
+    "Qdrant",
+    "Docker",
+    "Caddy",
+    "uv"
+  ],
+  "highlight": {
+    "value": "1st place in the ProFuturo challenges",
+    "note": "Hack4Edu 2026",
+    "parts": [
+      {
+        "text": "1st",
+        "figure": true
+      },
+      {
+        "text": " place in the ProFuturo challenges",
+        "figure": false
+      }
+    ]
+  },
+  "jsonLd": {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareSourceCode",
+        "@id": "https://fasmanuel2002.github.io/projects/hack4edu-twins-for-change/#code",
+        "name": "Twins for Change",
+        "description": "Offline-first AI tutor for bilingual Yorùbá–English classrooms that grounds Gemma 3 answers in a 15,791-row corpus with hybrid retrieval-augmented generation.",
+        "url": "https://fasmanuel2002.github.io/projects/hack4edu-twins-for-change/",
+        "codeRepository": "https://github.com/Fasmanuel2002/Hack4Edu_2026",
+        "programmingLanguage": [
+          "TypeScript",
+          "Python"
+        ],
+        "dateCreated": "2026-10-24",
+        "keywords": "Python, TypeScript, FastAPI, Angular, Ollama, Gemma 3 (gemma3:4b), bge-m3, BM25, Qdrant, Docker, Caddy, uv",
+        "author": {
+          "@type": "Person",
+          "@id": "https://fasmanuel2002.github.io/#person",
+          "name": "Manuel Fas"
+        },
+        "sameAs": "https://www.twinsforchange.com/",
+        "award": "First place in the ProFuturo challenges, Hack4Edu 2026"
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://fasmanuel2002.github.io/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Projects",
+            "item": "https://fasmanuel2002.github.io/projects/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Twins for Change",
+            "item": "https://fasmanuel2002.github.io/projects/hack4edu-twins-for-change/"
+          }
+        ]
+      }
+    ]
+  }
+}

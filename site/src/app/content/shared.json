@@ -21,7 +21,7 @@
     "projects": {
       "path": "/projects",
       "title": "Projects — Manuel Fas",
-      "description": "PyTorch reimplementation of the TRACE clickstream Transformer, a cancer survival-analysis thesis on TCGA RNA-seq data, and PyTorch paper reimplementations.",
+      "description": "Hack4Edu 2026 winning RAG tutor, a PyTorch TRACE reimplementation, a cancer survival thesis on TCGA RNA-seq data, and PyTorch paper reimplementations.",
       "url": "https://fasmanuel2002.github.io/projects/"
     },
     "certifications": {
@@ -44,6 +44,13 @@
     }
   },
   "projectPages": {
+    "hackathon": {
+      "slug": "hack4edu-twins-for-change",
+      "path": "/projects/hack4edu-twins-for-change",
+      "title": "Twins for Change — Manuel Fas",
+      "description": "Twins for Change: offline Yorùbá–English AI tutor using hybrid RAG with Gemma 3. 1st place in the ProFuturo challenges at Hack4Edu 2026.",
+      "url": "https://fasmanuel2002.github.io/projects/hack4edu-twins-for-change/"
+    },
     "trace": {
       "slug": "trace-reimplementation",
       "path": "/projects/trace-reimplementation",
@@ -62,7 +69,7 @@
       "slug": "paper-reimplementations",
       "path": "/projects/paper-reimplementations",
       "title": "Paper-Reimplementations — Manuel Fas",
-      "description": "PyTorch reimplementations of six machine learning papers (4 completed, 2 planned/in progress), from Seq2Seq and Attention Is All You Need to ViT.",
+      "description": "PyTorch reimplementations of six machine learning papers (5 completed, 1 planned/in progress), from Seq2Seq and Transformers to ViT and FT-Transformer.",
       "url": "https://fasmanuel2002.github.io/projects/paper-reimplementations/"
     }
   },

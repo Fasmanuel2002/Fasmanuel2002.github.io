@@ -490,6 +490,10 @@ const implementations = reimplSource.implementations
       item.verification?.result === 'verified' && item.verification.notes
         ? item.verification.notes.replace(/\bIt is trained\b/, 'The model is trained')
         : null;
+    expect(
+      !item.result_columns || item.reported_results.every((result) => result.values?.length === item.result_columns.length),
+      `#${item.number}: every reported result needs one value per result column`,
+    );
     return {
       number: item.number,
       name: item.name,
@@ -503,13 +507,17 @@ const implementations = reimplSource.implementations
       note: item.implementation ? null : sentences(item.display_note).at(-1),
       dataset: item.dataset ?? null,
       results: (item.reported_results ?? []).map((result) =>
-        'value' in result
-          ? { metric: result.metric, values: [result.value] }
-          : { metric: result.metric, values: [result.baseline_seq2seq, result.seq2seq_with_attention] },
+        'values' in result
+          ? { metric: result.metric, values: result.values }
+          : 'value' in result
+            ? { metric: result.metric, values: [result.value] }
+            : { metric: result.metric, values: [result.baseline_seq2seq, result.seq2seq_with_attention] },
       ),
-      resultColumns: (item.reported_results ?? []).some((result) => 'baseline_seq2seq' in result)
-        ? ['Baseline Seq2Seq', 'Seq2Seq with attention']
-        : ['Value'],
+      resultColumns:
+        item.result_columns ??
+        ((item.reported_results ?? []).some((result) => 'baseline_seq2seq' in result)
+          ? ['Baseline Seq2Seq', 'Seq2Seq with attention']
+          : ['Value']),
       caveat: verifiedNotes,
       figure: figureOut(item.architecture_figure),
     };
@@ -542,7 +550,43 @@ const reimplementations = {
   ),
 };
 
-const projectCards = [trace, thesis, reimplementations].map((project) => ({
+// Hack4Edu 2026: Twins for Change (award is author-provided, NR-26)
+const hackSource = get(byId(featured), 'hack4edu-twins-for-change');
+const hackRows = hackSource.dataset.rows;
+expect(
+  hackRows.reduce((sum, row) => sum + row.rows, 0) === hackSource.dataset.total_rows,
+  'Hack4Edu dataset rows should add up to total_rows',
+);
+expect(hackSource.summary.includes(formatInt(hackSource.dataset.total_rows)), 'Hack4Edu summary should state the corpus size');
+const hackathon = {
+  id: hackSource.id,
+  rank: hackSource.featured_rank,
+  kind: 'hackathon',
+  slug: projectSlug(hackSource),
+  path: projectPath(hackSource),
+  title: hackSource.title,
+  summary: hackSource.summary,
+  role: hackSource.role,
+  date: hackSource.date,
+  dateDisplay: hackSource.date_display,
+  award: { text: hackSource.award.text, event: hackSource.award.event },
+  challenges: hackSource.challenges.map((item) => `${item.name_en} (${item.code.replace('Reto', 'challenge')})`),
+  liveSite: { url: hackSource.public_link, display: bareUrl(hackSource.public_link).replace(/^www\./, '') },
+  repository: repositoryOut(hackSource.repository),
+  problem: hackSource.problem,
+  points: hackSource.description_points.map((point) => point.text),
+  architecture: hackSource.architecture,
+  dataset: {
+    description: hackSource.dataset.description,
+    total: formatInt(hackSource.dataset.total_rows),
+    rows: hackRows.map((row) => ({ subject: row.subject, source: row.source, rows: formatInt(row.rows) })),
+  },
+  technologies: hackSource.technologies.items,
+  highlight: highlightOut(hackSource.award.text.replace(/^First place\b/, '1st place'), hackSource.award.event, ['1st']),
+};
+expect(hackSource.award.text.startsWith('First place '), 'Hack4Edu highlight assumes a first-place award');
+
+const projectCards = [hackathon, trace, thesis, reimplementations].map((project) => ({
   id: project.id,
   slug: project.slug,
   path: project.path,
@@ -555,7 +599,9 @@ const projectCards = [trace, thesis, reimplementations].map((project) => ({
       ? { label: project.context.position, organization: project.context.organization, url: project.context.organizationUrl }
       : project.kind === 'thesis'
         ? { label: project.context.documentType, organization: project.context.organization, url: null }
-        : null,
+        : project.kind === 'hackathon'
+          ? { label: 'Hackathon', organization: project.award.event, url: null }
+          : null,
   dateDisplay: project.dateDisplay ?? null,
   date: project.date ?? null,
   highlight: project.highlight,
@@ -751,7 +797,7 @@ const pages = {
     path: '/projects',
     title: `Projects — ${person.name}`,
     description:
-      'PyTorch reimplementation of the TRACE clickstream Transformer, a cancer survival-analysis thesis on TCGA RNA-seq data, and PyTorch paper reimplementations.',
+      'Hack4Edu 2026 winning RAG tutor, a PyTorch TRACE reimplementation, a cancer survival thesis on TCGA RNA-seq data, and PyTorch paper reimplementations.',
   },
   certifications: {
     path: '/certifications',
@@ -779,9 +825,10 @@ expect(hslu.program === 'Visiting Exchange Student, Computer Science', 'educatio
 expect(upsa.dates_display.endsWith('May 2027 (expected)'), 'education wording assumes May 2027 (expected)');
 
 const projectDescriptions = {
+  hackathon: `${hackathon.title}: offline Yorùbá–English AI tutor using hybrid RAG with Gemma 3. 1st place in the ProFuturo challenges at ${hackathon.award.event}.`,
   trace: `PyTorch reimplementation of the TRACE Transformer for clickstream user representations, evaluated on OTTO: average AUROC ${traceMain.auroc} and AUPRC ${traceMain.auprc}.`,
   thesis: `${thesis.context.documentType} (UPSA): classical and deep survival models on TCGA breast cancer RNA-seq data. Best model: ${thesisSource.results.best_model}, C-index ${thesisSource.results.best_model_c_index_display}.`,
-  reimplementations: `PyTorch reimplementations of ${numberWord(implementations.length)} machine learning papers (${reimplementations.highlight.note}), from Seq2Seq and Attention Is All You Need to ViT.`,
+  reimplementations: `PyTorch reimplementations of ${numberWord(implementations.length)} machine learning papers (${reimplementations.highlight.note}), from Seq2Seq and Transformers to ViT and FT-Transformer.`,
 };
 expect(traceSource.datasets[0].name.startsWith('OTTO'), 'TRACE description assumes OTTO as the primary dataset');
 expect(thesis.context.organization.endsWith('(UPSA)'), 'thesis description abbreviates the institution as UPSA');
@@ -792,13 +839,14 @@ expect(
 expect(
   implementations[0].implementation?.includes('Seq2Seq') &&
     implementations[1].name === 'Attention Is All You Need' &&
-    implementations[3].caveat?.includes('ViT'),
-  'reimplementations description names #01 (Seq2Seq), #02 and #04 (ViT)',
+    implementations[3].caveat?.includes('ViT') &&
+    implementations[4].caveat?.includes('FT-Transformer'),
+  'reimplementations description names #01 (Seq2Seq), #02, #04 (ViT) and #05 (FT-Transformer)',
 );
 
 // Keyed by project kind; each page lives at /projects/<slug>.
 const projectPages = Object.fromEntries(
-  [trace, thesis, reimplementations].map((project) => [
+  [hackathon, trace, thesis, reimplementations].map((project) => [
     project.kind,
     {
       slug: project.slug,
@@ -821,13 +869,13 @@ const openTo = 'open to international roles and relocation';
 
 const ledes = {
   homeFeatured:
-    "Three projects with public code: a PyTorch reimplementation of the TRACE clickstream model, a bachelor's thesis on survival modelling with TCGA breast cancer RNA-seq data, and a repository of PyTorch paper reimplementations.",
+    "Four projects with public code: Twins for Change, a Yorùbá–English RAG tutor that won first place in the ProFuturo challenges at Hack4Edu 2026, a PyTorch reimplementation of the TRACE clickstream model, a bachelor's thesis on survival modelling with TCGA breast cancer RNA-seq data, and a repository of PyTorch paper reimplementations.",
   homeActivity: `${upperFirst(listJoin(activityParts))} between ${timeline.at(-1).display} and ${timeline[0].display}, newest first.`,
   homeAbout: `Who ${person.name} is and what he does, in his own words.`,
   experience: `Four positions since ${rangeStart(oldestRole.dates_display)}: three machine learning research roles in ${listJoin(researchCountries)}, and one machine learning and backend engineering role at ${otherRoles[0].organization}.`,
   skills: 'Programming languages, machine learning libraries, engineering tools and methods, plus spoken languages.',
   projects:
-    "Three featured projects, each with its own page and a public GitHub repository: a PyTorch reimplementation of the TRACE clickstream model (HSLU), a bachelor's thesis on cancer survival analysis (UPSA), and PyTorch reimplementations of machine learning papers.",
+    "Four featured projects, each with its own page and a public GitHub repository: Twins for Change, an offline Yorùbá–English AI tutor that won first place in the ProFuturo challenges at Hack4Edu 2026, a PyTorch reimplementation of the TRACE clickstream model (HSLU), a bachelor's thesis on cancer survival analysis (UPSA), and PyTorch reimplementations of machine learning papers.",
   projectsMore: `Other public repositories are on ${person.name}'s GitHub profile.`,
   certifications: `Twelve course certificates dated ${certDates[0].date_display} to ${certDates.at(-1).date_display}, issued by ${listJoin(issuers)}. Eight of the DeepLearning.AI courses make up two Coursera specializations.`,
   education: `A dual bachelor's degree at the ${upsa.institution}, ${rangeEnd(upsa.dates_display).replace(/^(.*) \(expected\)$/, 'expected $1')}, and a visiting exchange in computer science at the ${hslu.institution}.`,
@@ -958,6 +1006,14 @@ const breadcrumbJsonLd = (project) => ({
 });
 const projectGraph = (project, code) => ({ '@context': 'https://schema.org', '@graph': [code, breadcrumbJsonLd(project)] });
 const projectJsonLd = {
+  hackathon: projectGraph(
+    hackathon,
+    softwareSourceCode(hackathon, {
+      programmingLanguage: ['TypeScript', 'Python'],
+      sameAs: hackathon.liveSite.url,
+      award: `${hackathon.award.text}, ${hackathon.award.event}`,
+    }),
+  ),
   trace: projectGraph(
     trace,
     softwareSourceCode(trace, {
@@ -1008,14 +1064,14 @@ const catalogJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
   name: pages.projects.title,
-  itemListElement: [trace, thesis, reimplementations].map((project, index) => ({
+  itemListElement: [hackathon, trace, thesis, reimplementations].map((project, index) => ({
     '@type': 'ListItem',
     position: index + 1,
     url: pageUrl(project.path),
     name: project.title,
   })),
 };
-for (const tech of [trace, thesis, reimplementations]) {
+for (const tech of [hackathon, trace, thesis, reimplementations]) {
   expect(tech.technologies.includes('Python'), `${tech.id}: programmingLanguage assumes Python`);
 }
 
@@ -1077,6 +1133,7 @@ const contentFiles = {
     cards: projectCards,
     jsonLd: catalogJsonLd,
   },
+  'project-hackathon': { ...hackathon, jsonLd: projectJsonLd.hackathon },
   'project-trace': { ...trace, jsonLd: projectJsonLd.trace },
   'project-thesis': { ...thesis, jsonLd: projectJsonLd.thesis },
   'project-reimplementations': { ...reimplementations, jsonLd: projectJsonLd.reimplementations },
@@ -1130,6 +1187,7 @@ const llms = `# ${person.name}
 
 ## Projects
 
+- [${hackathon.title}](${pageUrl(hackathon.path)}): ${hackathon.award.text} at ${hackathon.award.event}. ${hackathon.summary} ${hackathon.problem} ${hackathon.points.join(' ')} Corpus: ${hackathon.dataset.total} rows (${hackathon.dataset.rows.map((row) => `${row.subject}: ${row.source}`).join('; ')}). Code: ${hackathon.repository.url}. Live site: ${hackathon.liveSite.url}
 - [${trace.title}](${pageUrl(trace.path)}): ${trace.summary} ${trace.points[0]} Result: ${trace.highlight.value} for ${trace.highlight.note}. Code: ${trace.repository.url}. ${trace.pdf.documentType} (PDF): ${abs(trace.pdf.href)}
 - [${thesis.title}](${pageUrl(thesis.path)}): ${thesis.context.documentType}, ${thesis.context.organization}, ${thesis.dateDisplay}. ${thesis.summary} Data: ${thesis.data.dataset}; ${thesis.data.patients}. Models: ${thesis.method.models.join(', ')}. ${thesis.results.findings[0]} Code: ${thesis.repository.url}. Thesis (PDF): ${abs(thesis.pdf.href)}
 - [${reimplementations.title}](${pageUrl(reimplementations.path)}): ${reimplementations.summary} Code: ${reimplementations.repository.url}. Papers:

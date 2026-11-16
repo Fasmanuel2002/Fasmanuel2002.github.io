@@ -10,6 +10,10 @@ export const routes: Routes = [
   { path: 'experience', loadComponent: () => import('./pages/experience/experience') },
   { path: 'projects', loadComponent: () => import('./pages/projects/projects') },
   {
+    path: projectRoute(PROJECT_PAGES.hackathon.path),
+    loadComponent: () => import('./pages/projects/hackathon-project'),
+  },
+  {
     path: projectRoute(PROJECT_PAGES.trace.path),
     loadComponent: () => import('./pages/projects/trace-project'),
   },

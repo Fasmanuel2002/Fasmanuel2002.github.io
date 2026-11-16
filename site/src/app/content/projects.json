@@ -1,5 +1,5 @@
 {
-  "lede": "Three featured projects, each with its own page and a public GitHub repository: a PyTorch reimplementation of the TRACE clickstream model (HSLU), a bachelor's thesis on cancer survival analysis (UPSA), and PyTorch reimplementations of machine learning papers.",
+  "lede": "Four featured projects, each with its own page and a public GitHub repository: Twins for Change, an offline Yorùbá–English AI tutor that won first place in the ProFuturo challenges at Hack4Edu 2026, a PyTorch reimplementation of the TRACE clickstream model (HSLU), a bachelor's thesis on cancer survival analysis (UPSA), and PyTorch reimplementations of machine learning papers.",
   "moreLede": "Other public repositories are on Manuel Fas's GitHub profile.",
   "githubProfile": {
     "label": "More projects on GitHub",
@@ -7,10 +7,52 @@
   },
   "cards": [
     {
+      "id": "hack4edu-twins-for-change",
+      "slug": "hack4edu-twins-for-change",
+      "path": "/projects/hack4edu-twins-for-change",
+      "rank": 1,
+      "title": "Twins for Change",
+      "summary": "Offline-first AI tutor for bilingual Yorùbá–English classrooms that grounds Gemma 3 answers in a 15,791-row corpus with hybrid retrieval-augmented generation.",
+      "role": "Developer, Twins for Change team",
+      "context": {
+        "label": "Hackathon",
+        "organization": "Hack4Edu 2026",
+        "url": null
+      },
+      "dateDisplay": "Oct 2026",
+      "date": "2026-10",
+      "highlight": {
+        "value": "1st place in the ProFuturo challenges",
+        "note": "Hack4Edu 2026",
+        "parts": [
+          {
+            "text": "1st",
+            "figure": true
+          },
+          {
+            "text": " place in the ProFuturo challenges",
+            "figure": false
+          }
+        ]
+      },
+      "technologies": [
+        "Python",
+        "TypeScript",
+        "FastAPI",
+        "Angular",
+        "Ollama"
+      ],
+      "repository": {
+        "url": "https://github.com/Fasmanuel2002/Hack4Edu_2026",
+        "name": "Hack4Edu_2026"
+      },
+      "pdf": null
+    },
+    {
       "id": "trace-reimplementation",
       "slug": "trace-reimplementation",
       "path": "/projects/trace-reimplementation",
-      "rank": 1,
+      "rank": 2,
       "title": "Reimplementation of clickstream event sequence analysis model TRACE",
       "summary": "Transformer-based user representation learned from attributed clickstream event sequences.",
       "role": "Author",
@@ -64,7 +106,7 @@
       "id": "upsa-thesis-cancer-survival",
       "slug": "upsa-thesis-cancer-survival",
       "path": "/projects/upsa-thesis-cancer-survival",
-      "rank": 2,
+      "rank": 3,
       "title": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer",
       "summary": "Application of AI and deep learning methods to genomic and transcriptomic data analysis in cancer.",
       "role": "Author",
@@ -110,7 +152,7 @@
       "id": "paper-reimplementations",
       "slug": "paper-reimplementations",
       "path": "/projects/paper-reimplementations",
-      "rank": 3,
+      "rank": 4,
       "title": "Paper-Reimplementations",
       "summary": "PyTorch reimplementations of baseline and state-of-the-art machine learning and AI models.",
       "role": "Author",
@@ -119,7 +161,7 @@
       "date": null,
       "highlight": {
         "value": "6 papers listed",
-        "note": "4 completed, 2 planned/in progress",
+        "note": "5 completed, 1 planned/in progress",
         "parts": [
           {
             "text": "6",
@@ -151,18 +193,24 @@
       {
         "@type": "ListItem",
         "position": 1,
+        "url": "https://fasmanuel2002.github.io/projects/hack4edu-twins-for-change/",
+        "name": "Twins for Change"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
         "url": "https://fasmanuel2002.github.io/projects/trace-reimplementation/",
         "name": "Reimplementation of clickstream event sequence analysis model TRACE"
       },
       {
         "@type": "ListItem",
-        "position": 2,
+        "position": 3,
         "url": "https://fasmanuel2002.github.io/projects/upsa-thesis-cancer-survival/",
         "name": "Application of AI and Deep Learning to Genomic and Transcriptomic Data Analysis in Cancer"
       },
       {
         "@type": "ListItem",
-        "position": 3,
+        "position": 4,
         "url": "https://fasmanuel2002.github.io/projects/paper-reimplementations/",
         "name": "Paper-Reimplementations"
       }
