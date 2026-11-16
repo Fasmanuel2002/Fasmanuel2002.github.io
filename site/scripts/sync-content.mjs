@@ -106,8 +106,8 @@ const upsa = get(educationById, 'edu-upsa');
 const hslu = get(educationById, 'edu-hslu');
 
 const photo = {
-  src: '/images/profile.jpg',
-  webp: '/images/profile.webp',
+  src: '/images/linkedin_alejada_natural.jpg',
+  webp: '/images/linkedin_alejada_natural.webp',
   width: person.photo.width_px,
   height: person.photo.height_px,
   alt: person.photo.alt,
